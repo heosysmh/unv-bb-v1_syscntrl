@@ -1,0 +1,65 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity topLevel_reset is
+    generic (
+        -- Mindestdauer des Resets in Taktzyklen nach einem Watchdog-Event
+        STRETCH_CYCLES : integer := 255
+    );
+    port (
+        clk_i            : in  std_logic; -- System clock
+        pll_locked_i     : in  std_logic; -- LOCKED-signal from PLL (High = locked)
+        watchdog_reset_i : in  std_logic; -- Watchdog-Reset from softcore (High-active)
+        srst_o           : out std_logic  -- Glboal synchronous reset Core (High-active)
+    );
+end entity topLevel_reset;
+
+architecture rtl of topLevel_reset is
+    -- Signals for pulse stretcher
+    signal s_wd_cnt : integer range 0 to STRETCH_CYCLES := 0;
+    signal s_wd_rst : std_logic := '1'; 
+    
+    -- Shift-Register for synchronous release of the reset signal. 
+    -- The reset is initialized to '1' to represent the active reset state.
+    signal s_rst_shift : std_logic_vector(3 downto 0) := (others => '1');
+begin
+
+    ---------------------------------
+    -- 1. Watchdog Pulse Stretcher --
+    ---------------------------------
+    process(clk_i, pll_locked_i)
+    begin        
+        if pll_locked_i = '0' then
+            s_wd_cnt <= 0;
+            s_wd_rst <= '1';
+        elsif rising_edge(clk_i) then
+            if watchdog_reset_i = '1' then                
+                s_wd_cnt <= STRETCH_CYCLES;
+                s_wd_rst <= '1';
+            elsif s_wd_cnt > 0 then                
+                s_wd_cnt <= s_wd_cnt - 1;
+                s_wd_rst <= '1';
+            else                
+                s_wd_rst <= '0';
+            end if;
+        end if;
+    end process;
+
+    ------------------------------------------------------------------
+    -- 2. Synchronisierungsstufe: Vermeidet Metastabilität beim Release
+    ------------------------------------------------------------------
+    process(clk_i, pll_locked_i)
+    begin
+        -- Assert reset when PLL is not locked 
+        if pll_locked_i = '0' then
+            s_rst_shift <= (others => '1');
+        elsif rising_edge(clk_i) then
+            --  Shift the wd-reset signal through a 4-stage shift register to synchronize it with the clock domain.
+            s_rst_shift <= s_rst_shift(2 downto 0) & s_wd_rst;
+        end if;
+    end process;
+    
+    srst_o <= s_rst_shift(3);
+
+end architecture rtl;

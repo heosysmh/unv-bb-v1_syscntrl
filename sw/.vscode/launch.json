@@ -1,0 +1,79 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Build (with GDB)",
+      "type": "cortex-debug",
+      "request": "launch",
+      "servertype": "openocd",
+      
+      // Path to debug ELF file
+      "executable": "${workspaceFolder}/app/build/debug/kria_sysCntrl.elf",
+      
+      // Executables for GDB and OpenOCD
+      "gdbPath": "riscv-none-elf-gdb",
+      "openocdPath": "openocd",
+      
+      // Set architecture explicitly to RISC-V
+      "targetArchitecture": "riscv",
+
+      // OpenOCD configuration files
+      "configFiles": [
+        "${workspaceFolder}/config/ftdi.cfg",
+        "${workspaceFolder}/config/debug.cfg"
+      ],
+
+      // Build debug firmware automatically before each debug session
+      "preLaunchTask": "Build Debug",
+
+      // GDB behavior
+      "runToEntryPoint": "main",
+      "showDevDebugOutput": "none",
+
+      // Commands after connection established
+      "overrideLaunchCommands": [
+        "target remote localhost:50000",
+        "monitor reset halt",
+        "load",
+        "break main"
+      ]
+    },
+    {
+      "name": "Release Build (Run without Debug)",
+      "type": "cortex-debug",
+      "request": "launch",
+      "servertype": "openocd",
+      
+      // Path to release ELF file
+      "executable": "${workspaceFolder}/app/build/release/kria_sysCntrl.elf",
+      
+      // Executables for GDB and OpenOCD
+      "gdbPath": "riscv-none-elf-gdb",
+      "openocdPath": "openocd",
+      
+      // Set architecture explicitly to RISC-V
+      "targetArchitecture": "riscv",
+
+      // OpenOCD configuration files
+      "configFiles": [
+        "${workspaceFolder}/config/ftdi.cfg",
+        "${workspaceFolder}/config/debug.cfg"
+      ],
+
+      // Build release firmware automatically before launch
+      "preLaunchTask": "Build Release",
+
+      // GDB behavior - no debugging, just run
+      "runToEntryPoint": "main",
+      "showDevDebugOutput": "none",
+
+      // Commands after connection - load and run directly
+      "overrideLaunchCommands": [
+        "target remote localhost:50000",
+        "monitor reset halt",
+        "load",
+        "continue"
+      ]
+    }
+  ]
+}

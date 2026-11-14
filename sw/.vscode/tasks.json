@@ -1,0 +1,132 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Debug",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "debug"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/app"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "detail": "Build firmware with debug symbols (-g3 -O0) → build/debug/"
+    },
+    {
+      "label": "Build Release",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "release"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/app"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "detail": "Build optimized firmware (-O3, no debug) → build/release/"
+    },
+    {
+      "label": "Clean Project",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "clean"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/app"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "detail": "Remove all build artifacts (debug and release)"
+    },
+    {
+      "label": "Rebuild Debug",
+      "type": "shell",
+      "command": "make clean && make debug",
+      "options": {
+        "cwd": "${workspaceFolder}/app"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "detail": "Clean and rebuild debug configuration"
+    },
+    {
+      "label": "Rebuild Release",
+      "type": "shell",
+      "command": "make clean && make release",
+      "options": {
+        "cwd": "${workspaceFolder}/app"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "detail": "Clean and rebuild release configuration"
+    }
+  ]
+}

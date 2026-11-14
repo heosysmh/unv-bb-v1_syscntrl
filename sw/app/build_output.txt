@@ -1,0 +1,24 @@
+makefile:65: Warnung: Das Rezept für das Ziel „build“ wird überschrieben
+../mcu/software/standalone/common/standalone.mk:71: Warnung: Das alte Rezept für das Ziel „build“ wird ignoriert
+makefile:71: Warnung: Das Rezept für das Ziel „clean“ wird überschrieben
+../mcu/software/standalone/common/standalone.mk:74: Warnung: Das alte Rezept für das Ziel „clean“ wird ignoriert
+=== Building DEBUG configuration ===
+make[1]: Verzeichnis „/home/matthias/git/efinix/sysCntrl/sw/app“ wird betreten
+makefile:71: Warnung: Das Rezept für das Ziel „clean“ wird überschrieben
+../mcu/software/standalone/common/standalone.mk:74: Warnung: Das alte Rezept für das Ziel „clean“ wird ignoriert
+CC src/interrupt.c
+CC src/main.c
+CC ../drivers/i2c/i2cWrapper.c
+CC ../devices/tpsm8286x/tpsm8286x.c
+CC ../devices/si5332/si5332.c
+CC ../devices/pi4msd5v945x/pi4msd5v945x.c
+CC ../mcu/software/standalone/common/start.S
+CC ../mcu/software/standalone/common/trap.S
+CC syscalls.c
+LD kria_sysCntrl
+Memory region         Used Size  Region Size  %age Used
+             ram:       32064 B        80 KB     39.14%
+=== Build complete: build/debug/kria_sysCntrl.elf ===
+Configuration: DEBUG=yes BENCH=no
+Compiler flags: -DSMP -Isrc -I../drivers -I../drivers/i2c -I../devices -I../devices/tpsm8286x -I../devices/si5332 -I../devices/pi4msd5v945x -I../mcu/software/standalone/../../bsp/efinix/EfxSapphireSoc/include -I../mcu/software/standalone/../../bsp/efinix/EfxSapphireSoc/app -DSYSTEM_UART_A_APB=SYSTEM_UART_0_IO_APB -DSYSTEM_GPIO_A_APB=SYSTEM_GPIO_0_IO_APB -DSYSTEM_I2C_A_APB=SYSTEM_I2C_0_IO_APB -g3 -O0 -march=rv32im_zicsr_zifencei -mabi=ilp32 -DUSE_GP -fcommon  -I../mcu/software/standalone/include -I../mcu/software/standalone/driver -ffunction-sections -fdata-sections
+make[1]: Verzeichnis „/home/matthias/git/efinix/sysCntrl/sw/app“ wird verlassen
