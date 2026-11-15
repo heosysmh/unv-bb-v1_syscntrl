@@ -1,5 +1,5 @@
-# Efinity Build- & working folders
-work/efinity/*
+# Working folder
+work/*
 
 # Re-included files to restore project
 !work/efinity/*.xml
@@ -17,16 +17,20 @@ work/efinity/*
 *.vcd
 *.ghw 
 
-work/riscV/*
-
 # VScode build artefacts
 sw/app/build/*
+
+# ZooCode plans and temporary data
+**/plans
+**/zooCode
 
 # Unused bsp content (generated automatically by efinity)
 **/EfxSapphireSoc/app/
 **/EfxSapphireSoc/openocd/
 **/EfxSapphireSoc/lauterbach_trace32
+
 **/freeRTOS/
+
 **/standalone/apb3
 **/standalone/application
 **/standalone/axi4

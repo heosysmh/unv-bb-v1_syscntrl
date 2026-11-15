@@ -166,7 +166,7 @@ void init(){
 
 	i2c_busSwitch = pi4msd5v945x_initialize(BUS_SWITCH_I2C_ADDR, (pi4msd5v945x_i2c_write_f)i2c_writeDirect, (pi4msd5v945x_i2c_read_f)i2c_readDirect, (void*)i2c_sysCntrl);
 
-	clockGen = si5332_initialize(CLOCK_GEN_I2C_ADDR, (si5332_i2c_write_f)i2c_writeReg, (si5332_i2c_read_f)i2c_writeReg, (void*)i2c_sysCntrl);
+	clockGen = si5332_initialize(CLOCK_GEN_I2C_ADDR, (si5332_i2c_write_f)i2c_writeReg, (si5332_i2c_read_f)i2c_readReg, (void*)i2c_sysCntrl);
 
 }
 
@@ -250,7 +250,13 @@ void main() {
 
     bsp_printf("Configure Clock-Generator\r\n");
 	pi4msd5v945x_setChannels(i2c_busSwitch, I2C_CH_MBRD);
-	si5332_apply_config(clockGen);
+	/* Loads the base configuration + 27 MHz crystal; afterwards only OUT6 (25 MHz) is active.
+	 * OUT0 (100 MHz) / OUT2 (125 MHz) are preconfigured and can be activated if needed with
+	 * si5332_set_output_enable(). */
+	if (si5332_init(clockGen, SI5332_CLK_SRC_XTAL_27M) != SI5332_OK)
+	{
+		bsp_printf("ERROR: Clock-Generator initialization failed\r\n");
+	}
 
 	//Wait for clock outputs to be activated
 	bsp_uDelay(POWER_DELAY);
