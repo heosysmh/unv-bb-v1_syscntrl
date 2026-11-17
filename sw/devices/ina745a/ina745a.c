@@ -628,11 +628,6 @@ ina745a_err_t ina745a_get_charge(ina745a_t *pDev, double *coulombs)
  *        ENERGY, CHARGE) and fills both the converted and raw fields of
  *        @p out.
  *
- * Performs 6 individual register reads (one bus transaction pair per
- * register, see ina745a_i2cWrapper_adapter.c); the INA745x protocol does
- * not document multi-register burst reads, so this function intentionally
- * does not rely on register-pointer auto-increment across register
- * boundaries.
  *
  * @param pDev     Device handle.
  * @param[out] out Receives all measurement values on success.

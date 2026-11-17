@@ -1,1 +1,0 @@
-void pwrMon_init(void);

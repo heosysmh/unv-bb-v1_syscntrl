@@ -6,354 +6,157 @@
 
 /******************************************************************************
 *
-* @file main.c: i2cMasterInterruptDemo
+* @file main.c: system controller application
 *
-* @brief This demo is functionally similar to i2cMasterDemo but includes interrupt support
-*        to prevent the program from getting stuck if the slave device fails to respond.
-*        It demonstrates the use of a timeout interrupt to handle stalled I2C communication.
-*        The program operates as an I2C master, performing both single- and multi-byte reads
-*        from a slave device, which can be emulated using I2CSlaveDemo.
-*        It assumes it is the sole master on the bus and performs data transfers in a blocking manner.
+* @brief Board bring-up and supervision of the carrier board.
+*
+*        This file only contains the CPU-level startup (trap vector, interrupt
+*        enable) and the bring-up sequence. All device handling lives in the
+*        function groups:
+*
+*          i2cBus.c     I2C controllers, interrupt controller, bus switch
+*          boardGpio.c  named GPIO access (enables, resets, power-good lines)
+*          power.c      FMC Vadj regulators and power monitors
+*          clkGen.c     clock generator
+*
+*        Everything configurable is in boardConfig.h.
 *
 ******************************************************************************/
 #include <stdint.h>
+
 #include "bsp.h"
 #include "riscv.h"
 #include "soc.h"
-#include "gpio.h"
 
-#include "i2cWrapper.h"
-#include "interrupt.h"
-#include "tpsm8286x.h"
-#include "si5332.h"
-#include "pi4msd5v945x.h"
-#include "ina745a.h"
-
-
-#define FMC1_VADJ	1.8f
-#define FMC2_VADJ	1.8f
-
-#define FMC_VADJ_MAX	1.8f
-
-#define POWER_DELAY			10000u
-
-#define GPIO_IN_VCCO_PS_EN_SHIFT	0
-#define GPIO_IN_VCCO_PL_EN_SHIFT	1
-#define GPIO_IN_SDPWR_EN_SHIFT		2
-#define GPIO_IN_HDA14P_SHIFT		3
-#define GPIO_IN_HDA14N_SHIFT		4
-#define GPIO_IN_MIO35_SHIFT			5
-#define GPIO_IN_FMC1_SUP_PG_SHIFT	6
-#define GPIO_IN_FMC2_SUP_PG_SHIFT	7
-#define GPIO_IN_FMC1_MOD_PG_SHIFT	8
-#define GPIO_IN_FMC2_MOD_PG_SHIFT	9
-#define GPIO_IN_2V5_PG_SHIFT		10
-#define GPIO_IN_SYS_PG_SHIFT		11
-#define GPIO_IN_SZG_PG_SHIFT		12
-#define GPIO_IN_LMK_INTR_SHIFT		13
-#define GPIO_IN_ETH_PME_SHIFT		14
-
-#define GPIO_OUT_FMC1_SUP_EN_SHIFT	0
-#define GPIO_OUT_FMC2_SUP_EN_SHIFT	1
-#define GPIO_OUT_FMC1_MOD_EN_SHIFT	2
-#define GPIO_OUT_FMC2_MOD_EN_SHIFT	3
-#define GPIO_OUT_POR_B_SHIFT		4
-#define GPIO_OUT_ETH_RSTN_SHIFT		5
-
-#define PLIC_BASE				SYSTEM_PLIC_CTRL
-
-#define I2C_PMBUS_BASE 			SYSTEM_I2C_1_IO_CTRL					// Base address of I2C-Module
-#define I2C_PMBUS_DEV_ID		0x1
-#define I2C_PMBUS_CORE_FREQ 	SYSTEM_CLINT_HZ							// Core Frequency of I2C-Module
-#define I2C_PMBUS_IF_FREQ  		100000U  								// I2C Frequency
-#define I2C_PMBUS_INTR_ID 		SYSTEM_PLIC_SYSTEM_I2C_1_IO_INTERRUPT	// Interrupt ID of I2C-Module
-#define I2C_PMBUS_INTR_PRIO	1U
-#define I2C_PMBUS_INTR_HART	0U
-
-#define I2C_SYSCFG_BASE 		SYSTEM_I2C_0_IO_CTRL					// Base address of I2C-Module
-#define I2C_SYSCFG_DEV_ID		0x0
-#define I2C_SYSCFG_CORE_FREQ 	SYSTEM_CLINT_HZ							// Core Frequency of I2C-Module
-#define I2C_SYSCFG_IF_FREQ  	100000U  								// I2C Frequency
-#define I2C_SYSCFG_INTR_ID 		SYSTEM_PLIC_SYSTEM_I2C_0_IO_INTERRUPT	// Interrupt ID of I2C-Module
-#define I2C_SYSCFG_INTR_PRIO	2U
-#define I2C_SYSCFG_INTR_HART	0U
-
-#define FMC1_VADJ_I2C_ADDR		0x4E
-#define FMC2_VADJ_I2C_ADDR		0x4F
-
-#define CLOCK_GEN_I2C_ADDR		0x6A
-#define BUS_SWITCH_I2C_ADDR		0x77
-
-#define I2C_CH_SYZYGY			PI4MSD5V945X_CH0
-#define I2C_CH_FMC2				PI4MSD5V945X_CH1
-#define I2C_CH_FMC1				PI4MSD5V945X_CH2
-#define I2C_CH_MBRD				PI4MSD5V945X_CH3
-
-#define GPIO_IN					SYSTEM_GPIO_0_IO_CTRL
-#define GPIO_OUT				SYSTEM_GPIO_1_IO_CTRL
-
-enum {
-	PWRMON_12V = 0,
-	PWRMON_3V3,
-	PWRMON_5V0_SOM,
-	PWRMON_1V8,
-	PWRMON_VCCADJ_FMC1,
-	PWRMON_VCCADJ_FMC2
-} pwrMonIdx;
-
-static u8 pwrMonI2cAddr[6] = {0x40, 0x41, 0x43, 0x44, 0x4C, 0x4D};
-
-static i2cHandle_t* i2c_pmbus;
-static i2cHandle_t* i2c_sysCntrl;
-
-static intrHandle_t* intr_cntrl;
-
-static tpsm8286_t* fmc_vadj[2];
-
-static si5332_t* clockGen;
-
-static pi4msd5v945x_t* i2c_busSwitch;
-
-static ina745a_t* pwrMon[6];
+#include "boardConfig.h"
+#include "boardGpio.h"
+#include "clkGen.h"
+#include "i2cBus.h"
+#include "power.h"
 
 void trap_entry();
 
-
-
-
-
-void init(){
-
-	intr_cntrl = intr_initialize(PLIC_BASE);
-	intr_setThreshold(intr_cntrl, 0, 0);
-
-	/*
-	 * Configure I2C-Interface for power-management (i.e. power converters and monitors)
-	 */
-
-	i2cHandle_config_t i2cCfg;
-
-	i2cCfg.baseAddress 	= I2C_PMBUS_BASE;
-	i2cCfg.deviceId    	= I2C_PMBUS_DEV_ID;
-	i2cCfg.intrId	   	= I2C_PMBUS_INTR_ID;
-	i2cCfg.intrPrio		= I2C_PMBUS_INTR_PRIO;
-	i2cCfg.intrHart		= I2C_PMBUS_INTR_HART;
-	i2cCfg.cfg.samplingClockDivider	= 3;
-	i2cCfg.cfg.timeout              = I2C_PMBUS_CORE_FREQ/10;                 	// timeout = 0.1s
-	i2cCfg.cfg.tsuDat               = I2C_PMBUS_CORE_FREQ/I2C_PMBUS_IF_FREQ/3;  // tsuDat = 3.33us
-	i2cCfg.cfg.tLow                 = I2C_PMBUS_CORE_FREQ/I2C_PMBUS_IF_FREQ/2;  // tLow   = 5us
-	i2cCfg.cfg.tHigh                = I2C_PMBUS_CORE_FREQ/I2C_PMBUS_IF_FREQ/2;  // tHigh  = 5us
-	i2cCfg.cfg.tBuf                 = I2C_PMBUS_CORE_FREQ/I2C_PMBUS_IF_FREQ;    // tBuf   = 10us
-
-	i2c_pmbus = i2c_initialize(&i2cCfg, intr_cntrl);
-
-	/*
-	 * Configure I2C-Interface for system configuration (i.e. clock generator, add-on modules)
-	 */
-	i2cCfg.baseAddress 	= I2C_SYSCFG_BASE;
-	i2cCfg.deviceId    	= I2C_SYSCFG_DEV_ID;
-	i2cCfg.intrId	   	= I2C_SYSCFG_INTR_ID;
-	i2cCfg.intrPrio		= I2C_SYSCFG_INTR_PRIO;
-	i2cCfg.intrHart		= I2C_SYSCFG_INTR_HART;
-	i2cCfg.cfg.samplingClockDivider	= 3;
-	i2cCfg.cfg.timeout              = I2C_SYSCFG_CORE_FREQ/10;                 	  // timeout = 0.1s
-	i2cCfg.cfg.tsuDat               = I2C_SYSCFG_CORE_FREQ/I2C_SYSCFG_IF_FREQ/3;  // tsuDat = 3.33us
-	i2cCfg.cfg.tLow                 = I2C_SYSCFG_CORE_FREQ/I2C_SYSCFG_IF_FREQ/2;  // tLow   = 5us
-	i2cCfg.cfg.tHigh                = I2C_SYSCFG_CORE_FREQ/I2C_SYSCFG_IF_FREQ/2;  // tHigh  = 5us
-	i2cCfg.cfg.tBuf                 = I2C_SYSCFG_CORE_FREQ/I2C_SYSCFG_IF_FREQ;    // tBuf   = 10us
-
-	i2c_sysCntrl = i2c_initialize(&i2cCfg, intr_cntrl);
-
-
-
-
-	//configure RISC-V interrupt CSR
-	//Set the machine trap vector (trap.S)
+/**
+ * @brief Enables machine external interrupts and installs the trap vector.
+ */
+static void cpu_enableInterrupts(void)
+{
 	csr_write(mtvec, trap_entry);
-	//Enable machine external interrupts
 	csr_write(mie, MIE_MEIE);
-	//Enable interrupts
 	csr_write(mstatus, csr_read(mstatus) | MSTATUS_MPP | MSTATUS_MIE);
+}
 
+/**
+ * @brief Brings the board up in the required order.
+ *
+ * Ordering constraints:
+ *  - The power monitors must be armed after the SoM power-good wait: their
+ *    ALERT outputs are wired onto the power-good nets, so a latched alert
+ *    would keep SYS_PG low and stall the wait loop.
+ *  - They are armed before the FMC supply is switched on so that the FMC
+ *    rails are already protected while ramping up.
+ *
+ * @return PWR_OK / 0 if the whole sequence succeeded.
+ */
+static int board_bringUp(void)
+{
+	int regOk = 0;
 
-	fmc_vadj[0] = tpsm8286_initialize(0, FMC1_VADJ_I2C_ADDR, (tpsm8286_i2c_write_f)i2c_writeReg, (tpsm8286_i2c_read_f)i2c_readReg, (void*)i2c_pmbus);
-	fmc_vadj[1] = tpsm8286_initialize(1, FMC2_VADJ_I2C_ADDR, (tpsm8286_i2c_write_f)i2c_writeReg, (tpsm8286_i2c_read_f)i2c_readReg, (void*)i2c_pmbus);
-
-	i2c_busSwitch = pi4msd5v945x_initialize(BUS_SWITCH_I2C_ADDR, (pi4msd5v945x_i2c_write_f)i2c_writeDirect, (pi4msd5v945x_i2c_read_f)i2c_readDirect, (void*)i2c_sysCntrl);
-
-	clockGen = si5332_initialize(CLOCK_GEN_I2C_ADDR, (si5332_i2c_write_f)i2c_writeReg, (si5332_i2c_read_f)i2c_readReg, (void*)i2c_sysCntrl);
-
-	/* Power monitors share the PMBus with the FMC DC/DC converters (tpsm8286x).
-	 */
-	for (u32 i = 0; i < 6; i++)
-	{
-		pwrMon[i] = ina745a_initialize(i, pwrMonI2cAddr[i], (ina745a_i2c_write_f)i2c_writeRegBuf, (ina745a_i2c_read_f)i2c_readRegBuf, (void*)i2c_pmbus);
+	if (i2cBus_init() != I2CBUS_OK) {
+		bsp_printf("ERROR: I2C initialization failed\r\n");
+		return -1;
 	}
-}
 
+	if (pwr_init() != PWR_OK) {
+		bsp_printf("ERROR: Power device initialization failed\r\n");
+		return -1;
+	}
 
-void eth_release_reset(void)
-{
-	u32 reg = gpio_getOutput(GPIO_OUT);
+	if (clkGen_init() != CLKGEN_OK) {
+		bsp_printf("ERROR: Clock-Generator initialization failed\r\n");
+		return -1;
+	}
 
-	reg |= (1 << GPIO_OUT_ETH_RSTN_SHIFT);
+	cpu_enableInterrupts();
 
-	gpio_setOutput(GPIO_OUT,reg);
-}
+	bsp_printf("Wait for SoM supplies\r\n");
+	boardGpio_waitSomReady();
+	bsp_uDelay(BOARD_POWER_SETTLE_US);
 
-void eth_invoke_reset(void)
-{
-	u32 reg = gpio_getOutput(GPIO_OUT);
+	bsp_printf("Configure Clock-Generator\r\n");
+	if (clkGen_configure() != CLKGEN_OK) {
+		bsp_printf("ERROR: Clock-Generator configuration failed\r\n");
+		return -1;
+	}
+	bsp_uDelay(BOARD_CLK_SETTLE_US);
 
-	reg &= ~(1 << GPIO_OUT_ETH_RSTN_SHIFT);
-	gpio_setOutput(GPIO_OUT,reg);
+	bsp_printf("Release ETH-PHY reset\r\n");
+	boardGpio_releaseEthPhyReset();
 
-	bsp_uDelay(10);
+	bsp_printf("Configure Power-Monitors\r\n");
+	if (pwr_mon_configure() != PWR_OK)
+		bsp_printf("WARNING: Power-Monitor configuration incomplete\r\n");
 
-	reg |= (1 << GPIO_OUT_ETH_RSTN_SHIFT);
-	gpio_setOutput(GPIO_OUT,reg);
-}
+	bsp_printf("Enable FMC supplies\r\n");
+	boardGpio_setFmcSupplyEnable(1);
+	bsp_uDelay(BOARD_POWER_SETTLE_US);
 
-void som_release_por(void)
-{
-	u32 reg = gpio_getOutput(GPIO_OUT);
+	if (pwr_fmcVadj_configure() != PWR_OK) {
+		bsp_printf("ERROR: FMC Vadj configuration failed\r\n");
+		return -1;
+	}
 
-	reg |= (1 << GPIO_OUT_POR_B_SHIFT);
+	if (pwr_fmcVadj_isRegulating(PWR_FMC1, &regOk) != PWR_OK ||
+	    pwr_fmcVadj_isRegulating(PWR_FMC2, &regOk) != PWR_OK) {
+		bsp_printf("ERROR: FMC Vadj voltage register check failed\r\n");
+		return -1;
+	}
 
-	gpio_setOutput(GPIO_OUT,reg);
-}
+	bsp_printf("Enable FMCs\r\n");
+	if (pwr_fmcVadj_enable(1) != PWR_OK) {
+		bsp_printf("ERROR: FMC Vadj enable failed\r\n");
+		return -1;
+	}
+	bsp_uDelay(BOARD_POWER_SETTLE_US);
 
-void fmc_supply_set_enable(int enable)
-{
-	u32 reg = gpio_getOutput(GPIO_OUT);
+	/* Reports a supply failure as well as any monitor alert of the FMC and
+	 * system rails. */
+	(void)pwr_checkAlerts();
 
-	if(enable == 1) reg |= ( (1 << GPIO_OUT_FMC1_SUP_EN_SHIFT) | (1 << GPIO_OUT_FMC2_SUP_EN_SHIFT) );
-	else reg &= ~( (1 << GPIO_OUT_FMC1_SUP_EN_SHIFT) | (1 << GPIO_OUT_FMC2_SUP_EN_SHIFT) );
+	bsp_printf("Release POR\r\n");
+	boardGpio_releaseSomPor();
 
-	gpio_setOutput(GPIO_OUT,reg);
+	return 0;
 }
 
 /******************************************************************************
 *
-* @brief This main function demonstrates the functionality of I2C Master. It performs
-*        single byte and multi-byte write-read operations with error checks.
-*        The I2C Master communicates with an I2C Slave (or another compatible I2C
-*        device) to perform the tests.
+* @brief Entry point: configures the board and then supervises the supplies.
 *
 ******************************************************************************/
-void main() {
+void main(void)
+{
+	bsp_init();
 
-    bsp_init();
+	boardGpio_init();
 
-    if((FMC1_VADJ > FMC_VADJ_MAX) | (FMC2_VADJ > FMC_VADJ_MAX))
-	{
-		bsp_printf("!!! ERROR: FMC1_Vadj out out range !!!\r\n");
-		return;
+	bsp_printf("Board configuration start\r\n");
+
+	if (board_bringUp() != 0) {
+		bsp_printf("Board configuration FAILED\r\n");
+		while (1) {}
 	}
 
-    gpio_setOutput(GPIO_OUT,0x0);
+	bsp_printf("Board configuration finished\r\n");
 
-    init(); // Initialize
-    bsp_printf("Board configuration start\r\n");
+	/* Supervision loop: the power-good / ALERT lines are checked on every
+	 * pass (GPIO only); the measured values are reported periodically. */
+	while (1) {
+		if (pwr_checkAlerts() != PWR_OK)
+			pwr_mon_reportFaults();
 
-    u8 data;
-	int regOk = 0;
-	u32 gpioIn = 0;
+		pwr_mon_poll();
 
-    //Wait until SoM enables PL and PS supplies
-    u32 mask = (1 << GPIO_IN_VCCO_PL_EN_SHIFT) | (1 << GPIO_IN_VCCO_PS_EN_SHIFT) | (1 << GPIO_IN_SYS_PG_SHIFT);
-    while((gpioIn  & mask) != mask )
-    {
-    	gpioIn = gpio_getInput(GPIO_IN);
-    }
-    //Wait until voltages are stable
-    bsp_uDelay(POWER_DELAY);
-
-    bsp_printf("Configure Clock-Generator\r\n");
-	pi4msd5v945x_setChannels(i2c_busSwitch, I2C_CH_MBRD);
-	/* Loads the base configuration + 27 MHz crystal; afterwards only OUT6 (25 MHz) is active.
-	 * OUT0 (100 MHz) / OUT2 (125 MHz) are preconfigured and can be activated if needed with
-	 * si5332_set_output_enable(). */
-	if (si5332_init(clockGen, SI5332_CLK_SRC_XTAL_27M) != SI5332_OK)
-	{
-		bsp_printf("ERROR: Clock-Generator initialization failed\r\n");
+		bsp_uDelay(BOARD_MONITOR_PERIOD_US);
 	}
-
-	//Wait for clock outputs to be activated
-	bsp_uDelay(POWER_DELAY);
-
-	bsp_printf("Release ETH-PHY reset\r\n");
-	eth_release_reset();
-
-    //Enable FMC power
-    fmc_supply_set_enable(1);
-    //Wait until voltages are stable
-    bsp_uDelay(POWER_DELAY);
-
-    //Configure DC/DC-Converters
-    tpsm8286_set_cntrl(fmc_vadj[0], TPSM8286_FPWM_AT_VC_MASK | TPSM8286_FPWM_MASK |
-    		TPSM8286_OUTPUT_DISCHARGE_MASK | TPSM8286_HICCUP_EN_MASK | TPSM8286_VOLTAGE_RAMP_SPEED_1MV);
-
-    tpsm8286_set_cntrl(fmc_vadj[1], TPSM8286_FPWM_AT_VC_MASK | TPSM8286_FPWM_MASK |
-        		TPSM8286_OUTPUT_DISCHARGE_MASK | TPSM8286_HICCUP_EN_MASK | TPSM8286_VOLTAGE_RAMP_SPEED_1MV);
-
-
-    tpsm8286_set_voltage(fmc_vadj[0], FMC1_VADJ);
-    tpsm8286_set_voltage(fmc_vadj[1], FMC2_VADJ);
-
-	tpsm8286_check_voltageReg(fmc_vadj[0],&regOk);
-	if(regOk == 1)
-	{
-		tpsm8286_check_voltageReg(fmc_vadj[1],&regOk);
-		if(regOk == 1)
-		{
-			bsp_printf("Enable FMCs\r\n");
-			tpsm8286_set_enable(fmc_vadj[0], 1);
-			tpsm8286_set_enable(fmc_vadj[1], 1);
-			//gpio_setOutput(GPIO_OUT,0xF);
-		}
-	}
-
-
-	bsp_printf("Configure Power-Monitors\r\n");
-	{
-		static const char * const pwrMonName[6] = {
-			"12V", "3V3", "5V0_SOM", "1V8", "VCCADJ_FMC1", "VCCADJ_FMC2"
-		};
-		ina745a_adc_config_t pmCfg = {
-			.mode   = INA745A_MODE_CONT_TEMP_CURRENT_BUSV,
-			.vbusct = INA745A_CT_1052US,
-			.vsenct = INA745A_CT_1052US,
-			.tct    = INA745A_CT_1052US,
-			.avg    = INA745A_AVG_16
-		};
-
-		for (u32 i = 0; i < 6; i++)
-		{
-			if (ina745a_init(pwrMon[i], &pmCfg) != INA745A_OK)
-			{
-				bsp_printf("ERROR: Power-Monitor %s initialization failed\r\n", pwrMonName[i]);
-				continue;
-			}
-
-			float busV = 0.0f, curA = 0.0f;
-
-			ina745a_get_bus_voltage(pwrMon[i], &busV);
-			ina745a_get_current(pwrMon[i], &curA);
-			bsp_printf("Power-Monitor %s: Vbus=%d mV, I=%d mA\r\n",
-			           pwrMonName[i], (int)(busV * 1000.0f), (int)(curA * 1000.0f));
-		}
-	}
-
-	bsp_printf("Release POR \r\n");
-	som_release_por();
-
-	bsp_printf("Finished. \r\n");
-	while(1){};
-
 }
-
-
-
-
-

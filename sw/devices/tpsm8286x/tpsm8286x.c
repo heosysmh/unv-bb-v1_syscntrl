@@ -7,7 +7,7 @@
 
 
 #include "tpsm8286x.h"
-#include "userDef.h"
+#include "userDef.h"	/* provides TPSM8286_NUM_OF_INSTANCES */
 
 
 /* ======================
