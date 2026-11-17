@@ -50,19 +50,36 @@ i2cHandle_t* i2c_initialize(i2cHandle_config_t *pDevCfg, intrHandle_t *pIntr)
 	return pInst;
 }
 
-int i2c_writeReg(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data) {
+/*
+ * Generic multi-byte register access, MSB first. i2c_readRegBuf() uses a
+ * genuine repeated start between the register-pointer write and the data
+ * read (see i2c_readData_b_ack() in
+ * mcu/software/standalone/driver/i2c.h), matching the write/read-word
+ * protocol used by multi-byte-register devices (e.g. INA745x).
+ */
+int i2c_writeRegBuf(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data, u32 length) {
 
-	i2c_writeData_b_ack(pInst->baseAddress, (slaveAddr<<1), regAddr, data, 0x1);
+	i2c_writeData_b_ack(pInst->baseAddress, (slaveAddr<<1), regAddr, data, length);
 
 	return 0;
+}
+
+int i2c_readRegBuf(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data, u32 length) {
+
+	i2c_readData_b_ack(pInst->baseAddress, (slaveAddr<<1), regAddr, data, length);
+
+	return 0;
+}
+
+int i2c_writeReg(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data) {
+
+	return i2c_writeRegBuf(pInst, slaveAddr, regAddr, data, 0x1);
 }
 
 
 int i2c_readReg(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data) {
 
-	i2c_readData_b_ack(pInst->baseAddress, (slaveAddr<<1), regAddr, data , 0x1);
-
-	return 0;
+	return i2c_readRegBuf(pInst, slaveAddr, regAddr, data, 0x1);
 }
 
 int i2c_writeDirect(i2cHandle_t *pInst, u8 slaveAddr, u8 *data, u32 length) {
