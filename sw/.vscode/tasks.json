@@ -26,7 +26,7 @@
         "showReuseMessage": true,
         "clear": false
       },
-      "detail": "Build firmware with debug symbols (-g3 -O0) → build/debug/"
+      "detail": "Build firmware with debug symbols (-g3 -Og) → build/debug/"
     },
     {
       "label": "Build Release",

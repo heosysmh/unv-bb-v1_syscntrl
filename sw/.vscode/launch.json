@@ -8,7 +8,7 @@
       "servertype": "openocd",
       
       // Path to debug ELF file
-      "executable": "${workspaceFolder}/app/build/debug/kria_sysCntrl.elf",
+      "executable": "${workspaceFolder}/app/build/debug/unv-bb-v1_sysCntrl.elf",
       
       // Executables for GDB and OpenOCD
       "gdbPath": "riscv-none-elf-gdb",
@@ -45,7 +45,7 @@
       "servertype": "openocd",
       
       // Path to release ELF file
-      "executable": "${workspaceFolder}/app/build/release/kria_sysCntrl.elf",
+      "executable": "${workspaceFolder}/app/build/release/unv-bb-v1_sysCntrl.elf",
       
       // Executables for GDB and OpenOCD
       "gdbPath": "riscv-none-elf-gdb",

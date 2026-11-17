@@ -1,9 +1,12 @@
-PROJ_NAME=kria_sysCntrl
+PROJ_NAME=unv-bb-v1_sysCntrl
 
 STANDALONE=../mcu/software/standalone
 BSP=efinix/EfxSapphireSoc
 
 CFLAGS+=-DSMP
+
+# Zusätzliche Linker-Flags für erweiterte Memory Map Informationen
+LDFLAGS += -Wl,--print-map,--cref
 
 # 1. Alle Unterordner von src/ finden und als Include-Pfade (-I) für Header hinzufügen
 INC_DIRS := $(shell find src -type d)
@@ -38,14 +41,14 @@ LDSCRIPT = ${BSP_PATH}/linker/default.ld
 
 all: debug
 
-# Debug Build: Maximum debug information, no optimization
-# Flags: -g3 -O0
+# Debug Build: Maximum debug information, no optimization for debugging
+# Flags: -g3 -Og
 # Output: build/debug/
 debug:
 	@echo "=== Building DEBUG configuration ==="
 	@$(MAKE) -f $(firstword $(MAKEFILE_LIST)) build \
 		DEBUG=yes \
-		DEBUG_OG=no \
+		DEBUG_OG=yes \
 		BENCH=no \
 		OBJDIR=build/debug
 
@@ -65,6 +68,15 @@ build: $(OBJDIR)/$(PROJ_NAME).elf $(OBJDIR)/$(PROJ_NAME).hex $(OBJDIR)/$(PROJ_NA
 	@echo "=== Build complete: $(OBJDIR)/$(PROJ_NAME).elf ==="
 	@echo "Configuration: DEBUG=$(DEBUG) BENCH=$(BENCH)"
 	@echo "Compiler flags: $(CFLAGS)"
+	@echo "=== Memory usage summary ==="
+	@$(RISCV_PREFIX)size $(OBJDIR)/$(PROJ_NAME).elf
+	@echo "=== Detailed memory usage per object file ==="
+	@printf "%8s %8s %8s %8s %8s %s\n" "text" "data" "bss" "dec" "hex" "filename"
+	@for obj in $(OBJDIR)/obj_files/*.o; do \
+		$(RISCV_PREFIX)size $$obj | grep -v "text" | while read text data bss dec hex file; do \
+			printf "%8s %8s %8s %8s %8s %s\n" "$$text" "$$data" "$$bss" "$$dec" "$$hex" "$$(basename $$obj)"; \
+		done; \
+	done 2>/dev/null | sort -k 1 -n -r || true
 
 # Clean all build artifacts
 clean:
