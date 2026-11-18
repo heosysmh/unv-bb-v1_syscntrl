@@ -4,71 +4,76 @@ use ieee.numeric_std.all;
 use IEEE.MATH_REAL.all;
 
 entity fmcPowerCntrl is
-    generic(       
-        G_PGOOD_OVRRD_TICKS : integer := 500000;
-        G_PGOOD_IGNORE_TICKS  : integer := 1000000
-    );
     port(
-        clk_i    : in  std_logic;        
-        cntrl_i  : in  std_logic;        
-        pgood_i  : in  std_logic;
-        pgood_oe : out std_logic;
-        en_o     : out std_logic       
+        clk_i     : in  std_logic;        
+        pwrCntrl_i   : in  std_logic;   -- power control input from MCU
+        pgoodRelease_i : in  std_logic; -- power good release input from MCU (high = monitor pgood, low = force pgood low)
+        pgood_i  : in  std_logic;       -- power good input from IO
+        pgood_oe : out std_logic;       -- power good output enable to IO (high = drive pgood low, low = tristate pgood)
+        en_o     : out std_logic        -- power enable output to IO (high = enable power, low = disable power)
     );
 end entity fmcPowerCntrl;
 
-architecture RTL of fmcPowerCntrl is
-    constant C_PGOOD_CNT_WIDTH : natural := integer(ceil(log2(real(G_PGOOD_IGNORE_TICKS + 1))));
-   
-    type t_state is (pwrOff, ovrrdPgood, ignorePgood, pwrOn);
+architecture RTL of fmcPowerCntrl is   
+    constant G_DELAY_TICKS : natural := 8000; -- number of clock ticks to wait until pgood is monitored after power up
+    
+    type t_state is (pwrOff, pwrOn, delay,monitor);   
     signal s_state_r : t_state := pwrOff;
+    
+    signal s_dlyCnt_r : unsigned(19 downto 0) := (others => '0');  
 
-    signal s_pgoodCnt_r : unsigned(C_PGOOD_CNT_WIDTH - 1 downto 0) := (others => '0');    
+    signal s_pwrCntrl_r : std_logic := '0';
+    
+    signal s_en : std_logic;
+    signal s_en_r : std_logic := '0';
+    signal s_pgoodOe : std_logic;
+    signal s_pgoodOe_r : std_logic := '1';
 
-    signal s_cntrl_r : std_logic := '0';
 begin
-    assert (G_PGOOD_IGNORE_TICKS > G_PGOOD_OVRRD_TICKS)
-        report "G_PGOOD_IGNORE_TICKS must be greater than G_PGOOD_OVRRD_TICKS"
-        severity failure;
-  
-
     process(clk_i) is
     begin
         if rising_edge(clk_i) then
-            s_cntrl_r <= cntrl_i;
+            s_pwrCntrl_r <= pwrCntrl_i;
             case s_state_r is
                 when pwrOff =>
-                    if cntrl_i = '1' and s_cntrl_r = '0' then
-                        s_state_r <= ovrrdPgood;
-                    end if;
-                when ovrrdPgood =>
-                    s_pgoodCnt_r <= s_pgoodCnt_r + 1;
-                    if cntrl_i = '0' then
-                        s_state_r <= pwrOff;
-                        s_pgoodCnt_r <= (others => '0');
-                    elsif s_pgoodCnt_r = to_unsigned(G_PGOOD_OVRRD_TICKS-1, C_PGOOD_CNT_WIDTH) then
-                        s_state_r <= ignorePgood;                                            
-                    end if;
-                when ignorePgood =>                
-                    if cntrl_i = '0' then
-                        s_state_r <= pwrOff;
-                        s_pgoodCnt_r <= (others => '0');
-                    elsif s_pgoodCnt_r = to_unsigned(G_PGOOD_IGNORE_TICKS-1, C_PGOOD_CNT_WIDTH) then
+                    if pwrCntrl_i = '1' and s_pwrCntrl_r = '0' then
                         s_state_r <= pwrOn;
+                    end if;
+                when pwrOn =>                    
+                    if pwrCntrl_i = '0' then
+                        s_state_r <= pwrOff;                        
+                    elsif pgoodRelease_i = '1' then
+                        s_dlyCnt_r <= (others => '0');
+                        s_state_r <= delay;                                            
+                    end if;                
+                when delay => 
+                    if pwrCntrl_i = '0' then
+                        s_state_r <= pwrOff;                        
+                    elsif s_dlyCnt_r >= to_integer(to_unsigned(G_DELAY_TICKS, s_dlyCnt_r'length)) then
+                        s_state_r <= monitor;                        
                     else
-                        s_pgoodCnt_r <= s_pgoodCnt_r + 1;
+                        s_dlyCnt_r <= s_dlyCnt_r + 1;
                     end if;
-                when pwrOn =>
-                    if cntrl_i = '0' or pgood_i = '0' then
-                        s_state_r <= pwrOff;
-                        s_pgoodCnt_r <= (others => '0');
+                when monitor =>
+                    if pwrCntrl_i = '0' or pgood_i = '0' then
+                        s_state_r <= pwrOff;                       
                     end if;
-            end case;
-        end if;
+            end case;            
+        end if;        
     end process;
 
-
-    en_o <= '0' when s_state_r = pwrOff else '1';
-    pgood_oe <= '1' when s_state_r = pwrOff or s_state_r = ovrrdPgood else '0';
+    s_en <= '0' when s_state_r = pwrOff else '1';
+    s_pgoodOe <= '0' when (s_state_r = delay or s_state_r = monitor) else '1';
+    
+    process(clk_i) is
+    begin
+       if rising_edge(clk_i) then
+          s_en_r <= s_en;
+           s_pgoodOe_r <= s_pgoodOe;
+       end if;
+    end process;
+   
+   en_o <= s_en_r;
+   pgood_oe <= s_pgoodOe_r;
 
 end architecture RTL;

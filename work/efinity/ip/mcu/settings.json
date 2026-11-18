@@ -30,7 +30,7 @@
         "TAP_COUNT": "1",
         "TAP_SEL": "8",
         "Frequency": "80",
-        "PeriFrequencyEnable": "1'b1",
+        "PeriFrequencyEnable": "1'b0",
         "PeriFrequency": "80",
         "UART2_FIFODEPTH": "128",
         "UART2_INT_ID": "3",

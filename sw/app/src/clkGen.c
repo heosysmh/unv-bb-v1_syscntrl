@@ -38,7 +38,7 @@ clkGen_err_t clkGen_init(void)
 	if (!sysCfg)
 		return CLKGEN_E_INIT;
 
-	gClkGen = si5332_initialize(BOARD_CLKGEN_I2C_ADDR,
+	gClkGen = si5332_initialize(I2CBUS_CLKGEN_ADDR,
 	                            (si5332_i2c_write_f)i2c_writeReg,
 	                            (si5332_i2c_read_f)i2c_readReg,
 	                            (void*)sysCfg);
@@ -54,7 +54,7 @@ clkGen_err_t clkGen_configure(void)
 		return CLKGEN_E_INIT;
 
 	/* The clock generator sits behind the bus switch on the SysCfg bus. */
-	if (i2cBus_select(BOARD_I2C_CH_MBRD) != I2CBUS_OK)
+	if (i2cBus_select(I2CBUS_CH_MBRD) != I2CBUS_OK)
 		return CLKGEN_E_BUS;
 
 	/*
@@ -95,7 +95,7 @@ clkGen_err_t clkGen_setOutputEnable(si5332_out_ch_t ch, int enable)
 	if (!gClkGen)
 		return CLKGEN_E_INIT;
 
-	if (i2cBus_select(BOARD_I2C_CH_MBRD) != I2CBUS_OK)
+	if (i2cBus_select(I2CBUS_CH_MBRD) != I2CBUS_OK)
 		return CLKGEN_E_BUS;
 
 	if (si5332_set_output_enable(gClkGen, ch, (u8)(enable ? 1 : 0)) != SI5332_OK)
@@ -111,7 +111,7 @@ clkGen_err_t clkGen_getStatus(si5332_status_flags_t *flags)
 	if (!gClkGen)
 		return CLKGEN_E_INIT;
 
-	if (i2cBus_select(BOARD_I2C_CH_MBRD) != I2CBUS_OK)
+	if (i2cBus_select(I2CBUS_CH_MBRD) != I2CBUS_OK)
 		return CLKGEN_E_BUS;
 
 	if (si5332_get_status(gClkGen, flags) != SI5332_OK)

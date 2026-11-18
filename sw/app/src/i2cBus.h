@@ -6,8 +6,7 @@
 *
 *        Owns the interrupt controller handle, both I2C controller instances
 *        (PMBus and SysCfg) and the PI4MSD5V945X bus switch that segments the
-*        SysCfg bus. All addresses, interrupt IDs and channel assignments come
-*        from boardConfig.h.
+*        SysCfg bus. Addresses and channels are assigned here.
 *
 *        Note: this file is deliberately not called i2c.h - that name is
 *        already used by the BSP driver (mcu/software/standalone/driver/i2c.h)
@@ -18,8 +17,21 @@
 #ifndef SRC_I2CBUS_H_
 #define SRC_I2CBUS_H_
 
+#include "pi4msd5v945x.h"
 #include "i2cWrapper.h"
 #include "interrupt.h"
+
+/* --- Device I2C addresses -------------------------------------------------- */
+#define I2CBUS_FMC1_VADJ_ADDR		0x4E
+#define I2CBUS_FMC2_VADJ_ADDR		0x4F
+#define I2CBUS_CLKGEN_ADDR		0x6A
+#define I2CBUS_BUS_SWITCH_ADDR	0x77
+
+/* --- I2C bus switch channels (SysCfg bus) ---------------------------------- */
+#define I2CBUS_CH_SYZYGY	PI4MSD5V945X_CH0
+#define I2CBUS_CH_FMC2		PI4MSD5V945X_CH1
+#define I2CBUS_CH_FMC1		PI4MSD5V945X_CH2
+#define I2CBUS_CH_MBRD		PI4MSD5V945X_CH3
 
 typedef enum {
 	I2CBUS_OK        =  0,

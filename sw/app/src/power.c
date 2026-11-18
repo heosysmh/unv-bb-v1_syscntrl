@@ -6,13 +6,53 @@
 *
 *******************************************************************************/
 
-#include "power.h"
+#include "ina745a.h"
+#include "tpsm8286x.h"
 
+#include "power.h"
 #include "bsp.h"
 #include "userDef.h"
-
 #include "boardGpio.h"
 #include "i2cBus.h"
+
+
+/* =========================================================================== */
+/* Power monitors: ADC and alert behaviour (ina745a)                        */
+/* =========================================================================== */
+#define PWR_MON_MODE	INA745A_MODE_CONT_TEMP_CURRENT_BUSV
+#define PWR_MON_VBUSCT	INA745A_CT_150US
+#define PWR_MON_VSENCT	INA745A_CT_150US
+#define PWR_MON_TCT		INA745A_CT_150US
+#define PWR_MON_AVG		INA745A_AVG_128
+
+/*
+ * Alert configuration. Both values are dictated by the wiring (ALERT on the
+ * power-good nets, see section 1):
+ *   - ALATCH = 1: a fault is latched until the DIAG_ALRT register is read,
+ *     so short events cannot be missed between two polls.
+ *   - CNVR = 0: a conversion-ready alert would pull the power-good net low
+ *     after every conversion and must stay disabled.
+ *   - APOL = active low: the open-drain output pulls the net low on fault.
+ */
+#define PWR_MON_ALERT_LATCH	1
+#define PWR_MON_ALERT_CNVR	0
+#define PWR_MON_ALERT_SLOW	0	/* compare against the measured value */
+#define PWR_MON_ALERT_POL	INA745A_ALERT_ACTIVE_LOW
+
+/*
+ * Under-voltage and under-current protection are not used on this board.
+ * The driver API always writes both thresholds, so non-trippable values are
+ * programmed: BUVL = 0 V (VBUS is unsigned, never below 0) and
+ * CURRENTUL = the most negative value the 16-bit register can hold.
+ */
+#define PWR_MON_UV_DISABLED_V	0.0f
+#define PWR_MON_UI_DISABLED_A	(-39.0f)
+
+#define PWR_FMC_VADJ_CNTRL		(TPSM8286_FPWM_AT_VC_MASK | \
+								 TPSM8286_FPWM_MASK | \
+					 			 TPSM8286_OUTPUT_DISCHARGE_MASK | \
+					 			 TPSM8286_HICCUP_EN_MASK | \
+					 			 TPSM8286_VOLTAGE_RAMP_SPEED_1MV)
 
 /* The rail table and the driver instance pool must describe the same number
  * of devices. */
@@ -34,7 +74,7 @@ typedef struct {
 
 #define X(name, addr, pg, vov, iov, tov)	{ #name, addr, pg, vov, iov, tov },
 static const pwrMonCfg_t gMonCfg[PWR_RAIL_COUNT] = {
-	BOARD_PWRMON_TABLE
+	PWR_MON_TABLE
 };
 #undef X
 
@@ -45,15 +85,14 @@ typedef struct {
 } pwrFmcCfg_t;
 
 static const pwrFmcCfg_t gFmcCfg[PWR_FMC_COUNT] = {
-	{ "FMC1_VADJ", BOARD_FMC1_VADJ_I2C_ADDR, BOARD_FMC1_VADJ_V },
-	{ "FMC2_VADJ", BOARD_FMC2_VADJ_I2C_ADDR, BOARD_FMC2_VADJ_V }
+	{ "FMC1_VADJ", I2CBUS_FMC1_VADJ_ADDR, BOARD_FMC1_VADJ_V },
+	{ "FMC2_VADJ", I2CBUS_FMC2_VADJ_ADDR, BOARD_FMC2_VADJ_V }
 };
 
 /** Power-good / ALERT line masks, indexed by pwrPgLine_t. */
-static const u32 gPgMask[PWR_PG_COUNT] = {
-	BOARD_PG_SYS_MASK,
-	BOARD_PG_FMC1_SUP_MASK,
-	BOARD_PG_FMC2_SUP_MASK
+static const u32 gPgMask[PWR_PG_COUNT] = {GPIO_PG_SYS_MASK,
+									GPIO_PG_FMC1_SUP_MASK,
+									GPIO_PG_FMC2_SUP_MASK
 };
 
 static const char * const gPgName[PWR_PG_COUNT] = {
@@ -175,7 +214,7 @@ pwr_err_t pwr_fmcVadj_configure(void)
 			return PWR_E_RANGE;
 		}
 
-		if (tpsm8286_set_cntrl(gFmcVadj[i], BOARD_FMC_VADJ_CNTRL) != TPSM8286_OK)
+		if (tpsm8286_set_cntrl(gFmcVadj[i], PWR_FMC_VADJ_CNTRL) != TPSM8286_OK)
 			return PWR_E_DEVICE;
 
 		if (tpsm8286_set_voltage(gFmcVadj[i], gFmcCfg[i].setpoint_V) != TPSM8286_OK)
@@ -185,18 +224,18 @@ pwr_err_t pwr_fmcVadj_configure(void)
 	return PWR_OK;
 }
 
-pwr_err_t pwr_fmcVadj_isRegulating(pwrFmc_t fmc, int *ok)
+pwr_err_t pwr_fmcVadj_isRegulating(pwrFmc_t fmc)
 {
-	if (!ok || fmc >= PWR_FMC_COUNT)
+	if (fmc >= PWR_FMC_COUNT)
 		return PWR_E_PARAM;
 	if (!gFmcVadj[fmc])
 		return PWR_E_INIT;
 
-	*ok = 0;
-	if (tpsm8286_check_voltageReg(gFmcVadj[fmc], ok) != TPSM8286_OK)
+	int ok = 0;
+	if (tpsm8286_check_voltageReg(gFmcVadj[fmc], &ok) != TPSM8286_OK)
 		return PWR_E_DEVICE;
 
-	return (*ok == 1) ? PWR_OK : PWR_E_REGULATION;
+	return (ok == 1) ? PWR_OK : PWR_E_REGULATION;
 }
 
 pwr_err_t pwr_fmcVadj_enable(int enable)
@@ -219,17 +258,17 @@ pwr_err_t pwr_fmcVadj_enable(int enable)
 pwr_err_t pwr_mon_configure(void)
 {
 	const ina745a_adc_config_t adcCfg = {
-		.mode   = BOARD_PWRMON_MODE,
-		.vbusct = BOARD_PWRMON_VBUSCT,
-		.vsenct = BOARD_PWRMON_VSENCT,
-		.tct    = BOARD_PWRMON_TCT,
-		.avg    = BOARD_PWRMON_AVG
+		.mode   = PWR_MON_MODE,
+		.vbusct = PWR_MON_VBUSCT,
+		.vsenct = PWR_MON_VSENCT,
+		.tct    = PWR_MON_TCT,
+		.avg    = PWR_MON_AVG
 	};
-	const ina745a_alert_cfg_t alertCfg = {
-		.alatch        = BOARD_PWRMON_ALERT_LATCH,
-		.conv_ready_en = BOARD_PWRMON_ALERT_CNVR,
-		.slow_alert    = BOARD_PWRMON_ALERT_SLOW,
-		.polarity      = BOARD_PWRMON_ALERT_POL
+	ina745a_alert_cfg_t alertCfg = {
+		.alatch        = PWR_MON_ALERT_LATCH,
+		.conv_ready_en = PWR_MON_ALERT_CNVR,
+		.slow_alert    = PWR_MON_ALERT_SLOW,
+		.polarity      = PWR_MON_ALERT_POL
 	};
 	pwr_err_t status = PWR_OK;
 
@@ -249,9 +288,9 @@ pwr_err_t pwr_mon_configure(void)
 		/* Protection limits; the under limits are programmed to values that
 		 * can never trip (see boardConfig.h). */
 		if (ina745a_set_bus_voltage_limits(gMon[i], gMonCfg[i].overVoltage_V,
-		                                   BOARD_PWRMON_UV_DISABLED_V) != INA745A_OK ||
+		                                   PWR_MON_UV_DISABLED_V) != INA745A_OK ||
 		    ina745a_set_current_limits(gMon[i], gMonCfg[i].overCurrent_A,
-		                               BOARD_PWRMON_UI_DISABLED_A) != INA745A_OK ||
+		                               PWR_MON_UI_DISABLED_A) != INA745A_OK ||
 		    ina745a_set_temperature_limit(gMon[i], gMonCfg[i].overTemp_C) != INA745A_OK) {
 			bsp_printf("ERROR: Power-Monitor %s limit setup failed\r\n",
 			           gMonCfg[i].name);
@@ -341,15 +380,10 @@ pwr_err_t pwr_checkAlerts(void)
 		if (faults < 0) {
 			bsp_printf("ERROR: %s low, monitor query failed\r\n", gPgName[line]);
 			status = PWR_E_DEVICE;
-		} else if (faults == 0) {
-			/* Nobody pulled ALERT: the supply itself is not good. */
-			bsp_printf("ERROR: %s low, no monitor alert -> supply failure\r\n",
-			           gPgName[line]);
-			if (status == PWR_OK)
-				status = PWR_E_REGULATION;
 		} else {
+			bsp_printf("ERROR: %s low\r\n",gPgName[line]);
 			if (status == PWR_OK)
-				status = PWR_E_DEVICE;
+				status = PWR_E_REGULATION;		
 		}
 	}
 

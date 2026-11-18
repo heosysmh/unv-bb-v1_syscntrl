@@ -49,8 +49,8 @@ typedef si5332_err_t (*si5332_i2c_read_f) (void *ctx, u8 i2c_addr, u8 reg_addr, 
 
 /* PLL input source */
 typedef enum {
-	SI5332_CLK_SRC_XTAL_27M = 0,	/* XA/XB 27 MHz crystal */
-	SI5332_CLK_SRC_CLKIN2_100M	/* CLKIN_2 100 MHz differential */
+	SI5332_CLK_SRC_XTAL_27M = 0, 	/* XA/XB 27 MHz crystal */
+	SI5332_CLK_SRC_CLKIN2_100M		/* CLKIN_2 100 MHz differential */
 } si5332_clk_src_t;
 
 /* Configurable outputs (OUT6 is fixed and intentionally not included) */
@@ -81,8 +81,8 @@ typedef enum {
 	SI5332_DIV_SRC_NONE = 0,	/* not configured */
 	SI5332_DIV_SRC_HSDIV0,		/* integer divider O0, 100 MHz */
 	SI5332_DIV_SRC_HSDIV1,		/* integer divider O1, 125 MHz */
-	SI5332_DIV_SRC_ID0,		/* MultiSynth N0 */
-	SI5332_DIV_SRC_ID1		/* MultiSynth N1 */
+	SI5332_DIV_SRC_ID0,			/* MultiSynth N0 */
+	SI5332_DIV_SRC_ID1			/* MultiSynth N1 */
 } si5332_div_src_t;
 
 typedef struct {

@@ -12,16 +12,23 @@
 #include "gpio.h"
 #include "boardConfig.h"
 
-#define FMC_SUP_EN_MASK		((1u << BOARD_GPIO_OUT_FMC1_SUP_EN_SHIFT) | \
-				 (1u << BOARD_GPIO_OUT_FMC2_SUP_EN_SHIFT))
-#define FMC_MOD_EN_MASK		((1u << BOARD_GPIO_OUT_FMC1_MOD_EN_SHIFT) | \
-				 (1u << BOARD_GPIO_OUT_FMC2_MOD_EN_SHIFT))
-#define POR_B_MASK		(1u << BOARD_GPIO_OUT_POR_B_SHIFT)
-#define ETH_RSTN_MASK		(1u << BOARD_GPIO_OUT_ETH_RSTN_SHIFT)
+/* --- GPIO controllers ----------------------------------------------------- */
+#define GPIO_IN		SYSTEM_GPIO_0_IO_CTRL
+#define GPIO_OUT	SYSTEM_GPIO_1_IO_CTRL
 
-#define PG_MASK			(BOARD_PG_SYS_MASK | \
-				 BOARD_PG_FMC1_SUP_MASK | \
-				 BOARD_PG_FMC2_SUP_MASK)
+#define GPIO_FMC_SUP_EN_MASK	((1u << GPIO_OUT_FMC1_SUP_EN_BIT) | \
+				 				 (1u << GPIO_OUT_FMC2_SUP_EN_BIT))
+#define GPIO_FMC_MOD_EN_MASK	((1u << GPIO_OUT_FMC1_MOD_EN_BIT) | \
+				 				 (1u << GPIO_OUT_FMC2_MOD_EN_BIT))
+#define GPIO_FMC_PG_RLS_MASK	((1u << GPIO_OUT_FMC1_PG_RLS_BIT) | \
+				 				 (1u << GPIO_OUT_FMC2_PG_RLS_BIT))
+
+#define GPIO_POR_B_MASK		(1u << GPIO_OUT_POR_B_BIT)
+#define GPIO_ETH_RSTN_MASK	(1u << GPIO_OUT_ETH_RSTN_BIT)
+
+#define GPIO_PG_MASK	(GPIO_PG_SYS_MASK | \
+					GPIO_PG_FMC1_SUP_MASK | \
+					GPIO_PG_FMC2_SUP_MASK)
 
 /** Shadow of the output register; the hardware register is write-only safe. */
 static u32 gOutShadow = 0;
@@ -32,56 +39,61 @@ static u32 gOutShadow = 0;
 static void boardGpio_modifyOutput(u32 mask, u32 value)
 {
 	gOutShadow = (gOutShadow & ~mask) | (value & mask);
-	gpio_setOutput(BOARD_GPIO_OUT, gOutShadow);
+	gpio_setOutput(GPIO_OUT, gOutShadow);
 }
 
 void boardGpio_init(void)
 {
 	gOutShadow = 0x0;	/* supplies off, POR_B asserted, ETH PHY in reset */
-	gpio_setOutput(BOARD_GPIO_OUT, gOutShadow);
+	gpio_setOutput(GPIO_OUT, gOutShadow);
 }
 
 u32 boardGpio_getInput(void)
 {
-	return gpio_getInput(BOARD_GPIO_IN);
+	return gpio_getInput(GPIO_IN);
 }
 
 void boardGpio_waitSomReady(void)
 {
 	u32 in = 0;
 
-	while ((in & BOARD_SOM_READY_MASK) != BOARD_SOM_READY_MASK)
-		in = gpio_getInput(BOARD_GPIO_IN);
+	while ((in & GPIO_SOM_READY_MASK) != GPIO_SOM_READY_MASK)
+		in = gpio_getInput(GPIO_IN);
 }
 
 u32 boardGpio_getPgStatus(void)
 {
-	return gpio_getInput(BOARD_GPIO_IN) & PG_MASK;
+	return gpio_getInput(GPIO_IN) & GPIO_PG_MASK;
 }
 
 void boardGpio_setFmcSupplyEnable(int enable)
 {
-	boardGpio_modifyOutput(FMC_SUP_EN_MASK, enable ? FMC_SUP_EN_MASK : 0u);
+	boardGpio_modifyOutput(GPIO_FMC_SUP_EN_MASK, enable ? GPIO_FMC_SUP_EN_MASK : 0u);
+}
+
+void boardGpio_setFmcPgoodRelease(int release)
+{
+	boardGpio_modifyOutput(GPIO_FMC_PG_RLS_MASK, release ? GPIO_FMC_PG_RLS_MASK : 0u);
 }
 
 void boardGpio_setFmcModuleEnable(int enable)
 {
-	boardGpio_modifyOutput(FMC_MOD_EN_MASK, enable ? FMC_MOD_EN_MASK : 0u);
+	boardGpio_modifyOutput(GPIO_FMC_MOD_EN_MASK, enable ? GPIO_FMC_MOD_EN_MASK : 0u);
 }
 
 void boardGpio_releaseSomPor(void)
 {
-	boardGpio_modifyOutput(POR_B_MASK, POR_B_MASK);
+	boardGpio_modifyOutput(GPIO_POR_B_MASK, GPIO_POR_B_MASK);
 }
 
 void boardGpio_releaseEthPhyReset(void)
 {
-	boardGpio_modifyOutput(ETH_RSTN_MASK, ETH_RSTN_MASK);
+	boardGpio_modifyOutput(GPIO_ETH_RSTN_MASK, GPIO_ETH_RSTN_MASK);
 }
 
 void boardGpio_pulseEthPhyReset(void)
 {
-	boardGpio_modifyOutput(ETH_RSTN_MASK, 0u);
+	boardGpio_modifyOutput(GPIO_ETH_RSTN_MASK, 0u);
 	bsp_uDelay(BOARD_ETH_RESET_PULSE_US);
-	boardGpio_modifyOutput(ETH_RSTN_MASK, ETH_RSTN_MASK);
+	boardGpio_modifyOutput(GPIO_ETH_RSTN_MASK, GPIO_ETH_RSTN_MASK);
 }

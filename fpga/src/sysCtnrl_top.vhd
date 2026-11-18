@@ -2,10 +2,7 @@
 library IEEE;
 --! use logic elements
 use IEEE.STD_LOGIC_1164.all;
---! use arimetics
-use IEEE.STD_LOGIC_arith.all;
---! use logic unsigned
-use IEEE.STD_LOGIC_UNSIGNED.all;
+
 use IEEE.NUMERIC_STD.all;
 use IEEE.MATH_REAL.all;
 
@@ -13,8 +10,7 @@ entity sysCntrl_Top is
   port(
 --MISC/PLL/Reset    
     pll_locked  : in  std_logic;
-    sysClk_i    : in  std_logic;
-    periphClk_i : in  std_logic;    
+    sysClk_i    : in  std_logic;    
 -- SPI
     spi_0_io_sclk_o               : out std_logic;
     spi_0_io_data_0_read_i        : in  std_logic;
@@ -119,8 +115,6 @@ architecture rtl of sysCntrl_Top is
     component mcu is
     port (
         io_systemClk : in std_logic;
-        io_peripheralClk : in std_logic;
-        io_peripheralReset : out std_logic;
         jtagCtrl_enable : in std_logic;
         jtagCtrl_tdi : in std_logic;
         jtagCtrl_capture : in std_logic;
@@ -176,10 +170,6 @@ architecture rtl of sysCntrl_Top is
     constant C_DEBOUNCE_TICKS    : integer := 800000; -- 10ms debounce time
 
 
-
-
-    signal s_config0_debounced : std_logic;
-
     signal s_srst : std_logic;
     signal s_clk : std_logic;
 
@@ -218,7 +208,7 @@ architecture rtl of sysCntrl_Top is
     signal s_config_sync : std_logic_vector(5 downto 0);
     signal s_config : std_logic_vector(5 downto 0);
     
-    signal s_ledCount_r : std_logic_vector(25 downto 0) := (others => '0');
+    signal s_ledCount_r : unsigned(25 downto 0) := (others => '0');
 
     signal s_sys_pwrEn      : std_logic;
     signal s_sys_pwrEn_dlyd : std_logic;
@@ -239,6 +229,9 @@ architecture rtl of sysCntrl_Top is
 
     signal s_mcu_fmc1_supCntrl : std_logic;
     signal s_mcu_fmc2_supCntrl : std_logic;
+    signal s_mcu_fmc1_supPgoodRelease : std_logic;
+    signal s_mcu_fmc2_supPgoodRelease : std_logic;
+
     signal s_mcu_fmc1_modCntrl : std_logic;
     signal s_mcu_fmc2_modCntrl : std_logic;
 
@@ -257,7 +250,7 @@ begin
     spi_0_io_hold_o <= '1';
     spi_0_io_wp_o <= '1';    
 
-    s_clk <= periphClk_i;
+    s_clk <= sysClk_i;
 
     -- Create a vector of input signals to be synchronized
     s_inputs(0)  <= som_vccoPsEn_i;
@@ -292,7 +285,8 @@ begin
     );
 
     s_gpio0_rd(20 downto 0) <= s_inputs_sync(20 downto 0);
-
+    s_gpio0_rd(31 downto 21) <= (others => '0');
+    
     -- Split the synchronized signals into individual signals for easier access
     s_som_vccoPsEn  <= s_inputs_sync(0);
     s_som_vccoPlEn  <= s_inputs_sync(1);
@@ -310,7 +304,7 @@ begin
     s_lmk05028_intr <= s_inputs_sync(13);
     s_eth_pme       <= s_inputs_sync(14);
     s_config_sync   <= s_inputs_sync(20 downto 15);
-
+       
 config_debounce:
     for i in 0 to 5 generate
         config_debounce_inst : entity work.debounce
@@ -326,12 +320,83 @@ config_debounce:
     
     s_sys_pwrEn <= s_config(0);
 
-    s_mcu_fmc1_supCntrl <= s_gpio1_wr(0);
-    s_mcu_fmc2_supCntrl <= s_gpio1_wr(1);
-    --s_mcu_fmc1_modCntrl <= s_gpio1_wr(2);
-    --s_mcu_fmc2_modCntrl <= s_gpio1_wr(3);
-    s_mcu_porn      <= s_gpio1_wr(4);
-    s_mcu_eth_rstn <= s_gpio1_wr(5);
+    /* Control signals from the MCU */
+    s_mcu_fmc1_supCntrl         <= s_gpio1_wr(0);
+    s_mcu_fmc2_supCntrl         <= s_gpio1_wr(1);
+    s_mcu_fmc1_supPgoodRelease  <= s_gpio1_wr(2);
+    s_mcu_fmc2_supPgoodRelease  <= s_gpio1_wr(3);
+    s_mcu_fmc1_modCntrl         <= s_gpio1_wr(4);
+    s_mcu_fmc2_modCntrl         <= s_gpio1_wr(5);
+    s_mcu_porn                  <= s_gpio1_wr(6);
+    s_mcu_eth_rstn              <= s_gpio1_wr(7);
+
+
+    s_gpio1_rd(31 downto 0) <= (others => '0');
+
+    s_usrIntrA <= '0';
+    s_usrIntrB <= '0';
+    
+    mcu_inst : mcu
+    port map (
+        io_systemClk       => sysClk_i,
+        io_asyncReset      => not pll_locked,
+        io_systemReset     => s_srst,
+        
+        jtagCtrl_enable  => jtag_sel,
+        jtagCtrl_tdi     => jtag_tdi,
+        jtagCtrl_capture => jtag_capture,
+        jtagCtrl_shift   => jtag_shift,
+        jtagCtrl_update  => jtag_update,
+        jtagCtrl_reset   => jtag_reset,
+        jtagCtrl_tdo     => jtag_tdo,
+        jtagCtrl_tck     => jtag_tck,
+        
+        system_spi_0_io_data_0_read        => spi_0_io_data_0_read_i,
+        system_spi_0_io_data_0_write       => spi_0_io_data_0_write_o,
+        system_spi_0_io_data_0_writeEnable => spi_0_io_data_0_writeEnable_o,
+        system_spi_0_io_data_1_read        => spi_0_io_data_1_read_i,
+        system_spi_0_io_data_1_write       => spi_0_io_data_1_write_o,
+        system_spi_0_io_data_1_writeEnable => spi_0_io_data_1_writeEnable_o,
+        system_spi_0_io_data_2_read        => '0',
+        system_spi_0_io_data_2_write       => open,
+        system_spi_0_io_data_2_writeEnable => open,
+        system_spi_0_io_data_3_read        => '0',
+        system_spi_0_io_data_3_write       => open,
+        system_spi_0_io_data_3_writeEnable => open,
+        system_spi_0_io_sclk_write         => spi_0_io_sclk_o,
+        system_spi_0_io_ss(0)              => spi_0_io_ss_o,
+        
+        userInterruptB => s_usrIntrB,
+        userInterruptA => s_usrIntrA,
+                
+        system_uart_0_io_txd => uart_txd_o,
+        system_uart_0_io_rxd => uart_rxd_i,
+        
+        system_i2c_0_io_sda_read  => sda0_i,
+        system_i2c_0_io_sda_write => s_i2c0_sda_out,
+        system_i2c_0_io_scl_read  => scl0_i,
+        system_i2c_0_io_scl_write => s_i2c0_scl_out,
+        system_i2c_1_io_sda_read  => sda1_i,
+        system_i2c_1_io_sda_write => s_i2c1_sda_out,
+        system_i2c_1_io_scl_read  => scl1_i,
+        system_i2c_1_io_scl_write => s_i2c1_scl_out,
+                      
+        system_gpio_0_io_writeEnable => s_gpio0_wre,
+        system_gpio_0_io_write       => s_gpio0_wr,
+        system_gpio_0_io_read        => s_gpio0_rd,
+        system_gpio_1_io_writeEnable => s_gpio1_wre,
+        system_gpio_1_io_write       => s_gpio1_wr,
+        system_gpio_1_io_read        => s_gpio1_rd,
+                       
+        system_watchdog_hardPanic => s_wd_hardPanic
+    );
+
+    process(s_clk)
+    begin
+        if rising_edge(s_clk) then
+            s_ledCount_r <= s_ledCount_r + 1;
+        end if;
+    end process;
 
     ----------------------------
     --- System power control ---
@@ -382,13 +447,10 @@ config_debounce:
     ---- FMC1 power control ----
     ----------------------------
     fmc1PowerCntrl_inst : entity work.fmcPowerCntrl
-    generic map (
-        G_PGOOD_OVRRD_TICKS => C_10MS_DELAY_TICKS,
-        G_PGOOD_IGNORE_TICKS => C_20MS_DELAY_TICKS
-    )
     port map (
         clk_i    => s_clk,
-        cntrl_i  => s_mcu_fmc1_supCntrl,
+        pwrCntrl_i  => s_mcu_fmc1_supCntrl,
+        pgoodRelease_i => s_mcu_fmc1_supPgoodRelease,
         pgood_i  => s_fmc1_supPgood,
         pgood_oe => fmc1_supPgood_oe,
         en_o     => fmc1_supPwrEn_o
@@ -411,13 +473,10 @@ config_debounce:
     ---- FMC2 power control ----
     ----------------------------
     fmc2PowerCntrl_inst : entity work.fmcPowerCntrl
-    generic map (
-        G_PGOOD_OVRRD_TICKS => C_10MS_DELAY_TICKS,
-        G_PGOOD_IGNORE_TICKS => C_20MS_DELAY_TICKS
-    )
     port map (
         clk_i    => s_clk,
-        cntrl_i  => s_mcu_fmc2_supCntrl,
+        pwrCntrl_i  => s_mcu_fmc2_supCntrl,
+        pgoodRelease_i => s_mcu_fmc2_supPgoodRelease,
         pgood_i  => s_fmc2_supPgood,
         pgood_oe => fmc2_supPgood_oe,
         en_o     => fmc2_supPwrEn_o
@@ -467,9 +526,13 @@ config_debounce:
         signal_i       => s_pl_pwrEn_dlyd and s_ps_pwrEn,
         signal_o       => s_porn
     ); 
-    -- Keep POR signal asserted until the MCU releases it
+    
+    
+    leds_o(0) <= fmc1_supPgood_oe;--s_ledCount_r(25);
+    leds_o(1) <= s_ledCount_r(24);
+        
+     -- Keep POR signal asserted until the MCU releases it
     ps_porn_o <= s_porn and s_mcu_porn;
-
 
     pmu_Mio28GPI_o <= '0';
     pmu_Mio29GPI_o <= '0';
@@ -480,9 +543,6 @@ config_debounce:
     
     hdb_Vadj2En_o <= '1';
     hdb_2v5En_o <= '0';    
-
-
-    
 
     si5332_Cntrl_o <= (others => '0');
 
@@ -502,74 +562,5 @@ config_debounce:
 
     sda1_o <= not s_i2c1_sda_out;
     scl1_o <= not s_i2c1_scl_out;
-
-    s_gpio1_rd(20 downto 0) <= s_inputs_sync(20 downto 0);
-
-    mcu_inst : mcu
-    port map (
-        io_systemClk       => sysClk_i,
-        io_peripheralClk   => periphClk_i,
-        io_peripheralReset => open,
-        io_asyncReset      => not pll_locked,
-        io_systemReset     => s_srst,
-        
-        jtagCtrl_enable  => jtag_sel,
-        jtagCtrl_tdi     => jtag_tdi,
-        jtagCtrl_capture => jtag_capture,
-        jtagCtrl_shift   => jtag_shift,
-        jtagCtrl_update  => jtag_update,
-        jtagCtrl_reset   => jtag_reset,
-        jtagCtrl_tdo     => jtag_tdo,
-        jtagCtrl_tck     => jtag_tck,
-        
-        system_spi_0_io_data_0_read        => spi_0_io_data_0_read_i,
-        system_spi_0_io_data_0_write       => spi_0_io_data_0_write_o,
-        system_spi_0_io_data_0_writeEnable => spi_0_io_data_0_writeEnable_o,
-        system_spi_0_io_data_1_read        => spi_0_io_data_1_read_i,
-        system_spi_0_io_data_1_write       => spi_0_io_data_1_write_o,
-        system_spi_0_io_data_1_writeEnable => spi_0_io_data_1_writeEnable_o,
-        system_spi_0_io_data_2_read        => '0',
-        system_spi_0_io_data_2_write       => open,
-        system_spi_0_io_data_2_writeEnable => open,
-        system_spi_0_io_data_3_read        => '0',
-        system_spi_0_io_data_3_write       => open,
-        system_spi_0_io_data_3_writeEnable => open,
-        system_spi_0_io_sclk_write         => spi_0_io_sclk_o,
-        system_spi_0_io_ss(0)              => spi_0_io_ss_o,
-        
-        userInterruptB => s_usrIntrB,
-        userInterruptA => s_usrIntrA,
-                
-        system_uart_0_io_txd => uart_txd_o,
-        system_uart_0_io_rxd => uart_rxd_i,
-        
-        system_i2c_0_io_sda_read  => sda0_i,
-        system_i2c_0_io_sda_write => s_i2c0_sda_out,
-        system_i2c_0_io_scl_read  => scl0_i,
-        system_i2c_0_io_scl_write => s_i2c0_scl_out,
-        system_i2c_1_io_sda_read  => sda1_i,
-        system_i2c_1_io_sda_write => s_i2c1_sda_out,
-        system_i2c_1_io_scl_read  => scl1_i,
-        system_i2c_1_io_scl_write => s_i2c1_scl_out,
-                      
-        system_gpio_0_io_writeEnable => s_gpio0_wre,
-        system_gpio_0_io_write       => s_gpio0_wr,
-        system_gpio_1_io_write       => s_gpio1_wr,
-        system_gpio_1_io_read        => s_gpio1_rd,
-        system_gpio_1_io_writeEnable => s_gpio1_wre,
-        system_gpio_0_io_read        => s_gpio0_rd,
-        
-        system_watchdog_hardPanic => s_wd_hardPanic
-    );
-
-    process(s_clk)
-    begin
-        if rising_edge(s_clk) then
-            s_ledCount_r <= s_ledCount_r + 1;
-        end if;
-    end process;
-
-    leds_o(0) <= s_pl_pwrEn_dlyd;--s_ledCount_r(25);
-    leds_o(1) <= s_ledCount_r(24);
 
 end rtl;

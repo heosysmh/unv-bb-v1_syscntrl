@@ -29,6 +29,33 @@
 
 #include "boardConfig.h"
 
+/* =========================================================================== */
+/* 5. Power monitors: per-rail configuration                                   */
+/* =========================================================================== */
+/*
+ * One row per monitored rail. This table is the only place where rails are
+ * defined; power.h/power.c derive the rail enum, the name strings, the I2C
+ * addresses, the power-good group and the protection limits from it.
+ *
+ * Columns:
+ *   name  identifier suffix, also used as display name
+ *   addr  7-bit I2C address on the PMBus (A0/A1 strapping)
+ *   pg    power-good / ALERT net the device is wired to (pwrPgLine_t)
+ *   vov   bus over-voltage limit [V]
+ *   iov   over-current limit [A]
+ *   tov   over-temperature limit [degC]
+ *
+ * The number of rows must match INA745A_NUM_INSTANCES in userDef.h.
+ */
+/*	  name,        addr, 			  pg,						  vov,   iov,   tov */
+#define PWR_MON_TABLE \
+	X(12V,         0x40,      PWR_PG_SYS,					   13.20f,  5.0f, 95.0f) \
+	X(3V3,         0x41,      PWR_PG_SYS,						3.60f, 12.0f, 95.0f) \
+	X(5V0_SOM,     0x43,      PWR_PG_SYS,						5.50f,  5.0f, 95.0f) \
+	X(1V8,         0x44, 	  PWR_PG_SYS,     					1.98f,  5.0f, 95.0f) \
+	X(VCCADJ_FMC1, 0x4C, PWR_PG_FMC1_SUP, (BOARD_FMC_VADJ_MAX_V+0.2f),  4.5f, 95.0f) \
+	X(VCCADJ_FMC2, 0x4D, PWR_PG_FMC2_SUP, (BOARD_FMC_VADJ_MAX_V+0.2f),  4.5f, 95.0f)
+
 /* --------------------------------------------------------------------------- */
 /* Status codes                                                                 */
 /* --------------------------------------------------------------------------- */
@@ -56,7 +83,7 @@ typedef enum {
 /* --------------------------------------------------------------------------- */
 #define X(name, addr, pg, vov, iov, tov)	PWR_RAIL_##name,
 typedef enum {
-	BOARD_PWRMON_TABLE
+	PWR_MON_TABLE
 	PWR_RAIL_COUNT
 } pwrRail_t;
 #undef X
@@ -107,7 +134,7 @@ pwr_err_t pwr_init(void);
 pwr_err_t pwr_fmcVadj_configure(void);
 
 /* Checks whether the regulator reports a valid output voltage setting. */
-pwr_err_t pwr_fmcVadj_isRegulating(pwrFmc_t fmc, int *ok);
+pwr_err_t pwr_fmcVadj_isRegulating(pwrFmc_t fmc);
 
 /* Enables/disables both FMC Vadj regulator outputs. */
 pwr_err_t pwr_fmcVadj_enable(int enable);

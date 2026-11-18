@@ -106,8 +106,8 @@ static int board_bringUp(void)
 		return -1;
 	}
 
-	if (pwr_fmcVadj_isRegulating(PWR_FMC1, &regOk) != PWR_OK ||
-	    pwr_fmcVadj_isRegulating(PWR_FMC2, &regOk) != PWR_OK) {
+	if (pwr_fmcVadj_isRegulating(PWR_FMC1) != PWR_OK ||
+	    pwr_fmcVadj_isRegulating(PWR_FMC2) != PWR_OK) {
 		bsp_printf("ERROR: FMC Vadj voltage register check failed\r\n");
 		return -1;
 	}
@@ -117,6 +117,9 @@ static int board_bringUp(void)
 		bsp_printf("ERROR: FMC Vadj enable failed\r\n");
 		return -1;
 	}
+	/* Release FMC power-good enable */
+	boardGpio_setFmcPgoodRelease(1);
+
 	bsp_uDelay(BOARD_POWER_SETTLE_US);
 
 	/* Reports a supply failure as well as any monitor alert of the FMC and

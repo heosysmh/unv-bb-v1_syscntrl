@@ -5,14 +5,8 @@
 * @brief Instance-pool sizes for the drivers and device drivers used by this
 *        application.
 *
-*        This header is included by BSP drivers (which hard-code the name
-*        "userDef.h") and by the device drivers in devices/. It is therefore
-*        deliberately kept free of any BSP or board includes so that the
-*        device drivers stay host-testable (see tests/).
-*
 *        The board itself is configured in boardConfig.h. The counts below
-*        must match the board configuration; power.c contains compile-time
-*        checks that enforce this.
+*        must match the board configuration;
 *
 *******************************************************************************/
 

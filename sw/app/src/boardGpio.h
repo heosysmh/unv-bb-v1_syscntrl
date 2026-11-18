@@ -19,6 +19,54 @@
 
 #include <type.h>
 
+/* --- GPIO input bit positions --------------------------------------------- */
+#define GPIO_IN_VCCO_PS_EN_BIT	0
+#define GPIO_IN_VCCO_PL_EN_BIT	1
+#define GPIO_IN_SDPWR_EN_BIT	2
+#define GPIO_IN_HDA14P_BIT	3
+#define GPIO_IN_HDA14N_BIT	4
+#define GPIO_IN_MIO35_BIT	5
+#define GPIO_IN_FMC1_SUP_PG_BIT	6
+#define GPIO_IN_FMC2_SUP_PG_BIT	7
+#define GPIO_IN_FMC1_MOD_PG_BIT	8
+#define GPIO_IN_FMC2_MOD_PG_BIT	9
+#define GPIO_IN_2V5_PG_BIT	10
+#define GPIO_IN_SYS_PG_BIT	11
+#define GPIO_IN_SZG_PG_BIT	12
+#define GPIO_IN_LMK_INTR_BIT	13
+#define GPIO_IN_ETH_PME_BIT	14
+
+/* --- GPIO output bit positions -------------------------------------------- */
+#define GPIO_OUT_FMC1_SUP_EN_BIT	0
+#define GPIO_OUT_FMC2_SUP_EN_BIT	1
+#define GPIO_OUT_FMC1_PG_RLS_BIT	2
+#define GPIO_OUT_FMC2_PG_RLS_BIT	3
+#define GPIO_OUT_FMC1_MOD_EN_BIT	4
+#define GPIO_OUT_FMC2_MOD_EN_BIT	5
+#define GPIO_OUT_POR_B_BIT		6
+#define GPIO_OUT_ETH_RSTN_BIT		7
+
+/*
+ * Power-good / ALERT nets.
+ *
+ * The ALERT outputs of the INA745A power monitors are open-drain and are
+ * wired-OR onto the power-good inputs below. A line therefore reads low
+ * either because the supply is not good or because an INA745A on that net
+ * has asserted ALERT. See BOARD_PWRMON_TABLE for the rail-to-net mapping
+ * and pwr_checkAlerts() for how the two causes are distinguished.
+ */
+#define GPIO_PG_SYS_MASK		(1u << GPIO_IN_SYS_PG_BIT)
+#define GPIO_PG_FMC1_SUP_MASK		(1u << GPIO_IN_FMC1_SUP_PG_BIT)
+#define GPIO_PG_FMC2_SUP_MASK		(1u << GPIO_IN_FMC2_SUP_PG_BIT)
+
+/* Signals that indicate that the SoM has switched on its PL/PS supplies */
+#define GPIO_SOM_READY_MASK		((1u << GPIO_IN_VCCO_PL_EN_BIT) | \
+					 (1u << GPIO_IN_VCCO_PS_EN_BIT) | \
+					 GPIO_PG_SYS_MASK)
+
+
+
+
 /*
  * Drives all outputs to their reset state (everything off: FMC supplies and
  * modules disabled, POR_B asserted, ETH PHY in reset).
@@ -35,8 +83,8 @@ u32 boardGpio_getInput(void);
 void boardGpio_waitSomReady(void);
 
 /*
- * Power-good / ALERT nets, masked to BOARD_PG_SYS_MASK,
- * BOARD_PG_FMC1_SUP_MASK and BOARD_PG_FMC2_SUP_MASK. A bit reads 0 either
+ * Power-good / ALERT nets, masked to GPIO_PG_SYS_MASK,
+ * GPIO_PG_FMC1_SUP_MASK and GPIO_PG_FMC2_SUP_MASK. A bit reads 0 either
  * because the supply is not good or because an INA745A on that net has
  * asserted its (active low, open-drain) ALERT output.
  */
@@ -44,6 +92,9 @@ u32 boardGpio_getPgStatus(void);
 
 /* FMC supply enable (both FMC slots). */
 void boardGpio_setFmcSupplyEnable(int enable);
+
+/* FMC power-good release (both FMC slots). Power-good is forced low if locked. */
+void boardGpio_setFmcPgoodRelease(int release);
 
 /* FMC module enable (both FMC slots). */
 void boardGpio_setFmcModuleEnable(int enable);
