@@ -13,9 +13,9 @@
  *  - The HAL callbacks operate on whole logical registers (1/2/3/5 bytes),
  *    MSB first, matching the INA745x register map. Their signature is
  *    intentionally identical to drivers/i2c/i2cWrapper's
- *    i2c_writeRegBuf()/i2c_readRegBuf(), so they can be passed directly
- *    to ina745a_initialize() via a function-pointer cast - no adapter
- *    module needed (same pattern as si5332 with i2c_writeReg/i2c_readReg).
+ *    i2c_writeRegMultipleBytes()/i2c_readRegMultipleBytes(), so they can be 
+ *    passed directly to ina745a_initialize() via a function-pointer cast - 
+ *    no adapter module needed (same pattern as si5332 with i2c_writeReg/i2c_readReg).
  *    The core itself never includes i2cWrapper.h or any BSP header.
  *  - The INA745x has no calibration register: the integrated shunt is
  *    factory-trimmed, all LSB sizes are fixed (see datasheet Table 8-1).
@@ -50,11 +50,11 @@ typedef enum {
  * first, at address 'reg_addr' of the 7-bit I2C target 'i2c_addr'.
  * 'ctx' is passed through unchanged (e.g. an i2cHandle_t*).
  *
- * This signature is deliberately identical to i2c_writeRegBuf()/
- * i2c_readRegBuf() in drivers/i2c/i2cWrapper.h, so they can be passed to
+ * This signature is deliberately identical to i2c_writeRegMultipleBytes()/
+ * i2c_readRegMultipleBytes() in drivers/i2c/i2cWrapper.h, so they can be passed to
  * ina745a_initialize() directly via a function-pointer cast, e.g.:
- *   ina745a_initialize(addr, (ina745a_i2c_write_f)i2c_writeRegBuf,
- *                             (ina745a_i2c_read_f)i2c_readRegBuf, i2cHandle);
+ *   ina745a_initialize(addr, (ina745a_i2c_write_f)i2c_writeRegMultipleBytes,
+ *                             (ina745a_i2c_read_f)i2c_readRegMultipleBytes, i2cHandle);
  * (same pattern already used for si5332 with i2c_writeReg/i2c_readReg).
  * No adapter module is required.
  */
@@ -84,8 +84,8 @@ typedef struct ina745a_t ina745a_t;
 /* ------------------------------------------------------------------------- */
 #define INA745A_CURRENT_LSB_A		0.0012f		/* 1.2 mA/LSB */
 #define INA745A_BUS_VOLTAGE_LSB_V	0.003125f	/* 3.125 mV/LSB */
-#define INA745A_TEMP_LSB_C		0.125f		/* 125 m°C/LSB */
-#define INA745A_POWER_LSB_W		0.00024f	/* 240 µW/LSB */
+#define INA745A_TEMP_LSB_C			0.125f		/* 125 m°C/LSB */
+#define INA745A_POWER_LSB_W			0.00024f	/* 240 µW/LSB */
 #define INA745A_ENERGY_LSB_J		0.00384		/* 3.84 mJ/LSB (double) */
 #define INA745A_CHARGE_LSB_C		0.000075	/* 75 µC/LSB (double) */
 #define INA745A_PWR_LIMIT_LSB_W		0.06144f	/* 61.44 mW/LSB (= 256 x Power-LSB) */

@@ -34,6 +34,13 @@
 #include "i2cBus.h"
 #include "power.h"
 
+typedef enum {
+	INIT_OK 		=  0,
+	INIT_E_CKLGEN 	= -1,
+	INIT_E_PWRMON   = -2,
+	INIT_E_FMCADJ   = -3
+} init_err_t;
+
 void trap_entry();
 
 /**
@@ -86,7 +93,7 @@ static int board_bringUp(void)
 	bsp_printf("Configure Clock-Generator\r\n");
 	if (clkGen_configure() != CLKGEN_OK) {
 		bsp_printf("ERROR: Clock-Generator configuration failed\r\n");
-		return -1;
+		return INIT_E_CKLGEN;
 	}
 	bsp_uDelay(BOARD_CLK_SETTLE_US);
 
@@ -94,8 +101,10 @@ static int board_bringUp(void)
 	boardGpio_releaseEthPhyReset();
 
 	bsp_printf("Configure Power-Monitors\r\n");
-	if (pwr_mon_configure() != PWR_OK)
+	if (pwr_mon_configure() != PWR_OK) {
 		bsp_printf("WARNING: Power-Monitor configuration incomplete\r\n");
+		return INIT_E_PWRMON;
+	}
 
 	bsp_printf("Enable FMC supplies\r\n");
 	boardGpio_setFmcSupplyEnable(1);
@@ -103,19 +112,19 @@ static int board_bringUp(void)
 
 	if (pwr_fmcVadj_configure() != PWR_OK) {
 		bsp_printf("ERROR: FMC Vadj configuration failed\r\n");
-		return -1;
+		return INIT_E_FMCADJ;
 	}
 
 	if (pwr_fmcVadj_isRegulating(PWR_FMC1) != PWR_OK ||
 	    pwr_fmcVadj_isRegulating(PWR_FMC2) != PWR_OK) {
 		bsp_printf("ERROR: FMC Vadj voltage register check failed\r\n");
-		return -1;
+		return INIT_E_FMCADJ;
 	}
 
 	bsp_printf("Enable FMCs\r\n");
 	if (pwr_fmcVadj_enable(1) != PWR_OK) {
 		bsp_printf("ERROR: FMC Vadj enable failed\r\n");
-		return -1;
+		return INIT_E_FMCADJ;
 	}
 	/* Release FMC power-good enable */
 	boardGpio_setFmcPgoodRelease(1);
@@ -129,7 +138,7 @@ static int board_bringUp(void)
 	bsp_printf("Release POR\r\n");
 	boardGpio_releaseSomPor();
 
-	return 0;
+	return INIT_OK;
 }
 
 /******************************************************************************

@@ -73,14 +73,14 @@ i2cBus_err_t i2cBus_init(void)
 	if (!gIntr)
 		return I2CBUS_E_INIT;
 
-	intr_setThreshold(gIntr, 0, 0);
+	intr_setThreshold(gIntr, 0, 0);	
 
 	/* I2C for power management (DC/DC converters and power monitors) */
 	i2cBus_buildConfig(&cfg,
 	                   I2C_PMBUS_BASE, I2C_PMBUS_DEV_ID,
 	                   I2C_PMBUS_INTR_ID, I2C_PMBUS_INTR_PRIO,
 	                   I2C_PMBUS_INTR_HART,
-	                   I2C_PMBUS_CORE_FREQ, I2C_PMBUS_IF_FREQ);
+	                   I2C_PMBUS_CORE_FREQ, I2C_PMBUS_IF_FREQ);	
 
 	gPmbus = i2c_initialize(&cfg, gIntr);
 	if (!gPmbus)
@@ -91,7 +91,7 @@ i2cBus_err_t i2cBus_init(void)
 	                   I2C_SYSCFG_BASE, I2C_SYSCFG_DEV_ID,
 	                   I2C_SYSCFG_INTR_ID, I2C_SYSCFG_INTR_PRIO,
 	                   I2C_SYSCFG_INTR_HART,
-	                   I2C_SYSCFG_CORE_FREQ, I2C_SYSCFG_IF_FREQ);
+	                   I2C_SYSCFG_CORE_FREQ, I2C_SYSCFG_IF_FREQ);				   
 
 	gSysCfg = i2c_initialize(&cfg, gIntr);
 	if (!gSysCfg)
@@ -99,8 +99,8 @@ i2cBus_err_t i2cBus_init(void)
 
 	/* Bus switch that segments the SysCfg bus */
 	gBusSwitch = pi4msd5v945x_initialize(I2CBUS_BUS_SWITCH_ADDR,
-	                                    (pi4msd5v945x_i2c_write_f)i2c_writeDirect,
-	                                    (pi4msd5v945x_i2c_read_f)i2c_readDirect,
+	                                    (pi4msd5v945x_i2c_write_f)i2c_write,
+	                                    (pi4msd5v945x_i2c_read_f)i2c_read,
 	                                    (void*)gSysCfg);
 	if (!gBusSwitch)
 		return I2CBUS_E_INIT;

@@ -7,7 +7,7 @@
  * digital power monitor with integrated 800µΩ shunt). The core only uses
  * injected HAL callbacks (#ina745a_i2c_write_f / #ina745a_i2c_read_f) and
  * never includes drivers/i2c/i2cWrapper.h or any BSP header directly.
- * Their signature matches i2c_writeRegBuf()/i2c_readRegBuf() in
+ * Their signature matches i2c_writeRegMultipleBytes()/i2c_readRegMultipleBytes() in
  * drivers/i2c/i2cWrapper.h, so no adapter module is needed - callers pass
  * them in directly via a function-pointer cast (see ina745a.h).
  *

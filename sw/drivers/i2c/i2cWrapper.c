@@ -9,6 +9,8 @@
 #include "userDef.h"
 #include "bsp.h"
 
+#define DEFAULT_TIMEOUT 100000  // Default timeout in ticks
+
 struct i2cHandle_t
 {
 	u8 deviceId;
@@ -17,11 +19,119 @@ struct i2cHandle_t
 	u8 intrPrio;
 	u8 intrHart;
 	I2c_Config cfg;
+	
+	// New fields for timeout handling
+	volatile u8 timeout;      // Flag set by ISR when timeout detected
+	volatile u8 arbLoss;      // Flag for arbitration loss
+	volatile u8 nackRecvd;    // Flag for NACK reception	
 };
 
 static i2cHandle_t gI2cInstances[I2C_NUM_OF_INSTANCES];
 
 static void i2c_isr();
+
+
+
+
+// Helper functions with interrupt base error chekc
+static int i2c_txNackWithEC(i2cHandle_t *pInst){
+    i2c_txNack(pInst->baseAddress);
+
+    while(read_u32(pInst->baseAddress + I2C_TX_ACK) & I2C_TX_VALID) 
+    {
+        if (pInst->timeout) {
+            return I2C_WRAPPER_TIMEOUT;
+        }
+        if (pInst->arbLoss) {
+            return I2C_WRAPPER_ARB_LOSS;
+        }       
+    }
+    return I2C_WRAPPER_OK;
+}
+
+static int i2c_txAckWithEC(i2cHandle_t *pInst){
+    i2c_txAck(pInst->baseAddress);
+
+    while(read_u32(pInst->baseAddress + I2C_TX_ACK) & I2C_TX_VALID) 
+    {
+        if (pInst->timeout) {
+            return I2C_WRAPPER_TIMEOUT;
+        }
+        if (pInst->arbLoss) {
+            return I2C_WRAPPER_ARB_LOSS;
+        }       
+    }
+    return I2C_WRAPPER_OK;
+}
+
+static int i2c_rxAckWaitWithEC(i2cHandle_t *pInst){
+    while ((read_u32(pInst->baseAddress + I2C_RX_ACK) & I2C_RX_VALUE) != 0)
+    {
+        if (pInst->timeout) {
+        return I2C_WRAPPER_TIMEOUT;
+        }
+        if (pInst->arbLoss) {
+            return I2C_WRAPPER_ARB_LOSS;
+        }     
+    }
+    return I2C_WRAPPER_OK;
+}
+
+
+
+static int i2c_masterStartWithEC(i2cHandle_t *pInst) {
+    i2c_masterStart(pInst->baseAddress);
+    
+    // Reset timeout flags
+    pInst->timeout = 0;
+    pInst->arbLoss = 0;
+    
+    // Poll with error check
+    while(i2c_getMasterStatus(pInst->baseAddress) & I2C_MASTER_START) {
+        if (pInst->timeout) {
+            return I2C_WRAPPER_TIMEOUT;
+        }
+        if (pInst->arbLoss) {
+            return I2C_WRAPPER_ARB_LOSS;
+        }        
+    }
+    return I2C_WRAPPER_OK;
+}
+
+static int i2c_masterStopWithEC(i2cHandle_t *pInst) {
+    i2c_masterStop(pInst->baseAddress);
+    
+    // Reset timeout flags
+    pInst->timeout = 0;
+    pInst->arbLoss = 0;
+    
+    // Poll with error check
+    while(i2c_getMasterStatus(pInst->baseAddress) & I2C_MASTER_STOP) {
+        if (pInst->timeout) {
+            return I2C_WRAPPER_TIMEOUT;
+        }
+        if (pInst->arbLoss) {
+            return I2C_WRAPPER_ARB_LOSS;
+        }       
+    }
+    return I2C_WRAPPER_OK;
+}
+
+static int TX_AND_CHECK_WITH_EC(i2cHandle_t *pInst, u8 byte) {
+    int result;
+
+    i2c_txByte(pInst->baseAddress, byte);
+       
+    result = i2c_txNackWithEC(pInst);  
+    if (result != I2C_WRAPPER_OK) {
+        return result;
+    }
+    i2c_rxAckWaitWithEC(pInst);     
+    if (result != I2C_WRAPPER_OK) {
+        return result;
+    }
+    return I2C_WRAPPER_OK;
+}
 
 i2cHandle_t* i2c_initialize(i2cHandle_config_t *pDevCfg, intrHandle_t *pIntr)
 {
@@ -38,6 +148,11 @@ i2cHandle_t* i2c_initialize(i2cHandle_config_t *pDevCfg, intrHandle_t *pIntr)
 	pInst->cfg.tLow 				= pDevCfg->cfg.tLow;
 	pInst->cfg.timeout 			 	= pDevCfg->cfg.timeout;
 	pInst->cfg.tsuDat 				= pDevCfg->cfg.tsuDat;
+	
+	// Initialize timeout-related fields
+	pInst->timeout = 0;
+	pInst->arbLoss = 0;
+	pInst->nackRecvd = 0;	
 
 	i2c_applyConfig(pInst->baseAddress, &pInst->cfg);
 
@@ -46,6 +161,8 @@ i2cHandle_t* i2c_initialize(i2cHandle_config_t *pDevCfg, intrHandle_t *pIntr)
     //enable PLIC I2C interrupts
 	intr_serPriority(pIntr, pInst->intrId, pInst->intrPrio);
 	intr_setEnable(pIntr, pInst->intrHart, pInst->intrId);
+
+    i2c_enableInterrupt(pInst->baseAddress, I2C_INTERRUPT_DROP);
 
 	return pInst;
 }
@@ -57,65 +174,192 @@ i2cHandle_t* i2c_initialize(i2cHandle_config_t *pDevCfg, intrHandle_t *pIntr)
  * mcu/software/standalone/driver/i2c.h), matching the write/read-word
  * protocol used by multi-byte-register devices (e.g. INA745x).
  */
-int i2c_writeRegBuf(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data, u32 length) {
+int i2c_writeRegMultipleBytes(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data, u32 length) {
+    int result;
 
-	i2c_writeData_b_ack(pInst->baseAddress, (slaveAddr<<1), regAddr, data, length);
-
-	return 0;
+    // Start condition
+    result = i2c_masterStartWithEC(pInst);
+    if (result != I2C_WRAPPER_OK) {
+        return result;
+    }
+    
+    // Send slave address with write bit
+    result = TX_AND_CHECK_WITH_EC(pInst, ((slaveAddr<<1) | I2C_WRITE));
+    if (result != I2C_WRAPPER_OK) {
+        i2c_masterStop(pInst->baseAddress);  // Clean up
+        return result;
+    }
+    
+    // Send register address
+    result = TX_AND_CHECK_WITH_EC(pInst, regAddr);
+    if (result != I2C_WRAPPER_OK) {
+        i2c_masterStop(pInst->baseAddress);  
+        return result;
+    }
+    
+    // Send data
+    for(u32 i = 0; i < length; i++){
+        result = TX_AND_CHECK_WITH_EC(pInst, data[i]);
+        if (result != I2C_WRAPPER_OK) {
+            i2c_masterStop(pInst->baseAddress);  
+        }
+    }
+    
+    i2c_masterStopWithEC(pInst);
+    if (result != I2C_WRAPPER_OK) {
+        return result;
+    }
+    return I2C_WRAPPER_OK;
 }
 
-int i2c_readRegBuf(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data, u32 length) {
+int i2c_readRegMultipleBytes(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data, u32 length) {
+    int result;     
 
-	i2c_readData_b_ack(pInst->baseAddress, (slaveAddr<<1), regAddr, data, length);
-
-	return 0;
+    // Start condition
+    result = i2c_masterStartWithEC(pInst);
+    if (result != I2C_WRAPPER_OK) {
+        return result;
+    }
+    
+    // Send slave address with write bit
+    result = TX_AND_CHECK_WITH_EC(pInst, ((slaveAddr<<1) | I2C_WRITE));
+    if (result != I2C_WRAPPER_OK) {
+        i2c_masterStop(pInst->baseAddress);  // Clean up
+        return result;
+    }
+    
+    // Send register address
+    result = TX_AND_CHECK_WITH_EC(pInst, regAddr);
+    if (result != I2C_WRAPPER_OK) {
+        i2c_masterStop(pInst->baseAddress);  // Clean up
+        return result;
+    }
+    
+    // Repeated start condition
+    result = i2c_masterStartWithEC(pInst);
+    if (result != I2C_WRAPPER_OK) {
+        return result;
+    }
+    
+    // Send slave address with read bit
+    result = TX_AND_CHECK_WITH_EC(pInst, ((slaveAddr<<1) | I2C_READ));
+    if (result != I2C_WRAPPER_OK) {
+        i2c_masterStop(pInst->baseAddress);  // Clean up
+        return result;
+    }
+    
+    if(length > 1){
+        for(u32 i = 0; i < length - 1; i++){
+            i2c_txByte(pInst->baseAddress, 0xFF);
+            result = i2c_txAckWithEC(pInst);
+            if (result != I2C_WRAPPER_OK) {
+                i2c_masterStop(pInst->baseAddress);  // Clean up
+                return result;
+            }
+            data[i] = i2c_rxData(pInst->baseAddress);
+        }
+    }
+    
+    i2c_txByte(pInst->baseAddress, 0xFF);
+    result = i2c_txNackWithEC(pInst);
+    if (result != I2C_WRAPPER_OK) {
+        i2c_masterStop(pInst->baseAddress);  // Clean up
+        return result;
+    }
+    data[length-1] = i2c_rxData(pInst->baseAddress);
+    
+    result = i2c_masterStopWithEC(pInst);
+    if (result != I2C_WRAPPER_OK) {
+        return result;
+    }
+    return I2C_WRAPPER_OK;
 }
 
 int i2c_writeReg(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data) {
 
-	return i2c_writeRegBuf(pInst, slaveAddr, regAddr, data, 0x1);
+	return i2c_writeRegMultipleBytes(pInst, slaveAddr, regAddr, data, 0x1);
 }
 
 
 int i2c_readReg(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data) {
 
-	return i2c_readRegBuf(pInst, slaveAddr, regAddr, data, 0x1);
+	return i2c_readRegMultipleBytes(pInst, slaveAddr, regAddr, data, 0x1);
 }
 
-int i2c_writeDirect(i2cHandle_t *pInst, u8 slaveAddr, u8 *data, u32 length) {
-
-	volatile u32 reg;
-	i2c_masterStartBlocking(pInst->baseAddress);                   // Start condition
-	//write_u32(slaveAddr | I2C_TX_VALID | I2C_TX_ENABLE , pInst->baseAddress + I2C_TX_DATA);
-	//reg = i2c_getMasterStatus(pInst->baseAddress);
-	TX_AND_CHECK(pInst->baseAddress, ((slaveAddr<<1) | I2C_WRITE));     // Send slave address (write mode)
-	for(u32 i = 0; i < length; i++){
-		TX_AND_CHECK(pInst->baseAddress, data[i]);                 // Send each byte
-	}
-
-	i2c_masterStopBlocking(pInst->baseAddress);                    // Stop condition
-
-	return 0;
+int i2c_write(i2cHandle_t *pInst, u8 slaveAddr, u8 *data, u32 length) {
+    int result;
+    
+    // Start condition
+    result = i2c_masterStartWithEC(pInst);
+    if (result != I2C_WRAPPER_OK) {
+        return result;
+    }
+    
+    // Send slave address with write bit
+    result = TX_AND_CHECK_WITH_EC(pInst, ((slaveAddr<<1) | I2C_WRITE));
+    if (result != I2C_WRAPPER_OK) {
+        i2c_masterStop(pInst->baseAddress);  // Clean up
+        return result;
+    }
+    
+    // Send data
+    for(u32 i = 0; i < length; i++){
+        result = TX_AND_CHECK_WITH_EC(pInst, data[i]);
+        if (result != I2C_WRAPPER_OK) {
+            i2c_masterStop(pInst->baseAddress);  // Clean up
+            return result;
+        }
+    }
+    
+    result = i2c_masterStopWithEC(pInst);
+    if (result != I2C_WRAPPER_OK) {
+        return result;
+    }
+    return I2C_WRAPPER_OK;
 }
 
 
-int i2c_readDirect(i2cHandle_t *pInst, u8 slaveAddr, u8 *data, u32 length) {
-
-	i2c_masterStartBlocking(pInst->baseAddress);               		 // Send start sequence
-	TX_AND_CHECK(pInst->baseAddress, (slaveAddr<<1) | I2C_READ);     // write device address byte with read bit
-	if(length > 1){
-		for(u32 i = 0; i < length - 1; i++){
-			i2c_txByte(pInst->baseAddress, 0xFF);              // send 0xFF (Release SDA line) to the slave while generate 8-bit SCL pulses
-			i2c_txAckBlocking(pInst->baseAddress);             // send ack bit to ask slave to continue send the next byte
-			data[i] = i2c_rxData(pInst->baseAddress);          // read the data from rx data register and place it into data array
-		}
-	}
-	i2c_txByte(pInst->baseAddress, 0xFF);                      // send 0xFF (Release SDA line) to the slave while generate 8-bit SCL pulses
-	i2c_txNackBlocking(pInst->baseAddress);                    // send nack bit
-	data[length-1] = i2c_rxData(pInst->baseAddress);           // read the data from rx data register and place it into last data array
-	i2c_masterStopBlocking(pInst->baseAddress);                // send stop sequence
-
-	return 0;
+int i2c_read(i2cHandle_t *pInst, u8 slaveAddr, u8 *data, u32 length) {
+    int result;
+    
+    // Start condition
+    result = i2c_masterStartWithEC(pInst);
+    if (result != I2C_WRAPPER_OK) {
+        return result;
+    }
+    
+    // Send slave address with read bit
+    result = TX_AND_CHECK_WITH_EC(pInst, ((slaveAddr<<1) | I2C_READ));
+    if (result != I2C_WRAPPER_OK) {
+        i2c_masterStop(pInst->baseAddress);  // Clean up
+        return result;
+    }
+    
+    if(length > 1){
+        for(u32 i = 0; i < length - 1; i++){
+            i2c_txByte(pInst->baseAddress, 0xFF);
+            result = i2c_txAckWithEC(pInst);
+            if (result != I2C_WRAPPER_OK) {
+                i2c_masterStop(pInst->baseAddress);  // Clean up
+                return result;
+            }
+            data[i] = i2c_rxData(pInst->baseAddress);
+        }
+    }
+    
+    i2c_txByte(pInst->baseAddress, 0xFF);
+    result = i2c_txNackWithEC(pInst);
+    if (result != I2C_WRAPPER_OK) {
+        i2c_masterStop(pInst->baseAddress);  // Clean up
+        return result;
+    }
+    data[length-1] = i2c_rxData(pInst->baseAddress);
+    
+    result = i2c_masterStopWithEC(pInst);
+    if (result != I2C_WRAPPER_OK) {
+        return result;
+    }
+    return I2C_WRAPPER_OK;
 }
 
 /******************************************************************************
@@ -124,15 +368,21 @@ int i2c_readDirect(i2cHandle_t *pInst, u8 slaveAddr, u8 *data, u32 length) {
 *
 ******************************************************************************/
 static void i2c_isr(void *callBackRef){
-
-	i2cHandle_t *pInst = (i2cHandle_t*)callBackRef;
-
-	if (i2c_getInterruptFlag(pInst->baseAddress) & I2C_INTERRUPT_DROP)
-		bsp_printf("I2C timeout!\r\n");
-	else
-		bsp_printf("I2C Interrupt is triggered!\r\n");
-
-	i2c_clearInterruptFlag(pInst->baseAddress, I2C_INTERRUPT_DROP);
-	while(1);
-
+    i2cHandle_t *pInst = (i2cHandle_t*)callBackRef;
+    u32 interruptFlags = i2c_getInterruptFlag(pInst->baseAddress);
+    
+    // Check for drop interrupt (timeout)
+    if (interruptFlags & I2C_INTERRUPT_DROP) {
+        pInst->timeout = 1;
+        bsp_printf("I2C timeout detected!\r\n");
+    }
+    
+    // Check for arbitration loss
+    if (interruptFlags & I2C_MASTER_START_DROPPED) {
+        pInst->arbLoss = 1;
+        bsp_printf("I2C arbitration loss detected!\r\n");
+    }
+    
+    // Clear all interrupt flags
+    i2c_clearInterruptFlag(pInst->baseAddress, interruptFlags);
 }

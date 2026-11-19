@@ -47,14 +47,14 @@
  *
  * The number of rows must match INA745A_NUM_INSTANCES in userDef.h.
  */
-/*	  name,        addr, 			  pg,						  vov,   iov,   tov */
+/*	  name,        addr, 			  		pg,						  				  vov,   iov,   tov */
 #define PWR_MON_TABLE \
-	X(12V,         0x40,      PWR_PG_SYS,					   13.20f,  5.0f, 95.0f) \
-	X(3V3,         0x41,      PWR_PG_SYS,						3.60f, 12.0f, 95.0f) \
-	X(5V0_SOM,     0x43,      PWR_PG_SYS,						5.50f,  5.0f, 95.0f) \
-	X(1V8,         0x44, 	  PWR_PG_SYS,     					1.98f,  5.0f, 95.0f) \
-	X(VCCADJ_FMC1, 0x4C, PWR_PG_FMC1_SUP, (BOARD_FMC_VADJ_MAX_V+0.2f),  4.5f, 95.0f) \
-	X(VCCADJ_FMC2, 0x4D, PWR_PG_FMC2_SUP, (BOARD_FMC_VADJ_MAX_V+0.2f),  4.5f, 95.0f)
+	X(12V,         I2CBUS_PWRMON_12V_ADDR,	PWR_PG_SYS,							   13.20f,  5.0f, 95.0f) \
+	X(3V3,         I2CBUS_PWRMON_3V3_ADDR,	PWR_PG_SYS,								3.60f, 12.0f, 95.0f) \
+	X(5V0_SOM,     I2CBUS_PWRMON_5V0_ADDR, 	PWR_PG_SYS,								5.50f,  5.0f, 95.0f) \
+	X(1V8,         I2CBUS_PWRMON_1V8_ADDR,	PWR_PG_SYS,     						1.98f,  5.0f, 95.0f) \
+	X(VCCADJ_FMC1, I2CBUS_PWRMON_FMC1_ADDR, PWR_PG_FMC1_SUP,  (BOARD_FMC_VADJ_MAX_V+0.2f),  4.5f, 95.0f) \
+	X(VCCADJ_FMC2, I2CBUS_PWRMON_FMC2_ADDR, PWR_PG_FMC2_SUP,  (BOARD_FMC_VADJ_MAX_V+0.2f),  4.5f, 95.0f)
 
 /* --------------------------------------------------------------------------- */
 /* Status codes                                                                 */

@@ -184,8 +184,8 @@ pwr_err_t pwr_init(void)
 	/* Power monitors; they share the PMBus with the regulators */
 	for (u32 i = 0; i < PWR_RAIL_COUNT; i++) {
 		gMon[i] = ina745a_initialize(i, gMonCfg[i].i2cAddr,
-		                             (ina745a_i2c_write_f)i2c_writeRegBuf,
-		                             (ina745a_i2c_read_f)i2c_readRegBuf,
+		                             (ina745a_i2c_write_f)i2c_writeRegMultipleBytes,
+		                             (ina745a_i2c_read_f)i2c_readRegMultipleBytes,
 		                             (void*)pmbus);
 		if (!gMon[i])
 			return PWR_E_INIT;

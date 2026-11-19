@@ -22,10 +22,18 @@
 #include "interrupt.h"
 
 /* --- Device I2C addresses -------------------------------------------------- */
-#define I2CBUS_FMC1_VADJ_ADDR		0x4E
-#define I2CBUS_FMC2_VADJ_ADDR		0x4F
 #define I2CBUS_CLKGEN_ADDR		0x6A
 #define I2CBUS_BUS_SWITCH_ADDR	0x77
+
+/* --- PMBus addresses ------------------------------------------------------- */
+#define I2CBUS_PWRMON_12V_ADDR	0x40
+#define I2CBUS_PWRMON_3V3_ADDR	0x41
+#define I2CBUS_PWRMON_5V0_ADDR	0x43
+#define I2CBUS_PWRMON_1V8_ADDR	0x44
+#define I2CBUS_PWRMON_FMC1_ADDR	0x4C
+#define I2CBUS_PWRMON_FMC2_ADDR	0x4D
+#define I2CBUS_FMC1_VADJ_ADDR	0x4E
+#define I2CBUS_FMC2_VADJ_ADDR	0x4F
 
 /* --- I2C bus switch channels (SysCfg bus) ---------------------------------- */
 #define I2CBUS_CH_SYZYGY	PI4MSD5V945X_CH0
