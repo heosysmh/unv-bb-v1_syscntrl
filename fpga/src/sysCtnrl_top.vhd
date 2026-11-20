@@ -106,7 +106,8 @@ entity sysCntrl_Top is
     fan_pwm_o : out std_logic;
 -- User
     config_i : in std_logic_vector(5 downto 0);
-    leds_o : out std_logic_vector(1 downto 0)
+-- LED naming on silkscreen is switched with respect to the schematic. Corrected in Interface designer.
+    leds_o : out std_logic_vector(1 downto 0) 
   );
 end sysCntrl_Top;
 
@@ -161,14 +162,12 @@ architecture rtl of sysCntrl_Top is
     );
     end component mcu;
 
-    constant C_1MS_DELAY_TICKS   : integer :=   80000;  -- 1ms delay
-    constant C_10MS_DELAY_TICKS  : integer :=  800000; -- 10ms delay
-    constant C_20MS_DELAY_TICKS  : integer := 1600000; -- 20ms delay
-    constant C_100MS_DELAY_TICKS : integer := 8000000; -- 100ms delay
-    constant C_200MS_DELAY_TICKS : integer := 16000000; -- 200ms delay
-
-    constant C_DEBOUNCE_TICKS    : integer := 800000; -- 10ms debounce time
-
+    constant C_100US_DELAY_TICKS : integer :=    8000;  -- 100us delay
+    constant C_1MS_DELAY_TICKS   : integer :=   80000;  --   1ms delay
+    constant C_5MS_DELAY_TICKS   : integer :=  400000;  --   5ms delay
+    constant C_10MS_DELAY_TICKS  : integer :=  800000;  --  10ms delay
+    constant C_20MS_DELAY_TICKS  : integer := 1600000;  --  20ms delay
+    constant C_100MS_DELAY_TICKS : integer := 8000000;  -- 100ms delay
 
     signal s_srst : std_logic;
     signal s_clk : std_logic;
@@ -216,19 +215,21 @@ architecture rtl of sysCntrl_Top is
     signal s_pl_pwrEn       : std_logic;
     signal s_pl_pwrEn_dlyd  : std_logic;
 
-    signal s_ps_pwrEn : std_logic;
-    signal s_ps_pwrEn_dlyd : std_logic;
+    signal s_ps_pwrEn       : std_logic;
+    signal s_ps_pwrEn_dlyd  : std_logic;
     
-    signal s_szg_pwrEn : std_logic;
+    signal s_szg_pwrEn      : std_logic;
     signal s_szg_pwrEn_dlyd : std_logic;
 
-
+    signal s_porn     : std_logic;
     signal s_eth_rstn : std_logic;
 
-    signal s_porn : std_logic;
+    signal s_mcu_hpc_VccioSelect : std_logic;
+    signal s_mcu_hdb_VccioSelect : std_logic;
 
     signal s_mcu_fmc1_supCntrl : std_logic;
     signal s_mcu_fmc2_supCntrl : std_logic;
+
     signal s_mcu_fmc1_supPgoodRelease : std_logic;
     signal s_mcu_fmc2_supPgoodRelease : std_logic;
 
@@ -238,6 +239,7 @@ architecture rtl of sysCntrl_Top is
     signal s_mcu_porn : std_logic;
     signal s_mcu_eth_rstn : std_logic;
 
+    signal s_mcu_led : std_logic;
 
     signal s_i2c0_sda_out : std_logic;
     signal s_i2c0_scl_out : std_logic;
@@ -309,7 +311,7 @@ config_debounce:
     for i in 0 to 5 generate
         config_debounce_inst : entity work.debounce
         generic map (
-            G_DEBOUNCE_TICKS => C_DEBOUNCE_TICKS
+            G_DEBOUNCE_TICKS => C_10MS_DELAY_TICKS
         )
         port map (
             clk_i          => s_clk,            
@@ -318,18 +320,20 @@ config_debounce:
         );
     end generate config_debounce;
     
-    s_sys_pwrEn <= s_config(0);
+    s_sys_pwrEn <= '1';
 
     /* Control signals from the MCU */
-    s_mcu_fmc1_supCntrl         <= s_gpio1_wr(0);
-    s_mcu_fmc2_supCntrl         <= s_gpio1_wr(1);
-    s_mcu_fmc1_supPgoodRelease  <= s_gpio1_wr(2);
-    s_mcu_fmc2_supPgoodRelease  <= s_gpio1_wr(3);
-    s_mcu_fmc1_modCntrl         <= s_gpio1_wr(4);
-    s_mcu_fmc2_modCntrl         <= s_gpio1_wr(5);
-    s_mcu_porn                  <= s_gpio1_wr(6);
-    s_mcu_eth_rstn              <= s_gpio1_wr(7);
-
+    s_mcu_hpc_VccioSelect       <= s_gpio1_wr(0);
+    s_mcu_hdb_VccioSelect       <= s_gpio1_wr(1);    
+    s_mcu_fmc1_supCntrl         <= s_gpio1_wr(2);
+    s_mcu_fmc2_supCntrl         <= s_gpio1_wr(3);
+    s_mcu_fmc1_supPgoodRelease  <= s_gpio1_wr(4);
+    s_mcu_fmc2_supPgoodRelease  <= s_gpio1_wr(5);
+    s_mcu_fmc1_modCntrl         <= s_gpio1_wr(6);
+    s_mcu_fmc2_modCntrl         <= s_gpio1_wr(7);
+    s_mcu_porn                  <= s_gpio1_wr(8);
+    s_mcu_eth_rstn              <= s_gpio1_wr(9);
+    s_mcu_led                   <= s_gpio1_wr(31);
 
     s_gpio1_rd(31 downto 0) <= (others => '0');
 
@@ -338,9 +342,9 @@ config_debounce:
     
     mcu_inst : mcu
     port map (
-        io_systemClk       => sysClk_i,
-        io_asyncReset      => not pll_locked,
-        io_systemReset     => s_srst,
+        io_systemClk   => sysClk_i,
+        io_asyncReset  => not pll_locked,
+        io_systemReset => s_srst,
         
         jtagCtrl_enable  => jtag_sel,
         jtagCtrl_tdi     => jtag_tdi,
@@ -404,7 +408,7 @@ config_debounce:
     -- Delay system power enable for power good signal release
     sysPwrEn_delay_inst : entity work.debounce
     generic map (
-        G_DEBOUNCE_TICKS => C_10MS_DELAY_TICKS
+        G_DEBOUNCE_TICKS => C_5MS_DELAY_TICKS
     )
     port map (
         clk_i          => s_clk,
@@ -422,11 +426,11 @@ config_debounce:
     -- Enable PL when system power is good and SoM VCCO_PL_EN is high    
     s_pl_pwrEn <= s_sys_pgood and s_som_vccoPlEn;    
     pl_PwrEn_o <= s_pl_pwrEn;
-    
+        
     -- Delay PL power enable for power good signal release
     plPwrEn_delay_inst : entity work.debounce
     generic map (
-        G_DEBOUNCE_TICKS => C_10MS_DELAY_TICKS
+        G_DEBOUNCE_TICKS => C_5MS_DELAY_TICKS
     )
     port map (
         clk_i          => s_clk,
@@ -444,48 +448,85 @@ config_debounce:
     ps_PwrEn_o <= s_ps_pwrEn;
 
     ----------------------------
+    ----- VCCIO selection ------
+    ----------------------------
+    -- HPC VCCIO can be selected between FMC Vadj1/2 power rails. The selection is controlled by the MCU via GPIOs.
+    hpcVccioSelect : entity work.vccioSelect
+        generic map(
+            G_DELAY_TICKS => C_1MS_DELAY_TICKS
+        )
+        port map(
+            clk_i    => s_clk,
+            select_i => s_mcu_hpc_VccioSelect,
+            en1_o    => hpc_Vadj2En_o,
+            en2_o    => hpc_Vadj1En_o
+        );
+
+    -- HDB VCCIO can be selected between FMC Vadj2 and PL2V5 power rails. The selection is controlled by the MCU via GPIOs.
+    hdbVccioSelect : entity work.vccioSelect
+        generic map(
+            G_DELAY_TICKS => C_1MS_DELAY_TICKS
+        )
+        port map(
+            clk_i    => s_clk,
+            select_i => s_mcu_hdb_VccioSelect,
+            en1_o    => hdb_Vadj2En_o,
+            en2_o    => hdb_2v5En_o
+        );
+
+    ----------------------------
     ---- FMC1 power control ----
     ----------------------------
+    -- FMC power-up ist controlled and monitored by mcu
     fmc1PowerCntrl_inst : entity work.fmcPowerCntrl
+    generic map (
+        G_PGOOD_MONITOR_DELAY => C_100US_DELAY_TICKS
+    )
     port map (
-        clk_i    => s_clk,
-        pwrCntrl_i  => s_mcu_fmc1_supCntrl,
-        pgoodRelease_i => s_mcu_fmc1_supPgoodRelease,
-        pgood_i  => s_fmc1_supPgood,
-        pgood_oe => fmc1_supPgood_oe,
-        en_o     => fmc1_supPwrEn_o
+        clk_i           => s_clk,
+        pwrCntrl_i      => s_mcu_fmc1_supCntrl,
+        pgoodRelease_i  => s_mcu_fmc1_supPgoodRelease,
+        pgood_i         => s_fmc1_supPgood,
+        pgood_oe        => fmc1_supPgood_oe,
+        en_o            => fmc1_supPwrEn_o
     );
 
-     -- Delay FMC1 module enable for power good signal release
+    -- FMC1 supply power good is directly connected to "PG_C2M" on the board
+    -- Delay supply power good signal release for FMC1 module enable
     fmc1ModEn_delay_inst : entity work.debounce
     generic map (
-        G_DEBOUNCE_TICKS => C_10MS_DELAY_TICKS
+        G_DEBOUNCE_TICKS => C_5MS_DELAY_TICKS
     )
     port map (
         clk_i          => s_clk,
         signal_i       => s_fmc1_supPgood,
         signal_o       => s_fmc1_supPgood_dlyd
     ); 
-    --override power good signals when the power is disabled to avoid false power good indication  
+    --override module power good signals when the power is disabled to avoid false power good indication  
     fmc1_modPgood_oe <= not s_fmc1_supPgood_dlyd;
 
     ----------------------------
     ---- FMC2 power control ----
     ----------------------------
+    -- FMC power-up is controlled and monitored by mcu
     fmc2PowerCntrl_inst : entity work.fmcPowerCntrl
+    generic map (
+        G_PGOOD_MONITOR_DELAY => C_100US_DELAY_TICKS
+    )
     port map (
-        clk_i    => s_clk,
-        pwrCntrl_i  => s_mcu_fmc2_supCntrl,
-        pgoodRelease_i => s_mcu_fmc2_supPgoodRelease,
-        pgood_i  => s_fmc2_supPgood,
-        pgood_oe => fmc2_supPgood_oe,
-        en_o     => fmc2_supPwrEn_o
+        clk_i           => s_clk,
+        pwrCntrl_i      => s_mcu_fmc2_supCntrl,
+        pgoodRelease_i  => s_mcu_fmc2_supPgoodRelease,
+        pgood_i         => s_fmc2_supPgood,
+        pgood_oe        => fmc2_supPgood_oe,
+        en_o            => fmc2_supPwrEn_o
     );
 
-    -- Delay FMC2 module enable for power good signal release
+    -- FMC2 supply power good is directly connected to "PG_C2M" on the board
+    -- Delay supply power good signal release for FMC2 module enable
     fmc2ModEn_delay_inst : entity work.debounce
     generic map (
-        G_DEBOUNCE_TICKS => C_10MS_DELAY_TICKS
+        G_DEBOUNCE_TICKS => C_5MS_DELAY_TICKS
     )
     port map (
         clk_i          => s_clk,
@@ -502,7 +543,7 @@ config_debounce:
     -- Delay SYZYGY power enable for power good signal release
     szgPwrEn_delay_inst : entity work.debounce
     generic map (
-        G_DEBOUNCE_TICKS => C_10MS_DELAY_TICKS
+        G_DEBOUNCE_TICKS => C_5MS_DELAY_TICKS
     )
     port map (
         clk_i          => s_clk,
@@ -519,38 +560,28 @@ config_debounce:
     -- Delay POR signal until all voltage rails are stable and power good signals are asserted
     por_delay_inst : entity work.debounce
     generic map (
-        G_DEBOUNCE_TICKS => C_200MS_DELAY_TICKS
+        G_DEBOUNCE_TICKS => C_100MS_DELAY_TICKS
     )
     port map (
         clk_i          => s_clk,
-        signal_i       => s_pl_pwrEn_dlyd and s_ps_pwrEn,
+        signal_i       => s_pl_pwrEn and s_ps_pwrEn,
         signal_o       => s_porn
     ); 
-    
-    
-    leds_o(0) <= fmc1_supPgood_oe;--s_ledCount_r(25);
-    leds_o(1) <= s_ledCount_r(24);
         
-     -- Keep POR signal asserted until the MCU releases it
+    -- Keep POR signal asserted until the MCU releases it (s_porn is relased first on HW-level)
     ps_porn_o <= s_porn and s_mcu_porn;
+    
+    -- Release Ethernet PHY reset after mcu has finshed initialization of the clock generator
+    eth_reset_o <= not s_mcu_eth_rstn; 
 
     pmu_Mio28GPI_o <= '0';
     pmu_Mio29GPI_o <= '0';
     pmu_Mio31GPI_o <= '0';
-    
-    hpc_Vadj1En_o <= '1';
-    hpc_Vadj2En_o <= '0';
-    
-    hdb_Vadj2En_o <= '1';
-    hdb_2v5En_o <= '0';    
 
     si5332_Cntrl_o <= (others => '0');
 
     lmk05028_En_o <= '0';
     sd_reset_o <= '0';
-
-    --Release Ethernet PHY reset after mcu has finshed initialization of the clock generator
-    eth_reset_o <= not s_mcu_eth_rstn; 
     
     i2c0_reset_o <= '0';
     ps_resetn_o <= '1';
@@ -562,5 +593,8 @@ config_debounce:
 
     sda1_o <= not s_i2c1_sda_out;
     scl1_o <= not s_i2c1_scl_out;
+            
+    leds_o(0) <= not s_mcu_led;
+    leds_o(1) <= '1';
 
 end rtl;

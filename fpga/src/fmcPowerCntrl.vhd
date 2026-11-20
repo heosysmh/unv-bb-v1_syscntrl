@@ -4,6 +4,9 @@ use ieee.numeric_std.all;
 use IEEE.MATH_REAL.all;
 
 entity fmcPowerCntrl is
+    generic (
+        G_PGOOD_MONITOR_DELAY : natural := 8000 -- number of clock ticks to wait until pgood is monitored after signal release (account for rise time)
+    );
     port(
         clk_i     : in  std_logic;        
         pwrCntrl_i   : in  std_logic;   -- power control input from MCU
@@ -15,12 +18,12 @@ entity fmcPowerCntrl is
 end entity fmcPowerCntrl;
 
 architecture RTL of fmcPowerCntrl is   
-    constant G_DELAY_TICKS : natural := 8000; -- number of clock ticks to wait until pgood is monitored after power up
-    
+    constant C_DELAY_CNT_WIDTH : natural := integer(ceil(log2(real(G_PGOOD_MONITOR_DELAY + 1))));
+
     type t_state is (pwrOff, pwrOn, delay,monitor);   
     signal s_state_r : t_state := pwrOff;
     
-    signal s_dlyCnt_r : unsigned(19 downto 0) := (others => '0');  
+    signal s_dlyCnt_r : unsigned(C_DELAY_CNT_WIDTH-1 downto 0) := (others => '0');  
 
     signal s_pwrCntrl_r : std_logic := '0';
     
@@ -49,7 +52,7 @@ begin
                 when delay => 
                     if pwrCntrl_i = '0' then
                         s_state_r <= pwrOff;                        
-                    elsif s_dlyCnt_r >= to_integer(to_unsigned(G_DELAY_TICKS, s_dlyCnt_r'length)) then
+                    elsif s_dlyCnt_r >= to_integer(to_unsigned(G_PGOOD_MONITOR_DELAY, s_dlyCnt_r'length)) then
                         s_state_r <= monitor;                        
                     else
                         s_dlyCnt_r <= s_dlyCnt_r + 1;

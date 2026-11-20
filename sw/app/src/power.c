@@ -60,7 +60,7 @@ typedef char pwr_assert_railCount[(PWR_RAIL_COUNT == INA745A_NUM_INSTANCES) ? 1 
 typedef char pwr_assert_fmcCount[(PWR_FMC_COUNT == TPSM8286_NUM_OF_INSTANCES) ? 1 : -1];
 
 /* --------------------------------------------------------------------------- */
-/* Static configuration derived from boardConfig.h                              */
+/* Static configuration 						                               */
 /* --------------------------------------------------------------------------- */
 
 typedef struct {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efxpt:design_db name="sysCntrl" device_def="T20Q100F3" version="2026.1.132.2.19" db_version="20261999" last_change_date="Wed Nov 18 13:46:54 2026" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
+<efxpt:design_db name="sysCntrl" device_def="T20Q100F3" version="2026.1.132.2.19" db_version="20261999" last_change_date="Fri Nov 20 20:37:35 2026" xmlns:efxpt="http://www.efinixinc.com/peri_design_db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/peri_design_db peri_design_db.xsd ">
     <efxpt:device_info>
         <efxpt:iobank_info>
             <efxpt:iobank name="1A_1B_1C" iostd="3.3 V LVTTL / LVCMOS"/>
@@ -91,10 +91,10 @@
         <efxpt:gpio name="i2c0_reset_o" gpio_def="GPIOR_149" mode="output" bus_name="" is_lvds_gpio="false" io_standard="1.8 V LVCMOS">
             <efxpt:output_config name="i2c0_reset_o" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" drive_strength="1"/>
         </efxpt:gpio>
-        <efxpt:gpio name="leds_o[0]" gpio_def="GPIOL_53" mode="output" bus_name="leds_o" is_lvds_gpio="false" io_standard="3.3 V LVTTL / LVCMOS">
+        <efxpt:gpio name="leds_o[0]" gpio_def="GPIOL_54" mode="output" bus_name="leds_o" is_lvds_gpio="false" io_standard="3.3 V LVTTL / LVCMOS">
             <efxpt:output_config name="leds_o[0]" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" drive_strength="1"/>
         </efxpt:gpio>
-        <efxpt:gpio name="leds_o[1]" gpio_def="GPIOL_54" mode="output" bus_name="leds_o" is_lvds_gpio="false" io_standard="3.3 V LVTTL / LVCMOS">
+        <efxpt:gpio name="leds_o[1]" gpio_def="GPIOL_53" mode="output" bus_name="leds_o" is_lvds_gpio="false" io_standard="3.3 V LVTTL / LVCMOS">
             <efxpt:output_config name="leds_o[1]" name_ddio_lo="" register_option="none" clock_name="" is_clock_inverted="false" is_slew_rate="false" tied_option="none" ddio_type="none" drive_strength="1"/>
         </efxpt:gpio>
         <efxpt:gpio name="lmk05028_en_o" gpio_def="GPIOL_24" mode="output" bus_name="" is_lvds_gpio="false" io_standard="3.3 V LVTTL / LVCMOS">

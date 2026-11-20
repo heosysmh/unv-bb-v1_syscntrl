@@ -106,6 +106,10 @@ static int board_bringUp(void)
 		return INIT_E_PWRMON;
 	}
 
+	bsp_printf("Set VCCIO sources\r\n");
+	boardGpio_setHpcVccio(BOARD_VCCIO_SELECT_HPC);
+	boardGpio_setHdbVccio(BOARD_VCCIO_SELECT_HDB);
+
 	bsp_printf("Enable FMC supplies\r\n");
 	boardGpio_setFmcSupplyEnable(1);
 	bsp_uDelay(BOARD_POWER_SETTLE_US);
@@ -149,6 +153,7 @@ static int board_bringUp(void)
 void main(void)
 {
 	bsp_init();
+	u32 LedState = 0;
 
 	boardGpio_init();
 
@@ -168,7 +173,9 @@ void main(void)
 			pwr_mon_reportFaults();
 
 		pwr_mon_poll();
-
+		/* Toggle LED*/
+		LedState = !LedState;
+		boardGpio_setStatusLed(LedState);
 		bsp_uDelay(BOARD_MONITOR_PERIOD_US);
 	}
 }

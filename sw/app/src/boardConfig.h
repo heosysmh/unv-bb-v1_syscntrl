@@ -7,9 +7,9 @@
 *
 *        Sections:*          
 *          1. Startup Timing
-*          2. FMC Vadj          (tpsm8286x)
-*          3. FMC Vadj hard upper bound
-*          4. Clock generator   (si5332)
+*          2. VCCIO selection (HPC/HDB)
+*          3. FMC Vadj        (tpsm8286x)
+*          4. Clock generator (si5332)
 *
 *******************************************************************************/
 
@@ -27,19 +27,32 @@
 #define BOARD_MONITOR_PERIOD_US		1000000u/* period of the monitoring loop */
 
 /* =========================================================================== */
-/* 2. FMC Vadj (tpsm8286x)                                                     */
+/* 2. VCCIO selection (HPC/HDB)                                                */
 /* =========================================================================== */
-#define BOARD_FMC1_VADJ_V		1.8f
-#define BOARD_FMC2_VADJ_V		1.8f
+/*
+ * Kria HPC bank can be connected to either FMC2-LA00..19 (SW1002.2 Off) or 
+ * FMC1-HA00..19 (SW1002.2 On) via DIP-Switch on the carrier board. 
+ * Kria HDB bank is always connected to FMC2-LA20..31. It can be sourced with 
+ * either FMC2-Vadj or 2.5V. With 2.5V LVDS-inputs are supported. Be carefull
+ * to make the correct settings for your FMC module.
+ */
+#define BOARD_VCCIO_SELECT_HPC		0	/* 0: FMC2-Vadj, 1: FMC1-Vadj */
+#define BOARD_VCCIO_SELECT_HDB		10	/* 0: FMC2-Vadj, 1: 2.5V */
 
 /* =========================================================================== */
-/* 3. FMC Vadj hard upper bound (IO protection)                                */
+/* 3.1 FMC Vadj (tpsm8286x)                                                     */
+/* =========================================================================== */
+#define BOARD_FMC1_VADJ_V		1.80f
+#define BOARD_FMC2_VADJ_V		1.80f
+
+/* =========================================================================== */
+/* 3.2 FMC Vadj hard upper bound (IO protection)                                */
 /* =========================================================================== */
 /*
  * Set according to the FPGAs VCCIO limits, checked at startup and used to 
  * define power monitor limits.    
  */
-#define BOARD_FMC_VADJ_MAX_V	1.8f	
+#define BOARD_FMC_VADJ_MAX_V	1.80f	
 
 /* =========================================================================== */
 /* 4. Clock generator (si5332)                                                 */

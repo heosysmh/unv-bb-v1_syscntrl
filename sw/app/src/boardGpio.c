@@ -16,6 +16,10 @@
 #define GPIO_IN		SYSTEM_GPIO_0_IO_CTRL
 #define GPIO_OUT	SYSTEM_GPIO_1_IO_CTRL
 
+
+#define GPIO_HPC_VCCIO_SELECT_MASK	(1u << GPIO_OUT_HPC_VCCIO_SELECT_BIT)
+#define GPIO_HDB_VCCIO_SELECT_MASK	(1u << GPIO_OUT_HDB_VCCIO_SELECT_BIT)
+
 #define GPIO_FMC_SUP_EN_MASK	((1u << GPIO_OUT_FMC1_SUP_EN_BIT) | \
 				 				 (1u << GPIO_OUT_FMC2_SUP_EN_BIT))
 #define GPIO_FMC_MOD_EN_MASK	((1u << GPIO_OUT_FMC1_MOD_EN_BIT) | \
@@ -96,4 +100,19 @@ void boardGpio_pulseEthPhyReset(void)
 	boardGpio_modifyOutput(GPIO_ETH_RSTN_MASK, 0u);
 	bsp_uDelay(BOARD_ETH_RESET_PULSE_US);
 	boardGpio_modifyOutput(GPIO_ETH_RSTN_MASK, GPIO_ETH_RSTN_MASK);
+}
+
+void boardGpio_setHpcVccio(int sourceFmc1)
+{
+	boardGpio_modifyOutput(GPIO_HPC_VCCIO_SELECT_MASK, sourceFmc1 ? GPIO_HPC_VCCIO_SELECT_MASK : 0u);
+}
+
+void boardGpio_setHdbVccio(int source2V5)
+{
+	boardGpio_modifyOutput(GPIO_HDB_VCCIO_SELECT_MASK, source2V5 ? GPIO_HDB_VCCIO_SELECT_MASK : 0u);
+}
+
+void boardGpio_setStatusLed(int state)
+{
+	boardGpio_modifyOutput(GPIO_STATUS_LED_MASK, state ? GPIO_STATUS_LED_MASK : 0u);
 }

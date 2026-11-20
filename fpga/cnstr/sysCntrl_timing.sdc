@@ -129,18 +129,24 @@ set_input_delay -clock_fall -clock jtag_tck -min 0.161 [get_ports {jtag_shift}]
 
 # SPI Flash Constraints
 #########################
-set_input_delay -clock sysClk_i -max 0.858 [get_ports {spi_0_io_data_0_read_i}]
-set_input_delay -clock sysClk_i -min 0.429 [get_ports {spi_0_io_data_0_read_i}]
-set_input_delay -clock sysClk_i -max 0.858 [get_ports {spi_0_io_data_1_read_i}]
-set_input_delay -clock sysClk_i -min 0.429 [get_ports {spi_0_io_data_1_read_i}]
+set_input_delay -clock spi_clk -clock_fall -max 7.0 [get_ports {spi_0_io_data_0_read_i}]
+set_input_delay -clock spi_clk -clock_fall -min 3.0 [get_ports {spi_0_io_data_0_read_i}]
+set_input_delay -clock spi_clk -clock_fall -max 7.0 [get_ports {spi_0_io_data_1_read_i}]
+set_input_delay -clock spi_clk -clock_fall -min 3.0 [get_ports {spi_0_io_data_1_read_i}]
+
+set_output_delay -clock sysClk_i -max 0.610  [get_ports {spi_0_io_sclk_o}]
+set_output_delay -clock sysClk_i -min -0.085 [get_ports {spi_0_io_sclk_o}]
+
 set_output_delay -clock sysClk_i -max 0.610 [get_ports {spi_0_io_ss_o}]
 set_output_delay -clock sysClk_i -min -0.085 [get_ports {spi_0_io_ss_o}]
-set_output_delay -clock sysClk_i -max 0.610 [get_ports {spi_0_io_hold_o}]
-set_output_delay -clock sysClk_i -min -0.085 [get_ports {spi_0_io_hold_o}]
-set_output_delay -clock sysClk_i -max 0.610 [get_ports {spi_0_io_wp_o}]
-set_output_delay -clock sysClk_i -min -0.085 [get_ports {spi_0_io_wp_o}]
+
 set_output_delay -clock sysClk_i -max 0.610 [get_ports {spi_0_io_data_0_write_o}]
 set_output_delay -clock sysClk_i -min -0.085 [get_ports {spi_0_io_data_0_write_o}]
 set_output_delay -clock sysClk_i -max 0.610 [get_ports {spi_0_io_data_1_write_o}]
 set_output_delay -clock sysClk_i -min -0.085 [get_ports {spi_0_io_data_1_write_o}]
+
+# Write Protect and hold (not used):
+set_false_path -to [get_ports {spi_0_io_wp_o}]
+set_false_path -to [get_ports {spi_0_io_hold_o}]
+
 
