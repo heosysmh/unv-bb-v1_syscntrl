@@ -3,7 +3,7 @@
         "-o",
         "mcu",
         "--base_path",
-        "ip",
+        "../../fpga/ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",

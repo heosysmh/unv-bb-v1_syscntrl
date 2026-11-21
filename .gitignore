@@ -4,8 +4,6 @@ work/*
 # Re-included files to restore project
 !work/efinity/*.xml
 !work/efinity/*.isf
-# Re-included ip folder (each ip has its own gitignore) 
-!work/efinity/ip
 
 # Efinity Backup- und Log-files
 *.bak
