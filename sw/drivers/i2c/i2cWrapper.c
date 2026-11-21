@@ -1,31 +1,41 @@
-/*
- * i2cCom.c
- *
- *  Created on: 13.09.2026
- *      Author: matthias
- */
+/*******************************************************************************
+*
+* @file i2cWrapper.c
+*
+* @brief Implementation of the interrupt-driven I2C master wrapper,
+*        see i2cWrapper.h.
+*
+*        Transfers are polled; the ISR only sets error flags (timeout,
+*        arbitration loss) which the polling loops check, so a stuck bus
+*        aborts the transfer instead of hanging forever.
+*
+*******************************************************************************/
 
 #include "i2cWrapper.h"
 #include "userDef.h"
 #include "bsp.h"
 
-#define DEFAULT_TIMEOUT 100000  // Default timeout in ticks
+#define DEFAULT_TIMEOUT 100000  /**< Default timeout in ticks. */
 
+/**
+ * @brief I2C controller instance state (opaque handle, see i2cWrapper.h).
+ */
 struct i2cHandle_t
 {
-	u8 deviceId;
-	u32 baseAddress;
-	u8 intrId;
-	u8 intrPrio;
-	u8 intrHart;
-	I2c_Config cfg;
-	
-	// New fields for timeout handling
-	volatile u8 timeout;      // Flag set by ISR when timeout detected
-	volatile u8 arbLoss;      // Flag for arbitration loss
-	volatile u8 nackRecvd;    // Flag for NACK reception	
+	u8 deviceId;		/**< Instance index into #gI2cInstances. */
+	u32 baseAddress;	/**< Base address of the I2C controller. */
+	u8 intrId;		/**< PLIC interrupt source ID. */
+	u8 intrPrio;		/**< PLIC interrupt priority. */
+	u8 intrHart;		/**< Hart (CPU) the interrupt is routed to. */
+	I2c_Config cfg;		/**< Controller timing configuration. */
+
+	/* Error flags set asynchronously by the ISR */
+	volatile u8 timeout;      /**< Flag set by ISR when timeout detected. */
+	volatile u8 arbLoss;      /**< Flag for arbitration loss. */
+	volatile u8 nackRecvd;    /**< Flag for NACK reception. */
 };
 
+/** Static pool of controller instances (size from userDef.h). */
 static i2cHandle_t gI2cInstances[I2C_NUM_OF_INSTANCES];
 
 static void i2c_isr();
@@ -33,7 +43,19 @@ static void i2c_isr();
 
 
 
-// Helper functions with interrupt base error chekc
+/**
+ * @name Polling helpers with interrupt-based error check (WithEC)
+ *
+ * Each helper issues a low-level BSP operation and polls its completion
+ * bit while checking the ISR error flags (timeout / arbitration loss).
+ * @{
+ */
+
+/**
+ * @brief Transmits a NACK and waits for completion.
+ * @param pInst Controller handle.
+ * @return #I2C_WRAPPER_OK, #I2C_WRAPPER_TIMEOUT or #I2C_WRAPPER_ARB_LOSS.
+ */
 static int i2c_txNackWithEC(i2cHandle_t *pInst){
     i2c_txNack(pInst->baseAddress);
 
@@ -49,6 +71,11 @@ static int i2c_txNackWithEC(i2cHandle_t *pInst){
     return I2C_WRAPPER_OK;
 }
 
+/**
+ * @brief Transmits an ACK and waits for completion.
+ * @param pInst Controller handle.
+ * @return #I2C_WRAPPER_OK, #I2C_WRAPPER_TIMEOUT or #I2C_WRAPPER_ARB_LOSS.
+ */
 static int i2c_txAckWithEC(i2cHandle_t *pInst){
     i2c_txAck(pInst->baseAddress);
 
@@ -64,6 +91,11 @@ static int i2c_txAckWithEC(i2cHandle_t *pInst){
     return I2C_WRAPPER_OK;
 }
 
+/**
+ * @brief Waits until the received ACK/NACK bit is valid.
+ * @param pInst Controller handle.
+ * @return #I2C_WRAPPER_OK, #I2C_WRAPPER_TIMEOUT or #I2C_WRAPPER_ARB_LOSS.
+ */
 static int i2c_rxAckWaitWithEC(i2cHandle_t *pInst){
     while ((read_u32(pInst->baseAddress + I2C_RX_ACK) & I2C_RX_VALUE) != 0)
     {
@@ -79,6 +111,14 @@ static int i2c_rxAckWaitWithEC(i2cHandle_t *pInst){
 
 
 
+/**
+ * @brief Issues a (repeated) START and waits for completion.
+ *
+ * Resets the timeout/arbitration-loss flags before polling.
+ *
+ * @param pInst Controller handle.
+ * @return #I2C_WRAPPER_OK, #I2C_WRAPPER_TIMEOUT or #I2C_WRAPPER_ARB_LOSS.
+ */
 static int i2c_masterStartWithEC(i2cHandle_t *pInst) {
     i2c_masterStart(pInst->baseAddress);
     
@@ -98,6 +138,14 @@ static int i2c_masterStartWithEC(i2cHandle_t *pInst) {
     return I2C_WRAPPER_OK;
 }
 
+/**
+ * @brief Issues a STOP and waits for completion.
+ *
+ * Resets the timeout/arbitration-loss flags before polling.
+ *
+ * @param pInst Controller handle.
+ * @return #I2C_WRAPPER_OK, #I2C_WRAPPER_TIMEOUT or #I2C_WRAPPER_ARB_LOSS.
+ */
 static int i2c_masterStopWithEC(i2cHandle_t *pInst) {
     i2c_masterStop(pInst->baseAddress);
     
@@ -117,6 +165,12 @@ static int i2c_masterStopWithEC(i2cHandle_t *pInst) {
     return I2C_WRAPPER_OK;
 }
 
+/**
+ * @brief Transmits one byte and waits for the target acknowledge.
+ * @param pInst Controller handle.
+ * @param byte  Byte to transmit.
+ * @return #I2C_WRAPPER_OK, #I2C_WRAPPER_TIMEOUT or #I2C_WRAPPER_ARB_LOSS.
+ */
 static int TX_AND_CHECK_WITH_EC(i2cHandle_t *pInst, u8 byte) {
     int result;
 
@@ -133,6 +187,15 @@ static int TX_AND_CHECK_WITH_EC(i2cHandle_t *pInst, u8 byte) {
     return I2C_WRAPPER_OK;
 }
 
+/** @} */
+
+/**
+ * @brief Initializes one I2C controller instance, see i2cWrapper.h.
+ *
+ * @param pDevCfg Controller configuration; @c deviceId selects the instance.
+ * @param pIntr   Interrupt controller handle from intr_initialize().
+ * @return Pointer to the controller instance.
+ */
 i2cHandle_t* i2c_initialize(i2cHandle_config_t *pDevCfg, intrHandle_t *pIntr)
 {
 	i2cHandle_t *pInst = &gI2cInstances[pDevCfg->deviceId];
@@ -159,7 +222,7 @@ i2cHandle_t* i2c_initialize(i2cHandle_config_t *pDevCfg, intrHandle_t *pIntr)
 	intr_connect(pIntr, pInst->intrId, &i2c_isr, pInst);
 
     //enable PLIC I2C interrupts
-	intr_serPriority(pIntr, pInst->intrId, pInst->intrPrio);
+	intr_setPriority(pIntr, pInst->intrId, pInst->intrPrio);
 	intr_setEnable(pIntr, pInst->intrHart, pInst->intrId);
 
     i2c_enableInterrupt(pInst->baseAddress, I2C_INTERRUPT_DROP);
@@ -167,12 +230,11 @@ i2cHandle_t* i2c_initialize(i2cHandle_config_t *pDevCfg, intrHandle_t *pIntr)
 	return pInst;
 }
 
-/*
- * Generic multi-byte register access, MSB first. i2c_readRegBuf() uses a
- * genuine repeated start between the register-pointer write and the data
- * read (see i2c_readData_b_ack() in
- * mcu/software/standalone/driver/i2c.h), matching the write/read-word
- * protocol used by multi-byte-register devices (e.g. INA745x).
+/**
+ * @brief Writes @p length bytes to a register, MSB first, see i2cWrapper.h.
+ *
+ * Matches the write-word protocol used by multi-byte-register devices
+ * (e.g. INA745x).
  */
 int i2c_writeRegMultipleBytes(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data, u32 length) {
     int result;
@@ -212,6 +274,14 @@ int i2c_writeRegMultipleBytes(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *
     return I2C_WRAPPER_OK;
 }
 
+/**
+ * @brief Reads @p length bytes from a register, MSB first, see i2cWrapper.h.
+ *
+ * Uses a genuine repeated start between the register-pointer write and the
+ * data read (see i2c_readData_b_ack() in
+ * mcu/software/standalone/driver/i2c.h), matching the read-word protocol
+ * used by multi-byte-register devices (e.g. INA745x).
+ */
 int i2c_readRegMultipleBytes(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data, u32 length) {
     int result;     
 
@@ -275,17 +345,26 @@ int i2c_readRegMultipleBytes(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *d
     return I2C_WRAPPER_OK;
 }
 
+/**
+ * @brief Writes a single register byte, see i2cWrapper.h.
+ */
 int i2c_writeReg(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data) {
 
 	return i2c_writeRegMultipleBytes(pInst, slaveAddr, regAddr, data, 0x1);
 }
 
 
+/**
+ * @brief Reads a single register byte, see i2cWrapper.h.
+ */
 int i2c_readReg(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data) {
 
 	return i2c_readRegMultipleBytes(pInst, slaveAddr, regAddr, data, 0x1);
 }
 
+/**
+ * @brief Raw write without register pointer, see i2cWrapper.h.
+ */
 int i2c_write(i2cHandle_t *pInst, u8 slaveAddr, u8 *data, u32 length) {
     int result;
     
@@ -319,6 +398,9 @@ int i2c_write(i2cHandle_t *pInst, u8 slaveAddr, u8 *data, u32 length) {
 }
 
 
+/**
+ * @brief Raw read without register pointer, see i2cWrapper.h.
+ */
 int i2c_read(i2cHandle_t *pInst, u8 slaveAddr, u8 *data, u32 length) {
     int result;
     
@@ -362,11 +444,14 @@ int i2c_read(i2cHandle_t *pInst, u8 slaveAddr, u8 *data, u32 length) {
     return I2C_WRAPPER_OK;
 }
 
-/******************************************************************************
-*
-* @brief This function handles I2C interrupts and clear interrupt flag.
-*
-******************************************************************************/
+/**
+ * @brief I2C interrupt service routine.
+ *
+ * Sets the timeout / arbitration-loss error flags evaluated by the polling
+ * helpers and clears all interrupt flags.
+ *
+ * @param callBackRef Controller handle registered via intr_connect().
+ */
 static void i2c_isr(void *callBackRef){
     i2cHandle_t *pInst = (i2cHandle_t*)callBackRef;
     u32 interruptFlags = i2c_getInterruptFlag(pInst->baseAddress);

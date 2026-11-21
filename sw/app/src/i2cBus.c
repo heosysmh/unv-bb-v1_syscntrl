@@ -39,13 +39,22 @@
 #define I2C_SAMPLING_DIVIDER	3
 #define I2C_TIMEOUT_DIVIDER	10	/* timeout = coreFreq / 10 = 0.1 s */
 
-static intrHandle_t   *gIntr     = 0;
-static i2cHandle_t    *gPmbus    = 0;
-static i2cHandle_t    *gSysCfg   = 0;
-static pi4msd5v945x_t *gBusSwitch = 0;
+static intrHandle_t   *gIntr     = 0;	/**< Interrupt controller handle. */
+static i2cHandle_t    *gPmbus    = 0;	/**< PMBus controller handle (power devices). */
+static i2cHandle_t    *gSysCfg   = 0;	/**< SysCfg controller handle (clock generator, add-on modules). */
+static pi4msd5v945x_t *gBusSwitch = 0;	/**< SysCfg bus switch handle. */
 
 /**
  * @brief Fills a controller configuration from the board definition.
+ *
+ * @param cfg      Configuration to fill.
+ * @param base     Base address of the I2C controller.
+ * @param devId    Instance index into the wrapper's static pool.
+ * @param intrId   PLIC interrupt source ID.
+ * @param intrPrio PLIC interrupt priority.
+ * @param intrHart Hart (CPU) the interrupt is routed to.
+ * @param coreFreq Controller input clock frequency [Hz].
+ * @param ifFreq   Desired I2C bus frequency [Hz].
  */
 static void i2cBus_buildConfig(i2cHandle_config_t *cfg, u32 base, u8 devId,
                                u8 intrId, u8 intrPrio, u8 intrHart,

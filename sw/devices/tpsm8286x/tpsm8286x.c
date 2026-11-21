@@ -1,57 +1,75 @@
-/*#
- * tpsm82866.c
- *
- *  Created on: 13.09.2026
- *      Author: matthias
- */
+/*******************************************************************************
+*
+* @file tpsm8286x.c
+*
+* @brief Driver implementation for the TI TPSM8286x step-down power module,
+*        see tpsm8286x.h.
+*
+*******************************************************************************/
 
 
 #include "tpsm8286x.h"
 #include "userDef.h"	/* provides TPSM8286_NUM_OF_INSTANCES */
 
 
-/* ======================
- * Voltage-Mapping struct
- * ====================== */
+/**
+ * @brief Linear voltage-to-register mapping descriptor.
+ */
 typedef struct {
-    float   min_volt;      /* smallest voltage-Value */
-    float   max_volt;      /* largest voltage-Value */
-    float   step_volt;     /* volts per LSB (e.g. 0.01) */
-    u8 reg_min;     /* register value @ min_volt */
-    u8 reg_max;     /* register value @ max_volt */
+    float   min_volt;      /**< Smallest supported voltage [V]. */
+    float   max_volt;      /**< Largest supported voltage [V]. */
+    float   step_volt;     /**< Volts per LSB (e.g. 0.01). */
+    u8 reg_min;     /**< Register value at @ref min_volt. */
+    u8 reg_max;     /**< Register value at @ref max_volt. */
 } tpsm8286_voltage_map_t;
 
+/**
+ * @brief Opaque device handle (definition), see tpsm8286_t in tpsm8286x.h.
+ */
 struct tpsm8286_t {
-	u8 isReady;
-	u8 control;
-	u8 status;
-	u8 isEnabled;
-	float voltage;
-	u8 voltage_raw;
-	u8 i2cAddr;
-	void* hal_ctx;
-	tpsm8286_i2c_write_f i2c_write;
-	tpsm8286_i2c_read_f i2c_read;
+	u8 isReady;	/**< Non-zero once tpsm8286_initialize() has set up the HAL callbacks. */
+	u8 control;	/**< Shadow of the CNTRL register. */
+	u8 status;	/**< Shadow of the STATUS register. */
+	u8 isEnabled;	/**< Cached output enable state. */
+	float voltage;	/**< Last programmed output voltage [V]. */
+	u8 voltage_raw;	/**< Last programmed VOUT1 register value. */
+	u8 i2cAddr;	/**< 7-bit I2C address of the device. */
+	void* hal_ctx;	/**< Opaque context pointer passed through to the HAL callbacks. */
+	tpsm8286_i2c_write_f i2c_write;	/**< HAL register write callback. */
+	tpsm8286_i2c_read_f i2c_read;	/**< HAL register read callback. */
 };
 
+/** Voltage mapping of the 10 mV/LSB device variant: 0.8 V .. 3.35 V. */
 const tpsm8286_voltage_map_t TPSM8286_VOLTAGEMAP_10MV = {
     .min_volt = 0.800f, .max_volt = 3.350f, .step_volt = 0.01f,
     .reg_min = 0x00, .reg_max = 0xFF
 };
 
+/** Static pool of device instances (size from userDef.h). */
 static tpsm8286_t gInstances[TPSM8286_NUM_OF_INSTANCES];
 
-/**********************************************************************************************************************
- *  clampf()
- *********************************************************************************************************************/
-/*!
- * \brief       Clamps a float value between two bounds
- * \details     Ensures a float value stays within specified minimum and maximum values
+/**
+ * @brief Clamps a float value between two bounds.
+ * @param x Value to clamp.
+ * @param a Lower bound.
+ * @param b Upper bound.
+ * @return @p x limited to [a, b].
  */
 static inline float clampf(float x, float a, float b) { return (x < a) ? a : (x > b) ? b : x; }
 
 
 
+/**
+ * @brief Creates the device handle for instance @p devId (no I2C access),
+ *        see tpsm8286x.h.
+ *
+ * @param devId    Instance index into the static pool.
+ * @param i2c_addr 7-bit I2C address of the device.
+ * @param w        HAL register write callback.
+ * @param r        HAL register read callback.
+ * @param ctx      Opaque context pointer passed through to @p w and @p r.
+ * @return Pointer to the device handle.
+ */
 tpsm8286_t* tpsm8286_initialize(u32 devId, u8 i2c_addr, tpsm8286_i2c_write_f w, tpsm8286_i2c_read_f r, void *ctx )
 {
 	tpsm8286_t* pInst = &gInstances[devId];
@@ -71,6 +89,16 @@ tpsm8286_t* tpsm8286_initialize(u32 devId, u8 i2c_addr, tpsm8286_i2c_write_f w, 
 }
 
 
+/**
+ * @brief Converts a voltage to the VOUT1 register value.
+ *
+ * The voltage is clamped to the range of #TPSM8286_VOLTAGEMAP_10MV and
+ * mapped linearly onto the register range with rounding.
+ *
+ * @param voltage     Desired output voltage [V].
+ * @param[out] reg_out Receives the register value.
+ * @return #TPSM8286_OK on success, #TPSM8286_E_PARAM if @p reg_out is NULL.
+ */
 tpsm8286_err_t tpsm8286_voltage_to_reg(float voltage, u8 *reg_out) {
     if (!reg_out) return TPSM8286_E_PARAM;
     tpsm8286_voltage_map_t m = TPSM8286_VOLTAGEMAP_10MV;
@@ -87,6 +115,9 @@ tpsm8286_err_t tpsm8286_voltage_to_reg(float voltage, u8 *reg_out) {
     return TPSM8286_OK;
 }
 
+/**
+ * @brief Sets the output voltage setpoint (VOUT1 register), see tpsm8286x.h.
+ */
 tpsm8286_err_t tpsm8286_set_voltage(tpsm8286_t *pDev, float voltage)
 {
 	if (!pDev) return TPSM8286_E_PARAM;
@@ -102,6 +133,9 @@ tpsm8286_err_t tpsm8286_set_voltage(tpsm8286_t *pDev, float voltage)
 	return status;
 }
 
+/**
+ * @brief Checks whether VOUT1 reads back the programmed value, see tpsm8286x.h.
+ */
 tpsm8286_err_t tpsm8286_check_voltageReg(tpsm8286_t *pDev, int *regOk)
 {
 	if (!pDev) return TPSM8286_E_PARAM;
@@ -117,6 +151,9 @@ tpsm8286_err_t tpsm8286_check_voltageReg(tpsm8286_t *pDev, int *regOk)
 }
 
 
+/**
+ * @brief Writes the complete CNTRL register, see tpsm8286x.h.
+ */
 tpsm8286_err_t tpsm8286_set_cntrl(tpsm8286_t *pDev, u8 regVal)
 {
 	if (!pDev) return TPSM8286_E_PARAM;
@@ -127,6 +164,9 @@ tpsm8286_err_t tpsm8286_set_cntrl(tpsm8286_t *pDev, u8 regVal)
 	return status;
 }
 
+/**
+ * @brief Enables/disables the output (read-modify-write), see tpsm8286x.h.
+ */
 tpsm8286_err_t tpsm8286_set_enable(tpsm8286_t *pDev, int enable)
 {
 	if (!pDev) return TPSM8286_E_PARAM;

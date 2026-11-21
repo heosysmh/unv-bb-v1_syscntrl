@@ -14,10 +14,10 @@
 
 /** Per-output configuration, taken from boardConfig.h. */
 typedef struct {
-	si5332_out_ch_t     ch;
-	u8                  enable;
-	u32                 freq_hz;
-	si5332_out_format_t format;
+	si5332_out_ch_t     ch;		/**< Output channel. */
+	u8                  enable;	/**< Enable state. */
+	u32                 freq_hz;	/**< Output frequency [Hz]. */
+	si5332_out_format_t format;	/**< Signal format. */
 } clkGenOutCfg_t;
 
 static const clkGenOutCfg_t gOutCfg[] = {
@@ -27,8 +27,10 @@ static const clkGenOutCfg_t gOutCfg[] = {
 	{ SI5332_OUT_7, BOARD_CLKGEN_OUT7_EN, BOARD_CLKGEN_OUT7_FREQ_HZ, BOARD_CLKGEN_OUT7_FORMAT }
 };
 
+/** Number of configurable outputs in #gOutCfg. */
 #define CLKGEN_NUM_OUT	(sizeof(gOutCfg) / sizeof(gOutCfg[0]))
 
+/** Clock generator device handle, created by clkGen_init(). */
 static si5332_t *gClkGen = 0;
 
 clkGen_err_t clkGen_init(void)

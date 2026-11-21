@@ -27,7 +27,7 @@
 
 /*
  * Alert configuration. Both values are dictated by the wiring (ALERT on the
- * power-good nets, see section 1):
+ * power-good nets, see boardGpio.h):
  *   - ALATCH = 1: a fault is latched until the DIAG_ALRT register is read,
  *     so short events cannot be missed between two polls.
  *   - CNVR = 0: a conversion-ready alert would pull the power-good net low
@@ -119,8 +119,11 @@ static u8 gMonConfigured;
  * @brief Merges the device diagnostics into the sticky fault shadow.
  *
  * Under-voltage and under-current flags are ignored because those limits are
- * programmed to non-trippable values (see boardConfig.h).
+ * programmed to non-trippable values (see #PWR_MON_UV_DISABLED_V and
+ * #PWR_MON_UI_DISABLED_A).
  *
+ * @param rail  Rail the diagnostics belong to.
+ * @param flags Decoded DIAG_ALRT flags of the device.
  * @return Non-zero if at least one fault bit was set in @p flags.
  */
 static int pwr_mergeFaults(pwrRail_t rail, const ina745a_diag_flags_t *flags)
@@ -139,6 +142,7 @@ static int pwr_mergeFaults(pwrRail_t rail, const ina745a_diag_flags_t *flags)
 
 /**
  * @brief Queries all monitors of one power-good group.
+ * @param line Power-good / ALERT net whose monitors are queried.
  * @return Number of devices that reported a fault, or -1 on a device error.
  */
 static int pwr_queryGroup(pwrPgLine_t line)
@@ -286,7 +290,7 @@ pwr_err_t pwr_mon_configure(void)
 		}
 
 		/* Protection limits; the under limits are programmed to values that
-		 * can never trip (see boardConfig.h). */
+		 * can never trip (see PWR_MON_UV_DISABLED_V / PWR_MON_UI_DISABLED_A). */
 		if (ina745a_set_bus_voltage_limits(gMon[i], gMonCfg[i].overVoltage_V,
 		                                   PWR_MON_UV_DISABLED_V) != INA745A_OK ||
 		    ina745a_set_current_limits(gMon[i], gMonCfg[i].overCurrent_A,

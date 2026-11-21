@@ -6,20 +6,20 @@
 *        application.
 *
 *        The board itself is configured in boardConfig.h. The counts below
-*        must match the board configuration;
+*        must match the board configuration.
 *
 *******************************************************************************/
 
 #ifndef SRC_USERDEF_H_
 #define SRC_USERDEF_H_
 
-/* drivers/i2c/i2cWrapper.c: number of I2C controller instances (PMBus, SysCfg) */
+/** drivers/i2c/i2cWrapper.c: number of I2C controller instances (PMBus, SysCfg). */
 #define I2C_NUM_OF_INSTANCES		2
 
-/* devices/tpsm8286x: FMC1_VADJ, FMC2_VADJ */
+/** devices/tpsm8286x: FMC1_VADJ, FMC2_VADJ. */
 #define TPSM8286_NUM_OF_INSTANCES	2
 
-/* devices/ina745a: one instance per monitored rail (see BOARD_PWRMON_TABLE) */
+/** devices/ina745a: one instance per monitored rail (see PWR_MON_TABLE in power.h). */
 #define INA745A_NUM_INSTANCES		6
 
 #endif /* SRC_USERDEF_H_ */

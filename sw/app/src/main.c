@@ -34,11 +34,12 @@
 #include "i2cBus.h"
 #include "power.h"
 
+/** Status codes of the board bring-up sequence. */
 typedef enum {
-	INIT_OK 		=  0,
-	INIT_E_CKLGEN 	= -1,
-	INIT_E_PWRMON   = -2,
-	INIT_E_FMCADJ   = -3
+	INIT_OK 		=  0,	/**< Bring-up succeeded. */
+	INIT_E_CLKGEN 	= -1,	/**< Clock generator configuration failed. */
+	INIT_E_PWRMON   = -2,	/**< Power monitor configuration failed. */
+	INIT_E_FMCADJ   = -3	/**< FMC Vadj configuration/enable failed. */
 } init_err_t;
 
 void trap_entry();
@@ -63,7 +64,8 @@ static void cpu_enableInterrupts(void)
  *  - They are armed before the FMC supply is switched on so that the FMC
  *    rails are already protected while ramping up.
  *
- * @return PWR_OK / 0 if the whole sequence succeeded.
+ * @return #INIT_OK / 0 if the whole sequence succeeded, a negative error
+ *         code otherwise.
  */
 static int board_bringUp(void)
 {
@@ -93,7 +95,7 @@ static int board_bringUp(void)
 	bsp_printf("Configure Clock-Generator\r\n");
 	if (clkGen_configure() != CLKGEN_OK) {
 		bsp_printf("ERROR: Clock-Generator configuration failed\r\n");
-		return INIT_E_CKLGEN;
+		return INIT_E_CLKGEN;
 	}
 	bsp_uDelay(BOARD_CLK_SETTLE_US);
 
