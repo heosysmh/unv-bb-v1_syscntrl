@@ -1,10 +1,11 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file boardGpio.c
-*
-* @brief Implementation of the named board GPIO access, see boardGpio.h.
-*
-*******************************************************************************/
+* @brief Implementation of GPIO access (interface to FPGA).
+*/
 
 #include "boardGpio.h"
 

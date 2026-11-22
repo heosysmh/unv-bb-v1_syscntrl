@@ -1,7 +1,9 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file tpsm8286x.h
-*
 * @brief Driver for the TI TPSM8286x step-down power module with I2C
 *        (PMBus-style) output voltage control.
 *
@@ -14,8 +16,7 @@
 *        Multiple simultaneous instances are supported: tpsm8286_initialize()
 *        takes an explicit @c devId that indexes the static instance pool
 *        (size #TPSM8286_NUM_OF_INSTANCES, defined in userDef.h).
-*
-*******************************************************************************/
+*/
 
 #include <type.h>
 
@@ -110,39 +111,39 @@ tpsm8286_t* tpsm8286_initialize(u32 devId, u8 i2c_addr, tpsm8286_i2c_write_f w, 
  * supported range (0.8 V .. 3.35 V). Takes effect according to the
  * configured ramp speed; the output enable state is not changed.
  *
- * @param dev     Device handle.
+ * @param pDev    Device handle.
  * @param voltage Desired output voltage [V].
- * @return #TPSM8286_OK on success, #TPSM8286_E_PARAM if @p dev is NULL,
+ * @return #TPSM8286_OK on success, #TPSM8286_E_PARAM if @p pDev is NULL,
  *         #TPSM8286_E_I2C on a HAL/bus error.
  */
-tpsm8286_err_t tpsm8286_set_voltage(tpsm8286_t *dev, float voltage);
+tpsm8286_err_t tpsm8286_set_voltage(tpsm8286_t *pDev, float voltage);
 
 /**
  * @brief Writes the complete CNTRL register.
- * @param pInst  Device handle.
+ * @param pDev   Device handle.
  * @param regVal Raw control register value (OR of TPSM8286_*_MASK bits).
- * @return #TPSM8286_OK on success, #TPSM8286_E_PARAM if @p pInst is NULL,
+ * @return #TPSM8286_OK on success, #TPSM8286_E_PARAM if @p pDev is NULL,
  *         otherwise the HAL error code.
  */
-tpsm8286_err_t tpsm8286_set_cntrl(tpsm8286_t *pInst, u8 regVal);
+tpsm8286_err_t tpsm8286_set_cntrl(tpsm8286_t *pDev, u8 regVal);
 
 /**
  * @brief Enables/disables the output (CNTRL.DEVICE_ENABLE, read-modify-write).
- * @param pInst  Device handle.
+ * @param pDev   Device handle.
  * @param enable Non-zero to enable, zero to disable.
- * @return #TPSM8286_OK on success, #TPSM8286_E_PARAM if @p pInst is NULL,
+ * @return #TPSM8286_OK on success, #TPSM8286_E_PARAM if @p pDev is NULL,
  *         #TPSM8286_E_I2C on a HAL/bus error.
  */
-tpsm8286_err_t tpsm8286_set_enable(tpsm8286_t *pInst, int enable);
+tpsm8286_err_t tpsm8286_set_enable(tpsm8286_t *pDev, int enable);
 
 /**
  * @brief Checks whether the VOUT1 register reads back the programmed value.
- * @param pInst     Device handle.
+ * @param pDev      Device handle.
  * @param[out] regOk Receives 1 if the register matches the last setpoint,
  *                   0 otherwise.
- * @return #TPSM8286_OK on success, #TPSM8286_E_PARAM if @p pInst is NULL,
+ * @return #TPSM8286_OK on success, #TPSM8286_E_PARAM if @p pDev is NULL,
  *         #TPSM8286_E_I2C on a HAL/bus error.
  */
-tpsm8286_err_t tpsm8286_check_voltageReg(tpsm8286_t *pInst, int *regOk);
+tpsm8286_err_t tpsm8286_check_voltageReg(tpsm8286_t *pDev, int *regOk);
 
 #endif /* SR_TPSM8286_H_ */

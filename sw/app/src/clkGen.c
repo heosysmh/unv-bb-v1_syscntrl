@@ -1,10 +1,12 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+
+/**
 * @file clkGen.c
-*
-* @brief Implementation of the clock generator function group, see clkGen.h.
-*
-*******************************************************************************/
+* @brief Implementation of the clock generator function group (SI5332).
+*/
 
 #include "clkGen.h"
 

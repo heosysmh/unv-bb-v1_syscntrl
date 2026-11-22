@@ -1,0 +1,34 @@
+ 
+name: Build and Deploy Docs
+
+on:
+  push:
+    branches:
+      - main  # Falls dein Standard-Branch 'master' heißt, hier anpassen
+
+permissions:
+  contents: write  # Erforderlich für das Pushen auf den gh-pages Branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install MkDocs and plugins
+        run: |
+          pip install mkdocs-material mkdocs-awesome-pages-plugin mkdoxy
+
+      - name: Deploy documentation to GitHub Pages
+        run: mkdocs gh-deploy --force

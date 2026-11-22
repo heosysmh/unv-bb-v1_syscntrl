@@ -1,3 +1,5 @@
+-- SPDX-License-Identifier: Apache-2.0
+-- Copyright (c) 2026 Matthias Haefner - Heosys 
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;

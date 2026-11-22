@@ -1,13 +1,15 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file i2cWrapper.c
+* @brief Implementation of the I2C master wrapper.
 *
-* @brief Implementation of the interrupt-driven I2C master wrapper,
-*        see i2cWrapper.h.
-*
-*        Transfers are polled; the ISR only sets error flags (timeout,
-*        arbitration loss) which the polling loops check, so a stuck bus
-*        aborts the transfer instead of hanging forever.
+* @details
+* Transfers are polled; the ISR only sets error flags (timeout,
+* arbitration loss) which the polling loops check, so a stuck bus
+* aborts the transfer instead of hanging forever.
 *
 *******************************************************************************/
 
@@ -189,13 +191,7 @@ static int TX_AND_CHECK_WITH_EC(i2cHandle_t *pInst, u8 byte) {
 
 /** @} */
 
-/**
- * @brief Initializes one I2C controller instance, see i2cWrapper.h.
- *
- * @param pDevCfg Controller configuration; @c deviceId selects the instance.
- * @param pIntr   Interrupt controller handle from intr_initialize().
- * @return Pointer to the controller instance.
- */
+/* Public API: documented in i2cWrapper.h only. */
 i2cHandle_t* i2c_initialize(i2cHandle_config_t *pDevCfg, intrHandle_t *pIntr)
 {
 	i2cHandle_t *pInst = &gI2cInstances[pDevCfg->deviceId];
@@ -230,12 +226,6 @@ i2cHandle_t* i2c_initialize(i2cHandle_config_t *pDevCfg, intrHandle_t *pIntr)
 	return pInst;
 }
 
-/**
- * @brief Writes @p length bytes to a register, MSB first, see i2cWrapper.h.
- *
- * Matches the write-word protocol used by multi-byte-register devices
- * (e.g. INA745x).
- */
 int i2c_writeRegMultipleBytes(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data, u32 length) {
     int result;
 
@@ -274,14 +264,6 @@ int i2c_writeRegMultipleBytes(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *
     return I2C_WRAPPER_OK;
 }
 
-/**
- * @brief Reads @p length bytes from a register, MSB first, see i2cWrapper.h.
- *
- * Uses a genuine repeated start between the register-pointer write and the
- * data read (see i2c_readData_b_ack() in
- * mcu/software/standalone/driver/i2c.h), matching the read-word protocol
- * used by multi-byte-register devices (e.g. INA745x).
- */
 int i2c_readRegMultipleBytes(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data, u32 length) {
     int result;     
 
@@ -345,26 +327,17 @@ int i2c_readRegMultipleBytes(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *d
     return I2C_WRAPPER_OK;
 }
 
-/**
- * @brief Writes a single register byte, see i2cWrapper.h.
- */
 int i2c_writeReg(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data) {
 
 	return i2c_writeRegMultipleBytes(pInst, slaveAddr, regAddr, data, 0x1);
 }
 
 
-/**
- * @brief Reads a single register byte, see i2cWrapper.h.
- */
 int i2c_readReg(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data) {
 
 	return i2c_readRegMultipleBytes(pInst, slaveAddr, regAddr, data, 0x1);
 }
 
-/**
- * @brief Raw write without register pointer, see i2cWrapper.h.
- */
 int i2c_write(i2cHandle_t *pInst, u8 slaveAddr, u8 *data, u32 length) {
     int result;
     
@@ -398,9 +371,6 @@ int i2c_write(i2cHandle_t *pInst, u8 slaveAddr, u8 *data, u32 length) {
 }
 
 
-/**
- * @brief Raw read without register pointer, see i2cWrapper.h.
- */
 int i2c_read(i2cHandle_t *pInst, u8 slaveAddr, u8 *data, u32 length) {
     int result;
     

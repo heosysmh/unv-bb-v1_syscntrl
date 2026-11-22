@@ -1,10 +1,11 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file power.c
-*
-* @brief Implementation of the power functions, see power.h.
-*
-*******************************************************************************/
+* @brief Implementation of the power functions.
+*/
 
 #include "ina745a.h"
 #include "tpsm8286x.h"

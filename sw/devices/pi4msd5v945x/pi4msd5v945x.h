@@ -1,7 +1,9 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file pi4msd5v945x.h
-*
 * @brief Driver for the Diodes PI4MSD5V945x 4-channel I2C bus switch.
 *
 *        Bus-agnostic core driver: it only uses injected HAL callbacks
@@ -12,8 +14,7 @@
 *
 *        The device supports any combination of the four downstream
 *        channels; the channel mask is written as a single control byte.
-*
-*******************************************************************************/
+*/
 
 #include <type.h>
 

@@ -1,14 +1,16 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file userDef.h
-*
 * @brief Instance-pool sizes for the drivers and device drivers used by this
 *        application.
 *
 *        The board itself is configured in boardConfig.h. The counts below
 *        must match the board configuration.
 *
-*******************************************************************************/
+*/
 
 #ifndef SRC_USERDEF_H_
 #define SRC_USERDEF_H_

@@ -1,14 +1,15 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file interrupt.c
-*
-* @brief Implementation of the PLIC interrupt controller abstraction,
-*        see interrupt.h.
-*
+* @brief Implementation of the PLIC interrupt controller abstraction.
+* @details
 *        Contains the machine trap dispatcher (trap()), the machine-external
 *        interrupt dispatcher (intr_external()) and the crash handler.
 *
-*******************************************************************************/
+*/
 
 #include "interrupt.h"
 #include "bsp.h"
@@ -52,14 +53,7 @@ void trap_entry();
 
 
 
-/**
- * @brief Initializes the interrupt controller and the RISC-V trap handling.
- *
- * See interrupt.h for the full API contract.
- *
- * @param baseAddress Base address of the PLIC controller.
- * @return Pointer to the static interrupt controller instance.
- */
+/* Public API: documented in interrupt.h only. */
 intrHandle_t* intr_initialize(u32 baseAddress)
 {
 	intrHandle_t *pInst = &gIntrInstance;
@@ -82,34 +76,22 @@ intrHandle_t* intr_initialize(u32 baseAddress)
 	return pInst;
 }
 
-/**
- * @brief Sets the priority threshold of a hart, see interrupt.h.
- */
 void intr_setThreshold(intrHandle_t *pInst, u8 hartId, u8 thrshld)
 {
 	pInst->threshold = thrshld;
 	plic_set_threshold(pInst->baseAddress, hartId, pInst->threshold);
 }
 
-/**
- * @brief Enables an interrupt source for a hart, see interrupt.h.
- */
 void intr_setEnable(intrHandle_t *pInst, u32 hartNo, u32 intrId)
 {
 	plic_set_enable(pInst->baseAddress, hartNo, intrId, 1);
 }
 
-/**
- * @brief Sets the priority of an interrupt source, see interrupt.h.
- */
 void intr_setPriority(intrHandle_t *pInst, u32 intrId, u32 prio)
 {
     plic_set_priority(pInst->baseAddress, intrId, prio);
 }
 
-/**
- * @brief Registers a handler for an interrupt source, see interrupt.h.
- */
 void intr_connect(intrHandle_t *pInst, u8 intrId, intrHandler_t handler, void* pCallback)
 {
 	pInst->HandlerTable[intrId].handler = handler;

@@ -1,21 +1,22 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file interrupt.h
-*
 * @brief PLIC-based interrupt controller abstraction for the application.
-*
+* @details
 *        Wraps the BSP PLIC driver (mcu/software/standalone/driver/plic.h)
 *        and the RISC-V trap handling. A single static instance manages the
 *        handler vector table; handlers are registered per interrupt ID with
 *        intr_connect() and dispatched by the machine-external trap path.
 *
-*******************************************************************************/
+*/
 
 #ifndef SRC_INTERRUPT_H_
 #define SRC_INTERRUPT_H_
 
 #include "plic.h"
-#include "riscv.h"
 
 /** Maximum number of PLIC interrupt sources supported by the vector table. */
 #define PLIC_MAX_NUM_INTERRUPTS 36

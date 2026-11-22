@@ -1,0 +1,28 @@
+# Project metadata
+PROJECT_NAME           = "unv-bb-v1-syscntrl Firmware"
+OUTPUT_DIRECTORY       = build-docs/doxygen
+
+# Input paths (productive C source and header files only)
+INPUT                  = sw/app sw/devices sw/drivers
+FILE_PATTERNS          = *.h *.c
+RECURSIVE              = YES
+FULL_PATH_NAMES        = NO
+STRIP_FROM_PATH        =
+STRIP_FROM_INC_PATH    =
+
+# C optimization and extraction settings
+OPTIMIZE_OUTPUT_FOR_C  = YES
+EXTRACT_ALL            = YES
+EXTRACT_STATIC         = YES
+
+# Generate XML only for Doxybook2 (disable HTML and LaTeX)
+GENERATE_HTML          = NO
+GENERATE_LATEX         = NO
+GENERATE_XML           = YES
+XML_OUTPUT             = xml
+
+# Disable special list pages that trigger Doxybook2 Type 0 exception
+GENERATE_TODOLIST      = NO
+GENERATE_TESTLIST      = NO
+GENERATE_BUGLIST       = NO
+GENERATE_DEPRECATEDLIST = NO

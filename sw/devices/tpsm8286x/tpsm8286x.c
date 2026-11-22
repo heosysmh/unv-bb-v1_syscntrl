@@ -1,11 +1,11 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file tpsm8286x.c
-*
-* @brief Driver implementation for the TI TPSM8286x step-down power module,
-*        see tpsm8286x.h.
-*
-*******************************************************************************/
+* @brief Driver implementation for the TI TPSM8286x step-down power module.
+*/
 
 
 #include "tpsm8286x.h"
@@ -59,17 +59,7 @@ static inline float clampf(float x, float a, float b) { return (x < a) ? a : (x 
 
 
 
-/**
- * @brief Creates the device handle for instance @p devId (no I2C access),
- *        see tpsm8286x.h.
- *
- * @param devId    Instance index into the static pool.
- * @param i2c_addr 7-bit I2C address of the device.
- * @param w        HAL register write callback.
- * @param r        HAL register read callback.
- * @param ctx      Opaque context pointer passed through to @p w and @p r.
- * @return Pointer to the device handle.
- */
+/* Public API: documented in tpsm8286x.h only. */
 tpsm8286_t* tpsm8286_initialize(u32 devId, u8 i2c_addr, tpsm8286_i2c_write_f w, tpsm8286_i2c_read_f r, void *ctx )
 {
 	tpsm8286_t* pInst = &gInstances[devId];
@@ -115,9 +105,6 @@ tpsm8286_err_t tpsm8286_voltage_to_reg(float voltage, u8 *reg_out) {
     return TPSM8286_OK;
 }
 
-/**
- * @brief Sets the output voltage setpoint (VOUT1 register), see tpsm8286x.h.
- */
 tpsm8286_err_t tpsm8286_set_voltage(tpsm8286_t *pDev, float voltage)
 {
 	if (!pDev) return TPSM8286_E_PARAM;
@@ -133,9 +120,6 @@ tpsm8286_err_t tpsm8286_set_voltage(tpsm8286_t *pDev, float voltage)
 	return status;
 }
 
-/**
- * @brief Checks whether VOUT1 reads back the programmed value, see tpsm8286x.h.
- */
 tpsm8286_err_t tpsm8286_check_voltageReg(tpsm8286_t *pDev, int *regOk)
 {
 	if (!pDev) return TPSM8286_E_PARAM;
@@ -151,9 +135,6 @@ tpsm8286_err_t tpsm8286_check_voltageReg(tpsm8286_t *pDev, int *regOk)
 }
 
 
-/**
- * @brief Writes the complete CNTRL register, see tpsm8286x.h.
- */
 tpsm8286_err_t tpsm8286_set_cntrl(tpsm8286_t *pDev, u8 regVal)
 {
 	if (!pDev) return TPSM8286_E_PARAM;
@@ -164,9 +145,6 @@ tpsm8286_err_t tpsm8286_set_cntrl(tpsm8286_t *pDev, u8 regVal)
 	return status;
 }
 
-/**
- * @brief Enables/disables the output (read-modify-write), see tpsm8286x.h.
- */
 tpsm8286_err_t tpsm8286_set_enable(tpsm8286_t *pDev, int enable)
 {
 	if (!pDev) return TPSM8286_E_PARAM;

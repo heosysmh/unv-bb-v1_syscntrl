@@ -1,0 +1,50 @@
+# Site metadata
+site_name: unv-bb-v1-syscntrl Documentation
+site_description: Hardware (FPGA/VHDL) and Firmware (C) documentation for unv-bb-v1-syscntrl
+
+# Material theme configuration
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - content.code.copy
+
+# Search, folder navigation, and C API documentation
+plugins:
+  - search
+  - awesome-pages
+  - mkdoxy:
+      projects:
+        c:
+          src-dirs: sw/app sw/devices sw/drivers
+          full-doc: True
+          doxy-cfg:
+            PROJECT_NAME: "unv-bb-v1-syscntrl Firmware"
+            FILE_PATTERNS: "*.h *.c"
+            RECURSIVE: True
+            FULL_PATH_NAMES: True
+            STRIP_FROM_PATH: "."
+            STRIP_FROM_INC_PATH: "."
+            OPTIMIZE_OUTPUT_FOR_C: True
+            EXTRACT_ALL: True
+            EXTRACT_STATIC: True
+            ENABLE_PREPROCESSING: True
+            MACRO_EXPANSION: True
+
+# Navigation tree matching the repository structure
+nav:
+  - System Overview: index.md
+  - Setup & Tools:
+      - FTDI & JTAG Configuration: setup/ftdi-jtag.md
+      - Firmware Build Guide: setup/firmware-build.md
+  - Firmware (SW):
+      - Architecture & Notes: sw-notes/BUILD_SYSTEM.md
+      - C-API Overview: c/index.md
+      - C-Files: c/files.md
+      - Data Structures: c/annotated.md
+  - FPGA (VHDL): api/vhdl
+
+copyright: Copyright &copy; 2026 Matthias Haefner - Heosys – Licensed under Apache-2.0

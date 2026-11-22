@@ -1,8 +1,10 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file i2cWrapper.h
-*
-* @brief Interrupt-driven I2C master wrapper around the BSP I2C driver.
+* @brief I2C master wrapper around the BSP I2C driver.
 *
 *        Wraps the low-level BSP driver (mcu/software/standalone/driver/i2c.h)
 *        into a handle-based API with error checking. Transfers are polled,
@@ -20,7 +22,7 @@
 *        used by the BSP driver and every src directory is on the include
 *        path.
 *
-*******************************************************************************/
+*/
 
 #ifndef SRC_I2CCOM_H_
 #define SRC_I2CCOM_H_

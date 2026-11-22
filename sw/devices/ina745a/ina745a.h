@@ -1,7 +1,9 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file ina745a.h
-*
 * @brief Driver for the Texas Instruments INA745A/B 40V, 16-Bit, Precision I2C
 *        Output Digital Power Monitor with integrated 800µΩ shunt (EZShunt).
 *
@@ -20,7 +22,7 @@
 *    no adapter module needed (same pattern as si5332 with i2c_writeReg/i2c_readReg).
 *    The core itself never includes i2cWrapper.h or any BSP header.
 *
-*******************************************************************************/
+*/
 
 #ifndef SRC_INA745A_H_
 #define SRC_INA745A_H_
@@ -252,6 +254,11 @@ ina745a_err_t ina745a_init(ina745a_t *pDev, const ina745a_adc_config_t *cfg);
 
 /**
  * @brief Software reset (CONFIG.RST), equivalent to a power-on reset.
+ *
+ * Only requires a valid handle (not a prior successful ina745a_init()),
+ * since this is also used as a recovery mechanism. Marks the driver as
+ * unconfigured afterwards, since all registers revert to their defaults.
+ *
  * @param pDev Device handle.
  * @return #INA745A_OK on success, negative ina745a_err_t code on error.
  */
@@ -373,6 +380,9 @@ ina745a_err_t ina745a_get_measurements(ina745a_t *pDev, ina745a_measurements_t *
  * @param over_limit_A  Overcurrent threshold in amperes.
  * @param under_limit_A Undercurrent threshold in amperes.
  * @return #INA745A_OK on success, negative ina745a_err_t code on error.
+ * @note Values are rounded to the nearest LSB and clamped to the 16-bit
+ *       two's complement range; see datasheet Section 8.2.2.2 on choosing
+ *       COL >= CUL when both are negative.
  */
 ina745a_err_t ina745a_set_current_limits(ina745a_t *pDev, float over_limit_A, float under_limit_A);
 
@@ -382,6 +392,8 @@ ina745a_err_t ina745a_set_current_limits(ina745a_t *pDev, float over_limit_A, fl
  * @param overvoltage_V  Overvoltage threshold in volts.
  * @param undervoltage_V Undervoltage threshold in volts.
  * @return #INA745A_OK on success, negative ina745a_err_t code on error.
+ * @note Both registers are unsigned, positive-only, 15 bit wide (bit 15
+ *       reserved = 0); values are clamped to 0 .. 0x7FFF LSBs.
  */
 ina745a_err_t ina745a_set_bus_voltage_limits(ina745a_t *pDev, float overvoltage_V, float undervoltage_V);
 
@@ -390,6 +402,8 @@ ina745a_err_t ina745a_set_bus_voltage_limits(ina745a_t *pDev, float overvoltage_
  * @param pDev       Device handle.
  * @param overtemp_C Over-temperature threshold in °C.
  * @return #INA745A_OK on success, negative ina745a_err_t code on error.
+ * @note The value occupies the 12-bit field in bits 15-4; bits 3-0 are
+ *       read-only reserved (always 0) and are written as 0.
  */
 ina745a_err_t ina745a_set_temperature_limit(ina745a_t *pDev, float overtemp_C);
 
@@ -398,6 +412,9 @@ ina745a_err_t ina745a_set_temperature_limit(ina745a_t *pDev, float overtemp_C);
  * @param pDev        Device handle.
  * @param overpower_W Over-power threshold in watts.
  * @return #INA745A_OK on success, negative ina745a_err_t code on error.
+ * @note PWR_LIMIT uses an LSB that is 256x the POWER register LSB
+ *       (#INA745A_PWR_LIMIT_LSB_W = 61.44 mW/LSB), since POWER is 24 bit
+ *       while PWR_LIMIT is only 16 bit.
  */
 ina745a_err_t ina745a_set_power_limit(ina745a_t *pDev, float overpower_W);
 
@@ -428,6 +445,9 @@ ina745a_err_t ina745a_get_diag_flags(ina745a_t *pDev, ina745a_diag_flags_t *out)
 
 /**
  * @brief Reads the MANUFACTURER_ID register.
+ *
+ * Only requires a valid handle, not a prior successful ina745a_init().
+ *
  * @param pDev   Device handle.
  * @param[out] id Receives the ID (expected: #INA745A_MANUFACTURER_ID).
  * @return #INA745A_OK on success, negative ina745a_err_t code on error.

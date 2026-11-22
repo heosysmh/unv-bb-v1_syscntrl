@@ -1,27 +1,11 @@
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
 /**
  * @file si5332.c
  * @brief Driver implementation for the Skyworks Si5332A-D-GM2 clock generator.
  *
- * @details
- * Driver for the Skyworks Si5332A-D-GM2 (8 outputs, 40-QFN), fixed VCO at
- * 2.5 GHz, switchable input source (27 MHz crystal / 100 MHz CLKIN_2).
- *
- * Concept:
- *  - Almost all output registers (`OUTx_MODE`, `OUTx_DIV`, ID dividers,
- *    input/PLL registers, power-down bits) are only writable in `READY`
- *    mode. Changes are therefore collected in the driver
- *    (si5332_set_output_format() / si5332_set_output_freq()) and applied
- *    with si5332_commit() in a single `READY` -> `ACTIVE` cycle.
- *    @warning Every commit briefly interrupts ALL outputs, including OUT6
- *    (25 MHz).
- *  - OUT6 (25 MHz clock for Ethernet PHY) is fixed and cannot be changed 
- *    via the API.
- *  - HSDIV0 (100 MHz) and HSDIV1 (125 MHz) are fixed; additional
- *    frequencies are generated via the two MultiSynths (ID0/ID1,
- *    fractional).
- *
- * @see si5332.h
- * @see plans/si5332_architecture.md
  *
  * @date Created on: 22.09.2026
  * @author matthias
@@ -661,17 +645,7 @@ static si5332_err_t oe_apply(si5332_t *d)
 /* API                                                                       */
 /* ------------------------------------------------------------------------- */
 
-/**
- * @brief Creates the device handle (no I2C access).
- *
- * See si5332.h for the full API contract.
- *
- * @param i2c_addr 7-bit I2C address of the device.
- * @param w        HAL register write callback, must not be NULL.
- * @param r        HAL register read callback, must not be NULL.
- * @param ctx      Opaque context pointer passed through to @p w and @p r.
- * @return Pointer to the device handle, or NULL if @p w or @p r is NULL.
- */
+/* Public API: documented in si5332.h only. */
 si5332_t* si5332_initialize(u8 i2c_addr, si5332_i2c_write_f w, si5332_i2c_read_f r, void *ctx)
 {
 	si5332_t *pDev = &gDevice;
@@ -689,19 +663,6 @@ si5332_t* si5332_initialize(u8 i2c_addr, si5332_i2c_write_f w, si5332_i2c_read_f
 	return pDev;
 }
 
-/**
- * @brief Loads the base/source configuration and brings the device to ACTIVE.
- *
- * See si5332.h for the full API contract.
- *
- * @param pDev        Device handle from si5332_initialize().
- * @param initial_src Input clock source to configure.
- * @return #SI5332_OK on success. #SI5332_E_PARAM if @p pDev is NULL or
- *         @p initial_src is invalid. #SI5332_E_NOT_INIT if @p pDev was not
- *         created via si5332_initialize(). #SI5332_E_NO_INPUT if no clock is
- *         detected on @p initial_src. #SI5332_E_TIMEOUT if the device does
- *         not reach READY/ACTIVE in time. #SI5332_E_I2C on a HAL/bus error.
- */
 si5332_err_t si5332_init(si5332_t *pDev, si5332_clk_src_t initial_src)
 {
 	const si5332_reg_t *delta;
@@ -738,23 +699,14 @@ si5332_err_t si5332_init(si5332_t *pDev, si5332_clk_src_t initial_src)
 	return SI5332_OK;
 }
 
-/**
- * @brief Applies all pending shadow changes to the device.
- *
- * See si5332.h for the full API contract and plans/si5332_architecture.md
- * (chapter 4.6) for the detailed commit sequence:
- * -# Disable all outputs (#REG_OE_0_5 / #REG_OE_6_7 = 0).
- * -# Switch the device to READY.
- * -# If the clock source changed, write the new source's delta table.
- * -# Write dirty MultiSynths (write_id()), then dirty channels (write_channel()).
- * -# Switch the device to ACTIVE (PLL calibration/lock).
- * -# Restore the output-enable state from the shadow (oe_apply()).
- *
- * @param pDev Device handle.
- * @return #SI5332_OK on success or if nothing was pending. #SI5332_E_PARAM
- *         if @p pDev is NULL. #SI5332_E_NOT_INIT if si5332_init() has not
- *         completed successfully. #SI5332_E_NO_INPUT / #SI5332_E_TIMEOUT if
- *         the READY/ACTIVE transition fails. #SI5332_E_I2C on a HAL/bus error.
+/*
+ * Commit sequence (implementation detail, API contract in si5332.h):
+ *  1. Disable all outputs (REG_OE_0_5 / REG_OE_6_7 = 0).
+ *  2. Switch the device to READY.
+ *  3. If the clock source changed, write the new source's delta table.
+ *  4. Write dirty MultiSynths (write_id()), then dirty channels (write_channel()).
+ *  5. Switch the device to ACTIVE (PLL calibration/lock).
+ *  6. Restore the output-enable state from the shadow (oe_apply()).
  */
 si5332_err_t si5332_commit(si5332_t *pDev)
 {
@@ -801,22 +753,6 @@ si5332_err_t si5332_commit(si5332_t *pDev)
 	return SI5332_OK;
 }
 
-/**
- * @brief Switches the PLL input clock source.
- *
- * See si5332.h for the full API contract. Internally performs
- * si5332_commit(). If the new source does not provide a detectable clock
- * (or the transition times out), the driver reverts to the previously
- * active source on a best-effort basis.
- *
- * @param pDev Device handle.
- * @param src  Desired input clock source.
- * @return #SI5332_OK on success. #SI5332_E_PARAM if @p pDev is NULL or
- *         @p src is invalid. #SI5332_E_NOT_INIT if si5332_init() has not
- *         completed successfully. #SI5332_E_NO_INPUT / #SI5332_E_TIMEOUT if
- *         @p src does not provide a usable clock (rollback attempted).
- *         #SI5332_E_I2C on a HAL/bus error.
- */
 si5332_err_t si5332_set_clock_source(si5332_t *pDev, si5332_clk_src_t src)
 {
 	si5332_clk_src_t old;
@@ -841,22 +777,6 @@ si5332_err_t si5332_set_clock_source(si5332_t *pDev, si5332_clk_src_t src)
 	return err;
 }
 
-/**
- * @brief Enables or disables one output channel.
- *
- * See si5332.h for the full API contract. Takes effect immediately via a
- * direct register read-modify-write if no other change is pending and the
- * channel is already configured; otherwise the request is only recorded in
- * the shadow state and applied by the next si5332_commit().
- *
- * @param pDev   Device handle.
- * @param ch     Output channel.
- * @param enable Non-zero to enable, zero to disable.
- * @return #SI5332_OK on success. #SI5332_E_PARAM if @p pDev is NULL or
- *         @p ch is not a configurable channel. #SI5332_E_NOT_INIT if
- *         si5332_init() has not completed successfully. #SI5332_E_I2C on a
- *         HAL/bus error during the immediate path.
- */
 si5332_err_t si5332_set_output_enable(si5332_t *pDev, si5332_out_ch_t ch, u8 enable)
 {
 	int i;
@@ -879,21 +799,6 @@ si5332_err_t si5332_set_output_enable(si5332_t *pDev, si5332_out_ch_t ch, u8 ena
 	return SI5332_OK;
 }
 
-/**
- * @brief Schedules the output signal format of one channel.
- *
- * See si5332.h for the full API contract. Only updates the shadow state and
- * marks the channel dirty; the new format is written to the device by the
- * next si5332_commit().
- *
- * @param pDev Device handle.
- * @param ch   Output channel.
- * @param fmt  Desired signal format.
- * @return #SI5332_OK on success. #SI5332_E_PARAM if @p pDev is NULL,
- *         @p ch is not a configurable channel, or @p fmt is not a supported
- *         format (see fmt_valid()). #SI5332_E_NOT_INIT if si5332_init() has
- *         not completed successfully.
- */
 si5332_err_t si5332_set_output_format(si5332_t *pDev, si5332_out_ch_t ch, si5332_out_format_t fmt)
 {
 	int i;
@@ -911,35 +816,12 @@ si5332_err_t si5332_set_output_format(si5332_t *pDev, si5332_out_ch_t ch, si5332
 	return SI5332_OK;
 }
 
-/**
- * @brief Schedules the output frequency of one channel.
- *
- * See si5332.h and plans/si5332_architecture.md (chapter 4.5) for the full
- * API contract and the routing algorithm. Operates on a local working copy
- * of the MultiSynth shadow state (@c tid) so that the device shadow state
- * (si5332_t::id, si5332_t::ch) remains unchanged if routing fails.
- *
- * Routing order:
- * -# Release the MultiSynth previously used by @p ch, if any (working copy only).
- * -# Try #HSDIV0_HZ via try_hsdiv().
- * -# Try #HSDIV1_HZ via try_hsdiv().
- * -# Try to share an already-used MultiSynth via try_share_id().
- * -# Try to allocate a free MultiSynth via plan_id().
- *
- * Only on success are the working copy and the new channel state written
- * back into @p pDev, and the affected MultiSynths/channel marked dirty.
- *
- * @param pDev    Device handle.
- * @param ch      Output channel.
- * @param freq_hz Desired output frequency in Hz
- *                (#SI5332_FREQ_MIN_HZ .. #SI5332_FREQ_MAX_HZ).
- * @return #SI5332_OK on success. #SI5332_E_PARAM if @p pDev is NULL or
- *         @p ch is not a configurable channel. #SI5332_E_NOT_INIT if
- *         si5332_init() has not completed successfully.
- *         #SI5332_E_FREQ_UNSUPPORTED if @p freq_hz is out of range or no
- *         valid divider combination exists. #SI5332_E_NO_FREE_MS if a
- *         fractional divider would be required but both MultiSynths are
- *         already in use by other channels.
+/*
+ * Implementation detail (API contract and routing order in si5332.h):
+ * operates on a local working copy of the MultiSynth shadow state (tid) so
+ * that the device shadow state remains unchanged if routing fails. Only on
+ * success are the working copy and the new channel state written back and
+ * the affected MultiSynths/channel marked dirty.
  */
 si5332_err_t si5332_set_output_freq(si5332_t *pDev, si5332_out_ch_t ch, u32 freq_hz)
 {
@@ -1029,19 +911,6 @@ si5332_err_t si5332_set_output_freq(si5332_t *pDev, si5332_out_ch_t ch, u32 freq
 	return SI5332_OK;
 }
 
-/**
- * @brief Reads the current device status flags.
- *
- * See si5332.h for the full API contract. Performs two register reads
- * (#REG_USYS_STAT and #REG_STATUS); does not require si5332_init() to have
- * been called, only a valid handle from si5332_initialize().
- *
- * @param pDev Device handle.
- * @param[out] flags Receives the decoded status flags on success.
- * @return #SI5332_OK on success. #SI5332_E_PARAM if @p pDev or @p flags is
- *         NULL. #SI5332_E_NOT_INIT if @p pDev was not created via
- *         si5332_initialize(). #SI5332_E_I2C on a HAL/bus error.
- */
 si5332_err_t si5332_get_status(si5332_t *pDev, si5332_status_flags_t *flags)
 {
 	u8 stat, sts;
@@ -1063,11 +932,6 @@ si5332_err_t si5332_get_status(si5332_t *pDev, si5332_status_flags_t *flags)
 	return SI5332_OK;
 }
 
-/**
- * @brief Legacy helper, equivalent to `si5332_init(pDev, SI5332_CLK_SRC_XTAL_27M)`.
- * @param pDev Device handle.
- * @return See si5332_init().
- */
 si5332_err_t si5332_apply_config(si5332_t *pDev)
 {
 	return si5332_init(pDev, SI5332_CLK_SRC_XTAL_27M);

@@ -14,7 +14,7 @@
     ],
     "conf": {
         "HexFile_PathEnable": "1'b1",
-        "HexFile_Path": "\"../../sw/mcu/software/standalone/bootloader/build/bootloader.hex\"",
+        "HexFile_Path": "\"../../binaries/bootloader.hex\"",
         "APBSlave0_Size": "65536",
         "DEVKIT_CUSTOM": "\"unv-bb-v1\"",
         "LDSize": "124",

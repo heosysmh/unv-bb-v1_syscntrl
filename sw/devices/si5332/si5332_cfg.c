@@ -1,28 +1,24 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file si5332_cfg.c
-*
-* @brief Static configuration tables, see si5332_cfg.h.
+* @brief Static configuration tables.
 *
 * @note The CBPro export omits registers of unused blocks
 *       (e.g. 0x28 OMUX3, 0x2A OMUX5, 0x36..0x3B ID0A, 0x99 OUT4_DIV,
 *       0xAD OUT7_DIV). These registers are written completely by the driver
 *       when a block is activated (see si5332_commit()).
 *
-*******************************************************************************/
+*/
 
 #include "si5332_cfg.h"
 
 /** @brief Computes the number of elements of a static array. */
 #define ARRAY_LEN(a)	((u32)(sizeof(a) / sizeof((a)[0])))
 
-/**
- * @brief Base configuration.
- *
- * Contains all registers that are identical in both CBPro exports.
- * Power-up state: only OUT6 active (OE), OUT0/OUT2 preconfigured but with
- * OE=0, OUT4/OUT7 and ID0/ID1 switched off.
- */
+/* Public tables: documented in si5332_cfg.h only. */
 const si5332_reg_t si5332_base_regs[] =
 {
 	/* Design ID "UNVBB1" */
@@ -99,9 +95,6 @@ const si5332_reg_t si5332_base_regs[] =
 };
 const u32 si5332_base_regs_len = ARRAY_LEN(si5332_base_regs);
 
-/**
- * @brief Delta: 27 MHz crystal on XA/XB. Fpfd = 27 MHz, P = 1, M = 92 + 16/27.
- */
 const si5332_reg_t si5332_src_xtal_27m_regs[] =
 {
 	{ 0x24, 0x01 },	/* IMUX_SEL = XOSC */
@@ -118,9 +111,6 @@ const si5332_reg_t si5332_src_xtal_27m_regs[] =
 };
 const u32 si5332_src_xtal_27m_regs_len = ARRAY_LEN(si5332_src_xtal_27m_regs);
 
-/**
- * @brief Delta: 100 MHz differential clock on CLKIN_2. Fpfd = 50 MHz, P = 2, M = 50.
- */
 const si5332_reg_t si5332_src_clkin2_100m_regs[] =
 {
 	{ 0x24, 0x02 },	/* IMUX_SEL = CLKIN_2 */

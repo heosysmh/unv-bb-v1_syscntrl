@@ -1,15 +1,11 @@
-///////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 2025 SaxonSoc contributors
-//  SPDX license identifier: MIT
-//  Full license header bsp/efinix/EfxSapphireSoc/include/LICENSE.MD
-//////////////////////////////////////////////////////////////////////////////////
 
-/******************************************************************************
-*
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file main.c: system controller application
-*
 * @brief Board bring-up and supervision of the carrier board.
-*
+* @details
 *        This file only contains the CPU-level startup (trap vector, interrupt
 *        enable) and the bring-up sequence. All device handling lives in the
 *        function groups:
@@ -19,14 +15,12 @@
 *          power.c      FMC Vadj regulators and power monitors
 *          clkGen.c     clock generator
 *
-*        Everything configurable is in boardConfig.h.
+*        The startup configuration is in boardConfig.h.
 *
-******************************************************************************/
-#include <stdint.h>
+*/
 
 #include "bsp.h"
 #include "riscv.h"
-#include "soc.h"
 
 #include "boardConfig.h"
 #include "boardGpio.h"

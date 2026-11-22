@@ -1,9 +1,11 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/** 
 * @file i2cBus.h
-*
 * @brief Ownership of the I2C infrastructure of the board.
-*
+* @details
 *        Owns the interrupt controller handle, both I2C controller instances
 *        (PMBus and SysCfg) and the PI4MSD5V945X bus switch that segments the
 *        SysCfg bus. Addresses and channels are assigned here.
@@ -12,7 +14,7 @@
 *        already used by the BSP driver (mcu/software/standalone/driver/i2c.h)
 *        and every src directory is on the include path.
 *
-*******************************************************************************/
+*/
 
 #ifndef SRC_I2CBUS_H_
 #define SRC_I2CBUS_H_

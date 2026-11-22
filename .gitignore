@@ -1,9 +1,10 @@
-# Working folder
+# Working folder (traversable for Efinity project files)
 work/*
-
-# Re-included files to restore project
+!work/efinity/
+work/efinity/*
 !work/efinity/*.xml
 !work/efinity/*.isf
+!work/efinity/*.json
 
 # Efinity Backup- und Log-files
 *.bak
@@ -13,31 +14,46 @@ work/*
 # GHDL / Simulationsdateien
 *.cf
 *.vcd
-*.ghw 
+*.ghw
 
-# VScode build artefacts
+# VS Code & Firmware build artefacts
 sw/app/build/*
+*.o
+*.d
+*.elf
+*.bin
+*.hex
+
+# Unused bsp content (generated automatically by efinity, can be copied 1:1)
+**/EfxSapphireSoc/app
+**/EfxSapphireSoc/openocd
+**/EfxSapphireSoc/lauterbach_trace32
+
+**/freeRTOS/
+
+**/standalone/*
+!**/standalone/bootloader
+**/standalone/bootloader/build
+!**/standalone/common
+!**/standalone/driver
+
+
+# TerosHDL local state
+.teroshdl*
 
 # ZooCode plans and temporary data
 **/plans
 **/zooCode
 
-# Unused bsp content (generated automatically by efinity)
-**/EfxSapphireSoc/app/
-**/EfxSapphireSoc/openocd/
-**/EfxSapphireSoc/lauterbach_trace32
+# Doc generation & Python
+.venv/
+__pycache__/
+*.pyc
+build-docs/
+site/
+docs/api/*
+!docs/api/vhdl/
 
-**/freeRTOS/
-
-**/standalone/apb3
-**/standalone/application
-**/standalone/axi4
-**/standalone/customInstruction
-**/standalone/fpu
-**/standalone/gpio
-**/standalone/i2c
-**/standalone/smp
-**/standalone/spi
-**/standalone/timer
-**/standalone/uart
-**/standalone/vexricv
+# Binaries for flashing explicitly tracked
+!binaries/*.bin
+!binaries/*.hex

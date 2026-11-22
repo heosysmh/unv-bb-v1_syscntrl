@@ -1,10 +1,12 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file i2cBus.c
+* @brief Implementation of the I2C infrastructure ownership.
 *
-* @brief Implementation of the I2C infrastructure ownership, see i2cBus.h.
-*
-*******************************************************************************/
+*/
 
 #include "i2cBus.h"
 

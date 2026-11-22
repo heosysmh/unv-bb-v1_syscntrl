@@ -1,10 +1,12 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file power.h
-*
 * @brief Power functions of the board: FMC Vadj regulators (tpsm8286x) and
 *        the power monitors (ina745a).
-*
+* @details
 *        Rails, I2C addresses, power-good groups and protection limits are
 *        defined by #PWR_MON_TABLE below; the rail enum is generated from it.
 *
@@ -18,8 +20,7 @@
 *            devices of an affected group over I2C.
 *          - Reading DIAG_ALRT clears the latch in the device, therefore the
 *            module keeps a sticky fault shadow (see pwr_mon_getFaults()).
-*
-*******************************************************************************/
+*/
 
 #ifndef SRC_POWER_H_
 #define SRC_POWER_H_

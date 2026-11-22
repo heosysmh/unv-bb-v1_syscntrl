@@ -1,17 +1,18 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file boardConfig.h
-*
 * @brief Single configuration point of the system controller application.
 *        Set your FMC voltages and clock config here.
-*
+* @details
 *        Sections:
 *          1. Startup Timing
 *          2. VCCIO selection (HPC/HDB)
 *          3. FMC Vadj        (tpsm8286x)
 *          4. Clock generator (si5332)
-*
-*******************************************************************************/
+*/
 
 #ifndef SRC_BOARDCONFIG_H_
 #define SRC_BOARDCONFIG_H_

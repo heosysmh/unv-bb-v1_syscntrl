@@ -1,9 +1,11 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file boardGpio.h
-*
-* @brief Named access to the board GPIO signals.
-*
+* @brief Implementation of GPIO access (interface to FPGA).
+* @details
 *        This is the only place where GPIO bit positions are evaluated; the
 *        input/output bit positions are defined below. The output register is
 *        shadowed so that read-modify-write sequences cannot lose bits.
@@ -11,8 +13,7 @@
 * @note  This file is deliberately not called gpio.h - that name is
 *        already used by the BSP driver (mcu/software/standalone/driver/gpio.h)
 *        and every src directory is on the include path.
-*
-*******************************************************************************/
+*/
 
 #ifndef SRC_BOARDGPIO_H_
 #define SRC_BOARDGPIO_H_

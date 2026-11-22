@@ -1,3 +1,6 @@
+-- SPDX-License-Identifier: Apache-2.0
+-- Copyright (c) 2026 Matthias Haefner - Heosys
+
 --! use standard library
 library IEEE;
 --! use logic elements

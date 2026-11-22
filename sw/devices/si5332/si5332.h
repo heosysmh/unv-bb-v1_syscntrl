@@ -1,7 +1,9 @@
-/*******************************************************************************
-*
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+/**
 * @file si5332.h
-*
 * @brief Driver for the Skyworks Si5332A-D-GM2 (8 outputs, 40-QFN), fixed VCO
 *        at 2.5 GHz, switchable input source (27 MHz crystal / 100 MHz CLKIN_2).
 *
@@ -18,7 +20,7 @@
 *  - HSDIV0 (100 MHz) and HSDIV1 (125 MHz) are fixed; additional frequencies are
 *    generated via the two MultiSynths (ID0/ID1, fractional).
 *
-*******************************************************************************/
+*/
 
 #ifndef SRC_SI5332_H_
 #define SRC_SI5332_H_

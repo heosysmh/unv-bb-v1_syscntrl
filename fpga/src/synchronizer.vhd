@@ -1,22 +1,6 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date:    14:45:34 06/26/2013 
--- Design Name: 
--- Module Name:    Sync_2FF - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
---
--- Dependencies: 
---
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
---
-----------------------------------------------------------------------------------
+-- SPDX-License-Identifier: Apache-2.0
+-- Copyright (c) 2026 Matthias Haefner - Heosys
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 

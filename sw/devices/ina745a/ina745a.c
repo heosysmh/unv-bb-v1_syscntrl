@@ -1,3 +1,7 @@
+
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
 /**
  * @file ina745a.c
  * @brief Driver implementation for the TI INA745A/B digital power monitor.
@@ -266,26 +270,7 @@ static void adc_config_unpack(u16 raw, ina745a_adc_config_t *cfg)
 /* API                                                                        */
 /* ------------------------------------------------------------------------- */
 
-/**
- * @brief Creates a device handle for instance @p devId (no I2C access).
- *
- * See ina745a.h for the full API contract. Analogous to
- * tpsm8286_initialize(): @p devId directly indexes the static instance
- * pool (size #INA745A_NUM_INSTANCES, defined in userDef.h) instead of
- * scanning for a free slot, so the caller explicitly controls which
- * physical device maps to which handle. Re-initializing the same
- * @p devId simply overwrites that slot.
- *
- * @param devId    Instance index, 0 .. (#INA745A_NUM_INSTANCES - 1).
- * @param i2c_addr 7-bit I2C address of the device (A0/A1 pin strapping,
- *                  datasheet Table 6-2), must lie within
- *                  #INA745A_ADDR_MIN .. #INA745A_ADDR_MAX.
- * @param w        HAL register write callback, must not be NULL.
- * @param r        HAL register read callback, must not be NULL.
- * @param ctx      Opaque context pointer passed through to @p w and @p r.
- * @return Pointer to the device handle, or NULL if @p devId or
- *         @p i2c_addr is out of range, or @p w or @p r is NULL.
- */
+/* Public API: documented in ina745a.h only. */
 ina745a_t* ina745a_initialize(u32 devId, u8 i2c_addr, ina745a_i2c_write_f w, ina745a_i2c_read_f r, void *ctx)
 {
 	ina745a_t *pDev;
@@ -308,20 +293,6 @@ ina745a_t* ina745a_initialize(u32 devId, u8 i2c_addr, ina745a_i2c_write_f w, ina
 	return pDev;
 }
 
-/**
- * @brief Verifies MANUFACTURER_ID and applies the ADC configuration.
- *
- * See ina745a.h for the full API contract.
- *
- * @param pDev Device handle from ina745a_initialize().
- * @param cfg  Desired ADC configuration (MODE, conversion times, averaging).
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev or @p cfg is
- *         NULL, or @p cfg contains an invalid field. #INA745A_E_NOT_INIT if
- *         @p pDev was not created via ina745a_initialize().
- *         #INA745A_E_MANUF_ID if MANUFACTURER_ID does not read back 0x5449
- *         ("TI") - the driver stays unconfigured in that case.
- *         #INA745A_E_I2C on a HAL/bus error.
- */
 ina745a_err_t ina745a_init(ina745a_t *pDev, const ina745a_adc_config_t *cfg)
 {
 	u16 manuf, raw;
@@ -344,18 +315,6 @@ ina745a_err_t ina745a_init(ina745a_t *pDev, const ina745a_adc_config_t *cfg)
 	return INA745A_OK;
 }
 
-/**
- * @brief Performs a software reset equivalent to a power-on reset.
- *
- * Only requires a valid handle (not a prior successful ina745a_init()),
- * since this is also used as a recovery mechanism. Marks the driver as
- * unconfigured afterwards, since all registers revert to their defaults.
- *
- * @param pDev Device handle.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev is NULL.
- *         #INA745A_E_NOT_INIT if @p pDev was not created via
- *         ina745a_initialize(). #INA745A_E_I2C on a HAL/bus error.
- */
 ina745a_err_t ina745a_reset(ina745a_t *pDev)
 {
 	if (!pDev)
@@ -367,16 +326,7 @@ ina745a_err_t ina745a_reset(ina745a_t *pDev)
 	return reg_write16(pDev, REG_CONFIG, (u16)(1u << CONFIG_RST_BIT));
 }
 
-/**
- * @brief Clears the ENERGY and CHARGE accumulator registers (CONFIG.RSTACC).
- *
- * Read-modify-write so that the CONVDLY field is preserved.
- *
- * @param pDev Device handle.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev is NULL.
- *         #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- */
+/* Read-modify-write so that the CONVDLY field is preserved. */
 ina745a_err_t ina745a_reset_accumulators(ina745a_t *pDev)
 {
 	u16 cfg;
@@ -391,18 +341,7 @@ ina745a_err_t ina745a_reset_accumulators(ina745a_t *pDev)
 	return reg_write16(pDev, REG_CONFIG, cfg);
 }
 
-/**
- * @brief Sets the initial-conversion delay (CONFIG.CONVDLY), in steps of 2 ms.
- *
- * Read-modify-write so that RST/RSTACC (expected to read back as 0) and any
- * reserved bits are left untouched.
- *
- * @param pDev      Device handle.
- * @param steps_2ms Delay in steps of 2 ms (0 = no delay, 255 = 510 ms).
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev is NULL.
- *         #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- */
+/* Read-modify-write: RST/RSTACC and reserved bits are left untouched. */
 ina745a_err_t ina745a_set_conversion_delay(ina745a_t *pDev, u8 steps_2ms)
 {
 	u16 cfg;
@@ -418,15 +357,6 @@ ina745a_err_t ina745a_set_conversion_delay(ina745a_t *pDev, u8 steps_2ms)
 	return reg_write16(pDev, REG_CONFIG, cfg);
 }
 
-/**
- * @brief Writes the complete ADC_CONFIG register.
- * @param pDev Device handle.
- * @param cfg  Desired ADC configuration.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev or @p cfg is
- *         NULL, or @p cfg contains an invalid field. #INA745A_E_NOT_INIT if
- *         ina745a_init() has not completed successfully. #INA745A_E_I2C on
- *         a HAL/bus error.
- */
 ina745a_err_t ina745a_set_adc_config(ina745a_t *pDev, const ina745a_adc_config_t *cfg)
 {
 	u16 raw;
@@ -440,14 +370,6 @@ ina745a_err_t ina745a_set_adc_config(ina745a_t *pDev, const ina745a_adc_config_t
 	return reg_write16(pDev, REG_ADC_CONFIG, raw);
 }
 
-/**
- * @brief Reads back the complete ADC_CONFIG register.
- * @param pDev     Device handle.
- * @param[out] cfg Receives the decoded configuration on success.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev or @p cfg is
- *         NULL. #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- */
 ina745a_err_t ina745a_get_adc_config(ina745a_t *pDev, ina745a_adc_config_t *cfg)
 {
 	u16 raw;
@@ -462,17 +384,6 @@ ina745a_err_t ina745a_get_adc_config(ina745a_t *pDev, ina745a_adc_config_t *cfg)
 	return INA745A_OK;
 }
 
-/**
- * @brief Changes only ADC_CONFIG.MODE (read-modify-write).
- *
- * Conversion times (VBUSCT/VSENCT/TCT) and averaging (AVG) are preserved.
- *
- * @param pDev Device handle.
- * @param mode Desired conversion mode.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev is NULL.
- *         #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- */
 ina745a_err_t ina745a_set_mode(ina745a_t *pDev, ina745a_mode_t mode)
 {
 	u16 raw;
@@ -487,14 +398,6 @@ ina745a_err_t ina745a_set_mode(ina745a_t *pDev, ina745a_mode_t mode)
 	return reg_write16(pDev, REG_ADC_CONFIG, raw);
 }
 
-/**
- * @brief Reads and converts the bus voltage (VBUS register).
- * @param pDev       Device handle.
- * @param[out] volts Receives the bus voltage in volts.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev or @p volts
- *         is NULL. #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- */
 ina745a_err_t ina745a_get_bus_voltage(ina745a_t *pDev, float *volts)
 {
 	u16 raw;
@@ -509,14 +412,6 @@ ina745a_err_t ina745a_get_bus_voltage(ina745a_t *pDev, float *volts)
 	return INA745A_OK;
 }
 
-/**
- * @brief Reads and converts the die temperature (DIETEMP register).
- * @param pDev         Device handle.
- * @param[out] celsius Receives the die temperature in °C.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev or @p celsius
- *         is NULL. #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- */
 ina745a_err_t ina745a_get_die_temperature(ina745a_t *pDev, float *celsius)
 {
 	u16 raw;
@@ -533,14 +428,6 @@ ina745a_err_t ina745a_get_die_temperature(ina745a_t *pDev, float *celsius)
 	return INA745A_OK;
 }
 
-/**
- * @brief Reads and converts the shunt current (CURRENT register).
- * @param pDev      Device handle.
- * @param[out] amps Receives the current in amperes.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev or @p amps is
- *         NULL. #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- */
 ina745a_err_t ina745a_get_current(ina745a_t *pDev, float *amps)
 {
 	u16 raw;
@@ -555,14 +442,6 @@ ina745a_err_t ina745a_get_current(ina745a_t *pDev, float *amps)
 	return INA745A_OK;
 }
 
-/**
- * @brief Reads and converts the power result (POWER register).
- * @param pDev       Device handle.
- * @param[out] watts Receives the power in watts.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev or @p watts
- *         is NULL. #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- */
 ina745a_err_t ina745a_get_power(ina745a_t *pDev, float *watts)
 {
 	u32 raw;
@@ -577,14 +456,6 @@ ina745a_err_t ina745a_get_power(ina745a_t *pDev, float *watts)
 	return INA745A_OK;
 }
 
-/**
- * @brief Reads and converts the accumulated energy (ENERGY register).
- * @param pDev        Device handle.
- * @param[out] joules Receives the energy in joules.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev or @p joules
- *         is NULL. #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- */
 ina745a_err_t ina745a_get_energy(ina745a_t *pDev, double *joules)
 {
 	u64 raw;
@@ -599,14 +470,6 @@ ina745a_err_t ina745a_get_energy(ina745a_t *pDev, double *joules)
 	return INA745A_OK;
 }
 
-/**
- * @brief Reads and converts the accumulated charge (CHARGE register).
- * @param pDev          Device handle.
- * @param[out] coulombs Receives the charge in coulombs.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev or
- *         @p coulombs is NULL. #INA745A_E_NOT_INIT if ina745a_init() has
- *         not completed successfully. #INA745A_E_I2C on a HAL/bus error.
- */
 ina745a_err_t ina745a_get_charge(ina745a_t *pDev, double *coulombs)
 {
 	u64 raw;
@@ -623,18 +486,6 @@ ina745a_err_t ina745a_get_charge(ina745a_t *pDev, double *coulombs)
 	return INA745A_OK;
 }
 
-/**
- * @brief Reads all measurement registers (VBUS, DIETEMP, CURRENT, POWER,
- *        ENERGY, CHARGE) and fills both the converted and raw fields of
- *        @p out.
- *
- *
- * @param pDev     Device handle.
- * @param[out] out Receives all measurement values on success.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev or @p out is
- *         NULL. #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- */
 ina745a_err_t ina745a_get_measurements(ina745a_t *pDev, ina745a_measurements_t *out)
 {
 	u16 vbus_raw, dietemp_reg, current_reg;
@@ -670,18 +521,6 @@ ina745a_err_t ina745a_get_measurements(ina745a_t *pDev, ina745a_measurements_t *
 	return INA745A_OK;
 }
 
-/**
- * @brief Writes the current over-/under-limit thresholds (COL/CUL registers).
- * @param pDev          Device handle.
- * @param over_limit_A  Overcurrent threshold in amperes.
- * @param under_limit_A Undercurrent threshold in amperes.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev is NULL.
- *         #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- * @note Values are rounded to the nearest LSB and clamped to the 16-bit
- *       two's complement range; see datasheet Section 8.2.2.2 on choosing
- *       COL >= CUL when both are negative.
- */
 ina745a_err_t ina745a_set_current_limits(ina745a_t *pDev, float over_limit_A, float under_limit_A)
 {
 	s32 over_c, under_c;
@@ -699,17 +538,6 @@ ina745a_err_t ina745a_set_current_limits(ina745a_t *pDev, float over_limit_A, fl
 	return INA745A_OK;
 }
 
-/**
- * @brief Writes the bus over-/under-voltage thresholds (BOVL/BUVL registers).
- * @param pDev           Device handle.
- * @param overvoltage_V  Overvoltage threshold in volts.
- * @param undervoltage_V Undervoltage threshold in volts.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev is NULL.
- *         #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- * @note Both registers are unsigned, positive-only, 15 bit wide (bit 15
- *       reserved = 0); values are clamped to 0 .. 0x7FFF LSBs.
- */
 ina745a_err_t ina745a_set_bus_voltage_limits(ina745a_t *pDev, float overvoltage_V, float undervoltage_V)
 {
 	s32 over_c, under_c;
@@ -727,16 +555,6 @@ ina745a_err_t ina745a_set_bus_voltage_limits(ina745a_t *pDev, float overvoltage_
 	return INA745A_OK;
 }
 
-/**
- * @brief Writes the temperature over-limit threshold (TEMP_LIMIT register).
- * @param pDev       Device handle.
- * @param overtemp_C Over-temperature threshold in °C.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev is NULL.
- *         #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- * @note The value occupies the 12-bit field in bits 15-4; bits 3-0 are
- *       read-only reserved (always 0) and are written as 0.
- */
 ina745a_err_t ina745a_set_temperature_limit(ina745a_t *pDev, float overtemp_C)
 {
 	s32 count;
@@ -750,17 +568,6 @@ ina745a_err_t ina745a_set_temperature_limit(ina745a_t *pDev, float overtemp_C)
 	return reg_write16(pDev, REG_TEMP_LIMIT, (u16)(((u16)((u32)count & 0xFFFu)) << 4));
 }
 
-/**
- * @brief Writes the power over-limit threshold (PWR_LIMIT register).
- * @param pDev       Device handle.
- * @param overpower_W Over-power threshold in watts.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev is NULL.
- *         #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- * @note PWR_LIMIT uses an LSB that is 256x the POWER register LSB
- *       (#INA745A_PWR_LIMIT_LSB_W = 61.44 mW/LSB), since POWER is 24 bit
- *       while PWR_LIMIT is only 16 bit.
- */
 ina745a_err_t ina745a_set_power_limit(ina745a_t *pDev, float overpower_W)
 {
 	s32 count;
@@ -774,17 +581,6 @@ ina745a_err_t ina745a_set_power_limit(ina745a_t *pDev, float overpower_W)
 	return reg_write16(pDev, REG_PWR_LIMIT, (u16)count);
 }
 
-/**
- * @brief Writes the DIAG_ALRT configuration bits (ALATCH/CNVR/SLOWALERT/APOL).
- *
- * See ina745a.h for the documented side effect on latched alert flags.
- *
- * @param pDev Device handle.
- * @param cfg  Desired alert configuration.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev or @p cfg is
- *         NULL. #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- */
 ina745a_err_t ina745a_configure_alert(ina745a_t *pDev, const ina745a_alert_cfg_t *cfg)
 {
 	u16 raw;
@@ -802,17 +598,6 @@ ina745a_err_t ina745a_configure_alert(ina745a_t *pDev, const ina745a_alert_cfg_t
 	return reg_write16(pDev, REG_DIAG_ALRT, raw);
 }
 
-/**
- * @brief Reads and decodes the DIAG_ALRT register.
- *
- * See ina745a.h for the documented side effect on latched alert flags.
- *
- * @param pDev     Device handle.
- * @param[out] out Receives the decoded diagnostic flags on success.
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev or @p out is
- *         NULL. #INA745A_E_NOT_INIT if ina745a_init() has not completed
- *         successfully. #INA745A_E_I2C on a HAL/bus error.
- */
 ina745a_err_t ina745a_get_diag_flags(ina745a_t *pDev, ina745a_diag_flags_t *out)
 {
 	u16 raw;
@@ -839,18 +624,6 @@ ina745a_err_t ina745a_get_diag_flags(ina745a_t *pDev, ina745a_diag_flags_t *out)
 	return INA745A_OK;
 }
 
-/**
- * @brief Reads the MANUFACTURER_ID register.
- *
- * Only requires a valid handle (not a prior successful ina745a_init()),
- * analogous to si5332_get_status().
- *
- * @param pDev   Device handle.
- * @param[out] id Receives the 16-bit manufacturer ID (expected: #INA745A_MANUFACTURER_ID).
- * @return #INA745A_OK on success. #INA745A_E_PARAM if @p pDev or @p id is
- *         NULL. #INA745A_E_NOT_INIT if @p pDev was not created via
- *         ina745a_initialize(). #INA745A_E_I2C on a HAL/bus error.
- */
 ina745a_err_t ina745a_get_manufacturer_id(ina745a_t *pDev, u16 *id)
 {
 	if (!pDev || !id)
