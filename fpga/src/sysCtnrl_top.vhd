@@ -1,116 +1,124 @@
 -- SPDX-License-Identifier: Apache-2.0
 -- Copyright (c) 2026 Matthias Haefner - Heosys
 
---! use standard library
-library IEEE;
---! use logic elements
-use IEEE.STD_LOGIC_1164.all;
 
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
 use IEEE.NUMERIC_STD.all;
 use IEEE.MATH_REAL.all;
 
+--! @brief System controller top level for the UNV baseboard (sysCntrl).
+--! Instantiates the Sapphire SoC MCU and the board-level power sequencing
+--! and supervision logic. All asynchronous board inputs are synchronized
+--! (inputSync) and, where required, debounced before use. The design
+--! controls the system / PL / PS / SYZYGY / FMC power rails, overrides
+--! open-drain power-good lines while a rail is off (to avoid false
+--! power-good indications), selects the HPC / HDB VCCIO rails via
+--! break-before-make switches (vccioSelect), and generates the PS
+--! power-on-reset and Ethernet PHY reset. MCU GPIO bank 1 carries the
+--! control outputs, GPIO bank 0 reads back the synchronized status inputs.
 entity sysCntrl_Top is
   port(
 --MISC/PLL/Reset    
-    pll_locked  : in  std_logic;
-    sysClk_i    : in  std_logic;    
+    pll_locked  : in  std_logic; --! PLL lock indicator (high = locked; low = async reset for the MCU)
+    sysClk_i    : in  std_logic; --! System clock input (80 MHz)
 -- SPI
-    spi_0_io_sclk_o               : out std_logic;
-    spi_0_io_data_0_read_i        : in  std_logic;
-    spi_0_io_data_0_write_o       : out std_logic;
-    spi_0_io_data_0_writeEnable_o : out std_logic;
-    spi_0_io_data_1_read_i        : in  std_logic;
-    spi_0_io_data_1_write_o       : out std_logic;
-    spi_0_io_data_1_writeEnable_o : out std_logic;
-    spi_0_io_ss_o                 : out std_logic;
-    spi_0_io_hold_o               : out std_logic;
-    spi_0_io_wp_o                 : out std_logic;
+    spi_0_io_sclk_o               : out std_logic; --! SPI serial clock output (MCU flash interface)
+    spi_0_io_data_0_read_i        : in  std_logic;  --! SPI data line 0 input (MISO)
+    spi_0_io_data_0_write_o       : out std_logic; --! SPI data line 0 output (MOSI)
+    spi_0_io_data_0_writeEnable_o : out std_logic; --! SPI data line 0 output enable (tristate control)
+    spi_0_io_data_1_read_i        : in  std_logic;  --! SPI data line 1 input (dual/quad mode)
+    spi_0_io_data_1_write_o       : out std_logic; --! SPI data line 1 output (dual/quad mode)
+    spi_0_io_data_1_writeEnable_o : out std_logic; --! SPI data line 1 output enable (tristate control)
+    spi_0_io_ss_o                 : out std_logic; --! SPI slave select output (active low)
+    spi_0_io_hold_o               : out std_logic; --! SPI HOLD# output (unused, tied high)
+    spi_0_io_wp_o                 : out std_logic; --! SPI write protect output (unused, tied high)
 --JTAG
-    jtag_tck     : in  std_logic;  
-    jtag_tdi     : in  std_logic;
-    jtag_tdo     : out std_logic;
-    jtag_capture : in  std_logic;
-    jtag_sel     : in  std_logic;
-    jtag_shift   : in  std_logic;
-    jtag_update  : in  std_logic;
-    jtag_reset   : in  std_logic;
+    jtag_tck     : in  std_logic;  --! JTAG test clock for MCU debug interface
+    jtag_tdi     : in  std_logic;  --! JTAG test data input
+    jtag_tdo     : out std_logic;  --! JTAG test data output
+    jtag_capture : in  std_logic;  --! JTAG capture-DR/IR state indicator
+    jtag_sel     : in  std_logic;  --! JTAG IR/DR select (debug enable)
+    jtag_shift   : in  std_logic;  --! JTAG shift-DR/IR state indicator
+    jtag_update  : in  std_logic;  --! JTAG update-DR/IR state indicator
+    jtag_reset   : in  std_logic;  --! JTAG test logic reset
 --Unused JTAG signals
     --jtag_drck    : in  std_logic;
     --jtag_tms     : in  std_logic;
     --jtag_runtest : in  std_logic;
 -- SoM power control 
-    som_vccoPsEn_i : in std_logic;
-    som_vccoPlEn_i : in std_logic;
-    som_sdPwrEn_i : in std_logic;
-    som_hpa14p_i : in std_logic;
-    som_hpa14n_i : in std_logic;    
-    pmu_mio35GPO_i : in std_logic;
-    pmu_mio28GPI_o : out std_logic;
-    pmu_mio29GPI_o : out std_logic;
-    pmu_mio31GPI_o : out std_logic;        
+    som_vccoPsEn_i : in std_logic; --! SoM VCCO_PS bank enable input (high = PS bank powered, gates PS power)
+    som_vccoPlEn_i : in std_logic; --! SoM VCCO_PL bank enable input (high = PL bank powered, gates PL power)
+    som_sdPwrEn_i : in std_logic;  --! SoM SD card power enable input (status only)
+    som_hpa14p_i : in std_logic;   --! SoM HPA14 differential GPIO input, positive leg (status only)
+    som_hpa14n_i : in std_logic;   --! SoM HPA14 differential GPIO input, negative leg (status only)
+    pmu_mio35GPO_i : in std_logic; --! PS PMU MIO35 GPO input to the system controller
+    pmu_mio28GPI_o : out std_logic; --! PMU MIO28 GPI output to the PS (tied low)
+    pmu_mio29GPI_o : out std_logic; --! PMU MIO29 GPI output to the PS (tied low)
+    pmu_mio31GPI_o : out std_logic; --! PMU MIO31 GPI output to the PS (tied low)
 -- PL power control    
-    hpc_vadj1En_o  : out std_logic;
-    hpc_vadj2En_o  : out std_logic;
-    hdb_vadj2En_o  : out std_logic;
-    hdb_2v5En_o    : out std_logic;
-    pl_pwrEn_o     : out std_logic;
-    pl_2v5Pgood_i  : in std_logic;
-    pl_2v5Pgood_oe : out std_logic;
+    hpc_vadj1En_o  : out std_logic; --! HPC FMC VADJ1 rail enable output (selected via hpcVccioSelect)
+    hpc_vadj2En_o  : out std_logic; --! HPC FMC VADJ2 rail enable output (selected via hpcVccioSelect)
+    hdb_vadj2En_o  : out std_logic; --! HDB VADJ2 rail enable output (selected via hdbVccioSelect)
+    hdb_2v5En_o    : out std_logic; --! HDB 2V5 rail enable output (selected via hdbVccioSelect)
+    pl_pwrEn_o     : out std_logic; --! PL power enable output (sys_pgood and som_vccoPlEn)
+    pl_2v5Pgood_i  : in std_logic;  --! PL 2V5 power good input (open-drain line)
+    pl_2v5Pgood_oe : out std_logic; --! PL 2V5 power good output enable (high = drive line low while rail is off)
 -- PS power control
-    ps_pwrEn_o : out std_logic;
+    ps_pwrEn_o : out std_logic; --! PS power enable output (sys_pgood and som_vccoPsEn)
 -- System power control
-    sys_pwrEn_o  : out std_logic;
-    sys_pgood_i  : in std_logic;
-    sys_pgood_oe : out std_logic;
+    sys_pwrEn_o  : out std_logic; --! System power enable output (always enabled)
+    sys_pgood_i  : in std_logic;  --! System power good input (open-drain line)
+    sys_pgood_oe : out std_logic; --! System power good output enable (high = drive line low while rail is off)
 -- SYZYGY power control
-    szg_pwrEn_o  : out std_logic;
-    szg_pgood_i  : in std_logic;
-    szg_pgood_oe : out std_logic;
+    szg_pwrEn_o  : out std_logic; --! SYZYGY power enable output (PL and PS power enabled)
+    szg_pgood_i  : in std_logic;  --! SYZYGY power good input (open-drain line)
+    szg_pgood_oe : out std_logic; --! SYZYGY power good output enable (high = drive line low while rail is off)
 -- FMC power control
-    fmc1_supPwrEn_o : out std_logic;
-    fmc1_supPgood_i : in std_logic;
-    fmc1_supPgood_oe : out std_logic;
-    fmc2_supPwrEn_o : out std_logic;
-    fmc2_supPgood_i : in std_logic;
-    fmc2_supPgood_oe : out std_logic;
+    fmc1_supPwrEn_o : out std_logic; --! FMC1 supply power enable output (MCU controlled via fmcPowerCntrl)
+    fmc1_supPgood_i : in std_logic;  --! FMC1 supply power good input (connected to PG_C2M on the board)
+    fmc1_supPgood_oe : out std_logic; --! FMC1 supply power good output enable (high = drive PG_C2M low)
+    fmc2_supPwrEn_o : out std_logic; --! FMC2 supply power enable output (MCU controlled via fmcPowerCntrl)
+    fmc2_supPgood_i : in std_logic;  --! FMC2 supply power good input (connected to PG_C2M on the board)
+    fmc2_supPgood_oe : out std_logic; --! FMC2 supply power good output enable (high = drive PG_C2M low)
     -- fmc1_ModPresent_i : in std_logic; -- Low active / missing on the board
-    fmc1_modPgood_i : in std_logic;
-    fmc1_modPgood_oe : out std_logic;
+    fmc1_modPgood_i : in std_logic;  --! FMC1 module power good input (PG_M2C, open-drain line)
+    fmc1_modPgood_oe : out std_logic; --! FMC1 module power good output enable (high = drive PG_M2C low while supply is off)
     -- fmc2_ModPresent_i : in std_logic; -- Low active / missing on the board
-    fmc2_modPgood_i : in std_logic;
-    fmc2_modPgood_oe : out std_logic;
+    fmc2_modPgood_i : in std_logic;  --! FMC2 module power good input (PG_M2C, open-drain line)
+    fmc2_modPgood_oe : out std_logic; --! FMC2 module power good output enable (high = drive PG_M2C low while supply is off)
 -- Clock gnererator control
-    si5332_cntrl_o : out std_logic_vector(4 downto 0);
-    lmk05028_en_o : out std_logic;
-    lmk05028_intr_i : in std_logic;
+    si5332_cntrl_o : out std_logic_vector(4 downto 0); --! Si5332 clock generator control pins (tied low)
+    lmk05028_en_o : out std_logic; --! LMK05028 clock generator enable output (tied low)
+    lmk05028_intr_i : in std_logic; --! LMK05028 interrupt / status input
 -- Ethernet PHY
-    eth_pme_i : in std_logic;
+    eth_pme_i : in std_logic; --! Ethernet PHY power management event input
 -- reset signals
-    sd_reset_o : out std_logic;   -- high active (open drain in interface)
-    sd_reset_i : in std_logic;    -- dummy signal (not connected to anything, used to avoid synthesis warnings)
-    eth_reset_o : out std_logic;  -- high active (open drain in interface)
-    eth_reset_i : in std_logic;   -- dummy signal (not connected to anything, used to avoid synthesis warnings)
-    i2c0_reset_o : out std_logic; -- High active
-    ps_resetn_o : out std_logic;  -- Low active
-    ps_porn_o : out std_logic;    -- Low active
+    sd_reset_o : out std_logic;   --! SD card reset output, high active (open drain in interface, tied low)
+    sd_reset_i : in std_logic;    --! Dummy input (not connected, avoids synthesis warnings for the open-drain IO)
+    eth_reset_o : out std_logic;  --! Ethernet PHY reset output, high active (open drain in interface, released by MCU)
+    eth_reset_i : in std_logic;   --! Dummy input (not connected, avoids synthesis warnings for the open-drain IO)
+    i2c0_reset_o : out std_logic; --! I2C0 bus reset output, high active (tied low)
+    ps_resetn_o : out std_logic;  --! PS reset output, low active (tied high, not used)
+    ps_porn_o : out std_logic;    --! PS power-on-reset output, low active (HW delay AND MCU release)
 -- I2C interfaces
-    sda0_i     : in std_logic;
-    sda0_o     : out std_logic;    
-    scl0_i     : in std_logic;
-    scl0_o     : out std_logic;    
-    sda1_i     : in std_logic;
-    sda1_o     : out std_logic;    
-    scl1_i     : in std_logic;
-    scl1_o     : out std_logic;    
+    sda0_i     : in std_logic;  --! I2C0 SDA input (bus read)
+    sda0_o     : out std_logic; --! I2C0 SDA output (open-drain drive, inverted MCU output)
+    scl0_i     : in std_logic;  --! I2C0 SCL input (bus read / clock stretching)
+    scl0_o     : out std_logic; --! I2C0 SCL output (open-drain drive, inverted MCU output)
+    sda1_i     : in std_logic;  --! I2C1 SDA input (bus read)
+    sda1_o     : out std_logic; --! I2C1 SDA output (open-drain drive, inverted MCU output)
+    scl1_i     : in std_logic;  --! I2C1 SCL input (bus read / clock stretching)
+    scl1_o     : out std_logic; --! I2C1 SCL output (open-drain drive, inverted MCU output)
 -- UART 
-    uart_rxd_i : in std_logic;
-    uart_txd_o : out std_logic;
+    uart_rxd_i : in std_logic;  --! MCU console UART receive input
+    uart_txd_o : out std_logic; --! MCU console UART transmit output
 -- Fan control
-    fan_pwm_o : out std_logic;
+    fan_pwm_o : out std_logic; --! Fan PWM output (tied low)
 -- User
-    config_i : in std_logic_vector(5 downto 0);
+    config_i : in std_logic_vector(5 downto 0); --! Board configuration strap inputs, active low (synchronized and debounced, 10 ms)
 -- LED naming on silkscreen is switched with respect to the schematic. Corrected in Interface designer.
-    leds_o : out std_logic_vector(1 downto 0) 
+    leds_o : out std_logic_vector(1 downto 0) --! User LEDs, active low (LED0 = MCU controlled, LED1 = off)
   );
 end sysCntrl_Top;
 
@@ -325,7 +333,7 @@ config_debounce:
     
     s_sys_pwrEn <= '1';
 
-    /* Control signals from the MCU */
+    -- Control signals from the MCU 
     s_mcu_hpc_VccioSelect       <= s_gpio1_wr(0);
     s_mcu_hdb_VccioSelect       <= s_gpio1_wr(1);    
     s_mcu_fmc1_supCntrl         <= s_gpio1_wr(2);

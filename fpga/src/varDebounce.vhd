@@ -6,15 +6,21 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+--! @brief Debounce / glitch filter with run-time configurable debounce time.
+--! Identical functionality to debounce, but the number of required stable
+--! clock cycles is supplied at run time via the nDebounceTicks input instead
+--! of a generic. The output only follows the input after it has been stable
+--! at the new level for nDebounceTicks consecutive clock cycles; shorter
+--! pulses reset the internal counter.
 entity varDebounce is
 	generic(
-		G_CNT_WIDTH : integer := 10
+		G_CNT_WIDTH : integer := 10 --! Bit width of the debounce counter and of the nDebounceTicks input (max. debounce time = 2**G_CNT_WIDTH - 1 ticks)
 	);
 	port(
-		clk_i          : in  std_logic;
-		nDebounceTicks : in  std_logic_vector(G_CNT_WIDTH - 1 downto 0);
-		signal_i       : in  std_logic;
-		signal_o       : out std_logic
+		clk_i          : in  std_logic;                                  --! System clock, rising edge active
+		nDebounceTicks : in  std_logic_vector(G_CNT_WIDTH - 1 downto 0); --! Number of consecutive stable clock cycles required before the output follows the input (unsigned, sampled continuously)
+		signal_i       : in  std_logic;                                  --! Input signal to be debounced (may be asynchronous / bouncy)
+		signal_o       : out std_logic                                   --! Debounced output signal (registered, initial value '0')
 	);
 end entity varDebounce;
 
