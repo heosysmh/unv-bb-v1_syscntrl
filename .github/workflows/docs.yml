@@ -27,8 +27,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install MkDocs and plugins
-        run: |
-          pip install mkdocs-material mkdocs-awesome-pages-plugin mkdoxy
+        run: pip install mkdocs-material mkdocs-awesome-pages-plugin mkdoxy
 
       - name: Deploy documentation to GitHub Pages
         run: mkdocs gh-deploy --force
