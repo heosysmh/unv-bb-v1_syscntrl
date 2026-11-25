@@ -5,15 +5,22 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use IEEE.MATH_REAL.all;
 
+--! @brief Break-before-make selector between two VCCIO power rails.
+--! Selects which of two mutually exclusive power rails is enabled
+--! (select_i = '0' -> en1_o, select_i = '1' -> en2_o). On every change of
+--! select_i both enables are deasserted for G_DELAY_TICKS clock cycles
+--! before the newly selected rail is enabled, so the two rails are never
+--! active at the same time. After reset the module starts in the delay
+--! state with both rails disabled.
 entity vccioSelect is
     generic (
-        G_DELAY_TICKS : natural := 80000 -- number of clock ticks for make before break delay (for 80MHz clock, 80000 ticks = 1ms)
+        G_DELAY_TICKS : natural := 80000 --! Number of clock ticks with both rails disabled during a switch-over (break-before-make delay, 80000 ticks = 1 ms @ 80 MHz)
     );
     port(
-        clk_i     : in  std_logic;        
-        select_i  : in  std_logic;  -- select input
-        en1_o    : out  std_logic;  -- enable output for VCCIO1 (high = enable power, low = disable power)
-        en2_o    : out  std_logic   -- enable output for VCCIO2 (high = enable power, low = disable power)     
+        clk_i    : in  std_logic; --! System clock, rising edge active
+        select_i : in  std_logic; --! Rail select input ('0' = enable rail 1 via en1_o, '1' = enable rail 2 via en2_o)
+        en1_o    : out std_logic; --! Enable output for VCCIO rail 1 (high = enable power, low = disable power)
+        en2_o    : out std_logic  --! Enable output for VCCIO rail 2 (high = enable power, low = disable power)
     );
 end entity vccioSelect;
 

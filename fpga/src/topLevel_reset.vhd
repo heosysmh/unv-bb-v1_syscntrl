@@ -4,16 +4,23 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+--! @brief Top-level reset generator with watchdog pulse stretcher.
+--! Generates a global, high-active synchronous reset for the core logic.
+--! The reset is asserted while the PLL is unlocked or for at least
+--! STRETCH_CYCLES clock cycles after a watchdog event (single-cycle
+--! watchdog pulses are stretched to a guaranteed minimum duration).
+--! Release of the reset is synchronized through a 4-stage shift register
+--! to avoid metastability (asynchronous assert, synchronous release).
 entity topLevel_reset is
     generic (
         -- Mindestdauer des Resets in Taktzyklen nach einem Watchdog-Event
-        STRETCH_CYCLES : integer := 255
+        STRETCH_CYCLES : integer := 255 --! Minimum reset duration in clock cycles after a watchdog event (pulse stretcher reload value)
     );
     port (
-        clk_i            : in  std_logic; -- System clock
-        pll_locked_i     : in  std_logic; -- LOCKED-signal from PLL (High = locked)
-        watchdog_reset_i : in  std_logic; -- Watchdog-Reset from softcore (High-active)
-        srst_o           : out std_logic  -- Glboal synchronous reset Core (High-active)
+        clk_i            : in  std_logic; --! System clock, rising edge active
+        pll_locked_i     : in  std_logic; --! LOCKED signal from PLL (high = locked; low = asynchronously assert reset)
+        watchdog_reset_i : in  std_logic; --! Watchdog reset request from softcore (high active, may be a single-cycle pulse)
+        srst_o           : out std_logic  --! Global synchronous reset for the core logic (high active, released synchronously)
     );
 end entity topLevel_reset;
 

@@ -5,17 +5,26 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use IEEE.MATH_REAL.all;
 
+--! @brief FMC supply power-up controller and power-good supervisor.
+--! FSM sequence: pwrOff -> pwrOn (rising edge of pwrCntrl_i enables the
+--! supply) -> delay (entered when the MCU releases pgood via pgoodRelease_i;
+--! waits G_PGOOD_MONITOR_DELAY ticks for the rail to rise) -> monitor
+--! (pgood_i is supervised). A low level on pwrCntrl_i in any state, or a
+--! loss of pgood_i in the monitor state, immediately returns the FSM to
+--! pwrOff and disables the supply. While the supply is off or ramping,
+--! pgood_oe is high so the open-drain pgood line is actively pulled low,
+--! preventing a false power-good indication towards the FMC module.
 entity fmcPowerCntrl is
     generic (
-        G_PGOOD_MONITOR_DELAY : natural := 8000 -- number of clock ticks to wait until pgood is monitored after signal release (account for rise time)
+        G_PGOOD_MONITOR_DELAY : natural := 8000 --! Number of clock ticks to wait after pgood release before pgood is monitored (accounts for rail rise time, 8000 ticks = 100 us @ 80 MHz)
     );
     port(
-        clk_i     : in  std_logic;        
-        pwrCntrl_i   : in  std_logic;   -- power control input from MCU
-        pgoodRelease_i : in  std_logic; -- power good release input from MCU (high = monitor pgood, low = force pgood low)
-        pgood_i  : in  std_logic;       -- power good input from IO
-        pgood_oe : out std_logic;       -- power good output enable to IO (high = drive pgood low, low = tristate pgood)
-        en_o     : out std_logic        -- power enable output to IO (high = enable power, low = disable power)
+        clk_i          : in  std_logic; --! System clock, rising edge active
+        pwrCntrl_i     : in  std_logic; --! Power control input from MCU (rising edge starts power-up, low = power off)
+        pgoodRelease_i : in  std_logic; --! Power good release input from MCU (high = monitor pgood, low = force pgood low)
+        pgood_i        : in  std_logic; --! Power good input from IO (synchronized supply power-good feedback)
+        pgood_oe       : out std_logic; --! Power good output enable to IO (high = drive pgood line low, low = tristate pgood line)
+        en_o           : out std_logic  --! Power enable output to IO (high = enable power, low = disable power)
     );
 end entity fmcPowerCntrl;
 
