@@ -42,9 +42,9 @@ nav:
       - Firmware Build Guide: setup/firmware-build.md
   - Firmware (SW):
       - Architecture & Notes: sw-notes/BUILD_SYSTEM.md
-      - C-API Overview: c/index.md
       - C-Files: c/files.md
       - Data Structures: c/annotated.md
-  - FPGA (VHDL): api/vhdl
+  - FPGA (VHDL): 
+      - ... | vhdl/*.md
 
 copyright: Copyright &copy; 2026 Matthias Haefner - Heosys – Licensed under Apache-2.0

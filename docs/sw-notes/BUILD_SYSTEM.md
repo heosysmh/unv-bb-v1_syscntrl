@@ -12,7 +12,7 @@ The build system for the Efinix Sapphire SoC firmware supports multiple build co
 
 **Compiler Flags:**
 - `-g3` - Maximum debug information (including macros)
-- `-O0` - No optimization (better debuggability)
+- `-Og` - Debug friendly optimization (better debuggability)
 - `-march=rv32im_zicsr_zifencei` - RISC-V ISA
 - `-mabi=ilp32` - ABI
 - `-DSMP` - SMP support
@@ -171,11 +171,11 @@ endif
 
 | Property | Debug | Release |
 |----------|-------|---------|
-| **Optimization** | None (-O0) | Maximum (-O3) |
+| **Optimization** | Debug (-Og) | Maximum (-O3) |
 | **Debug Info** | Full (-g3) | None |
 | **Code Size** | Larger | Smaller |
 | **Execution Speed** | Slower | Faster |
-| **Debuggability** | Excellent | Difficult |
+| **Debuggability** | Good | Difficult |
 | **Use Case** | Development | Production |
 
 ---
@@ -198,7 +198,7 @@ endif
 ### Development
 - Use **Debug builds** for daily development
 - Debug builds enable better debugging with GDB/OpenOCD
-- Variables and functions are not optimized away
+- Optimized should impact debugging much
 
 ### Testing
 - Test critical features with **Release builds** as well
@@ -212,9 +212,9 @@ endif
 
 ### Debugging
 - For hard-to-reproduce bugs: Compare debug and release builds
-- Use `-Og` instead of `-O0` if debug build is too slow:
+- Use `-O0` instead of `-Og` if debug build does not show locals of interrest:
   ```bash
-  make debug DEBUG_OG=yes
+  make debug DEBUG_OG=no
   ```
 
 ---
