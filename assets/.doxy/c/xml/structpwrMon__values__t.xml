@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structpwrMon__values__t" kind="struct" language="C++" prot="public">
+    <compoundname>pwrMon_values_t</compoundname>
+    <includes refid="power_8h" local="no">sw/app/src/power.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpwrMon__values__t_1a1daee0c203df3e58429cba1492288dd6" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float pwrMon_values_t::bus_voltage_V</definition>
+        <argsstring></argsstring>
+        <name>bus_voltage_V</name>
+        <qualifiedname>pwrMon_values_t::bus_voltage_V</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Bus voltage [V]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="111" column="7" bodyfile="sw/app/src/power.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpwrMon__values__t_1a8a7db1266dc75be25b324f201ffdc8db" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float pwrMon_values_t::current_A</definition>
+        <argsstring></argsstring>
+        <name>current_A</name>
+        <qualifiedname>pwrMon_values_t::current_A</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Current [A]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="112" column="7" bodyfile="sw/app/src/power.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpwrMon__values__t_1a6180b7d3ea715dafc190941b495dcb5b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float pwrMon_values_t::die_temp_C</definition>
+        <argsstring></argsstring>
+        <name>die_temp_C</name>
+        <qualifiedname>pwrMon_values_t::die_temp_C</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Monitor die temperature [degC]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="113" column="7" bodyfile="sw/app/src/power.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Measurement snapshot of one rail (converted engineering units). </para>
+    </detaileddescription>
+    <location file="sw/app/src/power.h" line="110" column="1" bodyfile="sw/app/src/power.h" bodystart="110" bodyend="114"/>
+    <listofallmembers>
+      <member refid="structpwrMon__values__t_1a1daee0c203df3e58429cba1492288dd6" prot="public" virt="non-virtual"><scope>pwrMon_values_t</scope><name>bus_voltage_V</name></member>
+      <member refid="structpwrMon__values__t_1a8a7db1266dc75be25b324f201ffdc8db" prot="public" virt="non-virtual"><scope>pwrMon_values_t</scope><name>current_A</name></member>
+      <member refid="structpwrMon__values__t_1a6180b7d3ea715dafc190941b495dcb5b" prot="public" virt="non-virtual"><scope>pwrMon_values_t</scope><name>die_temp_C</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structtpsm8286__t" kind="struct" language="C++" prot="public">
+    <compoundname>tpsm8286_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtpsm8286__t_1acf08733ee6b47eb3c76b83dc8a8885a7" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 tpsm8286_t::isReady</definition>
+        <argsstring></argsstring>
+        <name>isReady</name>
+        <qualifiedname>tpsm8286_t::isReady</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Non-zero once <ref refid="tpsm8286x_8c_1a275328fffd1fae5d932dfcbe6cf6d541" kindref="member">tpsm8286_initialize()</ref> has set up the HAL callbacks. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="30" column="4" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtpsm8286__t_1aec4bdc75fba0cc4f1ffcd2d935ee54ec" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 tpsm8286_t::control</definition>
+        <argsstring></argsstring>
+        <name>control</name>
+        <qualifiedname>tpsm8286_t::control</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Shadow of the CNTRL register. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="31" column="4" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtpsm8286__t_1aadb77034e4fb7b4a83132a66fd2bc554" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 tpsm8286_t::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <qualifiedname>tpsm8286_t::status</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Shadow of the STATUS register. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="32" column="4" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtpsm8286__t_1af6792d5bf16a954b4c58483b730e84fe" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 tpsm8286_t::isEnabled</definition>
+        <argsstring></argsstring>
+        <name>isEnabled</name>
+        <qualifiedname>tpsm8286_t::isEnabled</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Cached output enable state. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="33" column="4" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtpsm8286__t_1a2d0c090c032afa0fac1853fc2bd06d92" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tpsm8286_t::voltage</definition>
+        <argsstring></argsstring>
+        <name>voltage</name>
+        <qualifiedname>tpsm8286_t::voltage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Last programmed output voltage [V]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="34" column="7" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtpsm8286__t_1a4236c753b2e215b60e5d83e78153740b" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 tpsm8286_t::voltage_raw</definition>
+        <argsstring></argsstring>
+        <name>voltage_raw</name>
+        <qualifiedname>tpsm8286_t::voltage_raw</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Last programmed VOUT1 register value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="35" column="4" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtpsm8286__t_1ab4aedfe746afd9fcd7b348b1c50b835f" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 tpsm8286_t::i2cAddr</definition>
+        <argsstring></argsstring>
+        <name>i2cAddr</name>
+        <qualifiedname>tpsm8286_t::i2cAddr</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>7-bit I2C address of the device. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="36" column="4" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtpsm8286__t_1a08866efb8d487bd131d121e88f8d2e5c" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* tpsm8286_t::hal_ctx</definition>
+        <argsstring></argsstring>
+        <name>hal_ctx</name>
+        <qualifiedname>tpsm8286_t::hal_ctx</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Opaque context pointer passed through to the HAL callbacks. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="37" column="6" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtpsm8286__t_1a433725af1fe7cc441835b60cba81edf7" prot="public" static="no" mutable="no">
+        <type><ref refid="tpsm8286x_8h_1a42ab45a189add9f0a7df545e0aeacdc1" kindref="member">tpsm8286_i2c_write_f</ref></type>
+        <definition>tpsm8286_i2c_write_f tpsm8286_t::i2c_write</definition>
+        <argsstring></argsstring>
+        <name>i2c_write</name>
+        <qualifiedname>tpsm8286_t::i2c_write</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>HAL register write callback. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="38" column="22" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtpsm8286__t_1ac6d929ba2ff9f0c8e0ca5d1a1ff0b76b" prot="public" static="no" mutable="no">
+        <type><ref refid="tpsm8286x_8h_1abad7796fa9cc625c12cf89fc1fc95a84" kindref="member">tpsm8286_i2c_read_f</ref></type>
+        <definition>tpsm8286_i2c_read_f tpsm8286_t::i2c_read</definition>
+        <argsstring></argsstring>
+        <name>i2c_read</name>
+        <qualifiedname>tpsm8286_t::i2c_read</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>HAL register read callback. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="39" column="21" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="39" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Opaque device handle (definition), see <ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref> in <ref refid="tpsm8286x_8h" kindref="compound">tpsm8286x.h</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="29" column="1" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="29" bodyend="40"/>
+    <listofallmembers>
+      <member refid="structtpsm8286__t_1aec4bdc75fba0cc4f1ffcd2d935ee54ec" prot="public" virt="non-virtual"><scope>tpsm8286_t</scope><name>control</name></member>
+      <member refid="structtpsm8286__t_1a08866efb8d487bd131d121e88f8d2e5c" prot="public" virt="non-virtual"><scope>tpsm8286_t</scope><name>hal_ctx</name></member>
+      <member refid="structtpsm8286__t_1ac6d929ba2ff9f0c8e0ca5d1a1ff0b76b" prot="public" virt="non-virtual"><scope>tpsm8286_t</scope><name>i2c_read</name></member>
+      <member refid="structtpsm8286__t_1a433725af1fe7cc441835b60cba81edf7" prot="public" virt="non-virtual"><scope>tpsm8286_t</scope><name>i2c_write</name></member>
+      <member refid="structtpsm8286__t_1ab4aedfe746afd9fcd7b348b1c50b835f" prot="public" virt="non-virtual"><scope>tpsm8286_t</scope><name>i2cAddr</name></member>
+      <member refid="structtpsm8286__t_1af6792d5bf16a954b4c58483b730e84fe" prot="public" virt="non-virtual"><scope>tpsm8286_t</scope><name>isEnabled</name></member>
+      <member refid="structtpsm8286__t_1acf08733ee6b47eb3c76b83dc8a8885a7" prot="public" virt="non-virtual"><scope>tpsm8286_t</scope><name>isReady</name></member>
+      <member refid="structtpsm8286__t_1aadb77034e4fb7b4a83132a66fd2bc554" prot="public" virt="non-virtual"><scope>tpsm8286_t</scope><name>status</name></member>
+      <member refid="structtpsm8286__t_1a2d0c090c032afa0fac1853fc2bd06d92" prot="public" virt="non-virtual"><scope>tpsm8286_t</scope><name>voltage</name></member>
+      <member refid="structtpsm8286__t_1a4236c753b2e215b60e5d83e78153740b" prot="public" virt="non-virtual"><scope>tpsm8286_t</scope><name>voltage_raw</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

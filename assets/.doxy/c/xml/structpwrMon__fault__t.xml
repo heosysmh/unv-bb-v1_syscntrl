@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structpwrMon__fault__t" kind="struct" language="C++" prot="public">
+    <compoundname>pwrMon_fault_t</compoundname>
+    <includes refid="power_8h" local="no">sw/app/src/power.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpwrMon__fault__t_1a60adb24d2d81de31f9ed9d92da25ca91" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 pwrMon_fault_t::over_voltage</definition>
+        <argsstring></argsstring>
+        <name>over_voltage</name>
+        <qualifiedname>pwrMon_fault_t::over_voltage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>BUSOL: bus over-voltage. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="118" column="4" bodyfile="sw/app/src/power.h" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpwrMon__fault__t_1a060daa87267fd1b262b4e576facb62ce" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 pwrMon_fault_t::over_current</definition>
+        <argsstring></argsstring>
+        <name>over_current</name>
+        <qualifiedname>pwrMon_fault_t::over_current</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>CURRENTOL: over-current. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="119" column="4" bodyfile="sw/app/src/power.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpwrMon__fault__t_1af02bfcc78675c3b120dd2b9afc96402c" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 pwrMon_fault_t::over_temp</definition>
+        <argsstring></argsstring>
+        <name>over_temp</name>
+        <qualifiedname>pwrMon_fault_t::over_temp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>TMPOL: over-temperature. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="120" column="4" bodyfile="sw/app/src/power.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpwrMon__fault__t_1a611ad77620c0a6051cfbffe0d345dfac" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 pwrMon_fault_t::over_power</definition>
+        <argsstring></argsstring>
+        <name>over_power</name>
+        <qualifiedname>pwrMon_fault_t::over_power</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>POL: over-power. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="121" column="4" bodyfile="sw/app/src/power.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpwrMon__fault__t_1a2fe503e27002a7345cc27d54d429ff66" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 pwrMon_fault_t::memory_fail</definition>
+        <argsstring></argsstring>
+        <name>memory_fail</name>
+        <qualifiedname>pwrMon_fault_t::memory_fail</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>MEMSTAT reported a checksum error. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="122" column="4" bodyfile="sw/app/src/power.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Sticky fault flags of one rail (accumulated since the last clear). </para>
+    </detaileddescription>
+    <location file="sw/app/src/power.h" line="117" column="1" bodyfile="sw/app/src/power.h" bodystart="117" bodyend="123"/>
+    <listofallmembers>
+      <member refid="structpwrMon__fault__t_1a2fe503e27002a7345cc27d54d429ff66" prot="public" virt="non-virtual"><scope>pwrMon_fault_t</scope><name>memory_fail</name></member>
+      <member refid="structpwrMon__fault__t_1a060daa87267fd1b262b4e576facb62ce" prot="public" virt="non-virtual"><scope>pwrMon_fault_t</scope><name>over_current</name></member>
+      <member refid="structpwrMon__fault__t_1a611ad77620c0a6051cfbffe0d345dfac" prot="public" virt="non-virtual"><scope>pwrMon_fault_t</scope><name>over_power</name></member>
+      <member refid="structpwrMon__fault__t_1af02bfcc78675c3b120dd2b9afc96402c" prot="public" virt="non-virtual"><scope>pwrMon_fault_t</scope><name>over_temp</name></member>
+      <member refid="structpwrMon__fault__t_1a60adb24d2d81de31f9ed9d92da25ca91" prot="public" virt="non-virtual"><scope>pwrMon_fault_t</scope><name>over_voltage</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

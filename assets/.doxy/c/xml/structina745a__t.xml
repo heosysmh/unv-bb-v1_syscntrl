@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structina745a__t" kind="struct" language="C++" prot="public">
+    <compoundname>ina745a_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structina745a__t_1af64f33937febe4595ca2ff349ef44c58" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ina745a_t::isReady</definition>
+        <argsstring></argsstring>
+        <name>isReady</name>
+        <qualifiedname>ina745a_t::isReady</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Non-zero once <ref refid="ina745a_8c_1ae6e4611a00f5e9cfbaf9f99245db9f7b" kindref="member">ina745a_initialize()</ref> has set up the HAL callbacks. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.c" line="106" column="4" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__t_1a4a044ea10072131e2bee261a63f71e1d" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ina745a_t::isConfigured</definition>
+        <argsstring></argsstring>
+        <name>isConfigured</name>
+        <qualifiedname>ina745a_t::isConfigured</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Non-zero once <ref refid="ina745a_8c_1af7f1483935331bba3f06c8fb6fc1e600" kindref="member">ina745a_init()</ref> has completed successfully (MANUFACTURER_ID verified). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.c" line="107" column="4" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__t_1a3daad8e9f1a2d38bab23f267aef99dce" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ina745a_t::i2cAddr</definition>
+        <argsstring></argsstring>
+        <name>i2cAddr</name>
+        <qualifiedname>ina745a_t::i2cAddr</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>7-bit I2C address of the device. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.c" line="108" column="4" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__t_1ac3b63c722c5723de1d5c93edc5308af4" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* ina745a_t::hal_ctx</definition>
+        <argsstring></argsstring>
+        <name>hal_ctx</name>
+        <qualifiedname>ina745a_t::hal_ctx</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Opaque context pointer passed through to the HAL callbacks. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.c" line="109" column="6" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__t_1a8bdad14838e2e638afc249ce51a57ce6" prot="public" static="no" mutable="no">
+        <type><ref refid="ina745a_8h_1a9d337b132205a97a8a3fa19a54813738" kindref="member">ina745a_i2c_write_f</ref></type>
+        <definition>ina745a_i2c_write_f ina745a_t::i2c_write</definition>
+        <argsstring></argsstring>
+        <name>i2c_write</name>
+        <qualifiedname>ina745a_t::i2c_write</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>HAL register write callback. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.c" line="110" column="21" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__t_1ad9fc08d70fa090906bebcf278ec21372" prot="public" static="no" mutable="no">
+        <type><ref refid="ina745a_8h_1a281dea2fe0fc188f4767ebbd64e22bcd" kindref="member">ina745a_i2c_read_f</ref></type>
+        <definition>ina745a_i2c_read_f ina745a_t::i2c_read</definition>
+        <argsstring></argsstring>
+        <name>i2c_read</name>
+        <qualifiedname>ina745a_t::i2c_read</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>HAL register read callback. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.c" line="111" column="21" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="111" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Opaque device handle (definition), see <ref refid="structina745a__t" kindref="compound">ina745a_t</ref> in <ref refid="ina745a_8h" kindref="compound">ina745a.h</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/devices/ina745a/ina745a.c" line="105" column="1" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="105" bodyend="112"/>
+    <listofallmembers>
+      <member refid="structina745a__t_1ac3b63c722c5723de1d5c93edc5308af4" prot="public" virt="non-virtual"><scope>ina745a_t</scope><name>hal_ctx</name></member>
+      <member refid="structina745a__t_1ad9fc08d70fa090906bebcf278ec21372" prot="public" virt="non-virtual"><scope>ina745a_t</scope><name>i2c_read</name></member>
+      <member refid="structina745a__t_1a8bdad14838e2e638afc249ce51a57ce6" prot="public" virt="non-virtual"><scope>ina745a_t</scope><name>i2c_write</name></member>
+      <member refid="structina745a__t_1a3daad8e9f1a2d38bab23f267aef99dce" prot="public" virt="non-virtual"><scope>ina745a_t</scope><name>i2cAddr</name></member>
+      <member refid="structina745a__t_1a4a044ea10072131e2bee261a63f71e1d" prot="public" virt="non-virtual"><scope>ina745a_t</scope><name>isConfigured</name></member>
+      <member refid="structina745a__t_1af64f33937febe4595ca2ff349ef44c58" prot="public" virt="non-virtual"><scope>ina745a_t</scope><name>isReady</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

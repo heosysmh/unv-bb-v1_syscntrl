@@ -1,0 +1,2088 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hardware (FPGA/VHDL) and Firmware (C) documentation for unv-bb-v1-syscntrl">
+      
+      
+      
+      
+        <link rel="prev" href="../synchronizer/">
+      
+      
+        <link rel="next" href="../vccioSelect/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Entity: sysCntrl_Top - unv-bb-v1-syscntrl Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#entity-syscntrl_top" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-header__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            unv-bb-v1-syscntrl Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Entity: sysCntrl_Top
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  System Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../setup/ftdi-jtag/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Setup & Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sw-notes/BUILD_SYSTEM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Firmware (SW)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../debounce/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  FPGA (VHDL)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-nav__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    unv-bb-v1-syscntrl Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup & Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/ftdi-jtag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FTDI & JTAG Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/firmware-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware Build Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware (SW)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Firmware (SW)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sw-notes/BUILD_SYSTEM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C-Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Structures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FPGA (VHDL)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    FPGA (VHDL)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vhdl
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Vhdl
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debounce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: debounce
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fmcPowerCntrl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: fmcPowerCntrl
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inputSync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: inputSync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../synchronizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: synchronizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: sysCntrl_Top
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: sysCntrl_Top
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constants
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Processes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instantiations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instantiations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vccioSelect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: vccioSelect
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constants
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Processes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instantiations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instantiations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="entity-syscntrl_top">Entity: sysCntrl_Top</h1>
+<ul>
+<li><strong>File</strong>: sysCtnrl_top.vhd</li>
+<li><strong>Brief:</strong>  System controller top level for the UNV baseboard (sysCntrl).</li>
+</ul>
+<h2 id="diagram">Diagram</h2>
+<p><img alt="Diagram" src="../sysCntrl_Top.svg" title="Diagram" /></p>
+<h2 id="description">Description</h2>
+<p>Instantiates the Sapphire SoC MCU and the board-level power sequencing
+and supervision logic. All asynchronous board inputs are synchronized
+(inputSync) and, where required, debounced before use. The design
+controls the system / PL / PS / SYZYGY / FMC power rails, overrides
+open-drain power-good lines while a rail is off (to avoid false
+power-good indications), selects the HPC / HDB VCCIO rails via
+break-before-make switches (vccioSelect), and generates the PS
+power-on-reset and Ethernet PHY reset. MCU GPIO bank 1 carries the
+control outputs, GPIO bank 0 reads back the synchronized status inputs.</p>
+<h2 id="ports">Ports</h2>
+<table>
+<thead>
+<tr>
+<th>Port name</th>
+<th>Direction</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pll_locked</td>
+<td>in</td>
+<td>std_logic</td>
+<td>PLL lock indicator (high = locked; low = async reset for the MCU)</td>
+</tr>
+<tr>
+<td>sysClk_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>System clock input (80 MHz)</td>
+</tr>
+<tr>
+<td>spi_0_io_sclk_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>SPI serial clock output (MCU flash interface)</td>
+</tr>
+<tr>
+<td>spi_0_io_data_0_read_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>SPI data line 0 input (MISO)</td>
+</tr>
+<tr>
+<td>spi_0_io_data_0_write_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>SPI data line 0 output (MOSI)</td>
+</tr>
+<tr>
+<td>spi_0_io_data_0_writeEnable_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>SPI data line 0 output enable (tristate control)</td>
+</tr>
+<tr>
+<td>spi_0_io_data_1_read_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>SPI data line 1 input (dual/quad mode)</td>
+</tr>
+<tr>
+<td>spi_0_io_data_1_write_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>SPI data line 1 output (dual/quad mode)</td>
+</tr>
+<tr>
+<td>spi_0_io_data_1_writeEnable_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>SPI data line 1 output enable (tristate control)</td>
+</tr>
+<tr>
+<td>spi_0_io_ss_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>SPI slave select output (active low)</td>
+</tr>
+<tr>
+<td>spi_0_io_hold_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>SPI HOLD# output (unused, tied high)</td>
+</tr>
+<tr>
+<td>spi_0_io_wp_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>SPI write protect output (unused, tied high)</td>
+</tr>
+<tr>
+<td>jtag_tck</td>
+<td>in</td>
+<td>std_logic</td>
+<td>JTAG test clock for MCU debug interface</td>
+</tr>
+<tr>
+<td>jtag_tdi</td>
+<td>in</td>
+<td>std_logic</td>
+<td>JTAG test data input</td>
+</tr>
+<tr>
+<td>jtag_tdo</td>
+<td>out</td>
+<td>std_logic</td>
+<td>JTAG test data output</td>
+</tr>
+<tr>
+<td>jtag_capture</td>
+<td>in</td>
+<td>std_logic</td>
+<td>JTAG capture-DR/IR state indicator</td>
+</tr>
+<tr>
+<td>jtag_sel</td>
+<td>in</td>
+<td>std_logic</td>
+<td>JTAG IR/DR select (debug enable)</td>
+</tr>
+<tr>
+<td>jtag_shift</td>
+<td>in</td>
+<td>std_logic</td>
+<td>JTAG shift-DR/IR state indicator</td>
+</tr>
+<tr>
+<td>jtag_update</td>
+<td>in</td>
+<td>std_logic</td>
+<td>JTAG update-DR/IR state indicator</td>
+</tr>
+<tr>
+<td>jtag_reset</td>
+<td>in</td>
+<td>std_logic</td>
+<td>JTAG test logic reset</td>
+</tr>
+<tr>
+<td>som_vccoPsEn_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>SoM VCCO_PS bank enable input (high = PS bank powered, gates PS power)</td>
+</tr>
+<tr>
+<td>som_vccoPlEn_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>SoM VCCO_PL bank enable input (high = PL bank powered, gates PL power)</td>
+</tr>
+<tr>
+<td>som_sdPwrEn_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>SoM SD card power enable input (status only)</td>
+</tr>
+<tr>
+<td>som_hpa14p_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>SoM HPA14 differential GPIO input, positive leg (status only)</td>
+</tr>
+<tr>
+<td>som_hpa14n_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>SoM HPA14 differential GPIO input, negative leg (status only)</td>
+</tr>
+<tr>
+<td>pmu_mio35GPO_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>PS PMU MIO35 GPO input to the system controller</td>
+</tr>
+<tr>
+<td>pmu_mio28GPI_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>PMU MIO28 GPI output to the PS (tied low)</td>
+</tr>
+<tr>
+<td>pmu_mio29GPI_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>PMU MIO29 GPI output to the PS (tied low)</td>
+</tr>
+<tr>
+<td>pmu_mio31GPI_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>PMU MIO31 GPI output to the PS (tied low)</td>
+</tr>
+<tr>
+<td>hpc_vadj1En_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>HPC FMC VADJ1 rail enable output (selected via hpcVccioSelect)</td>
+</tr>
+<tr>
+<td>hpc_vadj2En_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>HPC FMC VADJ2 rail enable output (selected via hpcVccioSelect)</td>
+</tr>
+<tr>
+<td>hdb_vadj2En_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>HDB VADJ2 rail enable output (selected via hdbVccioSelect)</td>
+</tr>
+<tr>
+<td>hdb_2v5En_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>HDB 2V5 rail enable output (selected via hdbVccioSelect)</td>
+</tr>
+<tr>
+<td>pl_pwrEn_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>PL power enable output (sys_pgood and som_vccoPlEn)</td>
+</tr>
+<tr>
+<td>pl_2v5Pgood_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>PL 2V5 power good input (open-drain line)</td>
+</tr>
+<tr>
+<td>pl_2v5Pgood_oe</td>
+<td>out</td>
+<td>std_logic</td>
+<td>PL 2V5 power good output enable (high = drive line low while rail is off)</td>
+</tr>
+<tr>
+<td>ps_pwrEn_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>PS power enable output (sys_pgood and som_vccoPsEn)</td>
+</tr>
+<tr>
+<td>sys_pwrEn_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>System power enable output (always enabled)</td>
+</tr>
+<tr>
+<td>sys_pgood_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>System power good input (open-drain line)</td>
+</tr>
+<tr>
+<td>sys_pgood_oe</td>
+<td>out</td>
+<td>std_logic</td>
+<td>System power good output enable (high = drive line low while rail is off)</td>
+</tr>
+<tr>
+<td>szg_pwrEn_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>SYZYGY power enable output (PL and PS power enabled)</td>
+</tr>
+<tr>
+<td>szg_pgood_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>SYZYGY power good input (open-drain line)</td>
+</tr>
+<tr>
+<td>szg_pgood_oe</td>
+<td>out</td>
+<td>std_logic</td>
+<td>SYZYGY power good output enable (high = drive line low while rail is off)</td>
+</tr>
+<tr>
+<td>fmc1_supPwrEn_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>FMC1 supply power enable output (MCU controlled via fmcPowerCntrl)</td>
+</tr>
+<tr>
+<td>fmc1_supPgood_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>FMC1 supply power good input (connected to PG_C2M on the board)</td>
+</tr>
+<tr>
+<td>fmc1_supPgood_oe</td>
+<td>out</td>
+<td>std_logic</td>
+<td>FMC1 supply power good output enable (high = drive PG_C2M low)</td>
+</tr>
+<tr>
+<td>fmc2_supPwrEn_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>FMC2 supply power enable output (MCU controlled via fmcPowerCntrl)</td>
+</tr>
+<tr>
+<td>fmc2_supPgood_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>FMC2 supply power good input (connected to PG_C2M on the board)</td>
+</tr>
+<tr>
+<td>fmc2_supPgood_oe</td>
+<td>out</td>
+<td>std_logic</td>
+<td>FMC2 supply power good output enable (high = drive PG_C2M low)</td>
+</tr>
+<tr>
+<td>fmc1_modPgood_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>FMC1 module power good input (PG_M2C, open-drain line)</td>
+</tr>
+<tr>
+<td>fmc1_modPgood_oe</td>
+<td>out</td>
+<td>std_logic</td>
+<td>FMC1 module power good output enable (high = drive PG_M2C low while supply is off)</td>
+</tr>
+<tr>
+<td>fmc2_modPgood_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>FMC2 module power good input (PG_M2C, open-drain line)</td>
+</tr>
+<tr>
+<td>fmc2_modPgood_oe</td>
+<td>out</td>
+<td>std_logic</td>
+<td>FMC2 module power good output enable (high = drive PG_M2C low while supply is off)</td>
+</tr>
+<tr>
+<td>si5332_cntrl_o</td>
+<td>out</td>
+<td>std_logic_vector(4 downto 0)</td>
+<td>Si5332 clock generator control pins (tied low)</td>
+</tr>
+<tr>
+<td>lmk05028_en_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>LMK05028 clock generator enable output (tied low)</td>
+</tr>
+<tr>
+<td>lmk05028_intr_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>LMK05028 interrupt / status input</td>
+</tr>
+<tr>
+<td>eth_pme_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>Ethernet PHY power management event input</td>
+</tr>
+<tr>
+<td>sd_reset_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>SD card reset output, high active (open drain in interface, tied low)</td>
+</tr>
+<tr>
+<td>sd_reset_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>Dummy input (not connected, avoids synthesis warnings for the open-drain IO)</td>
+</tr>
+<tr>
+<td>eth_reset_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>Ethernet PHY reset output, high active (open drain in interface, released by MCU)</td>
+</tr>
+<tr>
+<td>eth_reset_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>Dummy input (not connected, avoids synthesis warnings for the open-drain IO)</td>
+</tr>
+<tr>
+<td>i2c0_reset_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>I2C0 bus reset output, high active (tied low)</td>
+</tr>
+<tr>
+<td>ps_resetn_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>PS reset output, low active (tied high, not used)</td>
+</tr>
+<tr>
+<td>ps_porn_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>PS power-on-reset output, low active (HW delay AND MCU release)</td>
+</tr>
+<tr>
+<td>sda0_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>I2C0 SDA input (bus read)</td>
+</tr>
+<tr>
+<td>sda0_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>I2C0 SDA output (open-drain drive, inverted MCU output)</td>
+</tr>
+<tr>
+<td>scl0_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>I2C0 SCL input (bus read / clock stretching)</td>
+</tr>
+<tr>
+<td>scl0_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>I2C0 SCL output (open-drain drive, inverted MCU output)</td>
+</tr>
+<tr>
+<td>sda1_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>I2C1 SDA input (bus read)</td>
+</tr>
+<tr>
+<td>sda1_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>I2C1 SDA output (open-drain drive, inverted MCU output)</td>
+</tr>
+<tr>
+<td>scl1_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>I2C1 SCL input (bus read / clock stretching)</td>
+</tr>
+<tr>
+<td>scl1_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>I2C1 SCL output (open-drain drive, inverted MCU output)</td>
+</tr>
+<tr>
+<td>uart_rxd_i</td>
+<td>in</td>
+<td>std_logic</td>
+<td>MCU console UART receive input</td>
+</tr>
+<tr>
+<td>uart_txd_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>MCU console UART transmit output</td>
+</tr>
+<tr>
+<td>fan_pwm_o</td>
+<td>out</td>
+<td>std_logic</td>
+<td>Fan PWM output (tied low)</td>
+</tr>
+<tr>
+<td>config_i</td>
+<td>in</td>
+<td>std_logic_vector(5 downto 0)</td>
+<td>Board configuration strap inputs, active low (synchronized and debounced, 10 ms)</td>
+</tr>
+<tr>
+<td>leds_o</td>
+<td>out</td>
+<td>std_logic_vector(1 downto 0)</td>
+<td>User LEDs, active low (LED0 = MCU controlled, LED1 = off)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="signals">Signals</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s_srst</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_clk</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_usrIntrA</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_usrIntrB</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_gpio0_wre</td>
+<td>std_logic_vector(31 downto 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>s_gpio0_wr</td>
+<td>std_logic_vector(31 downto 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>s_gpio0_rd</td>
+<td>std_logic_vector(31 downto 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>s_gpio1_wre</td>
+<td>std_logic_vector(31 downto 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>s_gpio1_wr</td>
+<td>std_logic_vector(31 downto 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>s_gpio1_rd</td>
+<td>std_logic_vector(31 downto 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>s_wd_hardPanic</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_inputs</td>
+<td>std_logic_vector(20 downto 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>s_inputs_sync</td>
+<td>std_logic_vector(20 downto 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>s_som_vccoPsEn</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_som_vccoPlEn</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_som_sdPwrEn</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_som_hpa14p</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_som_hpa14n</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_pmu_mio35GPO</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_fmc1_supPgood</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_fmc1_supPgood_dlyd</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_fmc2_supPgood</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_fmc2_supPgood_dlyd</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_fmc1_modPgood</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_fmc2_modPgood</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_pl_2v5Pgood</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_sys_pgood</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_szg_pgood</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_lmk05028_intr</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_eth_pme</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_config_sync</td>
+<td>std_logic_vector(5 downto 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>s_config</td>
+<td>std_logic_vector(5 downto 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>s_ledCount_r</td>
+<td>unsigned(25 downto 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>s_sys_pwrEn</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_sys_pwrEn_dlyd</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_pl_pwrEn</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_pl_pwrEn_dlyd</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_ps_pwrEn</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_ps_pwrEn_dlyd</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_szg_pwrEn</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_szg_pwrEn_dlyd</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_porn</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_eth_rstn</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_mcu_hpc_VccioSelect</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_mcu_hdb_VccioSelect</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_mcu_fmc1_supCntrl</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_mcu_fmc2_supCntrl</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_mcu_fmc1_supPgoodRelease</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_mcu_fmc2_supPgoodRelease</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_mcu_fmc1_modCntrl</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_mcu_fmc2_modCntrl</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_mcu_porn</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_mcu_eth_rstn</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_mcu_led</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_i2c0_sda_out</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_i2c0_scl_out</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_i2c1_sda_out</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+<tr>
+<td>s_i2c1_scl_out</td>
+<td>std_logic</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="constants">Constants</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C_100US_DELAY_TICKS</td>
+<td>integer</td>
+<td>8000</td>
+<td></td>
+</tr>
+<tr>
+<td>C_1MS_DELAY_TICKS</td>
+<td>integer</td>
+<td>80000</td>
+<td></td>
+</tr>
+<tr>
+<td>C_5MS_DELAY_TICKS</td>
+<td>integer</td>
+<td>400000</td>
+<td></td>
+</tr>
+<tr>
+<td>C_10MS_DELAY_TICKS</td>
+<td>integer</td>
+<td>800000</td>
+<td></td>
+</tr>
+<tr>
+<td>C_20MS_DELAY_TICKS</td>
+<td>integer</td>
+<td>1600000</td>
+<td></td>
+</tr>
+<tr>
+<td>C_100MS_DELAY_TICKS</td>
+<td>integer</td>
+<td>8000000</td>
+<td></td>
+</tr>
+<tr>
+<td>C_SYNC_INPUTS_INIT</td>
+<td>std_logic_vector(20 downto 0)</td>
+<td>(others =&gt; '0')</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="processes">Processes</h2>
+<ul>
+<li>unnamed: ( s_clk )</li>
+</ul>
+<h2 id="instantiations">Instantiations</h2>
+<ul>
+<li>inputSync_inst: work.inputSync</li>
+<li>mcu_inst: mcu</li>
+<li>sysPwrEn_delay_inst: work.debounce</li>
+<li>plPwrEn_delay_inst: work.debounce</li>
+<li>hpcVccioSelect: work.vccioSelect</li>
+<li>hdbVccioSelect: work.vccioSelect</li>
+<li>fmc1PowerCntrl_inst: work.fmcPowerCntrl</li>
+<li>fmc1ModEn_delay_inst: work.debounce</li>
+<li>fmc2PowerCntrl_inst: work.fmcPowerCntrl</li>
+<li>fmc2ModEn_delay_inst: work.debounce</li>
+<li>szgPwrEn_delay_inst: work.debounce</li>
+<li>por_delay_inst: work.debounce</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Matthias Haefner - Heosys – Licensed under Apache-2.0
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

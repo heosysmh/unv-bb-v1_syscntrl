@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_519e93f1bdf9c64a9ee465d9f69baf9a" kind="dir">
+    <compoundname>sw/devices/pi4msd5v945x</compoundname>
+    <innerfile refid="pi4msd5v945x_8c">pi4msd5v945x.c</innerfile>
+    <innerfile refid="pi4msd5v945x_8h">pi4msd5v945x.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/devices/pi4msd5v945x/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structina745a__measurements__t" kind="struct" language="C++" prot="public">
+    <compoundname>ina745a_measurements_t</compoundname>
+    <includes refid="ina745a_8h" local="no">sw/devices/ina745a/ina745a.h</includes>
+    <sectiondef kind="user-defined">
+      <header>Converted engineering values</header>
+      <memberdef kind="variable" id="structina745a__measurements__t_1a410072c9ab9b454e7af9a247749d495d" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ina745a_measurements_t::bus_voltage_V</definition>
+        <argsstring></argsstring>
+        <name>bus_voltage_V</name>
+        <qualifiedname>ina745a_measurements_t::bus_voltage_V</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Bus voltage [V]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="199" column="8" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="199" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__measurements__t_1a1a1340dfe59906adbba5b7fe5d60741e" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ina745a_measurements_t::die_temp_C</definition>
+        <argsstring></argsstring>
+        <name>die_temp_C</name>
+        <qualifiedname>ina745a_measurements_t::die_temp_C</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Die temperature [degC]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="200" column="8" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__measurements__t_1ada3205e7b4aeba0ac478451474272e25" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ina745a_measurements_t::current_A</definition>
+        <argsstring></argsstring>
+        <name>current_A</name>
+        <qualifiedname>ina745a_measurements_t::current_A</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Current [A]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="201" column="8" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="201" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__measurements__t_1aa1c80f182c0d46867201a8f770687fa8" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ina745a_measurements_t::power_W</definition>
+        <argsstring></argsstring>
+        <name>power_W</name>
+        <qualifiedname>ina745a_measurements_t::power_W</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Power [W]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="202" column="8" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="202" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__measurements__t_1a995e127b2a920d062c68e5ece58bea11" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ina745a_measurements_t::energy_J</definition>
+        <argsstring></argsstring>
+        <name>energy_J</name>
+        <qualifiedname>ina745a_measurements_t::energy_J</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Accumulated energy [J]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="203" column="8" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__measurements__t_1a6ba2e420a1cdb2be3c56530fb4878e16" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ina745a_measurements_t::charge_C</definition>
+        <argsstring></argsstring>
+        <name>charge_C</name>
+        <qualifiedname>ina745a_measurements_t::charge_C</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Accumulated charge [C]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="204" column="8" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="204" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>Raw register values (for integer-only consumers, e.g. ISRs)</header>
+      <memberdef kind="variable" id="structina745a__measurements__t_1ae06ce1a7eb30ebf015b9bb6bf861654c" prot="public" static="no" mutable="no">
+        <type>u16</type>
+        <definition>u16 ina745a_measurements_t::vbus_raw</definition>
+        <argsstring></argsstring>
+        <name>vbus_raw</name>
+        <qualifiedname>ina745a_measurements_t::vbus_raw</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>VBUS, 16 bit, unsigned </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="209" column="5" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="209" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__measurements__t_1af42cd89d8e2c89faa16a4384f3d19278" prot="public" static="no" mutable="no">
+        <type>s16</type>
+        <definition>s16 ina745a_measurements_t::dietemp_raw</definition>
+        <argsstring></argsstring>
+        <name>dietemp_raw</name>
+        <qualifiedname>ina745a_measurements_t::dietemp_raw</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DIETEMP, 12-bit field, sign-extended to 16 bit </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="210" column="5" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="210" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__measurements__t_1a901b2fadaa9bc89c299e7308ffe2cbd4" prot="public" static="no" mutable="no">
+        <type>s16</type>
+        <definition>s16 ina745a_measurements_t::current_raw</definition>
+        <argsstring></argsstring>
+        <name>current_raw</name>
+        <qualifiedname>ina745a_measurements_t::current_raw</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>CURRENT, 16 bit, two&apos;s complement </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="211" column="5" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__measurements__t_1aa75831708f253b1f358d871bbf998ee1" prot="public" static="no" mutable="no">
+        <type>u32</type>
+        <definition>u32 ina745a_measurements_t::power_raw</definition>
+        <argsstring></argsstring>
+        <name>power_raw</name>
+        <qualifiedname>ina745a_measurements_t::power_raw</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>POWER, 24 bit, unsigned (in u32) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="212" column="5" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__measurements__t_1a5d958a2b3b5258505c3681e6f4617a8a" prot="public" static="no" mutable="no">
+        <type>u64</type>
+        <definition>u64 ina745a_measurements_t::energy_raw</definition>
+        <argsstring></argsstring>
+        <name>energy_raw</name>
+        <qualifiedname>ina745a_measurements_t::energy_raw</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>ENERGY, 40 bit, unsigned (in u64) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="213" column="5" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__measurements__t_1a94ede43a6fcdf8590f6b7bde7c377d91" prot="public" static="no" mutable="no">
+        <type>s64</type>
+        <definition>s64 ina745a_measurements_t::charge_raw</definition>
+        <argsstring></argsstring>
+        <name>charge_raw</name>
+        <qualifiedname>ina745a_measurements_t::charge_raw</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>CHARGE, 40 bit, two&apos;s complement, sign-extended to 64 bit </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="214" column="5" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="214" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Complete measurement snapshot (converted values and raw registers). </para>
+    </detaileddescription>
+    <location file="sw/devices/ina745a/ina745a.h" line="196" column="1" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="196" bodyend="216"/>
+    <listofallmembers>
+      <member refid="structina745a__measurements__t_1a410072c9ab9b454e7af9a247749d495d" prot="public" virt="non-virtual"><scope>ina745a_measurements_t</scope><name>bus_voltage_V</name></member>
+      <member refid="structina745a__measurements__t_1a6ba2e420a1cdb2be3c56530fb4878e16" prot="public" virt="non-virtual"><scope>ina745a_measurements_t</scope><name>charge_C</name></member>
+      <member refid="structina745a__measurements__t_1a94ede43a6fcdf8590f6b7bde7c377d91" prot="public" virt="non-virtual"><scope>ina745a_measurements_t</scope><name>charge_raw</name></member>
+      <member refid="structina745a__measurements__t_1ada3205e7b4aeba0ac478451474272e25" prot="public" virt="non-virtual"><scope>ina745a_measurements_t</scope><name>current_A</name></member>
+      <member refid="structina745a__measurements__t_1a901b2fadaa9bc89c299e7308ffe2cbd4" prot="public" virt="non-virtual"><scope>ina745a_measurements_t</scope><name>current_raw</name></member>
+      <member refid="structina745a__measurements__t_1a1a1340dfe59906adbba5b7fe5d60741e" prot="public" virt="non-virtual"><scope>ina745a_measurements_t</scope><name>die_temp_C</name></member>
+      <member refid="structina745a__measurements__t_1af42cd89d8e2c89faa16a4384f3d19278" prot="public" virt="non-virtual"><scope>ina745a_measurements_t</scope><name>dietemp_raw</name></member>
+      <member refid="structina745a__measurements__t_1a995e127b2a920d062c68e5ece58bea11" prot="public" virt="non-virtual"><scope>ina745a_measurements_t</scope><name>energy_J</name></member>
+      <member refid="structina745a__measurements__t_1a5d958a2b3b5258505c3681e6f4617a8a" prot="public" virt="non-virtual"><scope>ina745a_measurements_t</scope><name>energy_raw</name></member>
+      <member refid="structina745a__measurements__t_1aa75831708f253b1f358d871bbf998ee1" prot="public" virt="non-virtual"><scope>ina745a_measurements_t</scope><name>power_raw</name></member>
+      <member refid="structina745a__measurements__t_1aa1c80f182c0d46867201a8f770687fa8" prot="public" virt="non-virtual"><scope>ina745a_measurements_t</scope><name>power_W</name></member>
+      <member refid="structina745a__measurements__t_1ae06ce1a7eb30ebf015b9bb6bf861654c" prot="public" virt="non-virtual"><scope>ina745a_measurements_t</scope><name>vbus_raw</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

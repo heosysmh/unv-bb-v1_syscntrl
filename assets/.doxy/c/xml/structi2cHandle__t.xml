@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structi2cHandle__t" kind="struct" language="C++" prot="public">
+    <compoundname>i2cHandle_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structi2cHandle__t_1a1200ddaa501a7acf0360659f813d1fe3" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 i2cHandle_t::deviceId</definition>
+        <argsstring></argsstring>
+        <name>deviceId</name>
+        <qualifiedname>i2cHandle_t::deviceId</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Instance index into <ref refid="i2cWrapper_8c_1aed35ae876149a9db3056d5c12eef42cb" kindref="member">gI2cInstances</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.c" line="27" column="4" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structi2cHandle__t_1a6254367b561c8e2783e78df5293063fa" prot="public" static="no" mutable="no">
+        <type>u32</type>
+        <definition>u32 i2cHandle_t::baseAddress</definition>
+        <argsstring></argsstring>
+        <name>baseAddress</name>
+        <qualifiedname>i2cHandle_t::baseAddress</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Base address of the I2C controller. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.c" line="28" column="5" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structi2cHandle__t_1ae172f8c1ed557fdfffef9d6f20c551ca" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 i2cHandle_t::intrId</definition>
+        <argsstring></argsstring>
+        <name>intrId</name>
+        <qualifiedname>i2cHandle_t::intrId</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>PLIC interrupt source ID. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.c" line="29" column="4" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structi2cHandle__t_1aef2656f2eedc53aed2aec007dd6a5706" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 i2cHandle_t::intrPrio</definition>
+        <argsstring></argsstring>
+        <name>intrPrio</name>
+        <qualifiedname>i2cHandle_t::intrPrio</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>PLIC interrupt priority. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.c" line="30" column="4" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structi2cHandle__t_1ab017aad840f189bebf821ded47b995f6" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 i2cHandle_t::intrHart</definition>
+        <argsstring></argsstring>
+        <name>intrHart</name>
+        <qualifiedname>i2cHandle_t::intrHart</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Hart (CPU) the interrupt is routed to. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.c" line="31" column="4" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structi2cHandle__t_1a2c3c7bdf69bdffb540a4006143145a8c" prot="public" static="no" mutable="no">
+        <type>I2c_Config</type>
+        <definition>I2c_Config i2cHandle_t::cfg</definition>
+        <argsstring></argsstring>
+        <name>cfg</name>
+        <qualifiedname>i2cHandle_t::cfg</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Controller timing configuration. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.c" line="32" column="12" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structi2cHandle__t_1aa7a6cbf09cf75bbf51efe13a23e80edc" prot="public" static="no" mutable="no">
+        <type>volatile u8</type>
+        <definition>volatile u8 i2cHandle_t::timeout</definition>
+        <argsstring></argsstring>
+        <name>timeout</name>
+        <qualifiedname>i2cHandle_t::timeout</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Flag set by ISR when timeout detected. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.c" line="35" column="13" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structi2cHandle__t_1a281e5f1ec3272ed6a805b8b9fb28b268" prot="public" static="no" mutable="no">
+        <type>volatile u8</type>
+        <definition>volatile u8 i2cHandle_t::arbLoss</definition>
+        <argsstring></argsstring>
+        <name>arbLoss</name>
+        <qualifiedname>i2cHandle_t::arbLoss</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Flag for arbitration loss. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.c" line="36" column="13" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structi2cHandle__t_1aa50be0d7901821a2040d0fd7d09027cb" prot="public" static="no" mutable="no">
+        <type>volatile u8</type>
+        <definition>volatile u8 i2cHandle_t::nackRecvd</definition>
+        <argsstring></argsstring>
+        <name>nackRecvd</name>
+        <qualifiedname>i2cHandle_t::nackRecvd</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Flag for NACK reception. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.c" line="37" column="13" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>I2C controller instance state (opaque handle, see <ref refid="i2cWrapper_8h" kindref="compound">i2cWrapper.h</ref>). </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/drivers/i2c/i2cWrapper.c" line="25" column="1" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="26" bodyend="38"/>
+    <listofallmembers>
+      <member refid="structi2cHandle__t_1a281e5f1ec3272ed6a805b8b9fb28b268" prot="public" virt="non-virtual"><scope>i2cHandle_t</scope><name>arbLoss</name></member>
+      <member refid="structi2cHandle__t_1a6254367b561c8e2783e78df5293063fa" prot="public" virt="non-virtual"><scope>i2cHandle_t</scope><name>baseAddress</name></member>
+      <member refid="structi2cHandle__t_1a2c3c7bdf69bdffb540a4006143145a8c" prot="public" virt="non-virtual"><scope>i2cHandle_t</scope><name>cfg</name></member>
+      <member refid="structi2cHandle__t_1a1200ddaa501a7acf0360659f813d1fe3" prot="public" virt="non-virtual"><scope>i2cHandle_t</scope><name>deviceId</name></member>
+      <member refid="structi2cHandle__t_1ab017aad840f189bebf821ded47b995f6" prot="public" virt="non-virtual"><scope>i2cHandle_t</scope><name>intrHart</name></member>
+      <member refid="structi2cHandle__t_1ae172f8c1ed557fdfffef9d6f20c551ca" prot="public" virt="non-virtual"><scope>i2cHandle_t</scope><name>intrId</name></member>
+      <member refid="structi2cHandle__t_1aef2656f2eedc53aed2aec007dd6a5706" prot="public" virt="non-virtual"><scope>i2cHandle_t</scope><name>intrPrio</name></member>
+      <member refid="structi2cHandle__t_1aa50be0d7901821a2040d0fd7d09027cb" prot="public" virt="non-virtual"><scope>i2cHandle_t</scope><name>nackRecvd</name></member>
+      <member refid="structi2cHandle__t_1aa7a6cbf09cf75bbf51efe13a23e80edc" prot="public" virt="non-virtual"><scope>i2cHandle_t</scope><name>timeout</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

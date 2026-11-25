@@ -1,0 +1,1154 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="si5332_8h" kind="file" language="C++">
+    <compoundname>si5332.h</compoundname>
+    <includes local="no">type.h</includes>
+    <includedby refid="boardConfig_8h" local="yes">sw/app/src/boardConfig.h</includedby>
+    <includedby refid="clkGen_8h" local="yes">sw/app/src/clkGen.h</includedby>
+    <includedby refid="si5332_8c" local="yes">sw/devices/si5332/si5332.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>sw/devices/si5332/si5332.h</label>
+        <link refid="si5332_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>type.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>sw/app/src/boardConfig.h</label>
+        <link refid="boardConfig_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>sw/app/src/boardGpio.c</label>
+        <link refid="boardGpio_8c"/>
+      </node>
+      <node id="4">
+        <label>sw/app/src/clkGen.c</label>
+        <link refid="clkGen_8c"/>
+      </node>
+      <node id="9">
+        <label>sw/app/src/clkGen.h</label>
+        <link refid="clkGen_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>sw/app/src/i2cBus.c</label>
+        <link refid="i2cBus_8c"/>
+      </node>
+      <node id="6">
+        <label>sw/app/src/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+      <node id="8">
+        <label>sw/app/src/power.c</label>
+        <link refid="power_8c"/>
+      </node>
+      <node id="7">
+        <label>sw/app/src/power.h</label>
+        <link refid="power_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>sw/devices/si5332/si5332.c</label>
+        <link refid="si5332_8c"/>
+      </node>
+      <node id="1">
+        <label>sw/devices/si5332/si5332.h</label>
+        <link refid="si5332_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structsi5332__status__flags__t" prot="public">si5332_status_flags_t</innerclass>
+    <sectiondef kind="user-defined">
+      <header>Predefined output frequencies [Hz]</header>
+      <memberdef kind="define" id="si5332_8h_1a2226a2a58d9c7b8a5d7fda0fe913e03d" prot="public" static="no">
+        <name>SI5332_25MHZ</name>
+        <initializer>25000000UL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>25 MHz. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="121" column="9" bodyfile="sw/devices/si5332/si5332.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="si5332_8h_1a110cbfc42e4503bcf48fa1db09b09792" prot="public" static="no">
+        <name>SI5332_26MHZ</name>
+        <initializer>26000000UL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>26 MHz. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="122" column="9" bodyfile="sw/devices/si5332/si5332.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="si5332_8h_1aa2a13c7ac249d312fb23feeeeab98b1e" prot="public" static="no">
+        <name>SI5332_27MHZ</name>
+        <initializer>27000000UL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>27 MHz. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="123" column="9" bodyfile="sw/devices/si5332/si5332.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="si5332_8h_1ada8fd46b4d65cce148b3669b8c92263c" prot="public" static="no">
+        <name>SI5332_50MHZ</name>
+        <initializer>50000000UL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>50 MHz. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="124" column="9" bodyfile="sw/devices/si5332/si5332.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="si5332_8h_1a57d0074c5a2b6670c93622543c9338f9" prot="public" static="no">
+        <name>SI5332_52MHZ</name>
+        <initializer>52000000UL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>52 MHz. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="125" column="9" bodyfile="sw/devices/si5332/si5332.h" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="si5332_8h_1ae3b0b5e578e3347a1f572ef0cd188053" prot="public" static="no">
+        <name>SI5332_100MHZ</name>
+        <initializer>100000000UL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>100 MHz. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="126" column="9" bodyfile="sw/devices/si5332/si5332.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="si5332_8h_1a131863bb286a48dbf5983bfebc360683" prot="public" static="no">
+        <name>SI5332_108MHZ</name>
+        <initializer>108000000UL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>108 MHz. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="127" column="9" bodyfile="sw/devices/si5332/si5332.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="si5332_8h_1a89e204335bd01de1847e98ef1c79f549" prot="public" static="no">
+        <name>SI5332_125MHZ</name>
+        <initializer>125000000UL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>125 MHz. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="128" column="9" bodyfile="sw/devices/si5332/si5332.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="si5332_8h_1a26a6c1fac56d6589a036651b5abc60d7" prot="public" static="no">
+        <name>SI5332_135MHZ</name>
+        <initializer>135000000UL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>135 MHz. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="129" column="9" bodyfile="sw/devices/si5332/si5332.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="si5332_8h_1ad9787353559bcec44bfd36d89abbcfa7" prot="public" static="no">
+        <name>SI5332_150MHZ</name>
+        <initializer>150000000UL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>150 MHz. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="130" column="9" bodyfile="sw/devices/si5332/si5332.h" bodystart="130" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>Valid range for si5332_set_output_freq()</header>
+      <memberdef kind="define" id="si5332_8h_1abfc8f94b5567f1c64b4f9aa41aaf8c0f" prot="public" static="no">
+        <name>SI5332_FREQ_MIN_HZ</name>
+        <initializer>5000000UL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Minimum configurable output frequency: 5 MHz. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="137" column="9" bodyfile="sw/devices/si5332/si5332.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="si5332_8h_1afd3dde7984fe63ee5798579a4f5c630b" prot="public" static="no">
+        <name>SI5332_FREQ_MAX_HZ</name>
+        <initializer>250000000UL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Maximum configurable output frequency: 250 MHz. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="138" column="9" bodyfile="sw/devices/si5332/si5332.h" bodystart="138" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>Low-level HAL callbacks</header>
+      <description><para>Write/read one byte at register <computeroutput>reg_addr</computeroutput> of the 7-bit I2C target <computeroutput>i2c_addr</computeroutput>. <computeroutput>ctx</computeroutput> is passed through unchanged (e.g. an i2cHandle_t*). </para>
+</description>
+      <memberdef kind="typedef" id="si5332_8h_1a7d98566c2a81c470ea74ef12ac394bd3" prot="public" static="no">
+        <type><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref>(*</type>
+        <definition>typedef si5332_err_t(* si5332_i2c_write_f) (void *ctx, u8 i2c_addr, u8 reg_addr, const u8 *data)</definition>
+        <argsstring>)(void *ctx, u8 i2c_addr, u8 reg_addr, const u8 *data)</argsstring>
+        <name>si5332_i2c_write_f</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="55" column="9" bodyfile="sw/devices/si5332/si5332.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="si5332_8h_1a52f61956d5bbdcaad0b02d626ec296c9" prot="public" static="no">
+        <type><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref>(*</type>
+        <definition>typedef si5332_err_t(* si5332_i2c_read_f) (void *ctx, u8 i2c_addr, u8 reg_addr, u8 *data)</definition>
+        <argsstring>)(void *ctx, u8 i2c_addr, u8 reg_addr, u8 *data)</argsstring>
+        <name>si5332_i2c_read_f</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="56" column="9" bodyfile="sw/devices/si5332/si5332.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" prot="public" static="no" strong="no">
+        <type></type>
+        <name>si5332_err_t</name>
+        <enumvalue id="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" prot="public">
+          <name>SI5332_OK</name>
+          <initializer>=  0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Success. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525ab3c36819f95b681f697f065657fce5be" prot="public">
+          <name>SI5332_E_PARAM</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Invalid argument. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a53911657ee9e8d230a18585c5288fc56" prot="public">
+          <name>SI5332_E_I2C</name>
+          <initializer>= -2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>HAL/bus error. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a1c83e3efe10577a3faed7fd88f38de4e" prot="public">
+          <name>SI5332_E_TIMEOUT</name>
+          <initializer>= -3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>USYS_STAT does not reach the desired state. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a2179484e280b4afa71b0b32767dc1022" prot="public">
+          <name>SI5332_E_NO_INPUT</name>
+          <initializer>= -4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>USYS_STAT == 0x89: no input clock detected. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a5717cd6e26b97d80b372c203e0d96216" prot="public">
+          <name>SI5332_E_NO_FREE_MS</name>
+          <initializer>= -5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>No MultiSynth (ID0/ID1) free anymore. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a806c32ff4f95dc7cd0a60b42e1e0b7fc" prot="public">
+          <name>SI5332_E_FREQ_UNSUPPORTED</name>
+          <initializer>= -6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Frequency outside the valid divider range. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525ac0e0bf816bb4e9e03bcabbcef5d734db" prot="public">
+          <name>SI5332_E_NOT_INIT</name>
+          <initializer>= -7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para><ref refid="si5332_8h_1a229212f30f2c71fd65704559f05be08a" kindref="member">si5332_init()</ref> has not yet been called successfully. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Status codes of the clock generator driver. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="34" column="1" bodyfile="sw/devices/si5332/si5332.h" bodystart="34" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="enum" id="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188b" prot="public" static="no" strong="no">
+        <type></type>
+        <name>si5332_clk_src_t</name>
+        <enumvalue id="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188ba9713633ae89a66c75c9d1533de513873" prot="public">
+          <name>SI5332_CLK_SRC_XTAL_27M</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>XA/XB 27 MHz crystal. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188ba4917b8a2f523ee00969d93e61ab71dc8" prot="public">
+          <name>SI5332_CLK_SRC_CLKIN2_100M</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>CLKIN_2 100 MHz differential. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>PLL input source. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="64" column="1" bodyfile="sw/devices/si5332/si5332.h" bodystart="64" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="enum" id="si5332_8h_1ab078083540adc556331c4dcd56ba2be0" prot="public" static="no" strong="no">
+        <type></type>
+        <name>si5332_out_ch_t</name>
+        <enumvalue id="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a5df49b8d4f234394f1bf0c6c4777b255" prot="public">
+          <name>SI5332_OUT_0</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Output 0. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a66955d4b94409dacb93d65038b73810e" prot="public">
+          <name>SI5332_OUT_2</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Output 2. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a69c9ebdfac049625c7ebeca4f2282016" prot="public">
+          <name>SI5332_OUT_4</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Output 4. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a70a634c0378ffb03fe8b9fda17084533" prot="public">
+          <name>SI5332_OUT_7</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Output 7. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Configurable outputs (OUT6 is fixed and intentionally not included). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="70" column="1" bodyfile="sw/devices/si5332/si5332.h" bodystart="70" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="enum" id="si5332_8h_1a8030b779324856ece5822c50eba5500a" prot="public" static="no" strong="no">
+        <type></type>
+        <name>si5332_out_format_t</name>
+        <enumvalue id="si5332_8h_1a8030b779324856ece5822c50eba5500aa210d26213204f5eb95a496fb3cf4b127" prot="public">
+          <name>SI5332_FMT_LVDS</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>2.5/3.3 V LVDS </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a8030b779324856ece5822c50eba5500aaca6311fcc1f51b35fcc8bf9e9f7251c8" prot="public">
+          <name>SI5332_FMT_LVDS_FAST</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>2.5/3.3 V LVDS fast (CBPro default) </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a8030b779324856ece5822c50eba5500aa54da8fc9d74bb3dd5d5cd11941742635" prot="public">
+          <name>SI5332_FMT_HCSL_50_EXT</name>
+          <initializer>= 8</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>HCSL 50 Ohm, external termination </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a8030b779324856ece5822c50eba5500aa12d69c7ec3c639f74d9f21d825a81a9c" prot="public">
+          <name>SI5332_FMT_HCSL_50_INT</name>
+          <initializer>= 9</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>HCSL 50 Ohm, internal termination </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a8030b779324856ece5822c50eba5500aade5f45063fbad3624e9eb70d258cbc30" prot="public">
+          <name>SI5332_FMT_HCSL_42_5_EXT</name>
+          <initializer>= 10</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>HCSL 42.5 Ohm, external termination </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a8030b779324856ece5822c50eba5500aac7e8d10b0c30bda3042a38e0c0bd7d55" prot="public">
+          <name>SI5332_FMT_HCSL_42_5_INT</name>
+          <initializer>= 11</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>HCSL 42.5 Ohm, internal termination </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a8030b779324856ece5822c50eba5500aa36a44b1e8d4cffdf84c29d25ca5f3062" prot="public">
+          <name>SI5332_FMT_LVPECL</name>
+          <initializer>= 12</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>LVPECL (VDDO &gt;= 2.25 V) </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Signal formats (differential, 3.3 V). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The enum value directly matches the OUTx_MODE register value (RM table 7.8). Not offered: 1.8 V LVDS (5/7) and CMOS (1..3). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="83" column="1" bodyfile="sw/devices/si5332/si5332.h" bodystart="83" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="enum" id="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819c" prot="public" static="no" strong="no">
+        <type></type>
+        <name>si5332_div_src_t</name>
+        <enumvalue id="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819cae8826ead50bad56de77832a5146d5e01" prot="public">
+          <name>SI5332_DIV_SRC_NONE</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Not configured. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819ca3c09831ecd97c258556fcaec40895bfa" prot="public">
+          <name>SI5332_DIV_SRC_HSDIV0</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Integer divider O0, 100 MHz. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819ca4116371fab3960d2ad045fb47f30ddb9" prot="public">
+          <name>SI5332_DIV_SRC_HSDIV1</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Integer divider O1, 125 MHz. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819ca98d19c8b7f8a6d19d60b19d14497fe5d" prot="public">
+          <name>SI5332_DIV_SRC_ID0</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>MultiSynth N0. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819ca31dd26cdcb259cebdea19040b6ea1777" prot="public">
+          <name>SI5332_DIV_SRC_ID1</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>MultiSynth N1. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Divider source of an output. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="94" column="1" bodyfile="sw/devices/si5332/si5332.h" bodystart="94" bodyend="100"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="si5332_8h_1a96d13cdf83f3f5788f305e2e250e90f0" prot="public" static="no">
+        <type>struct si5332_t</type>
+        <definition>typedef struct si5332_t si5332_t</definition>
+        <argsstring></argsstring>
+        <name>si5332_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Opaque device handle (defined in <ref refid="si5332_8c" kindref="compound">si5332.c</ref>). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="112" column="23" bodyfile="sw/devices/si5332/si5332.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="si5332_8h_1a9a05d733ba2455228fe087a1f384e986" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structsi5332__t" kindref="compound">si5332_t</ref> *</type>
+        <definition>si5332_t * si5332_initialize</definition>
+        <argsstring>(u8 i2c_addr, si5332_i2c_write_f w, si5332_i2c_read_f r, void *ctx)</argsstring>
+        <name>si5332_initialize</name>
+        <param>
+          <type>u8</type>
+          <declname>i2c_addr</declname>
+        </param>
+        <param>
+          <type><ref refid="si5332_8h_1a7d98566c2a81c470ea74ef12ac394bd3" kindref="member">si5332_i2c_write_f</ref></type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type><ref refid="si5332_8h_1a52f61956d5bbdcaad0b02d626ec296c9" kindref="member">si5332_i2c_read_f</ref></type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>Creates the device handle (no I2C access). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The driver manages a single static instance.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i2c_addr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>7-bit I2C address of the device. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>w</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HAL register write callback, must not be NULL. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HAL register read callback, must not be NULL. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Opaque context pointer passed through to <computeroutput>w</computeroutput> and <computeroutput>r</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to the device handle, or NULL if <computeroutput>w</computeroutput> or <computeroutput>r</computeroutput> is NULL. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="156" column="10" bodyfile="sw/devices/si5332/si5332.c" bodystart="649" bodyend="664" declfile="sw/devices/si5332/si5332.h" declline="156" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="si5332_8h_1a229212f30f2c71fd65704559f05be08a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref></type>
+        <definition>si5332_err_t si5332_init</definition>
+        <argsstring>(si5332_t *pDev, si5332_clk_src_t initial_src)</argsstring>
+        <name>si5332_init</name>
+        <param>
+          <type><ref refid="structsi5332__t" kindref="compound">si5332_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type><ref refid="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188b" kindref="member">si5332_clk_src_t</ref></type>
+          <declname>initial_src</declname>
+        </param>
+        <briefdescription>
+<para>Loads the base and source configuration and brings the device to ACTIVE. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Switches to ACTIVE and waits for the PLL. Afterwards only OUT6 (25 MHz) is active; OUT0 (100 MHz) and OUT2 (125 MHz) are preconfigured but switched off.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle from <ref refid="si5332_8h_1a9a05d733ba2455228fe087a1f384e986" kindref="member">si5332_initialize()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>initial_src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input clock source to configure. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" kindref="member">SI5332_OK</ref> on success, negative <ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Device is in READY state (register access for output/PLL config).</para>
+<para>&lt; Timeout for the READY transition.</para>
+<para>&lt; Device is in ACTIVE state (outputs running).</para>
+<para>&lt; Timeout for the ACTIVE transition (includes PLL lock).</para>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="169" column="14" bodyfile="sw/devices/si5332/si5332.c" bodystart="666" bodyend="700" declfile="sw/devices/si5332/si5332.h" declline="169" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="si5332_8h_1a3a29977b10b6f54ad9a1985f27af7ebe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref></type>
+        <definition>si5332_err_t si5332_set_clock_source</definition>
+        <argsstring>(si5332_t *pDev, si5332_clk_src_t src)</argsstring>
+        <name>si5332_set_clock_source</name>
+        <param>
+          <type><ref refid="structsi5332__t" kindref="compound">si5332_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type><ref refid="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188b" kindref="member">si5332_clk_src_t</ref></type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+<para>Switches the input source. Internally performs <ref refid="si5332_8h_1a62c9756fc10566540267035a11c64c59" kindref="member">si5332_commit()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Desired input clock source. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" kindref="member">SI5332_OK</ref> on success, negative <ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref> code on error (rollback to the previous source is attempted on no-input/timeout). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="178" column="14" bodyfile="sw/devices/si5332/si5332.c" bodystart="756" bodyend="778" declfile="sw/devices/si5332/si5332.h" declline="178" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="si5332_8h_1a87d7022ef98f9e328e398d4935a9be68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref></type>
+        <definition>si5332_err_t si5332_set_output_enable</definition>
+        <argsstring>(si5332_t *pDev, si5332_out_ch_t ch, u8 enable)</argsstring>
+        <name>si5332_set_output_enable</name>
+        <param>
+          <type><ref refid="structsi5332__t" kindref="compound">si5332_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0" kindref="member">si5332_out_ch_t</ref></type>
+          <declname>ch</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>enable</declname>
+        </param>
+        <briefdescription>
+<para>Enables/disables one output channel. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Takes effect immediately if no changes are pending, otherwise with the next <ref refid="si5332_8h_1a62c9756fc10566540267035a11c64c59" kindref="member">si5332_commit()</ref>. An unconfigured output (OUT4/OUT7 without <ref refid="si5332_8h_1a1bf82246db9017f3812bf26e968ddb71" kindref="member">si5332_set_output_freq()</ref>) is only activated after configuration and commit.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ch</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output channel. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>enable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Non-zero to enable, zero to disable. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" kindref="member">SI5332_OK</ref> on success, negative <ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="192" column="14" bodyfile="sw/devices/si5332/si5332.c" bodystart="780" bodyend="800" declfile="sw/devices/si5332/si5332.h" declline="192" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="si5332_8h_1a490877359537bd5178f479e10184740c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref></type>
+        <definition>si5332_err_t si5332_set_output_format</definition>
+        <argsstring>(si5332_t *pDev, si5332_out_ch_t ch, si5332_out_format_t fmt)</argsstring>
+        <name>si5332_set_output_format</name>
+        <param>
+          <type><ref refid="structsi5332__t" kindref="compound">si5332_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0" kindref="member">si5332_out_ch_t</ref></type>
+          <declname>ch</declname>
+        </param>
+        <param>
+          <type><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500a" kindref="member">si5332_out_format_t</ref></type>
+          <declname>fmt</declname>
+        </param>
+        <briefdescription>
+<para>Schedules the signal format (takes effect after <ref refid="si5332_8h_1a62c9756fc10566540267035a11c64c59" kindref="member">si5332_commit()</ref>). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ch</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output channel. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fmt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Desired signal format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" kindref="member">SI5332_OK</ref> on success, negative <ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="201" column="14" bodyfile="sw/devices/si5332/si5332.c" bodystart="802" bodyend="817" declfile="sw/devices/si5332/si5332.h" declline="201" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="si5332_8h_1a1bf82246db9017f3812bf26e968ddb71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref></type>
+        <definition>si5332_err_t si5332_set_output_freq</definition>
+        <argsstring>(si5332_t *pDev, si5332_out_ch_t ch, u32 freq_hz)</argsstring>
+        <name>si5332_set_output_freq</name>
+        <param>
+          <type><ref refid="structsi5332__t" kindref="compound">si5332_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0" kindref="member">si5332_out_ch_t</ref></type>
+          <declname>ch</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>freq_hz</declname>
+        </param>
+        <briefdescription>
+<para>Schedules the output frequency (takes effect after <ref refid="si5332_8h_1a62c9756fc10566540267035a11c64c59" kindref="member">si5332_commit()</ref>). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Routing: HSDIV0 (100 MHz) -&gt; HSDIV1 (125 MHz) -&gt; already used MultiSynth -&gt; free MultiSynth. On error, the pending state remains unchanged.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ch</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output channel. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freq_hz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Desired output frequency in Hz (<ref refid="si5332_8h_1abfc8f94b5567f1c64b4f9aa41aaf8c0f" kindref="member">SI5332_FREQ_MIN_HZ</ref> .. <ref refid="si5332_8h_1afd3dde7984fe63ee5798579a4f5c630b" kindref="member">SI5332_FREQ_MAX_HZ</ref>). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" kindref="member">SI5332_OK</ref> on success, <ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a806c32ff4f95dc7cd0a60b42e1e0b7fc" kindref="member">SI5332_E_FREQ_UNSUPPORTED</ref> if no valid divider combination exists, <ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a5717cd6e26b97d80b372c203e0d96216" kindref="member">SI5332_E_NO_FREE_MS</ref> if both MultiSynths are in use, other negative <ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref> codes on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Number of fractional MultiSynth dividers (ID0, ID1).</para>
+<para>&lt; Minimum configurable output frequency: 5 MHz.</para>
+<para>&lt; Maximum configurable output frequency: 250 MHz.</para>
+<para>&lt; Fixed HSDIV0 output frequency: VCO / 25.</para>
+<para>&lt; Fixed HSDIV1 output frequency: VCO / 20.</para>
+<para>&lt; Number of fractional MultiSynth dividers (ID0, ID1).</para>
+<para>&lt; Number of fractional MultiSynth dividers (ID0, ID1).</para>
+<para>&lt; Number of fractional MultiSynth dividers (ID0, ID1).</para>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="217" column="14" bodyfile="sw/devices/si5332/si5332.c" bodystart="826" bodyend="912" declfile="sw/devices/si5332/si5332.h" declline="217" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="si5332_8h_1a62c9756fc10566540267035a11c64c59" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref></type>
+        <definition>si5332_err_t si5332_commit</definition>
+        <argsstring>(si5332_t *pDev)</argsstring>
+        <name>si5332_commit</name>
+        <param>
+          <type><ref refid="structsi5332__t" kindref="compound">si5332_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <briefdescription>
+<para>Applies all pending changes (READY -&gt; write registers -&gt; ACTIVE). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" kindref="member">SI5332_OK</ref> on success (or if nothing was pending), negative <ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref> code on error. </para>
+</simplesect>
+<simplesect kind="warning"><para>Every commit briefly interrupts ALL outputs, including OUT6. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Output enable register for OUT0..OUT5.</para>
+<para>&lt; Output enable register for OUT6..OUT7.</para>
+<para>&lt; Device is in READY state (register access for output/PLL config).</para>
+<para>&lt; Timeout for the READY transition.</para>
+<para>&lt; Number of fractional MultiSynth dividers (ID0, ID1).</para>
+<para>&lt; Number of API-configurable output channels (OUT0, OUT2, OUT4, OUT7).</para>
+<para>&lt; Device is in ACTIVE state (outputs running).</para>
+<para>&lt; Timeout for the ACTIVE transition (includes PLL lock).</para>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="226" column="14" bodyfile="sw/devices/si5332/si5332.c" bodystart="711" bodyend="754" declfile="sw/devices/si5332/si5332.h" declline="226" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="si5332_8h_1a2163cd28a22fe5c9321bb3a899f9cf3e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref></type>
+        <definition>si5332_err_t si5332_get_status</definition>
+        <argsstring>(si5332_t *pDev, si5332_status_flags_t *flags)</argsstring>
+        <name>si5332_get_status</name>
+        <param>
+          <type><ref refid="structsi5332__t" kindref="compound">si5332_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type><ref refid="structsi5332__status__flags__t" kindref="compound">si5332_status_flags_t</ref> *</type>
+          <declname>flags</declname>
+        </param>
+        <briefdescription>
+<para>Reads the current device status flags. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Only requires a valid handle, not a prior successful <ref refid="si5332_8h_1a229212f30f2c71fd65704559f05be08a" kindref="member">si5332_init()</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the decoded status flags on success. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" kindref="member">SI5332_OK</ref> on success, negative <ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; System status register, mirrors the state reached by <ref refid="si5332_8c_1ade9296642e6268b98b73e0bf2a755db9" kindref="member">REG_USYS_CTRL</ref>.</para>
+<para>&lt; Status register: [7] VDD_XTAL_OK, [5:0] VDDO_OK.</para>
+<para>&lt; Device is in ACTIVE state (outputs running).</para>
+<para>&lt; No input clock detected on the currently selected source.</para>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="237" column="14" bodyfile="sw/devices/si5332/si5332.c" bodystart="914" bodyend="933" declfile="sw/devices/si5332/si5332.h" declline="237" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="si5332_8h_1abb8aee0f2b2648da830a924a3d88020e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref></type>
+        <definition>si5332_err_t si5332_apply_config</definition>
+        <argsstring>(si5332_t *pDev)</argsstring>
+        <name>si5332_apply_config</name>
+        <param>
+          <type><ref refid="structsi5332__t" kindref="compound">si5332_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <briefdescription>
+<para>Legacy helper, equivalent to si5332_init(pDev, SI5332_CLK_SRC_XTAL_27M). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>See <ref refid="si5332_8h_1a229212f30f2c71fd65704559f05be08a" kindref="member">si5332_init()</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="244" column="14" bodyfile="sw/devices/si5332/si5332.c" bodystart="935" bodyend="938" declfile="sw/devices/si5332/si5332.h" declline="244" declcolumn="14"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Driver for the Skyworks Si5332A-D-GM2 (8 outputs, 40-QFN), fixed VCO at 2.5 GHz, switchable input source (27 MHz crystal / 100 MHz CLKIN_2). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Concept:<itemizedlist>
+<listitem><para>Almost all output registers (OUTx_MODE, OUTx_DIV, ID dividers, input/PLL registers, power-down bits) are only writable in READY mode. Changes are therefore collected in the driver (<ref refid="si5332_8h_1a490877359537bd5178f479e10184740c" kindref="member">si5332_set_output_format()</ref> / <ref refid="si5332_8h_1a1bf82246db9017f3812bf26e968ddb71" kindref="member">si5332_set_output_freq()</ref>) and applied with <ref refid="si5332_8h_1a62c9756fc10566540267035a11c64c59" kindref="member">si5332_commit()</ref> in a single READY-&gt;ACTIVE cycle. <simplesect kind="warning"><para>Every commit briefly interrupts ALL outputs, including OUT6 (25 MHz).</para>
+</simplesect>
+</para>
+</listitem><listitem><para>OUT6 (25 MHz CMOS system clock) is fixed and cannot be changed via the API.</para>
+</listitem><listitem><para>HSDIV0 (100 MHz) and HSDIV1 (125 MHz) are fixed; additional frequencies are generated via the two MultiSynths (ID0/ID1, fractional). </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>2026<sp/>Matthias<sp/>Haefner<sp/>-<sp/>Heosys</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SRC_SI5332_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SRC_SI5332_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;type.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Status<sp/>codes<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="35" refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" kindref="member">SI5332_OK</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><sp/>0,<sp/></highlight></codeline>
+<codeline lineno="36" refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525ab3c36819f95b681f697f065657fce5be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525ab3c36819f95b681f697f065657fce5be" kindref="member">SI5332_E_PARAM</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>-1,<sp/></highlight></codeline>
+<codeline lineno="37" refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a53911657ee9e8d230a18585c5288fc56" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a53911657ee9e8d230a18585c5288fc56" kindref="member">SI5332_E_I2C</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>-2,<sp/></highlight></codeline>
+<codeline lineno="38" refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a1c83e3efe10577a3faed7fd88f38de4e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a1c83e3efe10577a3faed7fd88f38de4e" kindref="member">SI5332_E_TIMEOUT</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>-3,<sp/></highlight></codeline>
+<codeline lineno="39" refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a2179484e280b4afa71b0b32767dc1022" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a2179484e280b4afa71b0b32767dc1022" kindref="member">SI5332_E_NO_INPUT</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>-4,<sp/></highlight></codeline>
+<codeline lineno="40" refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a5717cd6e26b97d80b372c203e0d96216" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a5717cd6e26b97d80b372c203e0d96216" kindref="member">SI5332_E_NO_FREE_MS</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>-5,<sp/></highlight></codeline>
+<codeline lineno="41" refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a806c32ff4f95dc7cd0a60b42e1e0b7fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a806c32ff4f95dc7cd0a60b42e1e0b7fc" kindref="member">SI5332_E_FREQ_UNSUPPORTED</ref><sp/>=<sp/>-6,<sp/></highlight></codeline>
+<codeline lineno="42" refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525ac0e0bf816bb4e9e03bcabbcef5d734db" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525ac0e0bf816bb4e9e03bcabbcef5d734db" kindref="member">SI5332_E_NOT_INIT</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>-7<sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}<sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Low-level<sp/>HAL:<sp/>provided<sp/>by<sp/>the<sp/>BSP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="si5332_8h_1a7d98566c2a81c470ea74ef12ac394bd3" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref><sp/>(*<ref refid="si5332_8h_1a7d98566c2a81c470ea74ef12ac394bd3" kindref="member">si5332_i2c_write_f</ref>)(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ctx,<sp/>u8<sp/>i2c_addr,<sp/>u8<sp/>reg_addr,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>u8<sp/>*data);</highlight></codeline>
+<codeline lineno="56" refid="si5332_8h_1a52f61956d5bbdcaad0b02d626ec296c9" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref><sp/>(*<ref refid="si5332_8h_1a52f61956d5bbdcaad0b02d626ec296c9" kindref="member">si5332_i2c_read_f</ref>)<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ctx,<sp/>u8<sp/>i2c_addr,<sp/>u8<sp/>reg_addr,<sp/><sp/><sp/><sp/><sp/><sp/><sp/>u8<sp/>*data);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Types<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="65" refid="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188ba9713633ae89a66c75c9d1533de513873" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188ba9713633ae89a66c75c9d1533de513873" kindref="member">SI5332_CLK_SRC_XTAL_27M</ref><sp/>=<sp/>0,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188ba4917b8a2f523ee00969d93e61ab71dc8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188ba4917b8a2f523ee00969d93e61ab71dc8" kindref="member">SI5332_CLK_SRC_CLKIN2_100M</ref><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67"><highlight class="normal">}<sp/><ref refid="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188b" kindref="member">si5332_clk_src_t</ref>;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="71" refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a5df49b8d4f234394f1bf0c6c4777b255" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a5df49b8d4f234394f1bf0c6c4777b255" kindref="member">SI5332_OUT_0</ref><sp/>=<sp/>0,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72" refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a66955d4b94409dacb93d65038b73810e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a66955d4b94409dacb93d65038b73810e" kindref="member">SI5332_OUT_2</ref><sp/>=<sp/>2,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73" refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a69c9ebdfac049625c7ebeca4f2282016" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a69c9ebdfac049625c7ebeca4f2282016" kindref="member">SI5332_OUT_4</ref><sp/>=<sp/>4,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74" refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a70a634c0378ffb03fe8b9fda17084533" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a70a634c0378ffb03fe8b9fda17084533" kindref="member">SI5332_OUT_7</ref><sp/>=<sp/>7<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}<sp/><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0" kindref="member">si5332_out_ch_t</ref>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="si5332_8h_1a8030b779324856ece5822c50eba5500a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="84" refid="si5332_8h_1a8030b779324856ece5822c50eba5500aa210d26213204f5eb95a496fb3cf4b127" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500aa210d26213204f5eb95a496fb3cf4b127" kindref="member">SI5332_FMT_LVDS</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>4,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85" refid="si5332_8h_1a8030b779324856ece5822c50eba5500aaca6311fcc1f51b35fcc8bf9e9f7251c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500aaca6311fcc1f51b35fcc8bf9e9f7251c8" kindref="member">SI5332_FMT_LVDS_FAST</ref><sp/><sp/><sp/><sp/><sp/>=<sp/>6,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86" refid="si5332_8h_1a8030b779324856ece5822c50eba5500aa54da8fc9d74bb3dd5d5cd11941742635" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500aa54da8fc9d74bb3dd5d5cd11941742635" kindref="member">SI5332_FMT_HCSL_50_EXT</ref><sp/><sp/><sp/>=<sp/>8,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87" refid="si5332_8h_1a8030b779324856ece5822c50eba5500aa12d69c7ec3c639f74d9f21d825a81a9c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500aa12d69c7ec3c639f74d9f21d825a81a9c" kindref="member">SI5332_FMT_HCSL_50_INT</ref><sp/><sp/><sp/>=<sp/>9,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88" refid="si5332_8h_1a8030b779324856ece5822c50eba5500aade5f45063fbad3624e9eb70d258cbc30" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500aade5f45063fbad3624e9eb70d258cbc30" kindref="member">SI5332_FMT_HCSL_42_5_EXT</ref><sp/>=<sp/>10,<sp/><sp/></highlight></codeline>
+<codeline lineno="89" refid="si5332_8h_1a8030b779324856ece5822c50eba5500aac7e8d10b0c30bda3042a38e0c0bd7d55" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500aac7e8d10b0c30bda3042a38e0c0bd7d55" kindref="member">SI5332_FMT_HCSL_42_5_INT</ref><sp/>=<sp/>11,<sp/><sp/></highlight></codeline>
+<codeline lineno="90" refid="si5332_8h_1a8030b779324856ece5822c50eba5500aa36a44b1e8d4cffdf84c29d25ca5f3062" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500aa36a44b1e8d4cffdf84c29d25ca5f3062" kindref="member">SI5332_FMT_LVPECL</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>12<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="91"><highlight class="normal">}<sp/><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500a" kindref="member">si5332_out_format_t</ref>;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="95" refid="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819cae8826ead50bad56de77832a5146d5e01" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819cae8826ead50bad56de77832a5146d5e01" kindref="member">SI5332_DIV_SRC_NONE</ref><sp/>=<sp/>0,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="96" refid="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819ca3c09831ecd97c258556fcaec40895bfa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819ca3c09831ecd97c258556fcaec40895bfa" kindref="member">SI5332_DIV_SRC_HSDIV0</ref>,<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97" refid="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819ca4116371fab3960d2ad045fb47f30ddb9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819ca4116371fab3960d2ad045fb47f30ddb9" kindref="member">SI5332_DIV_SRC_HSDIV1</ref>,<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="98" refid="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819ca98d19c8b7f8a6d19d60b19d14497fe5d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819ca98d19c8b7f8a6d19d60b19d14497fe5d" kindref="member">SI5332_DIV_SRC_ID0</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99" refid="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819ca31dd26cdcb259cebdea19040b6ea1777" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819ca31dd26cdcb259cebdea19040b6ea1777" kindref="member">SI5332_DIV_SRC_ID1</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal">}<sp/><ref refid="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819c" kindref="member">si5332_div_src_t</ref>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="structsi5332__status__flags__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="104" refid="structsi5332__status__flags__t_1aaa0defa8a2f34d7af8012776348a35b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structsi5332__status__flags__t_1aaa0defa8a2f34d7af8012776348a35b6" kindref="member">usys_stat</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="105" refid="structsi5332__status__flags__t_1a025cc1e2e4e3f4c018beb1820a66a518" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structsi5332__status__flags__t_1a025cc1e2e4e3f4c018beb1820a66a518" kindref="member">is_active</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="106" refid="structsi5332__status__flags__t_1a7d6c47f4e48eb904356d0f0948da9cd5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structsi5332__status__flags__t_1a7d6c47f4e48eb904356d0f0948da9cd5" kindref="member">no_input</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="107" refid="structsi5332__status__flags__t_1ad792f4f68449fc4a2daa7ed1d3b9e75b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structsi5332__status__flags__t_1ad792f4f68449fc4a2daa7ed1d3b9e75b" kindref="member">vdd_xtal_ok</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="108" refid="structsi5332__status__flags__t_1ac68cba807272610bb9a9bca5cafc8e07" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structsi5332__status__flags__t_1ac68cba807272610bb9a9bca5cafc8e07" kindref="member">vddo_ok_mask</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}<sp/><ref refid="structsi5332__status__flags__t" kindref="compound">si5332_status_flags_t</ref>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="si5332_8h_1a96d13cdf83f3f5788f305e2e250e90f0" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structsi5332__t" kindref="compound">si5332_t</ref><sp/><ref refid="structsi5332__t" kindref="compound">si5332_t</ref>;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Predefined<sp/>output<sp/>frequencies<sp/>[Hz]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121" refid="si5332_8h_1a2226a2a58d9c7b8a5d7fda0fe913e03d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SI5332_25MHZ<sp/><sp/><sp/><sp/><sp/>25000000UL<sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122" refid="si5332_8h_1a110cbfc42e4503bcf48fa1db09b09792" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SI5332_26MHZ<sp/><sp/><sp/><sp/><sp/>26000000UL<sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123" refid="si5332_8h_1aa2a13c7ac249d312fb23feeeeab98b1e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SI5332_27MHZ<sp/><sp/><sp/><sp/><sp/>27000000UL<sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124" refid="si5332_8h_1ada8fd46b4d65cce148b3669b8c92263c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SI5332_50MHZ<sp/><sp/><sp/><sp/><sp/>50000000UL<sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125" refid="si5332_8h_1a57d0074c5a2b6670c93622543c9338f9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SI5332_52MHZ<sp/><sp/><sp/><sp/><sp/>52000000UL<sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="si5332_8h_1ae3b0b5e578e3347a1f572ef0cd188053" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SI5332_100MHZ<sp/><sp/><sp/>100000000UL<sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127" refid="si5332_8h_1a131863bb286a48dbf5983bfebc360683" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SI5332_108MHZ<sp/><sp/><sp/>108000000UL<sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128" refid="si5332_8h_1a89e204335bd01de1847e98ef1c79f549" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SI5332_125MHZ<sp/><sp/><sp/>125000000UL<sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129" refid="si5332_8h_1a26a6c1fac56d6589a036651b5abc60d7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SI5332_135MHZ<sp/><sp/><sp/>135000000UL<sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130" refid="si5332_8h_1ad9787353559bcec44bfd36d89abbcfa7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SI5332_150MHZ<sp/><sp/><sp/>150000000UL<sp/></highlight><highlight class="preprocessor"></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137" refid="si5332_8h_1abfc8f94b5567f1c64b4f9aa41aaf8c0f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SI5332_FREQ_MIN_HZ<sp/><sp/><sp/><sp/>5000000UL<sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138" refid="si5332_8h_1afd3dde7984fe63ee5798579a4f5c630b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SI5332_FREQ_MAX_HZ<sp/><sp/>250000000UL<sp/></highlight><highlight class="preprocessor"></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>API<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><ref refid="structsi5332__t" kindref="compound">si5332_t</ref>*<sp/><ref refid="si5332_8h_1a9a05d733ba2455228fe087a1f384e986" kindref="member">si5332_initialize</ref>(u8<sp/>i2c_addr,<sp/><ref refid="si5332_8h_1a7d98566c2a81c470ea74ef12ac394bd3" kindref="member">si5332_i2c_write_f</ref><sp/>w,<sp/><ref refid="si5332_8h_1a52f61956d5bbdcaad0b02d626ec296c9" kindref="member">si5332_i2c_read_f</ref><sp/>r,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ctx);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref><sp/><ref refid="si5332_8h_1a229212f30f2c71fd65704559f05be08a" kindref="member">si5332_init</ref>(<ref refid="structsi5332__t" kindref="compound">si5332_t</ref><sp/>*pDev,<sp/><ref refid="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188b" kindref="member">si5332_clk_src_t</ref><sp/>initial_src);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref><sp/><ref refid="si5332_8h_1a3a29977b10b6f54ad9a1985f27af7ebe" kindref="member">si5332_set_clock_source</ref>(<ref refid="structsi5332__t" kindref="compound">si5332_t</ref><sp/>*pDev,<sp/><ref refid="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188b" kindref="member">si5332_clk_src_t</ref><sp/>src);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref><sp/><ref refid="si5332_8h_1a87d7022ef98f9e328e398d4935a9be68" kindref="member">si5332_set_output_enable</ref>(<ref refid="structsi5332__t" kindref="compound">si5332_t</ref><sp/>*pDev,<sp/><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0" kindref="member">si5332_out_ch_t</ref><sp/><ref refid="structsi5332__t_1afb56b20c20600ff15ecbc8ba6824a127" kindref="member">ch</ref>,<sp/>u8<sp/>enable);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref><sp/><ref refid="si5332_8h_1a490877359537bd5178f479e10184740c" kindref="member">si5332_set_output_format</ref>(<ref refid="structsi5332__t" kindref="compound">si5332_t</ref><sp/>*pDev,<sp/><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0" kindref="member">si5332_out_ch_t</ref><sp/><ref refid="structsi5332__t_1afb56b20c20600ff15ecbc8ba6824a127" kindref="member">ch</ref>,<sp/><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500a" kindref="member">si5332_out_format_t</ref><sp/>fmt);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref><sp/><ref refid="si5332_8h_1a1bf82246db9017f3812bf26e968ddb71" kindref="member">si5332_set_output_freq</ref>(<ref refid="structsi5332__t" kindref="compound">si5332_t</ref><sp/>*pDev,<sp/><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0" kindref="member">si5332_out_ch_t</ref><sp/><ref refid="structsi5332__t_1afb56b20c20600ff15ecbc8ba6824a127" kindref="member">ch</ref>,<sp/>u32<sp/>freq_hz);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref><sp/><ref refid="si5332_8h_1a62c9756fc10566540267035a11c64c59" kindref="member">si5332_commit</ref>(<ref refid="structsi5332__t" kindref="compound">si5332_t</ref><sp/>*pDev);</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref><sp/><ref refid="si5332_8h_1a2163cd28a22fe5c9321bb3a899f9cf3e" kindref="member">si5332_get_status</ref>(<ref refid="structsi5332__t" kindref="compound">si5332_t</ref><sp/>*pDev,<sp/><ref refid="structsi5332__status__flags__t" kindref="compound">si5332_status_flags_t</ref><sp/>*flags);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525" kindref="member">si5332_err_t</ref><sp/><ref refid="si5332_8h_1abb8aee0f2b2648da830a924a3d88020e" kindref="member">si5332_apply_config</ref>(<ref refid="structsi5332__t" kindref="compound">si5332_t</ref><sp/>*pDev);</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>SRC_SI5332_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="sw/devices/si5332/si5332.h"/>
+  </compounddef>
+</doxygen>

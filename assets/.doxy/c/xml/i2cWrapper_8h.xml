@@ -1,0 +1,707 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="i2cWrapper_8h" kind="file" language="C++">
+    <compoundname>i2cWrapper.h</compoundname>
+    <includes local="yes">i2c.h</includes>
+    <includes refid="interrupt_8h" local="yes">interrupt.h</includes>
+    <includedby refid="i2cBus_8h" local="yes">sw/app/src/i2cBus.h</includedby>
+    <includedby refid="i2cWrapper_8c" local="yes">sw/drivers/i2c/i2cWrapper.c</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>interrupt.h</label>
+        <link refid="interrupt_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>sw/drivers/i2c/i2cWrapper.h</label>
+        <link refid="i2cWrapper_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>i2c.h</label>
+      </node>
+      <node id="4">
+        <label>plic.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>sw/app/src/clkGen.c</label>
+        <link refid="clkGen_8c"/>
+      </node>
+      <node id="4">
+        <label>sw/app/src/i2cBus.c</label>
+        <link refid="i2cBus_8c"/>
+      </node>
+      <node id="2">
+        <label>sw/app/src/i2cBus.h</label>
+        <link refid="i2cBus_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>sw/app/src/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+      <node id="6">
+        <label>sw/app/src/power.c</label>
+        <link refid="power_8c"/>
+      </node>
+      <node id="7">
+        <label>sw/drivers/i2c/i2cWrapper.c</label>
+        <link refid="i2cWrapper_8c"/>
+      </node>
+      <node id="1">
+        <label>sw/drivers/i2c/i2cWrapper.h</label>
+        <link refid="i2cWrapper_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structi2cHandle__config__t" prot="public">i2cHandle_config_t</innerclass>
+    <sectiondef kind="user-defined">
+      <header>Generic multi-byte register access</header>
+      <description><para>1-byte register pointer, <computeroutput>length</computeroutput> data bytes, MSB first. Reads use a genuine repeated start between the pointer write and the data read (see i2c_readData_b_ack() in mcu/software/standalone/driver/i2c.h). <ref refid="i2cWrapper_8h_1afa738982ab2a9c744b4c07f67db541af" kindref="member">i2c_writeReg()</ref>/i2c_readReg() are 1-byte special cases of these. </para>
+</description>
+      <memberdef kind="function" id="i2cWrapper_8h_1aa9cc66fdcf7a6a22276c158aa70e5ec9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int i2c_writeRegMultipleBytes</definition>
+        <argsstring>(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data, u32 length)</argsstring>
+        <name>i2c_writeRegMultipleBytes</name>
+        <param>
+          <type><ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref> *</type>
+          <declname>pInst</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>slaveAddr</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>regAddr</declname>
+        </param>
+        <param>
+          <type>u8 *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Writes <computeroutput>length</computeroutput> bytes to a register, MSB first. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pInst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Controller handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>slaveAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>7-bit I2C target address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>regAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Register address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Buffer with the bytes to write. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of data bytes. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8ea93c2e1cba5b8add9f06e8a635ccbc001" kindref="member">I2C_WRAPPER_OK</ref> on success, negative <ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8e" kindref="member">i2c_wrapper_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.h" line="113" column="5" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="229" bodyend="265" declfile="sw/drivers/i2c/i2cWrapper.h" declline="113" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="i2cWrapper_8h_1ac6130142f9f400e44664232cb9428ec8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int i2c_readRegMultipleBytes</definition>
+        <argsstring>(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data, u32 length)</argsstring>
+        <name>i2c_readRegMultipleBytes</name>
+        <param>
+          <type><ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref> *</type>
+          <declname>pInst</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>slaveAddr</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>regAddr</declname>
+        </param>
+        <param>
+          <type>u8 *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Reads <computeroutput>length</computeroutput> bytes from a register, MSB first, using a repeated start. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pInst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Controller handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>slaveAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>7-bit I2C target address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>regAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Register address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the data bytes on success. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of data bytes (&gt;= 1). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8ea93c2e1cba5b8add9f06e8a635ccbc001" kindref="member">I2C_WRAPPER_OK</ref> on success, negative <ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8e" kindref="member">i2c_wrapper_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.h" line="124" column="5" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="267" bodyend="328" declfile="sw/drivers/i2c/i2cWrapper.h" declline="124" declcolumn="5"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8e" prot="public" static="no" strong="no">
+        <type></type>
+        <name>i2c_wrapper_err_t</name>
+        <enumvalue id="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8ea93c2e1cba5b8add9f06e8a635ccbc001" prot="public">
+          <name>I2C_WRAPPER_OK</name>
+          <initializer>=  0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Transfer completed successfully. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8ea3509f8a6305072b8181da5683489a00c" prot="public">
+          <name>I2C_WRAPPER_ERROR</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Generic error. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8eadcd4475a3dc01b72d3a1f3553c721d42" prot="public">
+          <name>I2C_WRAPPER_TIMEOUT</name>
+          <initializer>= -2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Bus timeout detected by the ISR (DROP interrupt). </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8eaae566236d21ca73669e55d42e615b5da" prot="public">
+          <name>I2C_WRAPPER_ARB_LOSS</name>
+          <initializer>= -3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Arbitration loss detected by the ISR. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8eac222ce83833bf956d087042c80c2f711" prot="public">
+          <name>I2C_WRAPPER_NACK</name>
+          <initializer>= -4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>NACK received from the target. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Status codes returned by the I2C wrapper functions. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.h" line="40" column="1" bodyfile="sw/drivers/i2c/i2cWrapper.h" bodystart="40" bodyend="46"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="i2cWrapper_8h_1ab733ba3247a183811ce4068ee14c5c37" prot="public" static="no">
+        <type>void(*</type>
+        <definition>typedef void(* intrHandler_t) (void *data)</definition>
+        <argsstring>)(void *data)</argsstring>
+        <name>intrHandler_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Interrupt handler callback type (see <ref refid="interrupt_8h" kindref="compound">interrupt.h</ref>). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.h" line="34" column="9" bodyfile="sw/drivers/i2c/i2cWrapper.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="i2cWrapper_8h_1a5374149c7f724968fe07616e479929c5" prot="public" static="no">
+        <type>struct i2cHandle_t</type>
+        <definition>typedef struct i2cHandle_t i2cHandle_t</definition>
+        <argsstring></argsstring>
+        <name>i2cHandle_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Opaque I2C controller handle (defined in <ref refid="i2cWrapper_8c" kindref="compound">i2cWrapper.c</ref>). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.h" line="37" column="26" bodyfile="sw/drivers/i2c/i2cWrapper.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="i2cWrapper_8h_1aae9ba359a2c91ca093e528c727a42a82" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref> *</type>
+        <definition>i2cHandle_t * i2c_initialize</definition>
+        <argsstring>(i2cHandle_config_t *pDevCfg, intrHandle_t *pIntr)</argsstring>
+        <name>i2c_initialize</name>
+        <param>
+          <type><ref refid="structi2cHandle__config__t" kindref="compound">i2cHandle_config_t</ref> *</type>
+          <declname>pDevCfg</declname>
+        </param>
+        <param>
+          <type><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref> *</type>
+          <declname>pIntr</declname>
+        </param>
+        <briefdescription>
+<para>Initializes one I2C controller instance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Applies the timing configuration, connects the I2C ISR to the interrupt controller and enables the DROP (timeout) interrupt.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDevCfg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Controller configuration; <computeroutput>deviceId</computeroutput> selects the instance. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pIntr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Interrupt controller handle from <ref refid="interrupt_8c_1a9f41d3682f84ce4bc7d9ff2dfe47a2ed" kindref="member">intr_initialize()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to the controller instance. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.h" line="70" column="13" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="195" bodyend="227" declfile="sw/drivers/i2c/i2cWrapper.h" declline="70" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="i2cWrapper_8h_1afa738982ab2a9c744b4c07f67db541af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int i2c_writeReg</definition>
+        <argsstring>(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data)</argsstring>
+        <name>i2c_writeReg</name>
+        <param>
+          <type><ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref> *</type>
+          <declname>pInst</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>slaveAddr</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>regAddr</declname>
+        </param>
+        <param>
+          <type>u8 *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Writes a single byte to an 8-bit register (1-byte special case of <ref refid="i2cWrapper_8h_1aa9cc66fdcf7a6a22276c158aa70e5ec9" kindref="member">i2c_writeRegMultipleBytes()</ref>). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pInst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Controller handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>slaveAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>7-bit I2C target address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>regAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Register address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the byte to write. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8ea93c2e1cba5b8add9f06e8a635ccbc001" kindref="member">I2C_WRAPPER_OK</ref> on success, negative <ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8e" kindref="member">i2c_wrapper_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.h" line="81" column="5" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="330" bodyend="333" declfile="sw/drivers/i2c/i2cWrapper.h" declline="81" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="i2cWrapper_8h_1a71f97cf63f3ddb4362765f919860cf97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int i2c_readReg</definition>
+        <argsstring>(i2cHandle_t *pInst, u8 slaveAddr, u8 regAddr, u8 *data)</argsstring>
+        <name>i2c_readReg</name>
+        <param>
+          <type><ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref> *</type>
+          <declname>pInst</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>slaveAddr</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>regAddr</declname>
+        </param>
+        <param>
+          <type>u8 *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Reads a single byte from an 8-bit register (1-byte special case of <ref refid="i2cWrapper_8h_1ac6130142f9f400e44664232cb9428ec8" kindref="member">i2c_readRegMultipleBytes()</ref>). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pInst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Controller handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>slaveAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>7-bit I2C target address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>regAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Register address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the register byte on success. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8ea93c2e1cba5b8add9f06e8a635ccbc001" kindref="member">I2C_WRAPPER_OK</ref> on success, negative <ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8e" kindref="member">i2c_wrapper_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.h" line="92" column="5" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="336" bodyend="339" declfile="sw/drivers/i2c/i2cWrapper.h" declline="92" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="i2cWrapper_8h_1a18efccd2252289d4f0f3ea2367c75ff2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int i2c_write</definition>
+        <argsstring>(i2cHandle_t *pInst, u8 slaveAddr, u8 *data, u32 length)</argsstring>
+        <name>i2c_write</name>
+        <param>
+          <type><ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref> *</type>
+          <declname>pInst</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>slaveAddr</declname>
+        </param>
+        <param>
+          <type>u8 *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Writes <computeroutput>length</computeroutput> bytes without a register pointer (raw write). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pInst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Controller handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>slaveAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>7-bit I2C target address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Buffer with the bytes to write. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of data bytes. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8ea93c2e1cba5b8add9f06e8a635ccbc001" kindref="member">I2C_WRAPPER_OK</ref> on success, negative <ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8e" kindref="member">i2c_wrapper_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.h" line="135" column="5" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="341" bodyend="371" declfile="sw/drivers/i2c/i2cWrapper.h" declline="135" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="i2cWrapper_8h_1a80779aae48cc8dcdb720bd122452c251" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int i2c_read</definition>
+        <argsstring>(i2cHandle_t *pInst, u8 slaveAddr, u8 *data, u32 length)</argsstring>
+        <name>i2c_read</name>
+        <param>
+          <type><ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref> *</type>
+          <declname>pInst</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>slaveAddr</declname>
+        </param>
+        <param>
+          <type>u8 *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Reads <computeroutput>length</computeroutput> bytes without a register pointer (raw read). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pInst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Controller handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>slaveAddr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>7-bit I2C target address. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the data bytes on success. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of data bytes (&gt;= 1). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8ea93c2e1cba5b8add9f06e8a635ccbc001" kindref="member">I2C_WRAPPER_OK</ref> on success, negative <ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8e" kindref="member">i2c_wrapper_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/drivers/i2c/i2cWrapper.h" line="145" column="5" bodyfile="sw/drivers/i2c/i2cWrapper.c" bodystart="374" bodyend="415" declfile="sw/drivers/i2c/i2cWrapper.h" declline="145" declcolumn="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>I2C master wrapper around the BSP I2C driver. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>   Wraps the low-level BSP driver (mcu/software/standalone/driver/i2c.h)
+   into a handle-based API with error checking. Transfers are polled,
+   but bus timeout and arbitration loss are detected asynchronously by
+   the I2C interrupt service routine, so a stuck bus cannot hang the
+   caller forever.
+
+   The register-access functions use a 1-byte register pointer and
+   transfer data MSB first. Their signatures are intentionally
+   compatible with the HAL callback types of the device drivers
+   (si5332, tpsm8286x, ina745a, pi4msd5v945x), so they can be passed
+   directly via a function-pointer cast.
+</verbatim></para>
+<para><simplesect kind="note"><para>This file is deliberately not called i2c.h - that name is already used by the BSP driver and every src directory is on the include path. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>2026<sp/>Matthias<sp/>Haefner<sp/>-<sp/>Heosys</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SRC_I2CCOM_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SRC_I2CCOM_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;i2c.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="interrupt_8h" kindref="compound">interrupt.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="i2cWrapper_8h_1ab733ba3247a183811ce4068ee14c5c37" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>void<sp/>(*<ref refid="interrupt_8h_1ab733ba3247a183811ce4068ee14c5c37" kindref="member">intrHandler_t</ref>)(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*data);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="i2cWrapper_8h_1a5374149c7f724968fe07616e479929c5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref><sp/><ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="41" refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8ea93c2e1cba5b8add9f06e8a635ccbc001" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8ea93c2e1cba5b8add9f06e8a635ccbc001" kindref="member">I2C_WRAPPER_OK</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><sp/>0,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8ea3509f8a6305072b8181da5683489a00c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8ea3509f8a6305072b8181da5683489a00c" kindref="member">I2C_WRAPPER_ERROR</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>-1,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43" refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8eadcd4475a3dc01b72d3a1f3553c721d42" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8eadcd4475a3dc01b72d3a1f3553c721d42" kindref="member">I2C_WRAPPER_TIMEOUT</ref><sp/><sp/><sp/><sp/><sp/>=<sp/>-2,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44" refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8eaae566236d21ca73669e55d42e615b5da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8eaae566236d21ca73669e55d42e615b5da" kindref="member">I2C_WRAPPER_ARB_LOSS</ref><sp/><sp/><sp/><sp/>=<sp/>-3,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45" refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8eac222ce83833bf956d087042c80c2f711" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8eac222ce83833bf956d087042c80c2f711" kindref="member">I2C_WRAPPER_NACK</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>-4<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="normal">}<sp/><ref refid="i2cWrapper_8h_1af45aabeaeeec1cedac5b3033181b1f8e" kindref="member">i2c_wrapper_err_t</ref>;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="structi2cHandle__config__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="51" refid="structi2cHandle__config__t_1adf51308dbe09fde5d58c8dd3732f9f17" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structi2cHandle__config__t_1adf51308dbe09fde5d58c8dd3732f9f17" kindref="member">deviceId</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="structi2cHandle__config__t_1a1107cc74d04c9cf5ea34ee104988ec28" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="structi2cHandle__config__t_1a1107cc74d04c9cf5ea34ee104988ec28" kindref="member">baseAddress</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53" refid="structi2cHandle__config__t_1a04fc7dff9bde74cd3dcf0e996b784e25" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structi2cHandle__config__t_1a04fc7dff9bde74cd3dcf0e996b784e25" kindref="member">intrId</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54" refid="structi2cHandle__config__t_1afceedb275746c91ae7c0d84c76eb2962" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structi2cHandle__config__t_1afceedb275746c91ae7c0d84c76eb2962" kindref="member">intrPrio</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55" refid="structi2cHandle__config__t_1aea392b414a384495292279fddf1dc731" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structi2cHandle__config__t_1aea392b414a384495292279fddf1dc731" kindref="member">intrHart</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56" refid="structi2cHandle__config__t_1a0eb79c15d807803d0d00ce9f81211073" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>I2c_Config<sp/><ref refid="structi2cHandle__config__t_1a0eb79c15d807803d0d00ce9f81211073" kindref="member">cfg</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}<sp/><ref refid="structi2cHandle__config__t" kindref="compound">i2cHandle_config_t</ref>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref>*<sp/><ref refid="i2cWrapper_8h_1aae9ba359a2c91ca093e528c727a42a82" kindref="member">i2c_initialize</ref>(<ref refid="structi2cHandle__config__t" kindref="compound">i2cHandle_config_t</ref><sp/>*pDevCfg,<sp/><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref><sp/>*pIntr);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="i2cWrapper_8h_1afa738982ab2a9c744b4c07f67db541af" kindref="member">i2c_writeReg</ref>(<ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref><sp/>*pInst,<sp/>u8<sp/>slaveAddr,<sp/>u8<sp/>regAddr,<sp/>u8<sp/>*data);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="i2cWrapper_8h_1a71f97cf63f3ddb4362765f919860cf97" kindref="member">i2c_readReg</ref>(<ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref><sp/>*pInst,<sp/>u8<sp/>slaveAddr,<sp/>u8<sp/>regAddr,<sp/>u8<sp/>*data);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="i2cWrapper_8h_1aa9cc66fdcf7a6a22276c158aa70e5ec9" kindref="member">i2c_writeRegMultipleBytes</ref>(<ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref><sp/>*pInst,<sp/>u8<sp/>slaveAddr,<sp/>u8<sp/>regAddr,<sp/>u8<sp/>*data,<sp/>u32<sp/>length);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="i2cWrapper_8h_1ac6130142f9f400e44664232cb9428ec8" kindref="member">i2c_readRegMultipleBytes</ref><sp/>(<ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref><sp/>*pInst,<sp/>u8<sp/>slaveAddr,<sp/>u8<sp/>regAddr,<sp/>u8<sp/>*data,<sp/>u32<sp/>length);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="i2cWrapper_8h_1a18efccd2252289d4f0f3ea2367c75ff2" kindref="member">i2c_write</ref>(<ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref><sp/>*pInst,<sp/>u8<sp/>slaveAddr,<sp/>u8<sp/>*data,<sp/>u32<sp/>length);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="i2cWrapper_8h_1a80779aae48cc8dcdb720bd122452c251" kindref="member">i2c_read</ref>(<ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref><sp/>*pInst,<sp/>u8<sp/>slaveAddr,<sp/>u8<sp/>*data,<sp/>u32<sp/>length);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>SRC_I2CCOM_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="sw/drivers/i2c/i2cWrapper.h"/>
+  </compounddef>
+</doxygen>

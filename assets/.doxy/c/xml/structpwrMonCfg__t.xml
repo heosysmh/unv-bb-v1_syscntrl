@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structpwrMonCfg__t" kind="struct" language="C++" prot="public">
+    <compoundname>pwrMonCfg_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpwrMonCfg__t_1a4354ce42fc4b256d4d4e4721f34a467d" prot="public" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char* pwrMonCfg_t::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>pwrMonCfg_t::name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.c" line="68" column="12" bodyfile="sw/app/src/power.c" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpwrMonCfg__t_1a735c82a446ebebf712334931ce4a04ef" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 pwrMonCfg_t::i2cAddr</definition>
+        <argsstring></argsstring>
+        <name>i2cAddr</name>
+        <qualifiedname>pwrMonCfg_t::i2cAddr</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.c" line="69" column="13" bodyfile="sw/app/src/power.c" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpwrMonCfg__t_1ae878ccca4dcafef246ad2c9b17cf85ea" prot="public" static="no" mutable="no">
+        <type><ref refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827" kindref="member">pwrPgLine_t</ref></type>
+        <definition>pwrPgLine_t pwrMonCfg_t::pgLine</definition>
+        <argsstring></argsstring>
+        <name>pgLine</name>
+        <qualifiedname>pwrMonCfg_t::pgLine</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.c" line="70" column="13" bodyfile="sw/app/src/power.c" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpwrMonCfg__t_1a8017915d91af77fd432d00e8f4278e2f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float pwrMonCfg_t::overVoltage_V</definition>
+        <argsstring></argsstring>
+        <name>overVoltage_V</name>
+        <qualifiedname>pwrMonCfg_t::overVoltage_V</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.c" line="71" column="13" bodyfile="sw/app/src/power.c" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpwrMonCfg__t_1afb0947607b174f8291121300d4027d42" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float pwrMonCfg_t::overCurrent_A</definition>
+        <argsstring></argsstring>
+        <name>overCurrent_A</name>
+        <qualifiedname>pwrMonCfg_t::overCurrent_A</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.c" line="72" column="13" bodyfile="sw/app/src/power.c" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpwrMonCfg__t_1a2a3a5a1d3b38528cfc3ea5e4dd5cd5d4" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float pwrMonCfg_t::overTemp_C</definition>
+        <argsstring></argsstring>
+        <name>overTemp_C</name>
+        <qualifiedname>pwrMonCfg_t::overTemp_C</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.c" line="73" column="13" bodyfile="sw/app/src/power.c" bodystart="73" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/app/src/power.c" line="67" column="1" bodyfile="sw/app/src/power.c" bodystart="67" bodyend="74"/>
+    <listofallmembers>
+      <member refid="structpwrMonCfg__t_1a735c82a446ebebf712334931ce4a04ef" prot="public" virt="non-virtual"><scope>pwrMonCfg_t</scope><name>i2cAddr</name></member>
+      <member refid="structpwrMonCfg__t_1a4354ce42fc4b256d4d4e4721f34a467d" prot="public" virt="non-virtual"><scope>pwrMonCfg_t</scope><name>name</name></member>
+      <member refid="structpwrMonCfg__t_1afb0947607b174f8291121300d4027d42" prot="public" virt="non-virtual"><scope>pwrMonCfg_t</scope><name>overCurrent_A</name></member>
+      <member refid="structpwrMonCfg__t_1a2a3a5a1d3b38528cfc3ea5e4dd5cd5d4" prot="public" virt="non-virtual"><scope>pwrMonCfg_t</scope><name>overTemp_C</name></member>
+      <member refid="structpwrMonCfg__t_1a8017915d91af77fd432d00e8f4278e2f" prot="public" virt="non-virtual"><scope>pwrMonCfg_t</scope><name>overVoltage_V</name></member>
+      <member refid="structpwrMonCfg__t_1ae878ccca4dcafef246ad2c9b17cf85ea" prot="public" virt="non-virtual"><scope>pwrMonCfg_t</scope><name>pgLine</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

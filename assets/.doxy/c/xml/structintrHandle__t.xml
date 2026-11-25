@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structintrHandle__t" kind="struct" language="C++" prot="public">
+    <compoundname>intrHandle_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structintrHandle__t_1adaa5c8b16f594cdf348befe078ba8094" prot="public" static="no" mutable="no">
+        <type>u32</type>
+        <definition>u32 intrHandle_t::baseAddress</definition>
+        <argsstring></argsstring>
+        <name>baseAddress</name>
+        <qualifiedname>intrHandle_t::baseAddress</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Base address of the PLIC controller. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.c" line="39" column="5" bodyfile="sw/app/src/interrupt.c" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structintrHandle__t_1a7f5c02ca35194e16662d43260b6aa75d" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 intrHandle_t::threshold</definition>
+        <argsstring></argsstring>
+        <name>threshold</name>
+        <qualifiedname>intrHandle_t::threshold</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Currently configured priority threshold. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.c" line="40" column="4" bodyfile="sw/app/src/interrupt.c" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structintrHandle__t_1a0b4b9379a74e757ecd43832058d35436" prot="public" static="no" mutable="no">
+        <type><ref refid="structintr__vectorTableEntry" kindref="compound">intr_vectorTableEntry</ref></type>
+        <definition>intr_vectorTableEntry intrHandle_t::HandlerTable[36]</definition>
+        <argsstring>[36]</argsstring>
+        <name>HandlerTable</name>
+        <qualifiedname>intrHandle_t::HandlerTable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Vector table of interrupt handlers </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.c" line="41" column="23" bodyfile="sw/app/src/interrupt.c" bodystart="41" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Interrupt controller instance state (opaque handle, see <ref refid="interrupt_8h" kindref="compound">interrupt.h</ref>). </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>intrHandle_t</label>
+        <link refid="structintrHandle__t"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>HandlerTable</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>intr_vectorTableEntry</label>
+        <link refid="structintr__vectorTableEntry"/>
+      </node>
+    </collaborationgraph>
+    <location file="sw/app/src/interrupt.c" line="37" column="1" bodyfile="sw/app/src/interrupt.c" bodystart="38" bodyend="44"/>
+    <listofallmembers>
+      <member refid="structintrHandle__t_1adaa5c8b16f594cdf348befe078ba8094" prot="public" virt="non-virtual"><scope>intrHandle_t</scope><name>baseAddress</name></member>
+      <member refid="structintrHandle__t_1a0b4b9379a74e757ecd43832058d35436" prot="public" virt="non-virtual"><scope>intrHandle_t</scope><name>HandlerTable</name></member>
+      <member refid="structintrHandle__t_1a7f5c02ca35194e16662d43260b6aa75d" prot="public" virt="non-virtual"><scope>intrHandle_t</scope><name>threshold</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

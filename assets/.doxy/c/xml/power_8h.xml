@@ -1,0 +1,784 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="power_8h" kind="file" language="C++">
+    <compoundname>power.h</compoundname>
+    <includes local="no">type.h</includes>
+    <includes refid="boardConfig_8h" local="yes">boardConfig.h</includes>
+    <includedby refid="main_8c" local="yes">sw/app/src/main.c</includedby>
+    <includedby refid="power_8c" local="yes">sw/app/src/power.c</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>boardConfig.h</label>
+        <link refid="boardConfig_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>sw/app/src/power.h</label>
+        <link refid="power_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>si5332.h</label>
+        <link refid="si5332_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>type.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>sw/app/src/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+      <node id="3">
+        <label>sw/app/src/power.c</label>
+        <link refid="power_8c"/>
+      </node>
+      <node id="1">
+        <label>sw/app/src/power.h</label>
+        <link refid="power_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structpwrMon__values__t" prot="public">pwrMon_values_t</innerclass>
+    <innerclass refid="structpwrMon__fault__t" prot="public">pwrMon_fault_t</innerclass>
+    <sectiondef kind="user-defined">
+      <header>FMC Vadj regulators</header>
+      <memberdef kind="function" id="power_8h_1a686a7fa58c307ff761a91be010a4bc11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref></type>
+        <definition>pwr_err_t pwr_fmcVadj_configure</definition>
+        <argsstring>(void)</argsstring>
+        <name>pwr_fmcVadj_configure</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Writes control register and voltage setpoint of both FMC Vadj regulators. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Outputs stay disabled. The setpoints are taken from <ref refid="boardConfig_8h_1adf40f2d99815a545049bb07790050ea9" kindref="member">BOARD_FMC1_VADJ_V</ref> / <ref refid="boardConfig_8h_1a87d55c1e6ee9944f81d2c733e0816166" kindref="member">BOARD_FMC2_VADJ_V</ref>.</para>
+<para><simplesect kind="return"><para><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a585c7be39ddd1fbedefbcd56ce97482f" kindref="member">PWR_OK</ref> on success, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ad7b9a874ae88d6b80931aa7fe1b4fdeb" kindref="member">PWR_E_INIT</ref> if not initialized, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a44f56d52f31ba384480eb3084c883042" kindref="member">PWR_E_RANGE</ref> if a configured setpoint exceeds <ref refid="boardConfig_8h_1a43963d3621146632c3b22e1aa1f4f260" kindref="member">BOARD_FMC_VADJ_MAX_V</ref>, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ae2eec26171c7948ad8055a7b1c3ae28e" kindref="member">PWR_E_DEVICE</ref> on a device error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Hard upper bound for both FMC Vadj rails [V].</para>
+<para>&lt; Force PWM at voltage change.</para>
+<para>&lt; Force PWM mode (no pulse skipping).</para>
+<para>&lt; Enable output discharge when disabled.</para>
+<para>&lt; Enable hiccup mode on over-current.</para>
+<para>&lt; 1 mV/step ramp speed.</para>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="154" column="11" bodyfile="sw/app/src/power.c" bodystart="211" bodyend="230" declfile="sw/app/src/power.h" declline="154" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="power_8h_1a4695d87d966be1bb315acb472e311acd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref></type>
+        <definition>pwr_err_t pwr_fmcVadj_isRegulating</definition>
+        <argsstring>(pwrFmc_t fmc)</argsstring>
+        <name>pwr_fmcVadj_isRegulating</name>
+        <param>
+          <type><ref refid="power_8h_1a133e1a10dbd606c7ef08f7ebb5a5c350" kindref="member">pwrFmc_t</ref></type>
+          <declname>fmc</declname>
+        </param>
+        <briefdescription>
+<para>Checks whether the regulator reports a valid output voltage setting. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fmc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Regulator to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a585c7be39ddd1fbedefbcd56ce97482f" kindref="member">PWR_OK</ref> if the voltage register reads back the programmed value, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ab866fd6d7753890d2511ac32dd144fc6" kindref="member">PWR_E_PARAM</ref> if <computeroutput>fmc</computeroutput> is invalid, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ad7b9a874ae88d6b80931aa7fe1b4fdeb" kindref="member">PWR_E_INIT</ref> if not initialized, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ae2eec26171c7948ad8055a7b1c3ae28e" kindref="member">PWR_E_DEVICE</ref> on a device error, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a749187d254156e84a64016c8f0d878b4" kindref="member">PWR_E_REGULATION</ref> on a mismatch. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="163" column="11" bodyfile="sw/app/src/power.c" bodystart="232" bodyend="244" declfile="sw/app/src/power.h" declline="163" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="power_8h_1ab7410fc5e09bea44561897fa63848acb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref></type>
+        <definition>pwr_err_t pwr_fmcVadj_enable</definition>
+        <argsstring>(int enable)</argsstring>
+        <name>pwr_fmcVadj_enable</name>
+        <param>
+          <type>int</type>
+          <declname>enable</declname>
+        </param>
+        <briefdescription>
+<para>Enables/disables both FMC Vadj regulator outputs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>enable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Non-zero to enable, zero to disable. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a585c7be39ddd1fbedefbcd56ce97482f" kindref="member">PWR_OK</ref> on success, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ad7b9a874ae88d6b80931aa7fe1b4fdeb" kindref="member">PWR_E_INIT</ref> if not initialized, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ae2eec26171c7948ad8055a7b1c3ae28e" kindref="member">PWR_E_DEVICE</ref> on a device error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="171" column="11" bodyfile="sw/app/src/power.c" bodystart="246" bodyend="257" declfile="sw/app/src/power.h" declline="171" declcolumn="11"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>Power monitors</header>
+      <memberdef kind="function" id="power_8h_1a24e1ab32f0bddb7e8b016560ad18ceda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref></type>
+        <definition>pwr_err_t pwr_mon_configure</definition>
+        <argsstring>(void)</argsstring>
+        <name>pwr_mon_configure</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Configures and arms all monitors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>ADC configuration, over-voltage, over-current and over-temperature limits, latched alert, and a clearing read of DIAG_ALRT.</para>
+<para><simplesect kind="note"><para>Call order matters: the ALERT outputs sit on the power-good nets, so this must run after <ref refid="boardGpio_8c_1a8a41fb15a53d3e977d632f59dbe856dd" kindref="member">boardGpio_waitSomReady()</ref> (a latched alert would otherwise keep SYS_PG low) and before the FMC supply is switched on.</para>
+</simplesect>
+<simplesect kind="return"><para><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a585c7be39ddd1fbedefbcd56ce97482f" kindref="member">PWR_OK</ref> if all monitors were configured, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ad7b9a874ae88d6b80931aa7fe1b4fdeb" kindref="member">PWR_E_INIT</ref> if not initialized, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ae2eec26171c7948ad8055a7b1c3ae28e" kindref="member">PWR_E_DEVICE</ref> if at least one monitor failed (the remaining monitors are still configured). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="193" column="11" bodyfile="sw/app/src/power.c" bodystart="263" bodyend="323" declfile="sw/app/src/power.h" declline="193" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="power_8h_1a8fac4f52cf32900b6671bd06e019c948" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref></type>
+        <definition>pwr_err_t pwr_mon_read</definition>
+        <argsstring>(pwrRail_t rail, pwrMon_values_t *values)</argsstring>
+        <name>pwr_mon_read</name>
+        <param>
+          <type><ref refid="power_8h_1a0109cbd4334a14a702f7af41f6e6604a" kindref="member">pwrRail_t</ref></type>
+          <declname>rail</declname>
+        </param>
+        <param>
+          <type><ref refid="structpwrMon__values__t" kindref="compound">pwrMon_values_t</ref> *</type>
+          <declname>values</declname>
+        </param>
+        <briefdescription>
+<para>Polls bus voltage, current and die temperature of a single rail. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Rail to read. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the measurement snapshot on success. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a585c7be39ddd1fbedefbcd56ce97482f" kindref="member">PWR_OK</ref> on success, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ab866fd6d7753890d2511ac32dd144fc6" kindref="member">PWR_E_PARAM</ref> if <computeroutput>values</computeroutput> is NULL or <computeroutput>rail</computeroutput> is invalid, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ad7b9a874ae88d6b80931aa7fe1b4fdeb" kindref="member">PWR_E_INIT</ref> if not initialized/configured, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ae2eec26171c7948ad8055a7b1c3ae28e" kindref="member">PWR_E_DEVICE</ref> on a device error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="203" column="11" bodyfile="sw/app/src/power.c" bodystart="325" bodyend="342" declfile="sw/app/src/power.h" declline="203" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="power_8h_1a51133094f87bcd01af0b08ec2c9c4042" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref></type>
+        <definition>pwr_err_t pwr_mon_poll</definition>
+        <argsstring>(void)</argsstring>
+        <name>pwr_mon_poll</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Polls all rails and prints the measured values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a585c7be39ddd1fbedefbcd56ce97482f" kindref="member">PWR_OK</ref> if all rails were read, otherwise the last error code. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="209" column="11" bodyfile="sw/app/src/power.c" bodystart="344" bodyend="367" declfile="sw/app/src/power.h" declline="209" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="power_8h_1a5bfd30612fc0bebec30a7e4a514b840e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref></type>
+        <definition>pwr_err_t pwr_checkAlerts</definition>
+        <argsstring>(void)</argsstring>
+        <name>pwr_checkAlerts</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Checks the power-good / ALERT lines. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Only if a line is low, the devices of that group are queried over I2C; faults found are merged into the sticky fault shadow. If a line is low but no device reports a fault, the supply itself failed and <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a749187d254156e84a64016c8f0d878b4" kindref="member">PWR_E_REGULATION</ref> is returned.</para>
+<para><simplesect kind="return"><para><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a585c7be39ddd1fbedefbcd56ce97482f" kindref="member">PWR_OK</ref> if all lines are high, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ad7b9a874ae88d6b80931aa7fe1b4fdeb" kindref="member">PWR_E_INIT</ref> if the monitors are not configured, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a749187d254156e84a64016c8f0d878b4" kindref="member">PWR_E_REGULATION</ref> if a line is low, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ae2eec26171c7948ad8055a7b1c3ae28e" kindref="member">PWR_E_DEVICE</ref> if a monitor query failed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="223" column="11" bodyfile="sw/app/src/power.c" bodystart="369" bodyend="396" declfile="sw/app/src/power.h" declline="223" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="power_8h_1ae14b0dda9be57bc2915bf49c29ec6d86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref></type>
+        <definition>pwr_err_t pwr_mon_getFaults</definition>
+        <argsstring>(pwrRail_t rail, pwrMon_fault_t *faults)</argsstring>
+        <name>pwr_mon_getFaults</name>
+        <param>
+          <type><ref refid="power_8h_1a0109cbd4334a14a702f7af41f6e6604a" kindref="member">pwrRail_t</ref></type>
+          <declname>rail</declname>
+        </param>
+        <param>
+          <type><ref refid="structpwrMon__fault__t" kindref="compound">pwrMon_fault_t</ref> *</type>
+          <declname>faults</declname>
+        </param>
+        <briefdescription>
+<para>Reads the sticky fault shadow of a rail. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Accumulated over all queries since the last clear.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Rail to query. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">faults</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the accumulated fault flags. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a585c7be39ddd1fbedefbcd56ce97482f" kindref="member">PWR_OK</ref> on success, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ab866fd6d7753890d2511ac32dd144fc6" kindref="member">PWR_E_PARAM</ref> if <computeroutput>faults</computeroutput> is NULL or <computeroutput>rail</computeroutput> is invalid. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="235" column="11" bodyfile="sw/app/src/power.c" bodystart="398" bodyend="406" declfile="sw/app/src/power.h" declline="235" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="power_8h_1adc6e78539a92dd523b3b46340c649a3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void pwr_mon_clearFaults</definition>
+        <argsstring>(pwrRail_t rail)</argsstring>
+        <name>pwr_mon_clearFaults</name>
+        <param>
+          <type><ref refid="power_8h_1a0109cbd4334a14a702f7af41f6e6604a" kindref="member">pwrRail_t</ref></type>
+          <declname>rail</declname>
+        </param>
+        <briefdescription>
+<para>Clears the sticky fault shadow of a rail. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Rail to clear (invalid values are ignored). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="241" column="6" bodyfile="sw/app/src/power.c" bodystart="408" bodyend="418" declfile="sw/app/src/power.h" declline="241" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="power_8h_1a87a294675e1667f89723365a4ebc8cdf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void pwr_mon_reportFaults</definition>
+        <argsstring>(void)</argsstring>
+        <name>pwr_mon_reportFaults</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Prints all accumulated faults of all rails. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="246" column="6" bodyfile="sw/app/src/power.c" bodystart="420" bodyend="436" declfile="sw/app/src/power.h" declline="246" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="power_8h_1a59ff554b0e0f345da69172cd713ade23" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const char *</type>
+        <definition>const char * pwr_railName</definition>
+        <argsstring>(pwrRail_t rail)</argsstring>
+        <name>pwr_railName</name>
+        <param>
+          <type><ref refid="power_8h_1a0109cbd4334a14a702f7af41f6e6604a" kindref="member">pwrRail_t</ref></type>
+          <declname>rail</declname>
+        </param>
+        <briefdescription>
+<para>Returns the display name of a rail, e.g. &quot;VCCADJ_FMC1&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Rail to name. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Name string, or &quot;?&quot; if <computeroutput>rail</computeroutput> is invalid. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="253" column="12" bodyfile="sw/app/src/power.c" bodystart="438" bodyend="444" declfile="sw/app/src/power.h" declline="253" declcolumn="12"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="power_8h_1a6981d30fecbd253f13e529f7c728c7b6" prot="public" static="no">
+        <name>PWR_MON_TABLE</name>
+        <initializer>    <ref refid="power_8h_1a6e5876e0fe37b4c5792eb2b86fcdd1e9" kindref="member">X</ref>(12V,         <ref refid="i2cBus_8h_1a23defef64507c65264b45a69aa43dac6" kindref="member">I2CBUS_PWRMON_12V_ADDR</ref>,  <ref refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a0e1303243ad6bb89a662158d90a8a1bf" kindref="member">PWR_PG_SYS</ref>,                            13.20f,  5.0f, 95.0f) \
+    <ref refid="power_8h_1a6e5876e0fe37b4c5792eb2b86fcdd1e9" kindref="member">X</ref>(3V3,         <ref refid="i2cBus_8h_1a739306303ed611643225f28a84bb830e" kindref="member">I2CBUS_PWRMON_3V3_ADDR</ref>,  <ref refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a0e1303243ad6bb89a662158d90a8a1bf" kindref="member">PWR_PG_SYS</ref>,                             3.60f, 12.0f, 95.0f) \
+    <ref refid="power_8h_1a6e5876e0fe37b4c5792eb2b86fcdd1e9" kindref="member">X</ref>(5V0_SOM,     <ref refid="i2cBus_8h_1ac48b4f48c0f257d398dfe75869aa12f2" kindref="member">I2CBUS_PWRMON_5V0_ADDR</ref>,  <ref refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a0e1303243ad6bb89a662158d90a8a1bf" kindref="member">PWR_PG_SYS</ref>,                             5.50f,  5.0f, 95.0f) \
+    <ref refid="power_8h_1a6e5876e0fe37b4c5792eb2b86fcdd1e9" kindref="member">X</ref>(1V8,         <ref refid="i2cBus_8h_1ad65572c0ff7e604d0d3ea72722478b75" kindref="member">I2CBUS_PWRMON_1V8_ADDR</ref>,  <ref refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a0e1303243ad6bb89a662158d90a8a1bf" kindref="member">PWR_PG_SYS</ref>,                             1.98f,  5.0f, 95.0f) \
+    <ref refid="power_8h_1a6e5876e0fe37b4c5792eb2b86fcdd1e9" kindref="member">X</ref>(VCCADJ_FMC1, <ref refid="i2cBus_8h_1a054edce8a44407ab65df0de556e98742" kindref="member">I2CBUS_PWRMON_FMC1_ADDR</ref>, <ref refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a1252401cf304937167ce94eff54cd16f" kindref="member">PWR_PG_FMC1_SUP</ref>,  (<ref refid="boardConfig_8h_1a43963d3621146632c3b22e1aa1f4f260" kindref="member">BOARD_FMC_VADJ_MAX_V</ref>+0.2f),  4.5f, 95.0f) \
+    <ref refid="power_8h_1a6e5876e0fe37b4c5792eb2b86fcdd1e9" kindref="member">X</ref>(VCCADJ_FMC2, <ref refid="i2cBus_8h_1a3000f0da06b073cf0cc0033649d30fde" kindref="member">I2CBUS_PWRMON_FMC2_ADDR</ref>, <ref refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a686513b23f20203d89063e8ebf1f18f5" kindref="member">PWR_PG_FMC2_SUP</ref>,  (<ref refid="boardConfig_8h_1a43963d3621146632c3b22e1aa1f4f260" kindref="member">BOARD_FMC_VADJ_MAX_V</ref>+0.2f),  4.5f, 95.0f)</initializer>
+        <briefdescription>
+<para>Rail configuration table (X-macro). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>One row per monitored rail. This table is the only place where rails are defined; <ref refid="power_8h" kindref="compound">power.h</ref>/power.c derive the rail enum, the name strings, the I2C addresses, the power-good group and the protection limits from it.</para>
+<para>Columns:<itemizedlist>
+<listitem><para>name: identifier suffix, also used as display name</para>
+</listitem><listitem><para>addr: 7-bit I2C address on the PMBus (A0/A1 strapping)</para>
+</listitem><listitem><para>pg: power-good / ALERT net the device is wired to (<ref refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827" kindref="member">pwrPgLine_t</ref>)</para>
+</listitem><listitem><para>vov: bus over-voltage limit [V]</para>
+</listitem><listitem><para>iov: over-current limit [A]</para>
+</listitem><listitem><para>tov: over-temperature limit [degC]</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para>The number of rows must match <ref refid="userDef_8h_1aa1cb657545bdbd98f54a458cfbd8ab9e" kindref="member">INA745A_NUM_INSTANCES</ref> in <ref refid="userDef_8h" kindref="compound">userDef.h</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="53" column="9" bodyfile="sw/app/src/power.h" bodystart="53" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="define" id="power_8h_1a6e5876e0fe37b4c5792eb2b86fcdd1e9" prot="public" static="no">
+        <name>X</name>
+        <param><defname>name</defname></param>
+        <param><defname>addr</defname></param>
+        <param><defname>pg</defname></param>
+        <param><defname>vov</defname></param>
+        <param><defname>iov</defname></param>
+        <param><defname>tov</defname></param>
+        <initializer>PWR_RAIL_##name,</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Monitored rails, generated from <ref refid="power_8h_1a6981d30fecbd253f13e529f7c728c7b6" kindref="member">PWR_MON_TABLE</ref> (one PWR_RAIL_&lt;name&gt; per row). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="89" column="9" bodyfile="sw/app/src/power.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" prot="public" static="no" strong="no">
+        <type></type>
+        <name>pwr_err_t</name>
+        <enumvalue id="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a585c7be39ddd1fbedefbcd56ce97482f" prot="public">
+          <name>PWR_OK</name>
+          <initializer>=  0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Success. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ab866fd6d7753890d2511ac32dd144fc6" prot="public">
+          <name>PWR_E_PARAM</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Invalid argument. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ad7b9a874ae88d6b80931aa7fe1b4fdeb" prot="public">
+          <name>PWR_E_INIT</name>
+          <initializer>= -2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Handle could not be created / module not initialized. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ae2eec26171c7948ad8055a7b1c3ae28e" prot="public">
+          <name>PWR_E_DEVICE</name>
+          <initializer>= -3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Device reported an error (I2C, ID mismatch, ...). </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a44f56d52f31ba384480eb3084c883042" prot="public">
+          <name>PWR_E_RANGE</name>
+          <initializer>= -4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Configured voltage outside the allowed range. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a749187d254156e84a64016c8f0d878b4" prot="public">
+          <name>PWR_E_REGULATION</name>
+          <initializer>= -5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Regulator does not report a valid output voltage. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Status codes of the power function group. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="65" column="1" bodyfile="sw/app/src/power.h" bodystart="65" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="enum" id="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827" prot="public" static="no" strong="no">
+        <type></type>
+        <name>pwrPgLine_t</name>
+        <enumvalue id="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a0e1303243ad6bb89a662158d90a8a1bf" prot="public">
+          <name>PWR_PG_SYS</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>System power-good net (SYS_PG). </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a1252401cf304937167ce94eff54cd16f" prot="public">
+          <name>PWR_PG_FMC1_SUP</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>FMC1 supply power-good net (FMC1_SUP_PG). </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a686513b23f20203d89063e8ebf1f18f5" prot="public">
+          <name>PWR_PG_FMC2_SUP</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>FMC2 supply power-good net (FMC2_SUP_PG). </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a00431fec074aad708219a623504bf66d" prot="public">
+          <name>PWR_PG_COUNT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Number of power-good nets. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Power-good / ALERT nets the monitors are wired-OR onto. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="78" column="1" bodyfile="sw/app/src/power.h" bodystart="78" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="enum" id="power_8h_1a0109cbd4334a14a702f7af41f6e6604a" prot="public" static="no" strong="no">
+        <type></type>
+        <name>pwrRail_t</name>
+        <enumvalue id="power_8h_1a0109cbd4334a14a702f7af41f6e6604aa0810c508212c34531bb8c486fd118db8" prot="public">
+          <name>PWR_RAIL_12V</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1a0109cbd4334a14a702f7af41f6e6604aa6dc78891fa516012a02b2ddefad192b1" prot="public">
+          <name>PWR_RAIL_3V3</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1a0109cbd4334a14a702f7af41f6e6604aa9ea46adf253f94ad034c3405cb1aa6ec" prot="public">
+          <name>PWR_RAIL_5V0_SOM</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1a0109cbd4334a14a702f7af41f6e6604aa56995b7535316815be9b45e57bc75bd1" prot="public">
+          <name>PWR_RAIL_1V8</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1a0109cbd4334a14a702f7af41f6e6604aa689fe92c252f20c5f465b27ceec2c546" prot="public">
+          <name>PWR_RAIL_VCCADJ_FMC1</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1a0109cbd4334a14a702f7af41f6e6604aa2e39a57f35e70e6b3866f3e6864f3cbf" prot="public">
+          <name>PWR_RAIL_VCCADJ_FMC2</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1a0109cbd4334a14a702f7af41f6e6604aa915a53a0ead156abb027fff8805e7578" prot="public">
+          <name>PWR_RAIL_COUNT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Number of monitored rails. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="90" column="1" bodyfile="sw/app/src/power.h" bodystart="90" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="enum" id="power_8h_1a133e1a10dbd606c7ef08f7ebb5a5c350" prot="public" static="no" strong="no">
+        <type></type>
+        <name>pwrFmc_t</name>
+        <enumvalue id="power_8h_1a133e1a10dbd606c7ef08f7ebb5a5c350add93061664028bed5ccfeed96e617485" prot="public">
+          <name>PWR_FMC1</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>FMC1 Vadj regulator. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1a133e1a10dbd606c7ef08f7ebb5a5c350a6c1025dc79a491931fcedcf2176335e8" prot="public">
+          <name>PWR_FMC2</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>FMC2 Vadj regulator. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="power_8h_1a133e1a10dbd606c7ef08f7ebb5a5c350a749b32a97be6dc595916b7eb6f400b04" prot="public">
+          <name>PWR_FMC_COUNT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Number of FMC Vadj regulators. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>FMC Vadj regulator identifiers. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="100" column="1" bodyfile="sw/app/src/power.h" bodystart="100" bodyend="104"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="power_8h_1a3c743150f2276689c1cfee09a0b36fa6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref></type>
+        <definition>pwr_err_t pwr_init</definition>
+        <argsstring>(void)</argsstring>
+        <name>pwr_init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Creates all device handles (regulators and monitors). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>No bus traffic, no device configuration. Requires <ref refid="i2cBus_8c_1a64b4069becb1cf60d3d7c0e5eb477bd8" kindref="member">i2cBus_init()</ref> to have succeeded.</para>
+<para><simplesect kind="return"><para><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a585c7be39ddd1fbedefbcd56ce97482f" kindref="member">PWR_OK</ref> on success, <ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ad7b9a874ae88d6b80931aa7fe1b4fdeb" kindref="member">PWR_E_INIT</ref> if a handle could not be created. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.h" line="137" column="11" bodyfile="sw/app/src/power.c" bodystart="172" bodyend="205" declfile="sw/app/src/power.h" declline="137" declcolumn="11"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Power functions of the board: FMC Vadj regulators (tpsm8286x) and the power monitors (ina745a). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Rails, I2C addresses, power-good groups and protection limits are defined by <ref refid="power_8h_1a6981d30fecbd253f13e529f7c728c7b6" kindref="member">PWR_MON_TABLE</ref> below; the rail enum is generated from it.</para>
+<para>Protection concept:<itemizedlist>
+<listitem><para>Over-voltage, over-current and over-temperature limits are armed with a latched alert (ALATCH = 1). Under-voltage/under-current protection is not used on this board.</para>
+</listitem><listitem><para>The ALERT pins are wired-OR onto the power-good inputs, so a fault appears as a power-good line going low. <ref refid="power_8h_1a5bfd30612fc0bebec30a7e4a514b840e" kindref="member">pwr_checkAlerts()</ref> reads those lines first (no bus traffic) and only queries the devices of an affected group over I2C.</para>
+</listitem><listitem><para>Reading DIAG_ALRT clears the latch in the device, therefore the module keeps a sticky fault shadow (see <ref refid="power_8h_1ae14b0dda9be57bc2915bf49c29ec6d86" kindref="member">pwr_mon_getFaults()</ref>). </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>2026<sp/>Matthias<sp/>Haefner<sp/>-<sp/>Heosys</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SRC_POWER_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SRC_POWER_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;type.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="boardConfig_8h" kindref="compound">boardConfig.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>===========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>5.<sp/>Power<sp/>monitors:<sp/>per-rail<sp/>configuration<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>===========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/>name,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>addr,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pg,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vov,<sp/><sp/><sp/>iov,<sp/><sp/><sp/>tov<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="power_8h_1a6981d30fecbd253f13e529f7c728c7b6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PWR_MON_TABLE<sp/>\</highlight></codeline>
+<codeline lineno="54"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>X(12V,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>I2CBUS_PWRMON_12V_ADDR,<sp/><sp/>PWR_PG_SYS,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>13.20f,<sp/><sp/>5.0f,<sp/>95.0f)<sp/>\</highlight></codeline>
+<codeline lineno="55"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>X(3V3,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>I2CBUS_PWRMON_3V3_ADDR,<sp/><sp/>PWR_PG_SYS,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3.60f,<sp/>12.0f,<sp/>95.0f)<sp/>\</highlight></codeline>
+<codeline lineno="56"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>X(5V0_SOM,<sp/><sp/><sp/><sp/><sp/>I2CBUS_PWRMON_5V0_ADDR,<sp/><sp/>PWR_PG_SYS,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5.50f,<sp/><sp/>5.0f,<sp/>95.0f)<sp/>\</highlight></codeline>
+<codeline lineno="57"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>X(1V8,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>I2CBUS_PWRMON_1V8_ADDR,<sp/><sp/>PWR_PG_SYS,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1.98f,<sp/><sp/>5.0f,<sp/>95.0f)<sp/>\</highlight></codeline>
+<codeline lineno="58"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>X(VCCADJ_FMC1,<sp/>I2CBUS_PWRMON_FMC1_ADDR,<sp/>PWR_PG_FMC1_SUP,<sp/><sp/>(BOARD_FMC_VADJ_MAX_V+0.2f),<sp/><sp/>4.5f,<sp/>95.0f)<sp/>\</highlight></codeline>
+<codeline lineno="59"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>X(VCCADJ_FMC2,<sp/>I2CBUS_PWRMON_FMC2_ADDR,<sp/>PWR_PG_FMC2_SUP,<sp/><sp/>(BOARD_FMC_VADJ_MAX_V+0.2f),<sp/><sp/>4.5f,<sp/>95.0f)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>---------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Status<sp/>codes<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>---------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="66" refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a585c7be39ddd1fbedefbcd56ce97482f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a585c7be39ddd1fbedefbcd56ce97482f" kindref="member">PWR_OK</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><sp/>0,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ab866fd6d7753890d2511ac32dd144fc6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ab866fd6d7753890d2511ac32dd144fc6" kindref="member">PWR_E_PARAM</ref><sp/><sp/><sp/><sp/><sp/>=<sp/>-1,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68" refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ad7b9a874ae88d6b80931aa7fe1b4fdeb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ad7b9a874ae88d6b80931aa7fe1b4fdeb" kindref="member">PWR_E_INIT</ref><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>-2,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69" refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ae2eec26171c7948ad8055a7b1c3ae28e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6ae2eec26171c7948ad8055a7b1c3ae28e" kindref="member">PWR_E_DEVICE</ref><sp/><sp/><sp/><sp/>=<sp/>-3,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70" refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a44f56d52f31ba384480eb3084c883042" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a44f56d52f31ba384480eb3084c883042" kindref="member">PWR_E_RANGE</ref><sp/><sp/><sp/><sp/><sp/>=<sp/>-4,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a749187d254156e84a64016c8f0d878b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6a749187d254156e84a64016c8f0d878b4" kindref="member">PWR_E_REGULATION</ref>=<sp/>-5<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal">}<sp/><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref>;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>---------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Power-good<sp/>/<sp/>ALERT<sp/>nets<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>---------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="79" refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a0e1303243ad6bb89a662158d90a8a1bf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a0e1303243ad6bb89a662158d90a8a1bf" kindref="member">PWR_PG_SYS</ref><sp/>=<sp/>0,<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80" refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a1252401cf304937167ce94eff54cd16f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a1252401cf304937167ce94eff54cd16f" kindref="member">PWR_PG_FMC1_SUP</ref>,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81" refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a686513b23f20203d89063e8ebf1f18f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a686513b23f20203d89063e8ebf1f18f5" kindref="member">PWR_PG_FMC2_SUP</ref>,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82" refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a00431fec074aad708219a623504bf66d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827a00431fec074aad708219a623504bf66d" kindref="member">PWR_PG_COUNT</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}<sp/><ref refid="power_8h_1a2e6cdc28e2045dc225353f89c9dcd827" kindref="member">pwrPgLine_t</ref>;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>---------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Monitored<sp/>rails<sp/>(generated<sp/>from<sp/>PWR_MON_TABLE)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>---------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="power_8h_1a6e5876e0fe37b4c5792eb2b86fcdd1e9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>X(name,<sp/>addr,<sp/>pg,<sp/>vov,<sp/>iov,<sp/>tov)<sp/><sp/><sp/><sp/>PWR_RAIL_##name,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="power_8h_1a0109cbd4334a14a702f7af41f6e6604a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="91" refid="power_8h_1a0109cbd4334a14a702f7af41f6e6604aa0810c508212c34531bb8c486fd118db8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="power_8h_1a6981d30fecbd253f13e529f7c728c7b6" kindref="member">PWR_MON_TABLE</ref></highlight></codeline>
+<codeline lineno="92" refid="power_8h_1a0109cbd4334a14a702f7af41f6e6604aa915a53a0ead156abb027fff8805e7578" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="power_8h_1a0109cbd4334a14a702f7af41f6e6604aa915a53a0ead156abb027fff8805e7578" kindref="member">PWR_RAIL_COUNT</ref><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}<sp/><ref refid="power_8h_1a0109cbd4334a14a702f7af41f6e6604a" kindref="member">pwrRail_t</ref>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>X</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>---------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>FMC<sp/>Vadj<sp/>regulators<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>---------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="power_8h_1a133e1a10dbd606c7ef08f7ebb5a5c350" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="101" refid="power_8h_1a133e1a10dbd606c7ef08f7ebb5a5c350add93061664028bed5ccfeed96e617485" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="power_8h_1a133e1a10dbd606c7ef08f7ebb5a5c350add93061664028bed5ccfeed96e617485" kindref="member">PWR_FMC1</ref><sp/>=<sp/>0,<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102" refid="power_8h_1a133e1a10dbd606c7ef08f7ebb5a5c350a6c1025dc79a491931fcedcf2176335e8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="power_8h_1a133e1a10dbd606c7ef08f7ebb5a5c350a6c1025dc79a491931fcedcf2176335e8" kindref="member">PWR_FMC2</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="103" refid="power_8h_1a133e1a10dbd606c7ef08f7ebb5a5c350a749b32a97be6dc595916b7eb6f400b04" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="power_8h_1a133e1a10dbd606c7ef08f7ebb5a5c350a749b32a97be6dc595916b7eb6f400b04" kindref="member">PWR_FMC_COUNT</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}<sp/><ref refid="power_8h_1a133e1a10dbd606c7ef08f7ebb5a5c350" kindref="member">pwrFmc_t</ref>;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>---------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Measurements<sp/>and<sp/>faults<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>---------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="structpwrMon__values__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="111" refid="structpwrMon__values__t_1a1daee0c203df3e58429cba1492288dd6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structpwrMon__values__t_1a1daee0c203df3e58429cba1492288dd6" kindref="member">bus_voltage_V</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="112" refid="structpwrMon__values__t_1a8a7db1266dc75be25b324f201ffdc8db" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structpwrMon__values__t_1a8a7db1266dc75be25b324f201ffdc8db" kindref="member">current_A</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="113" refid="structpwrMon__values__t_1a6180b7d3ea715dafc190941b495dcb5b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structpwrMon__values__t_1a6180b7d3ea715dafc190941b495dcb5b" kindref="member">die_temp_C</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="114"><highlight class="normal">}<sp/><ref refid="structpwrMon__values__t" kindref="compound">pwrMon_values_t</ref>;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="structpwrMon__fault__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="118" refid="structpwrMon__fault__t_1a60adb24d2d81de31f9ed9d92da25ca91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structpwrMon__fault__t_1a60adb24d2d81de31f9ed9d92da25ca91" kindref="member">over_voltage</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="119" refid="structpwrMon__fault__t_1a060daa87267fd1b262b4e576facb62ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structpwrMon__fault__t_1a060daa87267fd1b262b4e576facb62ce" kindref="member">over_current</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="120" refid="structpwrMon__fault__t_1af02bfcc78675c3b120dd2b9afc96402c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structpwrMon__fault__t_1af02bfcc78675c3b120dd2b9afc96402c" kindref="member">over_temp</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="121" refid="structpwrMon__fault__t_1a611ad77620c0a6051cfbffe0d345dfac" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structpwrMon__fault__t_1a611ad77620c0a6051cfbffe0d345dfac" kindref="member">over_power</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="122" refid="structpwrMon__fault__t_1a2fe503e27002a7345cc27d54d429ff66" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structpwrMon__fault__t_1a2fe503e27002a7345cc27d54d429ff66" kindref="member">memory_fail</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="123"><highlight class="normal">}<sp/><ref refid="structpwrMon__fault__t" kindref="compound">pwrMon_fault_t</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>---------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>API<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>---------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref><sp/><ref refid="power_8h_1a3c743150f2276689c1cfee09a0b36fa6" kindref="member">pwr_init</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref><sp/><ref refid="power_8h_1a686a7fa58c307ff761a91be010a4bc11" kindref="member">pwr_fmcVadj_configure</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref><sp/><ref refid="power_8h_1a4695d87d966be1bb315acb472e311acd" kindref="member">pwr_fmcVadj_isRegulating</ref>(<ref refid="power_8h_1a133e1a10dbd606c7ef08f7ebb5a5c350" kindref="member">pwrFmc_t</ref><sp/>fmc);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref><sp/><ref refid="power_8h_1ab7410fc5e09bea44561897fa63848acb" kindref="member">pwr_fmcVadj_enable</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>enable);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref><sp/><ref refid="power_8h_1a24e1ab32f0bddb7e8b016560ad18ceda" kindref="member">pwr_mon_configure</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref><sp/><ref refid="power_8h_1a8fac4f52cf32900b6671bd06e019c948" kindref="member">pwr_mon_read</ref>(<ref refid="power_8h_1a0109cbd4334a14a702f7af41f6e6604a" kindref="member">pwrRail_t</ref><sp/>rail,<sp/><ref refid="structpwrMon__values__t" kindref="compound">pwrMon_values_t</ref><sp/>*values);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref><sp/><ref refid="power_8h_1a51133094f87bcd01af0b08ec2c9c4042" kindref="member">pwr_mon_poll</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref><sp/><ref refid="power_8h_1a5bfd30612fc0bebec30a7e4a514b840e" kindref="member">pwr_checkAlerts</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><ref refid="power_8h_1af8a4ccd8207d5e5c7de4d43ae88b73a6" kindref="member">pwr_err_t</ref><sp/><ref refid="power_8h_1ae14b0dda9be57bc2915bf49c29ec6d86" kindref="member">pwr_mon_getFaults</ref>(<ref refid="power_8h_1a0109cbd4334a14a702f7af41f6e6604a" kindref="member">pwrRail_t</ref><sp/>rail,<sp/><ref refid="structpwrMon__fault__t" kindref="compound">pwrMon_fault_t</ref><sp/>*faults);</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="power_8h_1adc6e78539a92dd523b3b46340c649a3c" kindref="member">pwr_mon_clearFaults</ref>(<ref refid="power_8h_1a0109cbd4334a14a702f7af41f6e6604a" kindref="member">pwrRail_t</ref><sp/>rail);</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="power_8h_1a87a294675e1667f89723365a4ebc8cdf" kindref="member">pwr_mon_reportFaults</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="power_8h_1a59ff554b0e0f345da69172cd713ade23" kindref="member">pwr_railName</ref>(<ref refid="power_8h_1a0109cbd4334a14a702f7af41f6e6604a" kindref="member">pwrRail_t</ref><sp/>rail);</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>SRC_POWER_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="sw/app/src/power.h"/>
+  </compounddef>
+</doxygen>

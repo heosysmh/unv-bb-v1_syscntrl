@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structina745a__diag__flags__t" kind="struct" language="C++" prot="public">
+    <compoundname>ina745a_diag_flags_t</compoundname>
+    <includes refid="ina745a_8h" local="no">sw/devices/ina745a/ina745a.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structina745a__diag__flags__t_1aa6b264a7581ba8677644353386508526" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ina745a_diag_flags_t::energy_overflow</definition>
+        <argsstring></argsstring>
+        <name>energy_overflow</name>
+        <qualifiedname>ina745a_diag_flags_t::energy_overflow</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>ENERGYOF: energy accumulator overflow. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="179" column="4" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__diag__flags__t_1a0ca23e6630f05bfbc511f54e9ff6dafe" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ina745a_diag_flags_t::charge_overflow</definition>
+        <argsstring></argsstring>
+        <name>charge_overflow</name>
+        <qualifiedname>ina745a_diag_flags_t::charge_overflow</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>CHARGEOF: charge accumulator overflow. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="180" column="4" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__diag__flags__t_1a50987c9958ab5b7d541f114a7abc3f32" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ina745a_diag_flags_t::math_overflow</definition>
+        <argsstring></argsstring>
+        <name>math_overflow</name>
+        <qualifiedname>ina745a_diag_flags_t::math_overflow</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>MATHOF: internal math overflow. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="181" column="4" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__diag__flags__t_1adbe720c027e7925ee4980c4466cf2be4" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ina745a_diag_flags_t::temp_over_limit</definition>
+        <argsstring></argsstring>
+        <name>temp_over_limit</name>
+        <qualifiedname>ina745a_diag_flags_t::temp_over_limit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>TMPOL: temperature over limit. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="182" column="4" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="182" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__diag__flags__t_1ab50c1e3bf1897b432b3caa7a735ea3b1" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ina745a_diag_flags_t::current_over_limit</definition>
+        <argsstring></argsstring>
+        <name>current_over_limit</name>
+        <qualifiedname>ina745a_diag_flags_t::current_over_limit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>CURRENTOL: current over limit. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="183" column="4" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="183" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__diag__flags__t_1a5d03c0dfb0a2ba0ecb24d2d74e62b1fd" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ina745a_diag_flags_t::current_under_limit</definition>
+        <argsstring></argsstring>
+        <name>current_under_limit</name>
+        <qualifiedname>ina745a_diag_flags_t::current_under_limit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>CURRENTUL: current under limit. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="184" column="4" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="184" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__diag__flags__t_1a23e016cc07447bbff6012c146d6657c9" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ina745a_diag_flags_t::bus_over_limit</definition>
+        <argsstring></argsstring>
+        <name>bus_over_limit</name>
+        <qualifiedname>ina745a_diag_flags_t::bus_over_limit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>BUSOL: bus voltage over limit. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="185" column="4" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="185" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__diag__flags__t_1a1cd4041d90b98f4f33b3fa821da6807c" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ina745a_diag_flags_t::bus_under_limit</definition>
+        <argsstring></argsstring>
+        <name>bus_under_limit</name>
+        <qualifiedname>ina745a_diag_flags_t::bus_under_limit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>BUSUL: bus voltage under limit. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="186" column="4" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="186" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__diag__flags__t_1a01443ebcbc26660ad540d2579dea8e9f" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ina745a_diag_flags_t::power_over_limit</definition>
+        <argsstring></argsstring>
+        <name>power_over_limit</name>
+        <qualifiedname>ina745a_diag_flags_t::power_over_limit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>POL: power over limit. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="187" column="4" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="187" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__diag__flags__t_1ad070815ad3f64eeaa79746201b64a96e" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ina745a_diag_flags_t::conversion_ready</definition>
+        <argsstring></argsstring>
+        <name>conversion_ready</name>
+        <qualifiedname>ina745a_diag_flags_t::conversion_ready</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>CNVRF: conversion ready. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="188" column="4" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="188" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__diag__flags__t_1a51a08d64def32fb007d879318f6140f1" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ina745a_diag_flags_t::memory_ok</definition>
+        <argsstring></argsstring>
+        <name>memory_ok</name>
+        <qualifiedname>ina745a_diag_flags_t::memory_ok</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>MEMSTAT, 1 = normal operation. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="189" column="4" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="189" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Read-only DIAG_ALRT status/diagnostic bits (11-0). </para>
+    </detaileddescription>
+    <location file="sw/devices/ina745a/ina745a.h" line="178" column="1" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="178" bodyend="190"/>
+    <listofallmembers>
+      <member refid="structina745a__diag__flags__t_1a23e016cc07447bbff6012c146d6657c9" prot="public" virt="non-virtual"><scope>ina745a_diag_flags_t</scope><name>bus_over_limit</name></member>
+      <member refid="structina745a__diag__flags__t_1a1cd4041d90b98f4f33b3fa821da6807c" prot="public" virt="non-virtual"><scope>ina745a_diag_flags_t</scope><name>bus_under_limit</name></member>
+      <member refid="structina745a__diag__flags__t_1a0ca23e6630f05bfbc511f54e9ff6dafe" prot="public" virt="non-virtual"><scope>ina745a_diag_flags_t</scope><name>charge_overflow</name></member>
+      <member refid="structina745a__diag__flags__t_1ad070815ad3f64eeaa79746201b64a96e" prot="public" virt="non-virtual"><scope>ina745a_diag_flags_t</scope><name>conversion_ready</name></member>
+      <member refid="structina745a__diag__flags__t_1ab50c1e3bf1897b432b3caa7a735ea3b1" prot="public" virt="non-virtual"><scope>ina745a_diag_flags_t</scope><name>current_over_limit</name></member>
+      <member refid="structina745a__diag__flags__t_1a5d03c0dfb0a2ba0ecb24d2d74e62b1fd" prot="public" virt="non-virtual"><scope>ina745a_diag_flags_t</scope><name>current_under_limit</name></member>
+      <member refid="structina745a__diag__flags__t_1aa6b264a7581ba8677644353386508526" prot="public" virt="non-virtual"><scope>ina745a_diag_flags_t</scope><name>energy_overflow</name></member>
+      <member refid="structina745a__diag__flags__t_1a50987c9958ab5b7d541f114a7abc3f32" prot="public" virt="non-virtual"><scope>ina745a_diag_flags_t</scope><name>math_overflow</name></member>
+      <member refid="structina745a__diag__flags__t_1a51a08d64def32fb007d879318f6140f1" prot="public" virt="non-virtual"><scope>ina745a_diag_flags_t</scope><name>memory_ok</name></member>
+      <member refid="structina745a__diag__flags__t_1a01443ebcbc26660ad540d2579dea8e9f" prot="public" virt="non-virtual"><scope>ina745a_diag_flags_t</scope><name>power_over_limit</name></member>
+      <member refid="structina745a__diag__flags__t_1adbe720c027e7925ee4980c4466cf2be4" prot="public" virt="non-virtual"><scope>ina745a_diag_flags_t</scope><name>temp_over_limit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

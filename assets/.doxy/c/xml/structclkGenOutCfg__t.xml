@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structclkGenOutCfg__t" kind="struct" language="C++" prot="public">
+    <compoundname>clkGenOutCfg_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structclkGenOutCfg__t_1ab1d841081afae283c637c249232c3b81" prot="public" static="no" mutable="no">
+        <type><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0" kindref="member">si5332_out_ch_t</ref></type>
+        <definition>si5332_out_ch_t clkGenOutCfg_t::ch</definition>
+        <argsstring></argsstring>
+        <name>ch</name>
+        <qualifiedname>clkGenOutCfg_t::ch</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Output channel. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/clkGen.c" line="19" column="21" bodyfile="sw/app/src/clkGen.c" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structclkGenOutCfg__t_1ac7e67fa5882da711aefff83da2183c25" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 clkGenOutCfg_t::enable</definition>
+        <argsstring></argsstring>
+        <name>enable</name>
+        <qualifiedname>clkGenOutCfg_t::enable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable state. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/clkGen.c" line="20" column="21" bodyfile="sw/app/src/clkGen.c" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structclkGenOutCfg__t_1a9165d92d8179eb71fec0190d77f2f542" prot="public" static="no" mutable="no">
+        <type>u32</type>
+        <definition>u32 clkGenOutCfg_t::freq_hz</definition>
+        <argsstring></argsstring>
+        <name>freq_hz</name>
+        <qualifiedname>clkGenOutCfg_t::freq_hz</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Output frequency [Hz]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/clkGen.c" line="21" column="21" bodyfile="sw/app/src/clkGen.c" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structclkGenOutCfg__t_1a35d4a54dab7aacef7b7ee3b73c49f518" prot="public" static="no" mutable="no">
+        <type><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500a" kindref="member">si5332_out_format_t</ref></type>
+        <definition>si5332_out_format_t clkGenOutCfg_t::format</definition>
+        <argsstring></argsstring>
+        <name>format</name>
+        <qualifiedname>clkGenOutCfg_t::format</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Signal format. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/clkGen.c" line="22" column="21" bodyfile="sw/app/src/clkGen.c" bodystart="22" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Per-output configuration, taken from <ref refid="boardConfig_8h" kindref="compound">boardConfig.h</ref>. </para>
+    </detaileddescription>
+    <location file="sw/app/src/clkGen.c" line="18" column="1" bodyfile="sw/app/src/clkGen.c" bodystart="18" bodyend="23"/>
+    <listofallmembers>
+      <member refid="structclkGenOutCfg__t_1ab1d841081afae283c637c249232c3b81" prot="public" virt="non-virtual"><scope>clkGenOutCfg_t</scope><name>ch</name></member>
+      <member refid="structclkGenOutCfg__t_1ac7e67fa5882da711aefff83da2183c25" prot="public" virt="non-virtual"><scope>clkGenOutCfg_t</scope><name>enable</name></member>
+      <member refid="structclkGenOutCfg__t_1a35d4a54dab7aacef7b7ee3b73c49f518" prot="public" virt="non-virtual"><scope>clkGenOutCfg_t</scope><name>format</name></member>
+      <member refid="structclkGenOutCfg__t_1a9165d92d8179eb71fec0190d77f2f542" prot="public" virt="non-virtual"><scope>clkGenOutCfg_t</scope><name>freq_hz</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

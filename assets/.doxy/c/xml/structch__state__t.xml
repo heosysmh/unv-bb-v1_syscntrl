@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structch__state__t" kind="struct" language="C++" prot="public">
+    <compoundname>ch_state_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structch__state__t_1a9c8cae60b462424c26ce398caa9fc471" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ch_state_t::enabled</definition>
+        <argsstring></argsstring>
+        <name>enabled</name>
+        <qualifiedname>ch_state_t::enabled</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Desired output-enable (OE) state. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="105" column="5" bodyfile="sw/devices/si5332/si5332.c" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__state__t_1aefb17ddbadf5b49f93c4330b8b2da9ed" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ch_state_t::configured</definition>
+        <argsstring></argsstring>
+        <name>configured</name>
+        <qualifiedname>ch_state_t::configured</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Non-zero once a divider has been set (block switched on). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="106" column="5" bodyfile="sw/devices/si5332/si5332.c" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__state__t_1a892318199362e1358283a66b717acf20" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ch_state_t::fmt</definition>
+        <argsstring></argsstring>
+        <name>fmt</name>
+        <qualifiedname>ch_state_t::fmt</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Signal format, value of <ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500a" kindref="member">si5332_out_format_t</ref> (OUTx_MODE). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="107" column="5" bodyfile="sw/devices/si5332/si5332.c" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__state__t_1a2de91064f625b320b2bd856c88946672" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ch_state_t::src</definition>
+        <argsstring></argsstring>
+        <name>src</name>
+        <qualifiedname>ch_state_t::src</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Divider source, value of <ref refid="si5332_8h_1a1a82efca9c339cc8de48b06cdf5f819c" kindref="member">si5332_div_src_t</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="108" column="5" bodyfile="sw/devices/si5332/si5332.c" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__state__t_1a3d0f43a10019e3a842632b5eeef40445" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ch_state_t::rdiv</definition>
+        <argsstring></argsstring>
+        <name>rdiv</name>
+        <qualifiedname>ch_state_t::rdiv</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>R divider, 1..63. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="109" column="5" bodyfile="sw/devices/si5332/si5332.c" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__state__t_1aea0a87211d861e35bc19d639124e6ef0" prot="public" static="no" mutable="no">
+        <type>u32</type>
+        <definition>u32 ch_state_t::freq_hz</definition>
+        <argsstring></argsstring>
+        <name>freq_hz</name>
+        <qualifiedname>ch_state_t::freq_hz</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Currently configured output frequency in Hz. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="110" column="5" bodyfile="sw/devices/si5332/si5332.c" bodystart="110" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Shadow state of one API-configurable output channel. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/devices/si5332/si5332.c" line="104" column="1" bodyfile="sw/devices/si5332/si5332.c" bodystart="104" bodyend="111"/>
+    <listofallmembers>
+      <member refid="structch__state__t_1aefb17ddbadf5b49f93c4330b8b2da9ed" prot="public" virt="non-virtual"><scope>ch_state_t</scope><name>configured</name></member>
+      <member refid="structch__state__t_1a9c8cae60b462424c26ce398caa9fc471" prot="public" virt="non-virtual"><scope>ch_state_t</scope><name>enabled</name></member>
+      <member refid="structch__state__t_1a892318199362e1358283a66b717acf20" prot="public" virt="non-virtual"><scope>ch_state_t</scope><name>fmt</name></member>
+      <member refid="structch__state__t_1aea0a87211d861e35bc19d639124e6ef0" prot="public" virt="non-virtual"><scope>ch_state_t</scope><name>freq_hz</name></member>
+      <member refid="structch__state__t_1a3d0f43a10019e3a842632b5eeef40445" prot="public" virt="non-virtual"><scope>ch_state_t</scope><name>rdiv</name></member>
+      <member refid="structch__state__t_1a2de91064f625b320b2bd856c88946672" prot="public" virt="non-virtual"><scope>ch_state_t</scope><name>src</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

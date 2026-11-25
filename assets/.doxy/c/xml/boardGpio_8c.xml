@@ -1,0 +1,669 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="boardGpio_8c" kind="file" language="C++">
+    <compoundname>boardGpio.c</compoundname>
+    <includes refid="boardGpio_8h" local="yes">boardGpio.h</includes>
+    <includes local="yes">bsp.h</includes>
+    <includes local="yes">gpio.h</includes>
+    <includes refid="boardConfig_8h" local="yes">boardConfig.h</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>boardConfig.h</label>
+        <link refid="boardConfig_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>sw/app/src/boardGpio.c</label>
+        <link refid="boardGpio_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>boardGpio.h</label>
+        <link refid="boardGpio_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>si5332.h</label>
+        <link refid="si5332_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>bsp.h</label>
+      </node>
+      <node id="5">
+        <label>gpio.h</label>
+      </node>
+      <node id="3">
+        <label>type.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="boardGpio_8c_1aa253a7f9c099890d2575f29dda32f154" prot="public" static="no">
+        <name>GPIO_IN</name>
+        <initializer>SYSTEM_GPIO_0_IO_CTRL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="17" column="9" bodyfile="sw/app/src/boardGpio.c" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardGpio_8c_1aa0d5e0e1b44c5015f31a44079fd2d9e6" prot="public" static="no">
+        <name>GPIO_OUT</name>
+        <initializer>SYSTEM_GPIO_1_IO_CTRL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="18" column="9" bodyfile="sw/app/src/boardGpio.c" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardGpio_8c_1a57b2ae8e2c9f3e3c2ef6885ef11d42a5" prot="public" static="no">
+        <name>GPIO_HPC_VCCIO_SELECT_MASK</name>
+        <initializer>(1u &lt;&lt; <ref refid="boardGpio_8h_1aa37cf3d13aca2e62252ccfceaacfce9a" kindref="member">GPIO_OUT_HPC_VCCIO_SELECT_BIT</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="21" column="9" bodyfile="sw/app/src/boardGpio.c" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardGpio_8c_1a30f53df76214e2f7924e4b4287f97b5a" prot="public" static="no">
+        <name>GPIO_HDB_VCCIO_SELECT_MASK</name>
+        <initializer>(1u &lt;&lt; <ref refid="boardGpio_8h_1a9183c6c80d65f0ff0077d539139d28e6" kindref="member">GPIO_OUT_HDB_VCCIO_SELECT_BIT</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="22" column="9" bodyfile="sw/app/src/boardGpio.c" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardGpio_8c_1aecfee1e092215cc637a9fa0e45d2ec12" prot="public" static="no">
+        <name>GPIO_FMC_SUP_EN_MASK</name>
+        <initializer>                                 ((1u &lt;&lt; <ref refid="boardGpio_8h_1aa1486604a6ccf99c33716e20229e7ffc" kindref="member">GPIO_OUT_FMC1_SUP_EN_BIT</ref>) | \
+                                 (1u &lt;&lt; <ref refid="boardGpio_8h_1a2ba50ffa2a05bb4e706d7c4702b5d4cf" kindref="member">GPIO_OUT_FMC2_SUP_EN_BIT</ref>))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="24" column="9" bodyfile="sw/app/src/boardGpio.c" bodystart="24" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="define" id="boardGpio_8c_1a665b59f9c2a6b53dce7b878810048768" prot="public" static="no">
+        <name>GPIO_FMC_MOD_EN_MASK</name>
+        <initializer>                                 ((1u &lt;&lt; <ref refid="boardGpio_8h_1a971eb4acef65d2b521b656ae3db56d70" kindref="member">GPIO_OUT_FMC1_MOD_EN_BIT</ref>) | \
+                                 (1u &lt;&lt; <ref refid="boardGpio_8h_1aa20dc26a50d0eef5ad307b1c2008e46b" kindref="member">GPIO_OUT_FMC2_MOD_EN_BIT</ref>))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="26" column="9" bodyfile="sw/app/src/boardGpio.c" bodystart="26" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="define" id="boardGpio_8c_1a6ee9d585b4e8d83e4af0c08558e9dc3a" prot="public" static="no">
+        <name>GPIO_FMC_PG_RLS_MASK</name>
+        <initializer>                                 ((1u &lt;&lt; <ref refid="boardGpio_8h_1acb6cb945c3a672e0a2ee2fe3c496dc27" kindref="member">GPIO_OUT_FMC1_PG_RLS_BIT</ref>) | \
+                                 (1u &lt;&lt; <ref refid="boardGpio_8h_1ab0792e358f49cfdc35234c341b7b6fbb" kindref="member">GPIO_OUT_FMC2_PG_RLS_BIT</ref>))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="28" column="9" bodyfile="sw/app/src/boardGpio.c" bodystart="28" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="define" id="boardGpio_8c_1afdabbd25718b4df96b7c0a9b43d3a1f6" prot="public" static="no">
+        <name>GPIO_POR_B_MASK</name>
+        <initializer>(1u &lt;&lt; <ref refid="boardGpio_8h_1a8afbffa7a90d1103efaf23787a1e56ae" kindref="member">GPIO_OUT_POR_B_BIT</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="31" column="9" bodyfile="sw/app/src/boardGpio.c" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardGpio_8c_1a538042e841a31f03405b132b0578d495" prot="public" static="no">
+        <name>GPIO_ETH_RSTN_MASK</name>
+        <initializer>(1u &lt;&lt; <ref refid="boardGpio_8h_1accbeedf8ed15d1122922a2c82e77e860" kindref="member">GPIO_OUT_ETH_RSTN_BIT</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="32" column="9" bodyfile="sw/app/src/boardGpio.c" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardGpio_8c_1aa909d43baa8b18e766618ffec495fec1" prot="public" static="no">
+        <name>GPIO_PG_MASK</name>
+        <initializer>                    (<ref refid="boardGpio_8h_1a02250ea81984f8a9b4fc2a3486248f47" kindref="member">GPIO_PG_SYS_MASK</ref> | \
+                    <ref refid="boardGpio_8h_1a50aee3da4fb61cf718fba4682d979852" kindref="member">GPIO_PG_FMC1_SUP_MASK</ref> | \
+                    <ref refid="boardGpio_8h_1a3dd0f21af61b31d689238c3c197e69a0" kindref="member">GPIO_PG_FMC2_SUP_MASK</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="34" column="9" bodyfile="sw/app/src/boardGpio.c" bodystart="34" bodyend="36"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="boardGpio_8c_1a38a4ce38bc851511d5782054dcb8d0e4" prot="public" static="yes" mutable="no">
+        <type>u32</type>
+        <definition>u32 gOutShadow</definition>
+        <argsstring></argsstring>
+        <name>gOutShadow</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Shadow of the output register; the hardware register is write-only safe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="39" column="12" bodyfile="sw/app/src/boardGpio.c" bodystart="39" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="boardGpio_8c_1af0e4da2db61a712e130998d58d99e2c0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void boardGpio_modifyOutput</definition>
+        <argsstring>(u32 mask, u32 value)</argsstring>
+        <name>boardGpio_modifyOutput</name>
+        <param>
+          <type>u32</type>
+          <declname>mask</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Applies <computeroutput>value</computeroutput> to the masked output bits via the shadow register. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="44" column="13" bodyfile="sw/app/src/boardGpio.c" bodystart="44" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="boardGpio_8c_1ab9443bfa97aec7477682003da58b9a17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void boardGpio_init</definition>
+        <argsstring>(void)</argsstring>
+        <name>boardGpio_init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Drives all outputs to their reset state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Everything off: FMC supplies and modules disabled, POR_B asserted, ETH PHY in reset. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="50" column="6" bodyfile="sw/app/src/boardGpio.c" bodystart="50" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="boardGpio_8c_1aacbc5c549492d3404582ff6f34e7c69a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>u32</type>
+        <definition>u32 boardGpio_getInput</definition>
+        <argsstring>(void)</argsstring>
+        <name>boardGpio_getInput</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Reads the raw input register of the board. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Input register value (bit positions: GPIO_IN_*_BIT). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="56" column="5" bodyfile="sw/app/src/boardGpio.c" bodystart="56" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="boardGpio_8c_1a8a41fb15a53d3e977d632f59dbe856dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void boardGpio_waitSomReady</definition>
+        <argsstring>(void)</argsstring>
+        <name>boardGpio_waitSomReady</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Blocks until the SoM has switched on its PL/PS supplies. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Waits until VCCO_PL_EN, VCCO_PS_EN and SYS_PG are all asserted (see <ref refid="boardGpio_8h_1ac299589b22a51edd91c6abce01304a67" kindref="member">GPIO_SOM_READY_MASK</ref>). </para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; SoM PL supply enable indication.</para>
+<para>&lt; SoM PS supply enable indication.</para>
+<para>&lt; System power-good / ALERT net.</para>
+<para>&lt; SYS_PG net mask.</para>
+<para>&lt; SoM PL supply enable indication.</para>
+<para>&lt; SoM PS supply enable indication.</para>
+<para>&lt; System power-good / ALERT net.</para>
+<para>&lt; SYS_PG net mask.</para>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="61" column="6" bodyfile="sw/app/src/boardGpio.c" bodystart="61" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="boardGpio_8c_1a11ec94cdf17a9e7b12a26ece5ca20df5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>u32</type>
+        <definition>u32 boardGpio_getPgStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>boardGpio_getPgStatus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Reads the power-good / ALERT nets. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Masked to <ref refid="boardGpio_8h_1a02250ea81984f8a9b4fc2a3486248f47" kindref="member">GPIO_PG_SYS_MASK</ref>, <ref refid="boardGpio_8h_1a50aee3da4fb61cf718fba4682d979852" kindref="member">GPIO_PG_FMC1_SUP_MASK</ref> and <ref refid="boardGpio_8h_1a3dd0f21af61b31d689238c3c197e69a0" kindref="member">GPIO_PG_FMC2_SUP_MASK</ref>. A bit reads 0 either because the supply is not good or because an INA745A on that net has asserted its (active low, open-drain) ALERT output.</para>
+<para><simplesect kind="return"><para>Masked power-good status bits. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; System power-good / ALERT net.</para>
+<para>&lt; SYS_PG net mask.</para>
+<para>&lt; FMC1 supply power-good / ALERT net.</para>
+<para>&lt; FMC1_SUP_PG net mask.</para>
+<para>&lt; FMC2 supply power-good / ALERT net.</para>
+<para>&lt; FMC2_SUP_PG net mask.</para>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="69" column="5" bodyfile="sw/app/src/boardGpio.c" bodystart="69" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="boardGpio_8c_1a18b2b40d3e60e0ba449856639fbc0216" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void boardGpio_setFmcSupplyEnable</definition>
+        <argsstring>(int enable)</argsstring>
+        <name>boardGpio_setFmcSupplyEnable</name>
+        <param>
+          <type>int</type>
+          <declname>enable</declname>
+        </param>
+        <briefdescription>
+<para>Enables/disables the FMC supply (both FMC slots). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>enable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Non-zero to enable, zero to disable. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; FMC1 supply enable.</para>
+<para>&lt; FMC2 supply enable.</para>
+<para>&lt; FMC1 supply enable.</para>
+<para>&lt; FMC2 supply enable.</para>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="74" column="6" bodyfile="sw/app/src/boardGpio.c" bodystart="74" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="boardGpio_8c_1aefb462f3cc93a56f28e7a07f79be1d1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void boardGpio_setFmcPgoodRelease</definition>
+        <argsstring>(int release)</argsstring>
+        <name>boardGpio_setFmcPgoodRelease</name>
+        <param>
+          <type>int</type>
+          <declname>release</declname>
+        </param>
+        <briefdescription>
+<para>Releases/locks the FMC power-good (both FMC slots). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Power-good is forced low if locked.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>release</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Non-zero to release, zero to force low. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; FMC1 power-good release.</para>
+<para>&lt; FMC2 power-good release.</para>
+<para>&lt; FMC1 power-good release.</para>
+<para>&lt; FMC2 power-good release.</para>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="79" column="6" bodyfile="sw/app/src/boardGpio.c" bodystart="79" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="boardGpio_8c_1ace132c3914486e2667b635e9d862eaa6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void boardGpio_setFmcModuleEnable</definition>
+        <argsstring>(int enable)</argsstring>
+        <name>boardGpio_setFmcModuleEnable</name>
+        <param>
+          <type>int</type>
+          <declname>enable</declname>
+        </param>
+        <briefdescription>
+<para>Enables/disables the FMC modules (both FMC slots). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>enable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Non-zero to enable, zero to disable. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; FMC1 module enable.</para>
+<para>&lt; FMC2 module enable.</para>
+<para>&lt; FMC1 module enable.</para>
+<para>&lt; FMC2 module enable.</para>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="84" column="6" bodyfile="sw/app/src/boardGpio.c" bodystart="84" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="boardGpio_8c_1a72e37f217e6c8064c02eea05399af4d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void boardGpio_releaseSomPor</definition>
+        <argsstring>(void)</argsstring>
+        <name>boardGpio_releaseSomPor</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Releases POR_B of the SoM. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Cannot be re-asserted by this API on purpose. </para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; SoM POR_B (active low, 0 = reset asserted).</para>
+<para>&lt; SoM POR_B (active low, 0 = reset asserted).</para>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="89" column="6" bodyfile="sw/app/src/boardGpio.c" bodystart="89" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="boardGpio_8c_1a2a9089ad1aba3af1533f95bdd964607a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void boardGpio_releaseEthPhyReset</definition>
+        <argsstring>(void)</argsstring>
+        <name>boardGpio_releaseEthPhyReset</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Releases the ETH PHY reset (ETH_RSTN high). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; ETH PHY reset (active low, 0 = in reset).</para>
+<para>&lt; ETH PHY reset (active low, 0 = in reset).</para>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="94" column="6" bodyfile="sw/app/src/boardGpio.c" bodystart="94" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="boardGpio_8c_1a9acfee503c60c72c80686b4ea1fe0788" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void boardGpio_pulseEthPhyReset</definition>
+        <argsstring>(void)</argsstring>
+        <name>boardGpio_pulseEthPhyReset</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Generates a reset pulse on the ETH PHY reset line. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Pulse width is <ref refid="boardConfig_8h_1abce29f57e327eb2c83213e7fb8926f1a" kindref="member">BOARD_ETH_RESET_PULSE_US</ref>; the line is high afterwards. </para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; ETH PHY reset (active low, 0 = in reset).</para>
+<para>&lt; ETH PHY reset pulse width [us].</para>
+<para>&lt; ETH PHY reset (active low, 0 = in reset).</para>
+<para>&lt; ETH PHY reset (active low, 0 = in reset).</para>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="99" column="6" bodyfile="sw/app/src/boardGpio.c" bodystart="99" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="boardGpio_8c_1a69685cdde9b02d8589b41cdcf48c47db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void boardGpio_setHpcVccio</definition>
+        <argsstring>(int sourceFmc1)</argsstring>
+        <name>boardGpio_setHpcVccio</name>
+        <param>
+          <type>int</type>
+          <declname>sourceFmc1</declname>
+        </param>
+        <briefdescription>
+<para>Selects the VCCIO source of the HPC bank. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sourceFmc1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Non-zero: FMC1-Vadj, zero: FMC2-Vadj. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; HPC VCCIO source select (0 = FMC2, 1 = FMC1).</para>
+<para>&lt; HPC VCCIO source select (0 = FMC2, 1 = FMC1).</para>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="106" column="6" bodyfile="sw/app/src/boardGpio.c" bodystart="106" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="boardGpio_8c_1a105ac29c71eea9d4aa40567fbd29f32f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void boardGpio_setHdbVccio</definition>
+        <argsstring>(int source2V5)</argsstring>
+        <name>boardGpio_setHdbVccio</name>
+        <param>
+          <type>int</type>
+          <declname>source2V5</declname>
+        </param>
+        <briefdescription>
+<para>Selects the VCCIO source of the HDB bank. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>source2V5</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Non-zero: 2.5V, zero: FMC2-Vadj. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; HDB VCCIO source select (0 = FMC2-Vadj, 1 = 2.5V).</para>
+<para>&lt; HDB VCCIO source select (0 = FMC2-Vadj, 1 = 2.5V).</para>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="111" column="6" bodyfile="sw/app/src/boardGpio.c" bodystart="111" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="boardGpio_8c_1a02f5b4d44c6ca808460843a8813ac29f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void boardGpio_setStatusLed</definition>
+        <argsstring>(int state)</argsstring>
+        <name>boardGpio_setStatusLed</name>
+        <param>
+          <type>int</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Sets the state of the status LED. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Non-zero: LED on, zero: LED off. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Status LED.</para>
+<para>&lt; Status LED output mask.</para>
+<para>&lt; Status LED.</para>
+<para>&lt; Status LED output mask.</para>
+        </inbodydescription>
+        <location file="sw/app/src/boardGpio.c" line="116" column="6" bodyfile="sw/app/src/boardGpio.c" bodystart="116" bodyend="119"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Implementation of GPIO access (interface to FPGA). </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>2026<sp/>Matthias<sp/>Haefner<sp/>-<sp/>Heosys</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="boardGpio_8h" kindref="compound">boardGpio.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;bsp.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;gpio.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="boardConfig_8h" kindref="compound">boardConfig.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>---<sp/>GPIO<sp/>controllers<sp/>-----------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GPIO_IN<sp/><sp/><sp/><sp/><sp/>SYSTEM_GPIO_0_IO_CTRL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GPIO_OUT<sp/><sp/><sp/><sp/>SYSTEM_GPIO_1_IO_CTRL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GPIO_HPC_VCCIO_SELECT_MASK<sp/><sp/>(1u<sp/>&lt;&lt;<sp/>GPIO_OUT_HPC_VCCIO_SELECT_BIT)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GPIO_HDB_VCCIO_SELECT_MASK<sp/><sp/>(1u<sp/>&lt;&lt;<sp/>GPIO_OUT_HDB_VCCIO_SELECT_BIT)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GPIO_FMC_SUP_EN_MASK<sp/><sp/><sp/><sp/>((1u<sp/>&lt;&lt;<sp/>GPIO_OUT_FMC1_SUP_EN_BIT)<sp/>|<sp/>\</highlight></codeline>
+<codeline lineno="25"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1u<sp/>&lt;&lt;<sp/>GPIO_OUT_FMC2_SUP_EN_BIT))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GPIO_FMC_MOD_EN_MASK<sp/><sp/><sp/><sp/>((1u<sp/>&lt;&lt;<sp/>GPIO_OUT_FMC1_MOD_EN_BIT)<sp/>|<sp/>\</highlight></codeline>
+<codeline lineno="27"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1u<sp/>&lt;&lt;<sp/>GPIO_OUT_FMC2_MOD_EN_BIT))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GPIO_FMC_PG_RLS_MASK<sp/><sp/><sp/><sp/>((1u<sp/>&lt;&lt;<sp/>GPIO_OUT_FMC1_PG_RLS_BIT)<sp/>|<sp/>\</highlight></codeline>
+<codeline lineno="29"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1u<sp/>&lt;&lt;<sp/>GPIO_OUT_FMC2_PG_RLS_BIT))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GPIO_POR_B_MASK<sp/><sp/><sp/><sp/><sp/>(1u<sp/>&lt;&lt;<sp/>GPIO_OUT_POR_B_BIT)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GPIO_ETH_RSTN_MASK<sp/><sp/>(1u<sp/>&lt;&lt;<sp/>GPIO_OUT_ETH_RSTN_BIT)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GPIO_PG_MASK<sp/><sp/><sp/><sp/>(GPIO_PG_SYS_MASK<sp/>|<sp/>\</highlight></codeline>
+<codeline lineno="35"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GPIO_PG_FMC1_SUP_MASK<sp/>|<sp/>\</highlight></codeline>
+<codeline lineno="36"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GPIO_PG_FMC2_SUP_MASK)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>u32<sp/><ref refid="boardGpio_8c_1a38a4ce38bc851511d5782054dcb8d0e4" kindref="member">gOutShadow</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="boardGpio_8c_1af0e4da2db61a712e130998d58d99e2c0" kindref="member">boardGpio_modifyOutput</ref>(u32<sp/>mask,<sp/>u32<sp/>value)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="boardGpio_8c_1a38a4ce38bc851511d5782054dcb8d0e4" kindref="member">gOutShadow</ref><sp/>=<sp/>(<ref refid="boardGpio_8c_1a38a4ce38bc851511d5782054dcb8d0e4" kindref="member">gOutShadow</ref><sp/>&amp;<sp/>~mask)<sp/>|<sp/>(value<sp/>&amp;<sp/>mask);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>gpio_setOutput(<ref refid="boardGpio_8c_1aa0d5e0e1b44c5015f31a44079fd2d9e6" kindref="member">GPIO_OUT</ref>,<sp/><ref refid="boardGpio_8c_1a38a4ce38bc851511d5782054dcb8d0e4" kindref="member">gOutShadow</ref>);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="boardGpio_8c_1ab9443bfa97aec7477682003da58b9a17" kindref="member">boardGpio_init</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="boardGpio_8c_1a38a4ce38bc851511d5782054dcb8d0e4" kindref="member">gOutShadow</ref><sp/>=<sp/>0x0;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>supplies<sp/>off,<sp/>POR_B<sp/>asserted,<sp/>ETH<sp/>PHY<sp/>in<sp/>reset<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>gpio_setOutput(<ref refid="boardGpio_8c_1aa0d5e0e1b44c5015f31a44079fd2d9e6" kindref="member">GPIO_OUT</ref>,<sp/><ref refid="boardGpio_8c_1a38a4ce38bc851511d5782054dcb8d0e4" kindref="member">gOutShadow</ref>);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">u32<sp/><ref refid="boardGpio_8c_1aacbc5c549492d3404582ff6f34e7c69a" kindref="member">boardGpio_getInput</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>gpio_getInput(<ref refid="boardGpio_8c_1aa253a7f9c099890d2575f29dda32f154" kindref="member">GPIO_IN</ref>);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="boardGpio_8c_1a8a41fb15a53d3e977d632f59dbe856dd" kindref="member">boardGpio_waitSomReady</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/>in<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>((in<sp/>&amp;<sp/><ref refid="boardGpio_8h_1ac299589b22a51edd91c6abce01304a67" kindref="member">GPIO_SOM_READY_MASK</ref>)<sp/>!=<sp/><ref refid="boardGpio_8h_1ac299589b22a51edd91c6abce01304a67" kindref="member">GPIO_SOM_READY_MASK</ref>)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>in<sp/>=<sp/>gpio_getInput(<ref refid="boardGpio_8c_1aa253a7f9c099890d2575f29dda32f154" kindref="member">GPIO_IN</ref>);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">u32<sp/><ref refid="boardGpio_8c_1a11ec94cdf17a9e7b12a26ece5ca20df5" kindref="member">boardGpio_getPgStatus</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>gpio_getInput(<ref refid="boardGpio_8c_1aa253a7f9c099890d2575f29dda32f154" kindref="member">GPIO_IN</ref>)<sp/>&amp;<sp/><ref refid="boardGpio_8c_1aa909d43baa8b18e766618ffec495fec1" kindref="member">GPIO_PG_MASK</ref>;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="boardGpio_8c_1a18b2b40d3e60e0ba449856639fbc0216" kindref="member">boardGpio_setFmcSupplyEnable</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>enable)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="boardGpio_8c_1af0e4da2db61a712e130998d58d99e2c0" kindref="member">boardGpio_modifyOutput</ref>(<ref refid="boardGpio_8c_1aecfee1e092215cc637a9fa0e45d2ec12" kindref="member">GPIO_FMC_SUP_EN_MASK</ref>,<sp/>enable<sp/>?<sp/><ref refid="boardGpio_8c_1aecfee1e092215cc637a9fa0e45d2ec12" kindref="member">GPIO_FMC_SUP_EN_MASK</ref><sp/>:<sp/>0u);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="boardGpio_8c_1aefb462f3cc93a56f28e7a07f79be1d1d" kindref="member">boardGpio_setFmcPgoodRelease</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>release)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="boardGpio_8c_1af0e4da2db61a712e130998d58d99e2c0" kindref="member">boardGpio_modifyOutput</ref>(<ref refid="boardGpio_8c_1a6ee9d585b4e8d83e4af0c08558e9dc3a" kindref="member">GPIO_FMC_PG_RLS_MASK</ref>,<sp/>release<sp/>?<sp/><ref refid="boardGpio_8c_1a6ee9d585b4e8d83e4af0c08558e9dc3a" kindref="member">GPIO_FMC_PG_RLS_MASK</ref><sp/>:<sp/>0u);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="boardGpio_8c_1ace132c3914486e2667b635e9d862eaa6" kindref="member">boardGpio_setFmcModuleEnable</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>enable)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="boardGpio_8c_1af0e4da2db61a712e130998d58d99e2c0" kindref="member">boardGpio_modifyOutput</ref>(<ref refid="boardGpio_8c_1a665b59f9c2a6b53dce7b878810048768" kindref="member">GPIO_FMC_MOD_EN_MASK</ref>,<sp/>enable<sp/>?<sp/><ref refid="boardGpio_8c_1a665b59f9c2a6b53dce7b878810048768" kindref="member">GPIO_FMC_MOD_EN_MASK</ref><sp/>:<sp/>0u);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="boardGpio_8c_1a72e37f217e6c8064c02eea05399af4d9" kindref="member">boardGpio_releaseSomPor</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="boardGpio_8c_1af0e4da2db61a712e130998d58d99e2c0" kindref="member">boardGpio_modifyOutput</ref>(<ref refid="boardGpio_8c_1afdabbd25718b4df96b7c0a9b43d3a1f6" kindref="member">GPIO_POR_B_MASK</ref>,<sp/><ref refid="boardGpio_8c_1afdabbd25718b4df96b7c0a9b43d3a1f6" kindref="member">GPIO_POR_B_MASK</ref>);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="boardGpio_8c_1a2a9089ad1aba3af1533f95bdd964607a" kindref="member">boardGpio_releaseEthPhyReset</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="boardGpio_8c_1af0e4da2db61a712e130998d58d99e2c0" kindref="member">boardGpio_modifyOutput</ref>(<ref refid="boardGpio_8c_1a538042e841a31f03405b132b0578d495" kindref="member">GPIO_ETH_RSTN_MASK</ref>,<sp/><ref refid="boardGpio_8c_1a538042e841a31f03405b132b0578d495" kindref="member">GPIO_ETH_RSTN_MASK</ref>);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="boardGpio_8c_1a9acfee503c60c72c80686b4ea1fe0788" kindref="member">boardGpio_pulseEthPhyReset</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="boardGpio_8c_1af0e4da2db61a712e130998d58d99e2c0" kindref="member">boardGpio_modifyOutput</ref>(<ref refid="boardGpio_8c_1a538042e841a31f03405b132b0578d495" kindref="member">GPIO_ETH_RSTN_MASK</ref>,<sp/>0u);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>bsp_uDelay(<ref refid="boardConfig_8h_1abce29f57e327eb2c83213e7fb8926f1a" kindref="member">BOARD_ETH_RESET_PULSE_US</ref>);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="boardGpio_8c_1af0e4da2db61a712e130998d58d99e2c0" kindref="member">boardGpio_modifyOutput</ref>(<ref refid="boardGpio_8c_1a538042e841a31f03405b132b0578d495" kindref="member">GPIO_ETH_RSTN_MASK</ref>,<sp/><ref refid="boardGpio_8c_1a538042e841a31f03405b132b0578d495" kindref="member">GPIO_ETH_RSTN_MASK</ref>);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="boardGpio_8c_1a69685cdde9b02d8589b41cdcf48c47db" kindref="member">boardGpio_setHpcVccio</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sourceFmc1)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="boardGpio_8c_1af0e4da2db61a712e130998d58d99e2c0" kindref="member">boardGpio_modifyOutput</ref>(<ref refid="boardGpio_8c_1a57b2ae8e2c9f3e3c2ef6885ef11d42a5" kindref="member">GPIO_HPC_VCCIO_SELECT_MASK</ref>,<sp/>sourceFmc1<sp/>?<sp/><ref refid="boardGpio_8c_1a57b2ae8e2c9f3e3c2ef6885ef11d42a5" kindref="member">GPIO_HPC_VCCIO_SELECT_MASK</ref><sp/>:<sp/>0u);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="boardGpio_8c_1a105ac29c71eea9d4aa40567fbd29f32f" kindref="member">boardGpio_setHdbVccio</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>source2V5)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="boardGpio_8c_1af0e4da2db61a712e130998d58d99e2c0" kindref="member">boardGpio_modifyOutput</ref>(<ref refid="boardGpio_8c_1a30f53df76214e2f7924e4b4287f97b5a" kindref="member">GPIO_HDB_VCCIO_SELECT_MASK</ref>,<sp/>source2V5<sp/>?<sp/><ref refid="boardGpio_8c_1a30f53df76214e2f7924e4b4287f97b5a" kindref="member">GPIO_HDB_VCCIO_SELECT_MASK</ref><sp/>:<sp/>0u);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="boardGpio_8c_1a02f5b4d44c6ca808460843a8813ac29f" kindref="member">boardGpio_setStatusLed</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>state)</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="boardGpio_8c_1af0e4da2db61a712e130998d58d99e2c0" kindref="member">boardGpio_modifyOutput</ref>(<ref refid="boardGpio_8h_1ad1b2302d5d70e9a4ff9ed60cf8817188" kindref="member">GPIO_STATUS_LED_MASK</ref>,<sp/>state<sp/>?<sp/><ref refid="boardGpio_8h_1ad1b2302d5d70e9a4ff9ed60cf8817188" kindref="member">GPIO_STATUS_LED_MASK</ref><sp/>:<sp/>0u);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="sw/app/src/boardGpio.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="si5332__cfg_8c" kind="file" language="C++">
+    <compoundname>si5332_cfg.c</compoundname>
+    <includes refid="si5332__cfg_8h" local="yes">si5332_cfg.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>sw/devices/si5332/si5332_cfg.c</label>
+        <link refid="si5332__cfg_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>si5332_cfg.h</label>
+        <link refid="si5332__cfg_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>type.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="si5332__cfg_8c_1ab9129b977a587b50ea801daac75e178f" prot="public" static="no">
+        <name>ARRAY_LEN</name>
+        <param><defname>a</defname></param>
+        <initializer>((u32)(sizeof(a) / sizeof((a)[0])))</initializer>
+        <briefdescription>
+<para>Computes the number of elements of a static array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332_cfg.c" line="19" column="9" bodyfile="sw/devices/si5332/si5332_cfg.c" bodystart="19" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="si5332__cfg_8c_1aabdbb95f591b0ae92768d8f444ecb435" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structsi5332__reg__t" kindref="compound">si5332_reg_t</ref></type>
+        <definition>const si5332_reg_t si5332_base_regs[]</definition>
+        <argsstring>[]</argsstring>
+        <name>si5332_base_regs</name>
+        <briefdescription>
+<para>Base configuration: all registers identical in both CBPro exports. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Power-up state: only OUT6 active (OE), OUT0/OUT2 preconfigured but with OE=0, OUT4/OUT7 and ID0/ID1 switched off. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332_cfg.c" line="22" column="20" bodyfile="sw/devices/si5332/si5332_cfg.c" bodystart="22" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="variable" id="si5332__cfg_8c_1a45a90292f65728ea0e5ac23f7b86352f" prot="public" static="no" mutable="no">
+        <type>const u32</type>
+        <definition>const u32 si5332_base_regs_len</definition>
+        <argsstring></argsstring>
+        <name>si5332_base_regs_len</name>
+        <initializer>=  ((u32)(sizeof(<ref refid="si5332__cfg_8c_1aabdbb95f591b0ae92768d8f444ecb435" kindref="member">si5332_base_regs</ref>) / sizeof((<ref refid="si5332__cfg_8c_1aabdbb95f591b0ae92768d8f444ecb435" kindref="member">si5332_base_regs</ref>)[0])))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Number of entries in <ref refid="si5332__cfg_8h_1aabdbb95f591b0ae92768d8f444ecb435" kindref="member">si5332_base_regs</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332_cfg.c" line="96" column="11" bodyfile="sw/devices/si5332/si5332_cfg.c" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="si5332__cfg_8c_1ad2a5e5915d6f9fd8fe214c010fa3d46e" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structsi5332__reg__t" kindref="compound">si5332_reg_t</ref></type>
+        <definition>const si5332_reg_t si5332_src_xtal_27m_regs[]</definition>
+        <argsstring>[]</argsstring>
+        <name>si5332_src_xtal_27m_regs</name>
+        <initializer>=
+{
+    { 0x24, 0x01 }, 
+    
+    { 0x67, 0x2E }, { 0x68, 0x4B }, 
+    { 0x69, 0x00 }, { 0x6A, 0x17 }, 
+    { 0x6B, 0x00 }, { 0x6C, 0x1B }, 
+    { 0x73, 0x00 }, 
+    { 0x75, 0x01 }, 
+    { 0xB9, 0x06 }, 
+    { 0xBE, 0x10 }, 
+    { 0xC0, 0x1B }, 
+    { 0xC1, 0x1B }, 
+}</initializer>
+        <briefdescription>
+<para>Delta: 27 MHz crystal on XA/XB. Fpfd = 27 MHz, P = 1, M = 92 + 16/27. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332_cfg.c" line="98" column="20" bodyfile="sw/devices/si5332/si5332_cfg.c" bodystart="98" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="variable" id="si5332__cfg_8c_1ab19a11f043f80e8d3d7a9a1d846280ac" prot="public" static="no" mutable="no">
+        <type>const u32</type>
+        <definition>const u32 si5332_src_xtal_27m_regs_len</definition>
+        <argsstring></argsstring>
+        <name>si5332_src_xtal_27m_regs_len</name>
+        <initializer>=  ((u32)(sizeof(<ref refid="si5332__cfg_8c_1ad2a5e5915d6f9fd8fe214c010fa3d46e" kindref="member">si5332_src_xtal_27m_regs</ref>) / sizeof((<ref refid="si5332__cfg_8c_1ad2a5e5915d6f9fd8fe214c010fa3d46e" kindref="member">si5332_src_xtal_27m_regs</ref>)[0])))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Number of entries in <ref refid="si5332__cfg_8h_1ad2a5e5915d6f9fd8fe214c010fa3d46e" kindref="member">si5332_src_xtal_27m_regs</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332_cfg.c" line="112" column="11" bodyfile="sw/devices/si5332/si5332_cfg.c" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="si5332__cfg_8c_1ad3f4eee9ee056ad11772c53e0aa75e37" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structsi5332__reg__t" kindref="compound">si5332_reg_t</ref></type>
+        <definition>const si5332_reg_t si5332_src_clkin2_100m_regs[]</definition>
+        <argsstring>[]</argsstring>
+        <name>si5332_src_clkin2_100m_regs</name>
+        <initializer>=
+{
+    { 0x24, 0x02 }, 
+    
+    { 0x67, 0x19 }, { 0x68, 0x00 }, 
+    { 0x69, 0x00 }, { 0x6A, 0x00 }, 
+    { 0x6B, 0x00 }, { 0x6C, 0x01 }, 
+    { 0x73, 0x01 }, 
+    { 0x75, 0x02 }, 
+    { 0xB9, 0x05 }, 
+    { 0xBE, 0x20 }, 
+    { 0xC0, 0x00 }, 
+    { 0xC1, 0x00 }, 
+}</initializer>
+        <briefdescription>
+<para>Delta: 100 MHz differential clock on CLKIN_2. Fpfd = 50 MHz, P = 2, M = 50. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332_cfg.c" line="114" column="20" bodyfile="sw/devices/si5332/si5332_cfg.c" bodystart="114" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="variable" id="si5332__cfg_8c_1a7abf26e5fc81735746572080d4ef2bb7" prot="public" static="no" mutable="no">
+        <type>const u32</type>
+        <definition>const u32 si5332_src_clkin2_100m_regs_len</definition>
+        <argsstring></argsstring>
+        <name>si5332_src_clkin2_100m_regs_len</name>
+        <initializer>=  ((u32)(sizeof(<ref refid="si5332__cfg_8c_1ad3f4eee9ee056ad11772c53e0aa75e37" kindref="member">si5332_src_clkin2_100m_regs</ref>) / sizeof((<ref refid="si5332__cfg_8c_1ad3f4eee9ee056ad11772c53e0aa75e37" kindref="member">si5332_src_clkin2_100m_regs</ref>)[0])))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Number of entries in <ref refid="si5332__cfg_8h_1ad3f4eee9ee056ad11772c53e0aa75e37" kindref="member">si5332_src_clkin2_100m_regs</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332_cfg.c" line="128" column="11" bodyfile="sw/devices/si5332/si5332_cfg.c" bodystart="128" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Static configuration tables. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="note"><para>The CBPro export omits registers of unused blocks (e.g. 0x28 OMUX3, 0x2A OMUX5, 0x36..0x3B ID0A, 0x99 OUT4_DIV, 0xAD OUT7_DIV). These registers are written completely by the driver when a block is activated (see <ref refid="si5332_8c_1a62c9756fc10566540267035a11c64c59" kindref="member">si5332_commit()</ref>). </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>2026<sp/>Matthias<sp/>Haefner<sp/>-<sp/>Heosys</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="si5332__cfg_8h" kindref="compound">si5332_cfg.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ARRAY_LEN(a)<sp/><sp/><sp/><sp/>((u32)(sizeof(a)<sp/>/<sp/>sizeof((a)[0])))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Public<sp/>tables:<sp/>documented<sp/>in<sp/>si5332_cfg.h<sp/>only.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structsi5332__reg__t" kindref="compound">si5332_reg_t</ref><sp/><ref refid="si5332__cfg_8c_1aabdbb95f591b0ae92768d8f444ecb435" kindref="member">si5332_base_regs</ref>[]<sp/>=</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Design<sp/>ID<sp/>&quot;UNVBB1&quot;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x17,<sp/>0x55<sp/>},</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x18,<sp/>0x4E<sp/>},</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x19,<sp/>0x56<sp/>},</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x1A,<sp/>0x42<sp/>},</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x1B,<sp/>0x42<sp/>},</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x1C,<sp/>0x31<sp/>},</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Output<sp/>muxes<sp/>/<sp/>HSDIV<sp/>(O0<sp/>=<sp/>25<sp/>-&gt;<sp/>100<sp/>MHz,<sp/>O1<sp/>=<sp/>20<sp/>-&gt;<sp/>125<sp/>MHz)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x25,<sp/>0x00<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>OMUX0:<sp/>HSDIV0<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x27,<sp/>0x10<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>OMUX2:<sp/>HSDIV1<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x29,<sp/>0x00<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>OMUX4:<sp/>HSDIV0<sp/>(OUT6)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x2B,<sp/>0x19<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>HSDIV0A_DIV<sp/>=<sp/>25<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x2D,<sp/>0x14<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>HSDIV1A_DIV<sp/>=<sp/>20<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Spread<sp/>spectrum:<sp/>off<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x3C,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x48,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x54,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x60,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x74,<sp/>0x00<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>CLKIN_3_CLK_SEL:<sp/>off<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>OUT0:<sp/>100<sp/>MHz<sp/>LVDS<sp/>fast<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x7A,<sp/>0x06<sp/>},</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x7B,<sp/>0x01<sp/>},</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x7C,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x7D,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>OUT1:<sp/>unused<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x7F,<sp/>0x07<sp/>},</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x81,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x82,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>OUT2:<sp/>125<sp/>MHz<sp/>LVDS<sp/>fast<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x89,<sp/>0x06<sp/>},</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x8A,<sp/>0x01<sp/>},</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x8B,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x8C,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>OUT3:<sp/>unused<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x8E,<sp/>0x07<sp/>},</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x90,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x91,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>OUT4:<sp/>unused<sp/>(mode<sp/>LVDS<sp/>fast<sp/>preset)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x98,<sp/>0x06<sp/>},</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x9A,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x9B,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>OUT5:<sp/>unused<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x9D,<sp/>0x07<sp/>},</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x9F,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xA0,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>OUT6:<sp/>25<sp/>MHz<sp/>LVCMOS<sp/>(HSDIV0<sp/>/<sp/>R6<sp/>=<sp/>4),<sp/>fixed<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xA7,<sp/>0x03<sp/>},</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xA8,<sp/>0x04<sp/>},</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xA9,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xAA,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xAB,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>OUT7:<sp/>unused<sp/>(mode<sp/>LVDS<sp/>fast<sp/>preset)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xAC,<sp/>0x06<sp/>},</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xAE,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xAF,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Output<sp/>enable:<sp/>OUT6<sp/>only<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xB6,<sp/>0x00<sp/>},</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xB7,<sp/>0x02<sp/>},</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Power-down<sp/>bits<sp/>(OUT4,<sp/>OUT7,<sp/>OMUX3,<sp/>OMUX5,<sp/>ID0,<sp/>ID1,<sp/>HSDIV2..4<sp/>off)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xBA,<sp/>0x7C<sp/>},</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xBB,<sp/>0x2A<sp/>},</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xBC,<sp/>0xD2<sp/>},</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xBD,<sp/>0x04<sp/>},</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xBF,<sp/>0x00<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>XOSC_CINT_ENA<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>u32<sp/><ref refid="si5332__cfg_8c_1a45a90292f65728ea0e5ac23f7b86352f" kindref="member">si5332_base_regs_len</ref><sp/>=<sp/><ref refid="si5332__cfg_8c_1ab9129b977a587b50ea801daac75e178f" kindref="member">ARRAY_LEN</ref>(<ref refid="si5332__cfg_8c_1aabdbb95f591b0ae92768d8f444ecb435" kindref="member">si5332_base_regs</ref>);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structsi5332__reg__t" kindref="compound">si5332_reg_t</ref><sp/><ref refid="si5332__cfg_8c_1ad2a5e5915d6f9fd8fe214c010fa3d46e" kindref="member">si5332_src_xtal_27m_regs</ref>[]<sp/>=</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x24,<sp/>0x01<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>IMUX_SEL<sp/>=<sp/>XOSC<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>IDPA:<sp/>feedback<sp/>divider<sp/>M<sp/>=<sp/>2500/27,<sp/>big-endian<sp/>15<sp/>bit<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x67,<sp/>0x2E<sp/>},<sp/>{<sp/>0x68,<sp/>0x4B<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>IDPA_INTG<sp/>=<sp/>11851<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x69,<sp/>0x00<sp/>},<sp/>{<sp/>0x6A,<sp/>0x17<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>IDPA_RES<sp/><sp/>=<sp/>23<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x6B,<sp/>0x00<sp/>},<sp/>{<sp/>0x6C,<sp/>0x1B<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>IDPA_DEN<sp/><sp/>=<sp/>27<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x73,<sp/>0x00<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>CLKIN_2_CLK_SEL<sp/>=<sp/>off<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x75,<sp/>0x01<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>P_VAL<sp/>=<sp/>1<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xB9,<sp/>0x06<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>XOSC<sp/>on,<sp/>IBUF0/IBUF1<sp/>off<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xBE,<sp/>0x10<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>PLL_MODE<sp/>(loop<sp/>BW<sp/>for<sp/>Fpfd<sp/>27<sp/>MHz)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xC0,<sp/>0x1B<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>XOSC_CTRIM_XIN<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xC1,<sp/>0x1B<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>XOSC_CTRIM_XOUT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>u32<sp/><ref refid="si5332__cfg_8c_1ab19a11f043f80e8d3d7a9a1d846280ac" kindref="member">si5332_src_xtal_27m_regs_len</ref><sp/>=<sp/><ref refid="si5332__cfg_8c_1ab9129b977a587b50ea801daac75e178f" kindref="member">ARRAY_LEN</ref>(<ref refid="si5332__cfg_8c_1ad2a5e5915d6f9fd8fe214c010fa3d46e" kindref="member">si5332_src_xtal_27m_regs</ref>);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structsi5332__reg__t" kindref="compound">si5332_reg_t</ref><sp/><ref refid="si5332__cfg_8c_1ad3f4eee9ee056ad11772c53e0aa75e37" kindref="member">si5332_src_clkin2_100m_regs</ref>[]<sp/>=</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x24,<sp/>0x02<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>IMUX_SEL<sp/>=<sp/>CLKIN_2<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>IDPA:<sp/>feedback<sp/>divider<sp/>M<sp/>=<sp/>50,<sp/>big-endian<sp/>15<sp/>bit<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x67,<sp/>0x19<sp/>},<sp/>{<sp/>0x68,<sp/>0x00<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>IDPA_INTG<sp/>=<sp/>6400<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x69,<sp/>0x00<sp/>},<sp/>{<sp/>0x6A,<sp/>0x00<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>IDPA_RES<sp/><sp/>=<sp/>0<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x6B,<sp/>0x00<sp/>},<sp/>{<sp/>0x6C,<sp/>0x01<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>IDPA_DEN<sp/><sp/>=<sp/>1<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x73,<sp/>0x01<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>CLKIN_2_CLK_SEL<sp/>=<sp/>differential<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0x75,<sp/>0x02<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>P_VAL<sp/>=<sp/>2<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xB9,<sp/>0x05<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>XOSC<sp/>off,<sp/>IBUF0<sp/>on,<sp/>IBUF1<sp/>off<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xBE,<sp/>0x20<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>PLL_MODE<sp/>(loop<sp/>BW<sp/>for<sp/>Fpfd<sp/>50<sp/>MHz)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xC0,<sp/>0x00<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>XOSC_CTRIM_XIN<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>0xC1,<sp/>0x00<sp/>},<sp/></highlight><highlight class="comment">/*<sp/>XOSC_CTRIM_XOUT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>u32<sp/><ref refid="si5332__cfg_8c_1a7abf26e5fc81735746572080d4ef2bb7" kindref="member">si5332_src_clkin2_100m_regs_len</ref><sp/>=<sp/><ref refid="si5332__cfg_8c_1ab9129b977a587b50ea801daac75e178f" kindref="member">ARRAY_LEN</ref>(<ref refid="si5332__cfg_8c_1ad3f4eee9ee056ad11772c53e0aa75e37" kindref="member">si5332_src_clkin2_100m_regs</ref>);</highlight></codeline>
+    </programlisting>
+    <location file="sw/devices/si5332/si5332_cfg.c"/>
+  </compounddef>
+</doxygen>

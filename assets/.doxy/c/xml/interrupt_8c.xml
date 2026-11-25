@@ -1,0 +1,509 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="interrupt_8c" kind="file" language="C++">
+    <compoundname>interrupt.c</compoundname>
+    <includes refid="interrupt_8h" local="yes">interrupt.h</includes>
+    <includes local="yes">bsp.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>sw/app/src/interrupt.c</label>
+        <link refid="interrupt_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>interrupt.h</label>
+        <link refid="interrupt_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>bsp.h</label>
+      </node>
+      <node id="3">
+        <label>plic.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structintr__vectorTableEntry" prot="public">intr_vectorTableEntry</innerclass>
+    <innerclass refid="structintrHandle__t" prot="public">intrHandle_t</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="interrupt_8c_1ad459183927068069acdbd358b9c0d48e" prot="public" static="yes" mutable="no">
+        <type><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref></type>
+        <definition>intrHandle_t gIntrInstance</definition>
+        <argsstring></argsstring>
+        <name>gIntrInstance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Single static interrupt controller instance backing <ref refid="interrupt_8c_1a9f41d3682f84ce4bc7d9ff2dfe47a2ed" kindref="member">intr_initialize()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.c" line="47" column="21" bodyfile="sw/app/src/interrupt.c" bodystart="47" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="interrupt_8c_1a99b54b4c6f26da908739791caa47682b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void intr_external</definition>
+        <argsstring>(void)</argsstring>
+        <name>intr_external</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.c" line="146" column="13" bodyfile="sw/app/src/interrupt.c" bodystart="146" bodyend="158" declfile="sw/app/src/interrupt.c" declline="49" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="interrupt_8c_1a4cd75601b53e872ab7a3b642fc825af3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void crash</definition>
+        <argsstring>()</argsstring>
+        <name>crash</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.c" line="135" column="6" bodyfile="sw/app/src/interrupt.c" bodystart="135" bodyend="138" declfile="sw/app/src/interrupt.c" declline="51" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="interrupt_8c_1ac73d8c3647dca189d5c572ba9c48f471" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void trap_entry</definition>
+        <argsstring>()</argsstring>
+        <name>trap_entry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.c" line="52" column="6" declfile="sw/app/src/interrupt.c" declline="52" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="interrupt_8c_1a9f41d3682f84ce4bc7d9ff2dfe47a2ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref> *</type>
+        <definition>intrHandle_t * intr_initialize</definition>
+        <argsstring>(u32 baseAddress)</argsstring>
+        <name>intr_initialize</name>
+        <param>
+          <type>u32</type>
+          <declname>baseAddress</declname>
+        </param>
+        <briefdescription>
+<para>Initializes the interrupt controller and the RISC-V trap handling. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears the handler vector table, installs the machine trap vector (trap_entry) and enables machine external interrupts.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>baseAddress</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Base address of the PLIC controller. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to the static interrupt controller instance. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.c" line="57" column="14" bodyfile="sw/app/src/interrupt.c" bodystart="57" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="interrupt_8c_1afdca10c5fed9a444815c069012975216" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void intr_setThreshold</definition>
+        <argsstring>(intrHandle_t *pInst, u8 hartId, u8 thrshld)</argsstring>
+        <name>intr_setThreshold</name>
+        <param>
+          <type><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref> *</type>
+          <declname>pInst</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>hartId</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>thrshld</declname>
+        </param>
+        <briefdescription>
+<para>Sets the priority threshold of a hart. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Only interrupts with a priority above the threshold are delivered.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pInst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Interrupt controller handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hartId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Hart (CPU) index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>thrshld</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Priority threshold (0 = all priorities enabled). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.c" line="79" column="6" bodyfile="sw/app/src/interrupt.c" bodystart="79" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="interrupt_8c_1a7d40091d204a677cd5c3f6cc348d101a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void intr_setEnable</definition>
+        <argsstring>(intrHandle_t *pInst, u32 hartNo, u32 intrId)</argsstring>
+        <name>intr_setEnable</name>
+        <param>
+          <type><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref> *</type>
+          <declname>pInst</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>hartNo</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>intrId</declname>
+        </param>
+        <briefdescription>
+<para>Enables an interrupt source for a hart. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pInst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Interrupt controller handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hartNo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Hart (CPU) index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intrId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Interrupt source ID. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.c" line="85" column="6" bodyfile="sw/app/src/interrupt.c" bodystart="85" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="interrupt_8c_1ae5cbd698cbef6f8d0cb3f4da89c38753" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void intr_setPriority</definition>
+        <argsstring>(intrHandle_t *pInst, u32 intrId, u32 prio)</argsstring>
+        <name>intr_setPriority</name>
+        <param>
+          <type><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref> *</type>
+          <declname>pInst</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>intrId</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>prio</declname>
+        </param>
+        <briefdescription>
+<para>Sets the priority of an interrupt source. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pInst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Interrupt controller handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intrId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Interrupt source ID. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Priority (higher value = higher priority). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.c" line="90" column="6" bodyfile="sw/app/src/interrupt.c" bodystart="90" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="interrupt_8c_1a3bd14b5aefa908e4d4a36f872a4ecf4a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void intr_connect</definition>
+        <argsstring>(intrHandle_t *pInst, u8 intrId, intrHandler_t handler, void *pCallback)</argsstring>
+        <name>intr_connect</name>
+        <param>
+          <type><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref> *</type>
+          <declname>pInst</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>intrId</declname>
+        </param>
+        <param>
+          <type><ref refid="interrupt_8h_1ab733ba3247a183811ce4068ee14c5c37" kindref="member">intrHandler_t</ref></type>
+          <declname>handler</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>pCallback</declname>
+        </param>
+        <briefdescription>
+<para>Registers a handler for an interrupt source. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pInst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Interrupt controller handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intrId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Interrupt source ID (&lt; <ref refid="interrupt_8h_1ade315fe91c628847c267819a553b6101" kindref="member">PLIC_MAX_NUM_INTERRUPTS</ref>). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>handler</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Handler function to invoke. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pCallback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Callback reference passed back to <computeroutput>handler</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.c" line="95" column="6" bodyfile="sw/app/src/interrupt.c" bodystart="95" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="interrupt_8c_1ac100ac1e517899cc35ed07d5696a64a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void trap</definition>
+        <argsstring>()</argsstring>
+        <name>trap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.c" line="112" column="6" bodyfile="sw/app/src/interrupt.c" bodystart="112" bodyend="127"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Implementation of the PLIC interrupt controller abstraction. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Contains the machine trap dispatcher (<ref refid="interrupt_8c_1ac100ac1e517899cc35ed07d5696a64a6" kindref="member">trap()</ref>), the machine-external interrupt dispatcher (<ref refid="interrupt_8c_1a99b54b4c6f26da908739791caa47682b" kindref="member">intr_external()</ref>) and the crash handler. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>2026<sp/>Matthias<sp/>Haefner<sp/>-<sp/>Heosys</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="interrupt_8h" kindref="compound">interrupt.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;bsp.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>The<sp/>following<sp/>data<sp/>type<sp/>defines<sp/>each<sp/>entry<sp/>in<sp/>an<sp/>interrupt<sp/>vector<sp/>table.</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>The<sp/>callback<sp/>reference<sp/>is<sp/>the<sp/>base<sp/>address<sp/>of<sp/>the<sp/>interrupting<sp/>device</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>for<sp/>the<sp/>low<sp/>level<sp/>driver<sp/>and<sp/>an<sp/>instance<sp/>pointer<sp/>for<sp/>the<sp/>high<sp/>level<sp/>driver.</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="structintr__vectorTableEntry" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="interrupt_8h_1ab733ba3247a183811ce4068ee14c5c37" kindref="member">intrHandler_t</ref><sp/><ref refid="structintr__vectorTableEntry_1abe3c660acf947bdbda5c81e8542908fa" kindref="member">handler</ref>;<sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<ref refid="structintr__vectorTableEntry_1a1e9b8789ebb37f60b7da99a1b30b14b8" kindref="member">callBackRef</ref>;<sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}<sp/><ref refid="structintr__vectorTableEntry" kindref="compound">intr_vectorTableEntry</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="structintrHandle__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="structintrHandle__t_1adaa5c8b16f594cdf348befe078ba8094" kindref="member">baseAddress</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><sp/><ref refid="structintrHandle__t_1a7f5c02ca35194e16662d43260b6aa75d" kindref="member">threshold</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structintr__vectorTableEntry" kindref="compound">intr_vectorTableEntry</ref><sp/><ref refid="structintrHandle__t_1a0b4b9379a74e757ecd43832058d35436" kindref="member">HandlerTable</ref>[<ref refid="interrupt_8h_1ade315fe91c628847c267819a553b6101" kindref="member">PLIC_MAX_NUM_INTERRUPTS</ref>];</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref><sp/><ref refid="interrupt_8c_1ad459183927068069acdbd358b9c0d48e" kindref="member">gIntrInstance</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interrupt_8c_1a99b54b4c6f26da908739791caa47682b" kindref="member">intr_external</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interrupt_8c_1a4cd75601b53e872ab7a3b642fc825af3" kindref="member">crash</ref>();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interrupt_8c_1ac73d8c3647dca189d5c572ba9c48f471" kindref="member">trap_entry</ref>();</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Public<sp/>API:<sp/>documented<sp/>in<sp/>interrupt.h<sp/>only.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref>*<sp/><ref refid="interrupt_8c_1a9f41d3682f84ce4bc7d9ff2dfe47a2ed" kindref="member">intr_initialize</ref>(u32<sp/>baseAddress)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref><sp/>*pInst<sp/>=<sp/>&amp;<ref refid="interrupt_8c_1ad459183927068069acdbd358b9c0d48e" kindref="member">gIntrInstance</ref>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/>i;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>pInst-&gt;<ref refid="structintrHandle__t_1adaa5c8b16f594cdf348befe078ba8094" kindref="member">baseAddress</ref><sp/>=<sp/>baseAddress;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;i&lt;<ref refid="interrupt_8h_1ade315fe91c628847c267819a553b6101" kindref="member">PLIC_MAX_NUM_INTERRUPTS</ref>;i++)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pInst-&gt;<ref refid="structintrHandle__t_1a0b4b9379a74e757ecd43832058d35436" kindref="member">HandlerTable</ref>[i].<ref refid="structintr__vectorTableEntry_1abe3c660acf947bdbda5c81e8542908fa" kindref="member">handler</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//configure<sp/>RISC-V<sp/>interrupt<sp/>CSR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Set<sp/>the<sp/>machine<sp/>trap<sp/>vector<sp/>(trap.S)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>csr_write(mtvec,<sp/><ref refid="interrupt_8c_1ac73d8c3647dca189d5c572ba9c48f471" kindref="member">trap_entry</ref>);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Enable<sp/>machine<sp/>external<sp/>interrupts</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>csr_write(mie,<sp/>MIE_MEIE);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Enable<sp/>interrupts</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>csr_write(mstatus,<sp/>csr_read(mstatus)<sp/>|<sp/>MSTATUS_MPP<sp/>|<sp/>MSTATUS_MIE);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pInst;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interrupt_8c_1afdca10c5fed9a444815c069012975216" kindref="member">intr_setThreshold</ref>(<ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref><sp/>*pInst,<sp/>u8<sp/>hartId,<sp/>u8<sp/>thrshld)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>pInst-&gt;<ref refid="structintrHandle__t_1a7f5c02ca35194e16662d43260b6aa75d" kindref="member">threshold</ref><sp/>=<sp/>thrshld;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>plic_set_threshold(pInst-&gt;<ref refid="structintrHandle__t_1adaa5c8b16f594cdf348befe078ba8094" kindref="member">baseAddress</ref>,<sp/>hartId,<sp/>pInst-&gt;<ref refid="structintrHandle__t_1a7f5c02ca35194e16662d43260b6aa75d" kindref="member">threshold</ref>);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interrupt_8c_1a7d40091d204a677cd5c3f6cc348d101a" kindref="member">intr_setEnable</ref>(<ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref><sp/>*pInst,<sp/>u32<sp/>hartNo,<sp/>u32<sp/>intrId)</highlight></codeline>
+<codeline lineno="86"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>plic_set_enable(pInst-&gt;<ref refid="structintrHandle__t_1adaa5c8b16f594cdf348befe078ba8094" kindref="member">baseAddress</ref>,<sp/>hartNo,<sp/>intrId,<sp/>1);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interrupt_8c_1ae5cbd698cbef6f8d0cb3f4da89c38753" kindref="member">intr_setPriority</ref>(<ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref><sp/>*pInst,<sp/>u32<sp/>intrId,<sp/>u32<sp/>prio)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>plic_set_priority(pInst-&gt;<ref refid="structintrHandle__t_1adaa5c8b16f594cdf348befe078ba8094" kindref="member">baseAddress</ref>,<sp/>intrId,<sp/>prio);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interrupt_8c_1a3bd14b5aefa908e4d4a36f872a4ecf4a" kindref="member">intr_connect</ref>(<ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref><sp/>*pInst,<sp/>u8<sp/>intrId,<sp/><ref refid="interrupt_8h_1ab733ba3247a183811ce4068ee14c5c37" kindref="member">intrHandler_t</ref><sp/>handler,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>pCallback)</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>pInst-&gt;<ref refid="structintrHandle__t_1a0b4b9379a74e757ecd43832058d35436" kindref="member">HandlerTable</ref>[intrId].<ref refid="structintr__vectorTableEntry_1abe3c660acf947bdbda5c81e8542908fa" kindref="member">handler</ref><sp/>=<sp/>handler;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>pInst-&gt;<ref refid="structintrHandle__t_1a0b4b9379a74e757ecd43832058d35436" kindref="member">HandlerTable</ref>[intrId].<ref refid="structintr__vectorTableEntry_1a1e9b8789ebb37f60b7da99a1b30b14b8" kindref="member">callBackRef</ref><sp/>=<sp/>pCallback;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************</highlight></codeline>
+<codeline lineno="102"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="103"><highlight class="comment">*<sp/>@brief<sp/>This<sp/>function<sp/>handles<sp/>exceptions<sp/>and<sp/>interrupts<sp/>in<sp/>the<sp/>system.</highlight></codeline>
+<codeline lineno="104"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="105"><highlight class="comment">*<sp/>@note<sp/>It<sp/>is<sp/>called<sp/>by<sp/>the<sp/>trap_entry<sp/>function<sp/>on<sp/>both<sp/>exceptions<sp/>and<sp/>interrupts</highlight></codeline>
+<codeline lineno="106"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>events.<sp/>If<sp/>the<sp/>cause<sp/>of<sp/>the<sp/>trap<sp/>is<sp/>an<sp/>interrupt,<sp/>it<sp/>checks<sp/>the<sp/>cause<sp/>of</highlight></codeline>
+<codeline lineno="107"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>the<sp/>interrupt<sp/>and<sp/>calls<sp/>corresponding<sp/>interrupt<sp/>handler<sp/>functions.<sp/>If</highlight></codeline>
+<codeline lineno="108"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>the<sp/>cause<sp/>is<sp/>an<sp/>exception<sp/>or<sp/>an<sp/>unhandled<sp/>interrupt,<sp/>it<sp/>calls<sp/>a</highlight></codeline>
+<codeline lineno="109"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>crash<sp/>function<sp/>to<sp/>handle<sp/>the<sp/>error.</highlight></codeline>
+<codeline lineno="110"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="111"><highlight class="comment">******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interrupt_8c_1ac100ac1e517899cc35ed07d5696a64a6" kindref="member">trap</ref>(){</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>mcause<sp/>=<sp/>csr_read(mcause);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>interrupt<sp/>=<sp/>mcause<sp/>&lt;<sp/>0;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>cause<sp/><sp/><sp/><sp/><sp/>=<sp/>mcause<sp/>&amp;<sp/>0xF;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(interrupt){</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal">(cause){</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>CAUSE_MACHINE_EXTERNAL:<sp/><ref refid="interrupt_8c_1a99b54b4c6f26da908739791caa47682b" kindref="member">intr_external</ref>();<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:<sp/><ref refid="interrupt_8c_1a4cd75601b53e872ab7a3b642fc825af3" kindref="member">crash</ref>();<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="interrupt_8c_1a4cd75601b53e872ab7a3b642fc825af3" kindref="member">crash</ref>();</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************</highlight></codeline>
+<codeline lineno="130"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="131"><highlight class="comment">*<sp/>@brief<sp/>This<sp/>function<sp/>handles<sp/>the<sp/>system<sp/>crash<sp/>scenario<sp/>by<sp/>printing<sp/>a<sp/>crash<sp/>message</highlight></codeline>
+<codeline lineno="132"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>and<sp/>entering<sp/>an<sp/>infinite<sp/>loop.</highlight></codeline>
+<codeline lineno="133"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="134"><highlight class="comment">******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interrupt_8c_1a4cd75601b53e872ab7a3b642fc825af3" kindref="member">crash</ref>(){</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>bsp_printf(</highlight><highlight class="stringliteral">&quot;\r\n***<sp/>CRASH<sp/>***\r\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(1);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************</highlight></codeline>
+<codeline lineno="141"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="142"><highlight class="comment">*<sp/>@brief<sp/>This<sp/>function<sp/>handles<sp/>I2C<sp/>interrupts<sp/>by<sp/>claiming<sp/>pending<sp/>interrupts</highlight></codeline>
+<codeline lineno="143"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>and<sp/>processing<sp/>them<sp/>through<sp/>i2c_intc().</highlight></codeline>
+<codeline lineno="144"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="145"><highlight class="comment">******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interrupt_8c_1a99b54b4c6f26da908739791caa47682b" kindref="member">intr_external</ref>(){</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>claim;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//While<sp/>there<sp/>is<sp/>pending<sp/>interrupts</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">((claim<sp/>=<sp/>plic_claim(<ref refid="interrupt_8c_1ad459183927068069acdbd358b9c0d48e" kindref="member">gIntrInstance</ref>.baseAddress,<sp/>BSP_PLIC_CPU_0)))</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(claim<sp/>&gt;=<sp/><ref refid="interrupt_8h_1ade315fe91c628847c267819a553b6101" kindref="member">PLIC_MAX_NUM_INTERRUPTS</ref>)<sp/><ref refid="interrupt_8c_1a4cd75601b53e872ab7a3b642fc825af3" kindref="member">crash</ref>();</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="interrupt_8c_1ad459183927068069acdbd358b9c0d48e" kindref="member">gIntrInstance</ref>.HandlerTable[claim].handler<sp/>==<sp/>NULL)<sp/><ref refid="interrupt_8c_1a4cd75601b53e872ab7a3b642fc825af3" kindref="member">crash</ref>();</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="interrupt_8c_1ad459183927068069acdbd358b9c0d48e" kindref="member">gIntrInstance</ref>.HandlerTable[claim].handler(<ref refid="interrupt_8c_1ad459183927068069acdbd358b9c0d48e" kindref="member">gIntrInstance</ref>.HandlerTable[claim].callBackRef);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//unmask<sp/>the<sp/>claimed<sp/>interrupt</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>plic_release(<ref refid="interrupt_8c_1ad459183927068069acdbd358b9c0d48e" kindref="member">gIntrInstance</ref>.baseAddress,<sp/>BSP_PLIC_CPU_0,<sp/>claim);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="sw/app/src/interrupt.c"/>
+  </compounddef>
+</doxygen>

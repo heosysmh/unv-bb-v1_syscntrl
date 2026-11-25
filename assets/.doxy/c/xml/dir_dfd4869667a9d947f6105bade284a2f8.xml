@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_dfd4869667a9d947f6105bade284a2f8" kind="dir">
+    <compoundname>sw/devices/ina745a</compoundname>
+    <innerfile refid="ina745a_8c">ina745a.c</innerfile>
+    <innerfile refid="ina745a_8h">ina745a.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/devices/ina745a/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1840 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="ina745a_8h" kind="file" language="C++">
+    <compoundname>ina745a.h</compoundname>
+    <includes local="no">type.h</includes>
+    <includedby refid="power_8c" local="yes">sw/app/src/power.c</includedby>
+    <includedby refid="ina745a_8c" local="yes">sw/devices/ina745a/ina745a.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>sw/devices/ina745a/ina745a.h</label>
+        <link refid="ina745a_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>type.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>sw/app/src/power.c</label>
+        <link refid="power_8c"/>
+      </node>
+      <node id="3">
+        <label>sw/devices/ina745a/ina745a.c</label>
+        <link refid="ina745a_8c"/>
+      </node>
+      <node id="1">
+        <label>sw/devices/ina745a/ina745a.h</label>
+        <link refid="ina745a_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structina745a__adc__config__t" prot="public">ina745a_adc_config_t</innerclass>
+    <innerclass refid="structina745a__alert__cfg__t" prot="public">ina745a_alert_cfg_t</innerclass>
+    <innerclass refid="structina745a__diag__flags__t" prot="public">ina745a_diag_flags_t</innerclass>
+    <innerclass refid="structina745a__measurements__t" prot="public">ina745a_measurements_t</innerclass>
+    <sectiondef kind="user-defined">
+      <header>I2C address range</header>
+      <description><para>The 7-bit I2C address is passed as a plain parameter to <ref refid="ina745a_8h_1ae6e4611a00f5e9cfbaf9f99245db9f7b" kindref="member">ina745a_initialize()</ref> (determined by the A0/A1 pin strapping on the board, see datasheet Table 6-2). The driver validates it against this range (0x40..0x4F) and refuses to create a handle for addresses outside of it. </para>
+</description>
+      <memberdef kind="define" id="ina745a_8h_1a7205967cbb049568401b0597ce38ace8" prot="public" static="no">
+        <name>INA745A_ADDR_MIN</name>
+        <initializer>0x40u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Lowest valid 7-bit I2C address. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="85" column="9" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ina745a_8h_1af75a347c38f063ea706d8e4b9679a273" prot="public" static="no">
+        <name>INA745A_ADDR_MAX</name>
+        <initializer>0x4Fu</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Highest valid 7-bit I2C address. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="86" column="9" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>Fixed LSB / conversion factors (datasheet Table 8-1)</header>
+      <memberdef kind="define" id="ina745a_8h_1a10d96e680e9467e72deaa1c28ebc6006" prot="public" static="no">
+        <name>INA745A_CURRENT_LSB_A</name>
+        <initializer>0.0012f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>1.2 mA/LSB </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="99" column="9" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ina745a_8h_1a8ca0b3e9d5d6453d8d7644c48adb07d6" prot="public" static="no">
+        <name>INA745A_BUS_VOLTAGE_LSB_V</name>
+        <initializer>0.003125f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>3.125 mV/LSB </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="100" column="9" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ina745a_8h_1aca51df0fc117d028de2db8c1c1f8152e" prot="public" static="no">
+        <name>INA745A_TEMP_LSB_C</name>
+        <initializer>0.125f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>125 m°C/LSB </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="101" column="9" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ina745a_8h_1a2f6b2f0ccd82f1b8e38cabb16cfca541" prot="public" static="no">
+        <name>INA745A_POWER_LSB_W</name>
+        <initializer>0.00024f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>240 µW/LSB </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="102" column="9" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ina745a_8h_1a196779e3461c61d29f2a54fbe44effc7" prot="public" static="no">
+        <name>INA745A_ENERGY_LSB_J</name>
+        <initializer>0.00384</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>3.84 mJ/LSB (double) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="103" column="9" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ina745a_8h_1a8be2251cca09ba1c0b466f071a2f0b3d" prot="public" static="no">
+        <name>INA745A_CHARGE_LSB_C</name>
+        <initializer>0.000075</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>75 µC/LSB (double) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="104" column="9" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ina745a_8h_1ac693122bc7e8db0ffe9c8308ed29929f" prot="public" static="no">
+        <name>INA745A_PWR_LIMIT_LSB_W</name>
+        <initializer>0.06144f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>61.44 mW/LSB (= 256 x Power-LSB) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="105" column="9" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>Low-level HAL callbacks</header>
+      <description><para>Writes/reads one logical register of <computeroutput>len</computeroutput> bytes (1, 2, 3 or 5), MSB first, at address <computeroutput>reg_addr</computeroutput> of the 7-bit I2C target <computeroutput>i2c_addr</computeroutput>. <computeroutput>ctx</computeroutput> is passed through unchanged (e.g. an i2cHandle_t*).</para>
+<para>This signature is deliberately identical to <ref refid="i2cWrapper_8c_1aa9cc66fdcf7a6a22276c158aa70e5ec9" kindref="member">i2c_writeRegMultipleBytes()</ref>/ <ref refid="i2cWrapper_8c_1ac6130142f9f400e44664232cb9428ec8" kindref="member">i2c_readRegMultipleBytes()</ref> in <ref refid="i2cWrapper_8h" kindref="compound">drivers/i2c/i2cWrapper.h</ref>, so they can be passed to <ref refid="ina745a_8h_1ae6e4611a00f5e9cfbaf9f99245db9f7b" kindref="member">ina745a_initialize()</ref> directly via a function-pointer cast, e.g.: <programlisting><codeline><highlight class="normal"><ref refid="ina745a_8c_1ae6e4611a00f5e9cfbaf9f99245db9f7b" kindref="member">ina745a_initialize</ref>(addr,<sp/>(<ref refid="ina745a_8h_1a9d337b132205a97a8a3fa19a54813738" kindref="member">ina745a_i2c_write_f</ref>)<ref refid="i2cWrapper_8c_1aa9cc66fdcf7a6a22276c158aa70e5ec9" kindref="member">i2c_writeRegMultipleBytes</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="ina745a_8h_1a281dea2fe0fc188f4767ebbd64e22bcd" kindref="member">ina745a_i2c_read_f</ref>)<ref refid="i2cWrapper_8c_1ac6130142f9f400e44664232cb9428ec8" kindref="member">i2c_readRegMultipleBytes</ref>,<sp/>i2cHandle);</highlight></codeline>
+</programlisting> (same pattern already used for si5332 with i2c_writeReg/i2c_readReg). No adapter module is required. </para>
+</description>
+      <memberdef kind="typedef" id="ina745a_8h_1a9d337b132205a97a8a3fa19a54813738" prot="public" static="no">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref>(*</type>
+        <definition>typedef ina745a_err_t(* ina745a_i2c_write_f) (void *ctx, u8 i2c_addr, u8 reg_addr, u8 *data, u32 len)</definition>
+        <argsstring>)(void *ctx, u8 i2c_addr, u8 reg_addr, u8 *data, u32 len)</argsstring>
+        <name>ina745a_i2c_write_f</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="65" column="9" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="ina745a_8h_1a281dea2fe0fc188f4767ebbd64e22bcd" prot="public" static="no">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref>(*</type>
+        <definition>typedef ina745a_err_t(* ina745a_i2c_read_f) (void *ctx, u8 i2c_addr, u8 reg_addr, u8 *data, u32 len)</definition>
+        <argsstring>)(void *ctx, u8 i2c_addr, u8 reg_addr, u8 *data, u32 len)</argsstring>
+        <name>ina745a_i2c_read_f</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="66" column="9" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>Measurement getters (converted engineering units)</header>
+      <memberdef kind="function" id="ina745a_8h_1acbdd2cb666a078076b60545ac5709687" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_get_bus_voltage</definition>
+        <argsstring>(ina745a_t *pDev, float *volts)</argsstring>
+        <name>ina745a_get_bus_voltage</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>volts</declname>
+        </param>
+        <briefdescription>
+<para>Reads the bus voltage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">volts</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the bus voltage in volts. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Bus voltage measurement (16 bit, unsigned).</para>
+<para>&lt; 3.125 mV/LSB</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="320" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="401" bodyend="413" declfile="sw/devices/ina745a/ina745a.h" declline="320" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1a644af38149313d5e57de69b235e42019" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_get_die_temperature</definition>
+        <argsstring>(ina745a_t *pDev, float *celsius)</argsstring>
+        <name>ina745a_get_die_temperature</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>celsius</declname>
+        </param>
+        <briefdescription>
+<para>Reads the die temperature. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">celsius</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the die temperature in °C. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Die temperature measurement (12-bit field in bits 15-4).</para>
+<para>&lt; 125 m°C/LSB</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="328" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="415" bodyend="429" declfile="sw/devices/ina745a/ina745a.h" declline="328" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1a12b793aac364a7e40efe9f29d56d343f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_get_current</definition>
+        <argsstring>(ina745a_t *pDev, float *amps)</argsstring>
+        <name>ina745a_get_current</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>amps</declname>
+        </param>
+        <briefdescription>
+<para>Reads the current. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">amps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the current in amperes. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Current result (16 bit, two&apos;s complement).</para>
+<para>&lt; 1.2 mA/LSB</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="336" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="431" bodyend="443" declfile="sw/devices/ina745a/ina745a.h" declline="336" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1ac02f86adce3614d386ff9c5468154b68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_get_power</definition>
+        <argsstring>(ina745a_t *pDev, float *watts)</argsstring>
+        <name>ina745a_get_power</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>watts</declname>
+        </param>
+        <briefdescription>
+<para>Reads the power. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">watts</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the power in watts. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Power result (24 bit, unsigned).</para>
+<para>&lt; 240 µW/LSB</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="344" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="445" bodyend="457" declfile="sw/devices/ina745a/ina745a.h" declline="344" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1a1d05a02198cf0337b9f92d7b759ce880" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_get_energy</definition>
+        <argsstring>(ina745a_t *pDev, double *joules)</argsstring>
+        <name>ina745a_get_energy</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>joules</declname>
+        </param>
+        <briefdescription>
+<para>Reads the accumulated energy. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">joules</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the energy in joules. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Energy result (40 bit, unsigned).</para>
+<para>&lt; 3.84 mJ/LSB (double)</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="352" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="459" bodyend="471" declfile="sw/devices/ina745a/ina745a.h" declline="352" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1ae17d913c9c83775db21ea111d5a175ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_get_charge</definition>
+        <argsstring>(ina745a_t *pDev, double *coulombs)</argsstring>
+        <name>ina745a_get_charge</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>coulombs</declname>
+        </param>
+        <briefdescription>
+<para>Reads the accumulated charge. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">coulombs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the charge in coulombs. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Charge result (40 bit, two&apos;s complement).</para>
+<para>&lt; 75 µC/LSB (double)</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="360" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="473" bodyend="487" declfile="sw/devices/ina745a/ina745a.h" declline="360" declcolumn="15"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>Alert / threshold configuration</header>
+      <memberdef kind="function" id="ina745a_8h_1ad993aed8d2e02d91724c069f6b73ba9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_set_current_limits</definition>
+        <argsstring>(ina745a_t *pDev, float over_limit_A, float under_limit_A)</argsstring>
+        <name>ina745a_set_current_limits</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>over_limit_A</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>under_limit_A</declname>
+        </param>
+        <briefdescription>
+<para>Writes the current over-/under-limit thresholds (COL/CUL). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>over_limit_A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Overcurrent threshold in amperes. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>under_limit_A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Undercurrent threshold in amperes. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+<simplesect kind="note"><para>Values are rounded to the nearest LSB and clamped to the 16-bit two&apos;s complement range; see datasheet Section 8.2.2.2 on choosing COL &gt;= CUL when both are negative. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; 1.2 mA/LSB</para>
+<para>&lt; 1.2 mA/LSB</para>
+<para>&lt; Current over-limit threshold (16 bit, two&apos;s complement).</para>
+<para>&lt; Current under-limit threshold (16 bit, two&apos;s complement).</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="387" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="524" bodyend="539" declfile="sw/devices/ina745a/ina745a.h" declline="387" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1afc88e6310a72410d8640e266bfec7ce1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_set_bus_voltage_limits</definition>
+        <argsstring>(ina745a_t *pDev, float overvoltage_V, float undervoltage_V)</argsstring>
+        <name>ina745a_set_bus_voltage_limits</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>overvoltage_V</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>undervoltage_V</declname>
+        </param>
+        <briefdescription>
+<para>Writes the bus over-/under-voltage thresholds (BOVL/BUVL). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>overvoltage_V</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Overvoltage threshold in volts. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>undervoltage_V</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Undervoltage threshold in volts. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+<simplesect kind="note"><para>Both registers are unsigned, positive-only, 15 bit wide (bit 15 reserved = 0); values are clamped to 0 .. 0x7FFF LSBs. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; 3.125 mV/LSB</para>
+<para>&lt; 3.125 mV/LSB</para>
+<para>&lt; Bus overvoltage threshold (15 bit, unsigned).</para>
+<para>&lt; Bus undervoltage threshold (15 bit, unsigned).</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="398" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="541" bodyend="556" declfile="sw/devices/ina745a/ina745a.h" declline="398" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1a30668f0d7355f6fe111de6e915c87a1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_set_temperature_limit</definition>
+        <argsstring>(ina745a_t *pDev, float overtemp_C)</argsstring>
+        <name>ina745a_set_temperature_limit</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>overtemp_C</declname>
+        </param>
+        <briefdescription>
+<para>Writes the temperature over-limit threshold (TEMP_LIMIT). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>overtemp_C</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Over-temperature threshold in °C. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+<simplesect kind="note"><para>The value occupies the 12-bit field in bits 15-4; bits 3-0 are read-only reserved (always 0) and are written as 0. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; 125 m°C/LSB</para>
+<para>&lt; Temperature over-limit threshold (12-bit field in bits 15-4).</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="408" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="558" bodyend="569" declfile="sw/devices/ina745a/ina745a.h" declline="408" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1addfdc10e7c095f23efb831aeeb4819e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_set_power_limit</definition>
+        <argsstring>(ina745a_t *pDev, float overpower_W)</argsstring>
+        <name>ina745a_set_power_limit</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>overpower_W</declname>
+        </param>
+        <briefdescription>
+<para>Writes the power over-limit threshold (PWR_LIMIT). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>overpower_W</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Over-power threshold in watts. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+<simplesect kind="note"><para>PWR_LIMIT uses an LSB that is 256x the POWER register LSB (<ref refid="ina745a_8h_1ac693122bc7e8db0ffe9c8308ed29929f" kindref="member">INA745A_PWR_LIMIT_LSB_W</ref> = 61.44 mW/LSB), since POWER is 24 bit while PWR_LIMIT is only 16 bit. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; 61.44 mW/LSB (= 256 x Power-LSB)</para>
+<para>&lt; Power over-limit threshold (16 bit, unsigned).</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="419" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="571" bodyend="582" declfile="sw/devices/ina745a/ina745a.h" declline="419" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1a61859d51474ecf3cc3adc50e29165ed7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_configure_alert</definition>
+        <argsstring>(ina745a_t *pDev, const ina745a_alert_cfg_t *cfg)</argsstring>
+        <name>ina745a_configure_alert</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structina745a__alert__cfg__t" kindref="compound">ina745a_alert_cfg_t</ref> *</type>
+          <declname>cfg</declname>
+        </param>
+        <briefdescription>
+<para>Writes the DIAG_ALRT configuration bits (ALATCH/CNVR/SLOWALERT/APOL). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>Writing this register also clears any latched alert flags (same documented side effect as reading it while ALATCH = 1).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cfg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Desired alert configuration. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Diagnostic flags and alert register (16 bit).</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="431" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="584" bodyend="599" declfile="sw/devices/ina745a/ina745a.h" declline="431" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1a54c8bd4d464df83afe53817bb8a68ae4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_get_diag_flags</definition>
+        <argsstring>(ina745a_t *pDev, ina745a_diag_flags_t *out)</argsstring>
+        <name>ina745a_get_diag_flags</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type><ref refid="structina745a__diag__flags__t" kindref="compound">ina745a_diag_flags_t</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Reads and decodes the DIAG_ALRT register. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>If ALATCH = 1, reading this register clears the latched alert flags (documented device behaviour).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the decoded diagnostic flags on success. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Diagnostic flags and alert register (16 bit).</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="443" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="601" bodyend="625" declfile="sw/devices/ina745a/ina745a.h" declline="443" declcolumn="15"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="ina745a_8h_1a1ca6b9deeade6f72c6be98f45f09f80a" prot="public" static="no">
+        <name>INA745A_MANUFACTURER_ID</name>
+        <initializer>0x5449u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Expected content of the MANUFACTURER_ID register (&quot;TI&quot; in ASCII). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="90" column="9" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ina745a_err_t</name>
+        <enumvalue id="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" prot="public">
+          <name>INA745A_OK</name>
+          <initializer>=  0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Success. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a5f318ad0e909430932a3055e826b653fa007f80e6dde19b1459bcf0a703e3d90b" prot="public">
+          <name>INA745A_E_PARAM</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Invalid argument (NULL pointer or out-of-range field). </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a5f318ad0e909430932a3055e826b653fa4d331d1cba812d6bba33fc81b381f10e" prot="public">
+          <name>INA745A_E_I2C</name>
+          <initializer>= -2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>HAL/bus error. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a5f318ad0e909430932a3055e826b653fa5c6d290075f9c2ecf4b357f98fe3287c" prot="public">
+          <name>INA745A_E_NOT_INIT</name>
+          <initializer>= -3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Handle not created / <ref refid="ina745a_8h_1af7f1483935331bba3f06c8fb6fc1e600" kindref="member">ina745a_init()</ref> not completed. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a5f318ad0e909430932a3055e826b653faaa0ed91803120b27b79393932aa4c013" prot="public">
+          <name>INA745A_E_MANUF_ID</name>
+          <initializer>= -4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>MANUFACTURER_ID register != 0x5449 (&quot;TI&quot;). </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Status codes of the power monitor driver. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="36" column="1" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="36" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="enum" id="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ina745a_mode_t</name>
+        <enumvalue id="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a0af5671e618d177a8abc2f0d31c2e566" prot="public">
+          <name>INA745A_MODE_SHUTDOWN</name>
+          <initializer>= 0x0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Shutdown. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604ab8602ad0e1c1d1bb3c60beb32ef22522" prot="public">
+          <name>INA745A_MODE_TRIG_BUSV</name>
+          <initializer>= 0x1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Triggered bus voltage. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a01bbf64db06ad205108380bc97c77910" prot="public">
+          <name>INA745A_MODE_TRIG_TEMP</name>
+          <initializer>= 0x4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Triggered temperature. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604aef6872bae73d921370db3a173d2ce231" prot="public">
+          <name>INA745A_MODE_TRIG_TEMP_BUSV</name>
+          <initializer>= 0x5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Triggered temperature + bus voltage. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a663567207e520be5939bf186e5881348" prot="public">
+          <name>INA745A_MODE_TRIG_TEMP_CURRENT</name>
+          <initializer>= 0x6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Triggered temperature + current. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604aee7081c7f21a796f6b7ecc80887cfa52" prot="public">
+          <name>INA745A_MODE_TRIG_TEMP_CURRENT_BUSV</name>
+          <initializer>= 0x7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Triggered temperature + current + bus voltage. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a1693de1df98764b35edbad8201bd19bf" prot="public">
+          <name>INA745A_MODE_CONT_BUSV</name>
+          <initializer>= 0x9</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Continuous bus voltage. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a3adca78e1ab19662a2585c9478fdeccd" prot="public">
+          <name>INA745A_MODE_CONT_TEMP</name>
+          <initializer>= 0xC</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Continuous temperature. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a7b929ce269e15d87f4ba8290d74881e9" prot="public">
+          <name>INA745A_MODE_CONT_TEMP_BUSV</name>
+          <initializer>= 0xD</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Continuous temperature + bus voltage. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a7b8d766406b7721b3c3fa3a4bb862e61" prot="public">
+          <name>INA745A_MODE_CONT_TEMP_CURRENT</name>
+          <initializer>= 0xE</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Continuous temperature + current. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604afdaf3c8cb5fbd89bd448a68cffc98067" prot="public">
+          <name>INA745A_MODE_CONT_TEMP_CURRENT_BUSV</name>
+          <initializer>= 0xF</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Continuous temperature + current + bus voltage. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>ADC_CONFIG.MODE (bits 15-12), Table 7-4. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="113" column="1" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="113" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="enum" id="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ina745a_convtime_t</name>
+        <enumvalue id="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a937d3355c16d5dd16b93f20864dc0390" prot="public">
+          <name>INA745A_CT_50US</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>50 us conversion time. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a45148dd369953822745af70dea77cd95" prot="public">
+          <name>INA745A_CT_84US</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>84 us conversion time. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a10bb1ebffeb278979a51d70bc1469ce7" prot="public">
+          <name>INA745A_CT_150US</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>150 us conversion time. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a1c285522c68fa1fe1189b84d644c58b0" prot="public">
+          <name>INA745A_CT_280US</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>280 us conversion time. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a319c0d6cf65afc0f6f9b2f533d08a9cc" prot="public">
+          <name>INA745A_CT_540US</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>540 us conversion time. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a939d9ad0db26ccb1a65dce1488cbf469" prot="public">
+          <name>INA745A_CT_1052US</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>1052 us conversion time. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a4fa79c9bd09108429d353e8376eccbe8" prot="public">
+          <name>INA745A_CT_2074US</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>2074 us conversion time. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95aad7ef1f9960d866006e0480096686148" prot="public">
+          <name>INA745A_CT_4120US</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>4120 us conversion time. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>ADC_CONFIG.VBUSCT / VSENCT / TCT conversion times (3 bit each), Table 7-4. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="128" column="1" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="128" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="enum" id="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ina745a_avg_t</name>
+        <enumvalue id="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a0b74dc3f200c64345f3eed05c720c04d" prot="public">
+          <name>INA745A_AVG_1</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>No averaging. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a3ea5ae01ed28f93b379450343a23e031" prot="public">
+          <name>INA745A_AVG_4</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>4 samples. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a09776902e3de597cc791f5c389270c89" prot="public">
+          <name>INA745A_AVG_16</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>16 samples. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a6ac66bf63d0775effa47dc9a4ed1ea66" prot="public">
+          <name>INA745A_AVG_64</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>64 samples. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a86db1c43c0358bdeac00d0d437d2d12b" prot="public">
+          <name>INA745A_AVG_128</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>128 samples. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a620ca9222b256d6867d318d02788fcc5" prot="public">
+          <name>INA745A_AVG_256</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>256 samples. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a6eb04c0916de1e8be5f68453d478622d" prot="public">
+          <name>INA745A_AVG_512</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>512 samples. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81aba41cf1e77f662e3e825c3fc1f255e38" prot="public">
+          <name>INA745A_AVG_1024</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>1024 samples. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>ADC_CONFIG.AVG averaging setting (3 bit), Table 7-4. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="140" column="1" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="140" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="enum" id="ina745a_8h_1a8610794e4de1d4f572fa9daafcb837a9" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ina745a_alert_pol_t</name>
+        <enumvalue id="ina745a_8h_1a8610794e4de1d4f572fa9daafcb837a9aa9b8a8c218f9ef5df93bf50e1e4e7350" prot="public">
+          <name>INA745A_ALERT_ACTIVE_LOW</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Open-drain, active low (default). </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ina745a_8h_1a8610794e4de1d4f572fa9daafcb837a9ac6a6bdeff922c05b32a9100248859ff3" prot="public">
+          <name>INA745A_ALERT_ACTIVE_HIGH</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Active high. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>ALERT pin polarity (DIAG_ALRT.APOL). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="164" column="1" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="164" bodyend="167"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="ina745a_8h_1a6ab3357ef59911cf90c5a2c60511d00e" prot="public" static="no">
+        <type>struct ina745a_t</type>
+        <definition>typedef struct ina745a_t ina745a_t</definition>
+        <argsstring></argsstring>
+        <name>ina745a_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Opaque device handle (defined in <ref refid="ina745a_8c" kindref="compound">ina745a.c</ref>). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="70" column="24" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="ina745a_8h_1ae6e4611a00f5e9cfbaf9f99245db9f7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+        <definition>ina745a_t * ina745a_initialize</definition>
+        <argsstring>(u32 devId, u8 i2c_addr, ina745a_i2c_write_f w, ina745a_i2c_read_f r, void *ctx)</argsstring>
+        <name>ina745a_initialize</name>
+        <param>
+          <type>u32</type>
+          <declname>devId</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>i2c_addr</declname>
+        </param>
+        <param>
+          <type><ref refid="ina745a_8h_1a9d337b132205a97a8a3fa19a54813738" kindref="member">ina745a_i2c_write_f</ref></type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type><ref refid="ina745a_8h_1a281dea2fe0fc188f4767ebbd64e22bcd" kindref="member">ina745a_i2c_read_f</ref></type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>Creates the device handle for instance <computeroutput>devId</computeroutput> (no I2C access). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Analogous to <ref refid="tpsm8286x_8c_1a275328fffd1fae5d932dfcbe6cf6d541" kindref="member">tpsm8286_initialize()</ref>: <computeroutput>devId</computeroutput> directly indexes the static instance pool (size <ref refid="userDef_8h_1aa1cb657545bdbd98f54a458cfbd8ab9e" kindref="member">INA745A_NUM_INSTANCES</ref>, defined in <ref refid="userDef_8h" kindref="compound">userDef.h</ref>), allowing multiple INA745A devices to be managed simultaneously.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>devId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Instance index, 0 .. (<ref refid="userDef_8h_1aa1cb657545bdbd98f54a458cfbd8ab9e" kindref="member">INA745A_NUM_INSTANCES</ref> - 1). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i2c_addr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>7-bit I2C address determined by the A0/A1 pin strapping on the board (datasheet Table 6-2), validated against <ref refid="ina745a_8h_1a7205967cbb049568401b0597ce38ace8" kindref="member">INA745A_ADDR_MIN</ref> .. <ref refid="ina745a_8h_1af75a347c38f063ea706d8e4b9679a273" kindref="member">INA745A_ADDR_MAX</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>w</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HAL register write callback, must not be NULL. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HAL register read callback, must not be NULL. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Opaque context pointer passed through to <computeroutput>w</computeroutput> and <computeroutput>r</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to the device handle, or NULL if <computeroutput>devId</computeroutput> or <computeroutput>i2c_addr</computeroutput> is out of range, or <computeroutput>w/<computeroutput>r</computeroutput> is</computeroutput> NULL. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Lowest valid 7-bit I2C address.</para>
+<para>&lt; Highest valid 7-bit I2C address.</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="240" column="11" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="274" bodyend="294" declfile="sw/devices/ina745a/ina745a.h" declline="240" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1af7f1483935331bba3f06c8fb6fc1e600" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_init</definition>
+        <argsstring>(ina745a_t *pDev, const ina745a_adc_config_t *cfg)</argsstring>
+        <name>ina745a_init</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structina745a__adc__config__t" kindref="compound">ina745a_adc_config_t</ref> *</type>
+          <declname>cfg</declname>
+        </param>
+        <briefdescription>
+<para>Verifies MANUFACTURER_ID and applies the ADC configuration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Fails hard with <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faaa0ed91803120b27b79393932aa4c013" kindref="member">INA745A_E_MANUF_ID</ref> if the ID does not read 0x5449 (&quot;TI&quot;) (wrong address / wrong device) - the driver stays unconfigured in that case.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle from <ref refid="ina745a_8h_1ae6e4611a00f5e9cfbaf9f99245db9f7b" kindref="member">ina745a_initialize()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cfg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Desired ADC configuration. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Manufacturer ID register (16 bit, constant 0x5449 = &quot;TI&quot;).</para>
+<para>&lt; ADC configuration register (16 bit).</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="253" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="296" bodyend="316" declfile="sw/devices/ina745a/ina745a.h" declline="253" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1ac5f62fc9de0e5d93396f4b3bf57eea7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_reset</definition>
+        <argsstring>(ina745a_t *pDev)</argsstring>
+        <name>ina745a_reset</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <briefdescription>
+<para>Software reset (CONFIG.RST), equivalent to a power-on reset. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Only requires a valid handle (not a prior successful <ref refid="ina745a_8h_1af7f1483935331bba3f06c8fb6fc1e600" kindref="member">ina745a_init()</ref>), since this is also used as a recovery mechanism. Marks the driver as unconfigured afterwards, since all registers revert to their defaults.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Configuration register (16 bit).</para>
+<para>&lt; Software reset, self-clearing.</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="265" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="318" bodyend="327" declfile="sw/devices/ina745a/ina745a.h" declline="265" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1a982be2f4f0b5b682b58a7601e9f45d50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_reset_accumulators</definition>
+        <argsstring>(ina745a_t *pDev)</argsstring>
+        <name>ina745a_reset_accumulators</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <briefdescription>
+<para>Clears the ENERGY and CHARGE accumulator registers (CONFIG.RSTACC). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Configuration register (16 bit).</para>
+<para>&lt; Software reset, self-clearing.</para>
+<para>&lt; Resets ENERGY/CHARGE accumulators.</para>
+<para>&lt; Configuration register (16 bit).</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="272" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="330" bodyend="342" declfile="sw/devices/ina745a/ina745a.h" declline="272" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1a037be63345307d4cb1c5dd1efaeeecc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_set_conversion_delay</definition>
+        <argsstring>(ina745a_t *pDev, u8 steps_2ms)</argsstring>
+        <name>ina745a_set_conversion_delay</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>steps_2ms</declname>
+        </param>
+        <briefdescription>
+<para>Sets the initial-conversion delay in steps of 2 ms. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>steps_2ms</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Delay steps (0 = no delay, 255 = 510 ms). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Configuration register (16 bit).</para>
+<para>&lt; Start of the 8-bit CONVDLY field (bits 13-6).</para>
+<para>&lt; Start of the 8-bit CONVDLY field (bits 13-6).</para>
+<para>&lt; Configuration register (16 bit).</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="280" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="345" bodyend="358" declfile="sw/devices/ina745a/ina745a.h" declline="280" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1a7bfde474da2e59bfb253003e7640ce47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_set_adc_config</definition>
+        <argsstring>(ina745a_t *pDev, const ina745a_adc_config_t *cfg)</argsstring>
+        <name>ina745a_set_adc_config</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structina745a__adc__config__t" kindref="compound">ina745a_adc_config_t</ref> *</type>
+          <declname>cfg</declname>
+        </param>
+        <briefdescription>
+<para>Writes the complete ADC_CONFIG register. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cfg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Desired ADC configuration. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; ADC configuration register (16 bit).</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="288" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="360" bodyend="371" declfile="sw/devices/ina745a/ina745a.h" declline="288" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1aa3026ead7c4e13495bf48f8e695d8d62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_get_adc_config</definition>
+        <argsstring>(ina745a_t *pDev, ina745a_adc_config_t *cfg)</argsstring>
+        <name>ina745a_get_adc_config</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type><ref refid="structina745a__adc__config__t" kindref="compound">ina745a_adc_config_t</ref> *</type>
+          <declname>cfg</declname>
+        </param>
+        <briefdescription>
+<para>Reads back the complete ADC_CONFIG register. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">cfg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the decoded configuration on success. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; ADC configuration register (16 bit).</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="296" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="373" bodyend="385" declfile="sw/devices/ina745a/ina745a.h" declline="296" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1a6bc4167072ed7a92e800d413b9cef322" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_set_mode</definition>
+        <argsstring>(ina745a_t *pDev, ina745a_mode_t mode)</argsstring>
+        <name>ina745a_set_mode</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604" kindref="member">ina745a_mode_t</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+<para>Changes only ADC_CONFIG.MODE (read-modify-write). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Conversion times and AVG are preserved.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Desired conversion mode. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; ADC configuration register (16 bit).</para>
+<para>&lt; ADC configuration register (16 bit).</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="307" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="387" bodyend="399" declfile="sw/devices/ina745a/ina745a.h" declline="307" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1af0b85da3ab632f5691d0174f1465b77d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_get_measurements</definition>
+        <argsstring>(ina745a_t *pDev, ina745a_measurements_t *out)</argsstring>
+        <name>ina745a_get_measurements</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type><ref refid="structina745a__measurements__t" kindref="compound">ina745a_measurements_t</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Reads all measurement registers (VBUS, DIETEMP, CURRENT, POWER, ENERGY, CHARGE). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives all measurement values (converted and raw). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Bus voltage measurement (16 bit, unsigned).</para>
+<para>&lt; Die temperature measurement (12-bit field in bits 15-4).</para>
+<para>&lt; Current result (16 bit, two&apos;s complement).</para>
+<para>&lt; Power result (24 bit, unsigned).</para>
+<para>&lt; Energy result (40 bit, unsigned).</para>
+<para>&lt; Charge result (40 bit, two&apos;s complement).</para>
+<para>&lt; 3.125 mV/LSB</para>
+<para>&lt; 125 m°C/LSB</para>
+<para>&lt; 1.2 mA/LSB</para>
+<para>&lt; 240 µW/LSB</para>
+<para>&lt; 3.84 mJ/LSB (double)</para>
+<para>&lt; 75 µC/LSB (double)</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="370" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="489" bodyend="522" declfile="sw/devices/ina745a/ina745a.h" declline="370" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="ina745a_8h_1a818a4ba7d6453c7bbac574518cbfb48b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref></type>
+        <definition>ina745a_err_t ina745a_get_manufacturer_id</definition>
+        <argsstring>(ina745a_t *pDev, u16 *id)</argsstring>
+        <name>ina745a_get_manufacturer_id</name>
+        <param>
+          <type><ref refid="structina745a__t" kindref="compound">ina745a_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>u16 *</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Reads the MANUFACTURER_ID register. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Only requires a valid handle, not a prior successful <ref refid="ina745a_8h_1af7f1483935331bba3f06c8fb6fc1e600" kindref="member">ina745a_init()</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the ID (expected: <ref refid="ina745a_8h_1a1ca6b9deeade6f72c6be98f45f09f80a" kindref="member">INA745A_MANUFACTURER_ID</ref>). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref> on success, negative <ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref> code on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Manufacturer ID register (16 bit, constant 0x5449 = &quot;TI&quot;).</para>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="455" column="15" bodyfile="sw/devices/ina745a/ina745a.c" bodystart="627" bodyend="635" declfile="sw/devices/ina745a/ina745a.h" declline="455" declcolumn="15"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Driver for the Texas Instruments INA745A/B 40V, 16-Bit, Precision I2C Output Digital Power Monitor with integrated 800µΩ shunt (EZShunt). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Concept:<itemizedlist>
+<listitem><para>The driver core is bus-agnostic: it only uses injected HAL callbacks (<ref refid="ina745a_8h_1a9d337b132205a97a8a3fa19a54813738" kindref="member">ina745a_i2c_write_f</ref> / <ref refid="ina745a_8h_1a281dea2fe0fc188f4767ebbd64e22bcd" kindref="member">ina745a_i2c_read_f</ref>), never a concrete I2C driver directly. This allows host-side unit testing with stubs (see tests/ina745a/) without any BSP/hardware dependency, exactly like the si5332 driver.</para>
+</listitem><listitem><para>The HAL callbacks operate on whole logical registers (1/2/3/5 bytes), MSB first, matching the INA745x register map. Their signature is intentionally identical to drivers/i2c/i2cWrapper&apos;s <ref refid="i2cWrapper_8c_1aa9cc66fdcf7a6a22276c158aa70e5ec9" kindref="member">i2c_writeRegMultipleBytes()</ref>/i2c_readRegMultipleBytes(), so they can be passed directly to <ref refid="ina745a_8h_1ae6e4611a00f5e9cfbaf9f99245db9f7b" kindref="member">ina745a_initialize()</ref> via a function-pointer cast - no adapter module needed (same pattern as si5332 with i2c_writeReg/i2c_readReg). The core itself never includes <ref refid="i2cWrapper_8h" kindref="compound">i2cWrapper.h</ref> or any BSP header. </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>2026<sp/>Matthias<sp/>Haefner<sp/>-<sp/>Heosys</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SRC_INA745A_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SRC_INA745A_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;type.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Status<sp/>codes<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="37" refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faad45fa8529dd6c44a5612d809c6f3735" kindref="member">INA745A_OK</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><sp/>0,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38" refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653fa007f80e6dde19b1459bcf0a703e3d90b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653fa007f80e6dde19b1459bcf0a703e3d90b" kindref="member">INA745A_E_PARAM</ref><sp/><sp/><sp/><sp/>=<sp/>-1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39" refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653fa4d331d1cba812d6bba33fc81b381f10e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653fa4d331d1cba812d6bba33fc81b381f10e" kindref="member">INA745A_E_I2C</ref><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>-2,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653fa5c6d290075f9c2ecf4b357f98fe3287c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653fa5c6d290075f9c2ecf4b357f98fe3287c" kindref="member">INA745A_E_NOT_INIT</ref><sp/>=<sp/>-3,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faaa0ed91803120b27b79393932aa4c013" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653faaa0ed91803120b27b79393932aa4c013" kindref="member">INA745A_E_MANUF_ID</ref><sp/>=<sp/>-4<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}<sp/><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Low-level<sp/>HAL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="ina745a_8h_1a9d337b132205a97a8a3fa19a54813738" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/>(*<ref refid="ina745a_8h_1a9d337b132205a97a8a3fa19a54813738" kindref="member">ina745a_i2c_write_f</ref>)(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ctx,<sp/>u8<sp/>i2c_addr,<sp/>u8<sp/>reg_addr,<sp/>u8<sp/>*data,<sp/>u32<sp/>len);</highlight></codeline>
+<codeline lineno="66" refid="ina745a_8h_1a281dea2fe0fc188f4767ebbd64e22bcd" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/>(*<ref refid="ina745a_8h_1a281dea2fe0fc188f4767ebbd64e22bcd" kindref="member">ina745a_i2c_read_f</ref>)<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ctx,<sp/>u8<sp/>i2c_addr,<sp/>u8<sp/>reg_addr,<sp/>u8<sp/>*data,<sp/>u32<sp/>len);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="ina745a_8h_1a6ab3357ef59911cf90c5a2c60511d00e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/><ref refid="structina745a__t" kindref="compound">ina745a_t</ref>;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>I2C<sp/>address<sp/>range<sp/>(datasheet<sp/>Table<sp/>6-2:<sp/>16<sp/>addresses<sp/>from<sp/>A0/A1<sp/>strapping)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="ina745a_8h_1a7205967cbb049568401b0597ce38ace8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INA745A_ADDR_MIN<sp/><sp/><sp/><sp/>0x40u<sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="ina745a_8h_1af75a347c38f063ea706d8e4b9679a273" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INA745A_ADDR_MAX<sp/><sp/><sp/><sp/>0x4Fu<sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="ina745a_8h_1a1ca6b9deeade6f72c6be98f45f09f80a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INA745A_MANUFACTURER_ID<sp/>0x5449u</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Fixed<sp/>LSB<sp/>/<sp/>conversion<sp/>factors<sp/>(datasheet<sp/>Table<sp/>8-1)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="ina745a_8h_1a10d96e680e9467e72deaa1c28ebc6006" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INA745A_CURRENT_LSB_A<sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.0012f<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="ina745a_8h_1a8ca0b3e9d5d6453d8d7644c48adb07d6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INA745A_BUS_VOLTAGE_LSB_V<sp/><sp/><sp/>0.003125f<sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="ina745a_8h_1aca51df0fc117d028de2db8c1c1f8152e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INA745A_TEMP_LSB_C<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.125f<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="ina745a_8h_1a2f6b2f0ccd82f1b8e38cabb16cfca541" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INA745A_POWER_LSB_W<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.00024f<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="ina745a_8h_1a196779e3461c61d29f2a54fbe44effc7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INA745A_ENERGY_LSB_J<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.00384<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="ina745a_8h_1a8be2251cca09ba1c0b466f071a2f0b3d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INA745A_CHARGE_LSB_C<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.000075<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="ina745a_8h_1ac693122bc7e8db0ffe9c8308ed29929f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INA745A_PWR_LIMIT_LSB_W<sp/><sp/><sp/><sp/><sp/>0.06144f<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>ADC<sp/>configuration<sp/>types<sp/>(register<sp/>field<sp/>values<sp/>match<sp/>the<sp/>datasheet)<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="114" refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a0af5671e618d177a8abc2f0d31c2e566" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a0af5671e618d177a8abc2f0d31c2e566" kindref="member">INA745A_MODE_SHUTDOWN</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0x0,<sp/><sp/></highlight></codeline>
+<codeline lineno="115" refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604ab8602ad0e1c1d1bb3c60beb32ef22522" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604ab8602ad0e1c1d1bb3c60beb32ef22522" kindref="member">INA745A_MODE_TRIG_BUSV</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0x1,<sp/><sp/></highlight></codeline>
+<codeline lineno="116" refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a01bbf64db06ad205108380bc97c77910" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a01bbf64db06ad205108380bc97c77910" kindref="member">INA745A_MODE_TRIG_TEMP</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0x4,<sp/><sp/></highlight></codeline>
+<codeline lineno="117" refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604aef6872bae73d921370db3a173d2ce231" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604aef6872bae73d921370db3a173d2ce231" kindref="member">INA745A_MODE_TRIG_TEMP_BUSV</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0x5,<sp/><sp/></highlight></codeline>
+<codeline lineno="118" refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a663567207e520be5939bf186e5881348" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a663567207e520be5939bf186e5881348" kindref="member">INA745A_MODE_TRIG_TEMP_CURRENT</ref><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0x6,<sp/><sp/></highlight></codeline>
+<codeline lineno="119" refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604aee7081c7f21a796f6b7ecc80887cfa52" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604aee7081c7f21a796f6b7ecc80887cfa52" kindref="member">INA745A_MODE_TRIG_TEMP_CURRENT_BUSV</ref><sp/>=<sp/>0x7,<sp/><sp/></highlight></codeline>
+<codeline lineno="120" refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a1693de1df98764b35edbad8201bd19bf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a1693de1df98764b35edbad8201bd19bf" kindref="member">INA745A_MODE_CONT_BUSV</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0x9,<sp/><sp/></highlight></codeline>
+<codeline lineno="121" refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a3adca78e1ab19662a2585c9478fdeccd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a3adca78e1ab19662a2585c9478fdeccd" kindref="member">INA745A_MODE_CONT_TEMP</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0xC,<sp/><sp/></highlight></codeline>
+<codeline lineno="122" refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a7b929ce269e15d87f4ba8290d74881e9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a7b929ce269e15d87f4ba8290d74881e9" kindref="member">INA745A_MODE_CONT_TEMP_BUSV</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0xD,<sp/><sp/></highlight></codeline>
+<codeline lineno="123" refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a7b8d766406b7721b3c3fa3a4bb862e61" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604a7b8d766406b7721b3c3fa3a4bb862e61" kindref="member">INA745A_MODE_CONT_TEMP_CURRENT</ref><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0xE,<sp/><sp/></highlight></codeline>
+<codeline lineno="124" refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604afdaf3c8cb5fbd89bd448a68cffc98067" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604afdaf3c8cb5fbd89bd448a68cffc98067" kindref="member">INA745A_MODE_CONT_TEMP_CURRENT_BUSV</ref><sp/>=<sp/>0xF<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="125"><highlight class="normal">}<sp/><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604" kindref="member">ina745a_mode_t</ref>;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128" refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="129" refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a937d3355c16d5dd16b93f20864dc0390" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a937d3355c16d5dd16b93f20864dc0390" kindref="member">INA745A_CT_50US</ref><sp/><sp/><sp/>=<sp/>0,<sp/><sp/></highlight></codeline>
+<codeline lineno="130" refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a45148dd369953822745af70dea77cd95" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a45148dd369953822745af70dea77cd95" kindref="member">INA745A_CT_84US</ref><sp/><sp/><sp/>=<sp/>1,<sp/><sp/></highlight></codeline>
+<codeline lineno="131" refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a10bb1ebffeb278979a51d70bc1469ce7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a10bb1ebffeb278979a51d70bc1469ce7" kindref="member">INA745A_CT_150US</ref><sp/><sp/>=<sp/>2,<sp/><sp/></highlight></codeline>
+<codeline lineno="132" refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a1c285522c68fa1fe1189b84d644c58b0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a1c285522c68fa1fe1189b84d644c58b0" kindref="member">INA745A_CT_280US</ref><sp/><sp/>=<sp/>3,<sp/><sp/></highlight></codeline>
+<codeline lineno="133" refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a319c0d6cf65afc0f6f9b2f533d08a9cc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a319c0d6cf65afc0f6f9b2f533d08a9cc" kindref="member">INA745A_CT_540US</ref><sp/><sp/>=<sp/>4,<sp/><sp/></highlight></codeline>
+<codeline lineno="134" refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a939d9ad0db26ccb1a65dce1488cbf469" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a939d9ad0db26ccb1a65dce1488cbf469" kindref="member">INA745A_CT_1052US</ref><sp/>=<sp/>5,<sp/><sp/></highlight></codeline>
+<codeline lineno="135" refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a4fa79c9bd09108429d353e8376eccbe8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95a4fa79c9bd09108429d353e8376eccbe8" kindref="member">INA745A_CT_2074US</ref><sp/>=<sp/>6,<sp/><sp/></highlight></codeline>
+<codeline lineno="136" refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95aad7ef1f9960d866006e0480096686148" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95aad7ef1f9960d866006e0480096686148" kindref="member">INA745A_CT_4120US</ref><sp/>=<sp/>7<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="137"><highlight class="normal">}<sp/><ref refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95" kindref="member">ina745a_convtime_t</ref>;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140" refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="141" refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a0b74dc3f200c64345f3eed05c720c04d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a0b74dc3f200c64345f3eed05c720c04d" kindref="member">INA745A_AVG_1</ref><sp/><sp/><sp/><sp/>=<sp/>0,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="142" refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a3ea5ae01ed28f93b379450343a23e031" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a3ea5ae01ed28f93b379450343a23e031" kindref="member">INA745A_AVG_4</ref><sp/><sp/><sp/><sp/>=<sp/>1,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="143" refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a09776902e3de597cc791f5c389270c89" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a09776902e3de597cc791f5c389270c89" kindref="member">INA745A_AVG_16</ref><sp/><sp/><sp/>=<sp/>2,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="144" refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a6ac66bf63d0775effa47dc9a4ed1ea66" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a6ac66bf63d0775effa47dc9a4ed1ea66" kindref="member">INA745A_AVG_64</ref><sp/><sp/><sp/>=<sp/>3,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="145" refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a86db1c43c0358bdeac00d0d437d2d12b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a86db1c43c0358bdeac00d0d437d2d12b" kindref="member">INA745A_AVG_128</ref><sp/><sp/>=<sp/>4,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="146" refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a620ca9222b256d6867d318d02788fcc5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a620ca9222b256d6867d318d02788fcc5" kindref="member">INA745A_AVG_256</ref><sp/><sp/>=<sp/>5,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="147" refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a6eb04c0916de1e8be5f68453d478622d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81a6eb04c0916de1e8be5f68453d478622d" kindref="member">INA745A_AVG_512</ref><sp/><sp/>=<sp/>6,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="148" refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81aba41cf1e77f662e3e825c3fc1f255e38" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81aba41cf1e77f662e3e825c3fc1f255e38" kindref="member">INA745A_AVG_1024</ref><sp/>=<sp/>7<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="149"><highlight class="normal">}<sp/><ref refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81" kindref="member">ina745a_avg_t</ref>;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152" refid="structina745a__adc__config__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="153" refid="structina745a__adc__config__t_1aae65e78fcf1fa75929d9252daf963781" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604" kindref="member">ina745a_mode_t</ref><sp/><sp/><sp/><sp/><sp/><ref refid="structina745a__adc__config__t_1aae65e78fcf1fa75929d9252daf963781" kindref="member">mode</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="154" refid="structina745a__adc__config__t_1ae3942927eae6d0c897ce54445a3db84a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95" kindref="member">ina745a_convtime_t</ref><sp/><ref refid="structina745a__adc__config__t_1ae3942927eae6d0c897ce54445a3db84a" kindref="member">vbusct</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="155" refid="structina745a__adc__config__t_1acd820206d70b6e25605bdf2604234f76" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95" kindref="member">ina745a_convtime_t</ref><sp/><ref refid="structina745a__adc__config__t_1acd820206d70b6e25605bdf2604234f76" kindref="member">vsenct</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="156" refid="structina745a__adc__config__t_1a53f9914fd4bef82247e96772edad87c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95" kindref="member">ina745a_convtime_t</ref><sp/><ref refid="structina745a__adc__config__t_1a53f9914fd4bef82247e96772edad87c6" kindref="member">tct</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="157" refid="structina745a__adc__config__t_1ae20bfca87831d0840a0daca877b9db39" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81" kindref="member">ina745a_avg_t</ref><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structina745a__adc__config__t_1ae20bfca87831d0840a0daca877b9db39" kindref="member">avg</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="158"><highlight class="normal">}<sp/><ref refid="structina745a__adc__config__t" kindref="compound">ina745a_adc_config_t</ref>;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Alert<sp/>/<sp/>diagnostic<sp/>types<sp/>(DIAG_ALRT<sp/>register,<sp/>Table<sp/>7-11)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164" refid="ina745a_8h_1a8610794e4de1d4f572fa9daafcb837a9" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="165" refid="ina745a_8h_1a8610794e4de1d4f572fa9daafcb837a9aa9b8a8c218f9ef5df93bf50e1e4e7350" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a8610794e4de1d4f572fa9daafcb837a9aa9b8a8c218f9ef5df93bf50e1e4e7350" kindref="member">INA745A_ALERT_ACTIVE_LOW</ref><sp/><sp/>=<sp/>0,<sp/><sp/></highlight></codeline>
+<codeline lineno="166" refid="ina745a_8h_1a8610794e4de1d4f572fa9daafcb837a9ac6a6bdeff922c05b32a9100248859ff3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a8610794e4de1d4f572fa9daafcb837a9ac6a6bdeff922c05b32a9100248859ff3" kindref="member">INA745A_ALERT_ACTIVE_HIGH</ref><sp/>=<sp/>1<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="167"><highlight class="normal">}<sp/><ref refid="ina745a_8h_1a8610794e4de1d4f572fa9daafcb837a9" kindref="member">ina745a_alert_pol_t</ref>;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170" refid="structina745a__alert__cfg__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="171" refid="structina745a__alert__cfg__t_1ace761769109858453afbcc0524d313f6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structina745a__alert__cfg__t_1ace761769109858453afbcc0524d313f6" kindref="member">alatch</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="172" refid="structina745a__alert__cfg__t_1abe649b9ce2e974233a21a22627bf4b3a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structina745a__alert__cfg__t_1abe649b9ce2e974233a21a22627bf4b3a" kindref="member">conv_ready_en</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="173" refid="structina745a__alert__cfg__t_1a96d37b83637e5de0c7c90ccff4f6364b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structina745a__alert__cfg__t_1a96d37b83637e5de0c7c90ccff4f6364b" kindref="member">slow_alert</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="174" refid="structina745a__alert__cfg__t_1a5e4cf31bf9e7d5ba89e05fcd63543ec0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ina745a_8h_1a8610794e4de1d4f572fa9daafcb837a9" kindref="member">ina745a_alert_pol_t</ref><sp/><ref refid="structina745a__alert__cfg__t_1a5e4cf31bf9e7d5ba89e05fcd63543ec0" kindref="member">polarity</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="175"><highlight class="normal">}<sp/><ref refid="structina745a__alert__cfg__t" kindref="compound">ina745a_alert_cfg_t</ref>;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178" refid="structina745a__diag__flags__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="179" refid="structina745a__diag__flags__t_1aa6b264a7581ba8677644353386508526" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structina745a__diag__flags__t_1aa6b264a7581ba8677644353386508526" kindref="member">energy_overflow</ref>;<sp/></highlight></codeline>
+<codeline lineno="180" refid="structina745a__diag__flags__t_1a0ca23e6630f05bfbc511f54e9ff6dafe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structina745a__diag__flags__t_1a0ca23e6630f05bfbc511f54e9ff6dafe" kindref="member">charge_overflow</ref>;<sp/></highlight></codeline>
+<codeline lineno="181" refid="structina745a__diag__flags__t_1a50987c9958ab5b7d541f114a7abc3f32" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structina745a__diag__flags__t_1a50987c9958ab5b7d541f114a7abc3f32" kindref="member">math_overflow</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="182" refid="structina745a__diag__flags__t_1adbe720c027e7925ee4980c4466cf2be4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structina745a__diag__flags__t_1adbe720c027e7925ee4980c4466cf2be4" kindref="member">temp_over_limit</ref>;<sp/></highlight></codeline>
+<codeline lineno="183" refid="structina745a__diag__flags__t_1ab50c1e3bf1897b432b3caa7a735ea3b1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structina745a__diag__flags__t_1ab50c1e3bf1897b432b3caa7a735ea3b1" kindref="member">current_over_limit</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="184" refid="structina745a__diag__flags__t_1a5d03c0dfb0a2ba0ecb24d2d74e62b1fd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structina745a__diag__flags__t_1a5d03c0dfb0a2ba0ecb24d2d74e62b1fd" kindref="member">current_under_limit</ref>;<sp/></highlight></codeline>
+<codeline lineno="185" refid="structina745a__diag__flags__t_1a23e016cc07447bbff6012c146d6657c9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structina745a__diag__flags__t_1a23e016cc07447bbff6012c146d6657c9" kindref="member">bus_over_limit</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="186" refid="structina745a__diag__flags__t_1a1cd4041d90b98f4f33b3fa821da6807c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structina745a__diag__flags__t_1a1cd4041d90b98f4f33b3fa821da6807c" kindref="member">bus_under_limit</ref>;<sp/></highlight></codeline>
+<codeline lineno="187" refid="structina745a__diag__flags__t_1a01443ebcbc26660ad540d2579dea8e9f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structina745a__diag__flags__t_1a01443ebcbc26660ad540d2579dea8e9f" kindref="member">power_over_limit</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="188" refid="structina745a__diag__flags__t_1ad070815ad3f64eeaa79746201b64a96e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structina745a__diag__flags__t_1ad070815ad3f64eeaa79746201b64a96e" kindref="member">conversion_ready</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="189" refid="structina745a__diag__flags__t_1a51a08d64def32fb007d879318f6140f1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structina745a__diag__flags__t_1a51a08d64def32fb007d879318f6140f1" kindref="member">memory_ok</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="190"><highlight class="normal">}<sp/><ref refid="structina745a__diag__flags__t" kindref="compound">ina745a_diag_flags_t</ref>;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Measurement<sp/>results<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196" refid="structina745a__measurements__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="199" refid="structina745a__measurements__t_1a410072c9ab9b454e7af9a247749d495d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><ref refid="structina745a__measurements__t_1a410072c9ab9b454e7af9a247749d495d" kindref="member">bus_voltage_V</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="200" refid="structina745a__measurements__t_1a1a1340dfe59906adbba5b7fe5d60741e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><ref refid="structina745a__measurements__t_1a1a1340dfe59906adbba5b7fe5d60741e" kindref="member">die_temp_C</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="201" refid="structina745a__measurements__t_1ada3205e7b4aeba0ac478451474272e25" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><ref refid="structina745a__measurements__t_1ada3205e7b4aeba0ac478451474272e25" kindref="member">current_A</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="202" refid="structina745a__measurements__t_1aa1c80f182c0d46867201a8f770687fa8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><ref refid="structina745a__measurements__t_1aa1c80f182c0d46867201a8f770687fa8" kindref="member">power_W</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="203" refid="structina745a__measurements__t_1a995e127b2a920d062c68e5ece58bea11" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structina745a__measurements__t_1a995e127b2a920d062c68e5ece58bea11" kindref="member">energy_J</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="204" refid="structina745a__measurements__t_1a6ba2e420a1cdb2be3c56530fb4878e16" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structina745a__measurements__t_1a6ba2e420a1cdb2be3c56530fb4878e16" kindref="member">charge_C</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209" refid="structina745a__measurements__t_1ae06ce1a7eb30ebf015b9bb6bf861654c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u16<sp/><ref refid="structina745a__measurements__t_1ae06ce1a7eb30ebf015b9bb6bf861654c" kindref="member">vbus_raw</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="210" refid="structina745a__measurements__t_1af42cd89d8e2c89faa16a4384f3d19278" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>s16<sp/><ref refid="structina745a__measurements__t_1af42cd89d8e2c89faa16a4384f3d19278" kindref="member">dietemp_raw</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="211" refid="structina745a__measurements__t_1a901b2fadaa9bc89c299e7308ffe2cbd4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>s16<sp/><ref refid="structina745a__measurements__t_1a901b2fadaa9bc89c299e7308ffe2cbd4" kindref="member">current_raw</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="212" refid="structina745a__measurements__t_1aa75831708f253b1f358d871bbf998ee1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><ref refid="structina745a__measurements__t_1aa75831708f253b1f358d871bbf998ee1" kindref="member">power_raw</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="213" refid="structina745a__measurements__t_1a5d958a2b3b5258505c3681e6f4617a8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>u64<sp/><ref refid="structina745a__measurements__t_1a5d958a2b3b5258505c3681e6f4617a8a" kindref="member">energy_raw</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="214" refid="structina745a__measurements__t_1a94ede43a6fcdf8590f6b7bde7c377d91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>s64<sp/><ref refid="structina745a__measurements__t_1a94ede43a6fcdf8590f6b7bde7c377d91" kindref="member">charge_raw</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="216"><highlight class="normal">}<sp/><ref refid="structina745a__measurements__t" kindref="compound">ina745a_measurements_t</ref>;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>API<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>-------------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><ref refid="structina745a__t" kindref="compound">ina745a_t</ref>*<sp/><ref refid="ina745a_8h_1ae6e4611a00f5e9cfbaf9f99245db9f7b" kindref="member">ina745a_initialize</ref>(u32<sp/>devId,<sp/>u8<sp/>i2c_addr,<sp/><ref refid="ina745a_8h_1a9d337b132205a97a8a3fa19a54813738" kindref="member">ina745a_i2c_write_f</ref><sp/>w,<sp/><ref refid="ina745a_8h_1a281dea2fe0fc188f4767ebbd64e22bcd" kindref="member">ina745a_i2c_read_f</ref><sp/>r,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ctx);</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1af7f1483935331bba3f06c8fb6fc1e600" kindref="member">ina745a_init</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structina745a__adc__config__t" kindref="compound">ina745a_adc_config_t</ref><sp/>*cfg);</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1ac5f62fc9de0e5d93396f4b3bf57eea7b" kindref="member">ina745a_reset</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1a982be2f4f0b5b682b58a7601e9f45d50" kindref="member">ina745a_reset_accumulators</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev);</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1a037be63345307d4cb1c5dd1efaeeecc6" kindref="member">ina745a_set_conversion_delay</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/>u8<sp/>steps_2ms);</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1a7bfde474da2e59bfb253003e7640ce47" kindref="member">ina745a_set_adc_config</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structina745a__adc__config__t" kindref="compound">ina745a_adc_config_t</ref><sp/>*cfg);</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1aa3026ead7c4e13495bf48f8e695d8d62" kindref="member">ina745a_get_adc_config</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/><ref refid="structina745a__adc__config__t" kindref="compound">ina745a_adc_config_t</ref><sp/>*cfg);</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"></highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1a6bc4167072ed7a92e800d413b9cef322" kindref="member">ina745a_set_mode</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604" kindref="member">ina745a_mode_t</ref><sp/>mode);</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1acbdd2cb666a078076b60545ac5709687" kindref="member">ina745a_get_bus_voltage</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*volts);</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"></highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1a644af38149313d5e57de69b235e42019" kindref="member">ina745a_get_die_temperature</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*celsius);</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1a12b793aac364a7e40efe9f29d56d343f" kindref="member">ina745a_get_current</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*amps);</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"></highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1ac02f86adce3614d386ff9c5468154b68" kindref="member">ina745a_get_power</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*watts);</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"></highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1a1d05a02198cf0337b9f92d7b759ce880" kindref="member">ina745a_get_energy</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*joules);</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"></highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1ae17d913c9c83775db21ea111d5a175ac" kindref="member">ina745a_get_charge</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*coulombs);</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"></highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1af0b85da3ab632f5691d0174f1465b77d" kindref="member">ina745a_get_measurements</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/><ref refid="structina745a__measurements__t" kindref="compound">ina745a_measurements_t</ref><sp/>*out);</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"></highlight></codeline>
+<codeline lineno="376"><highlight class="normal"></highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1ad993aed8d2e02d91724c069f6b73ba9b" kindref="member">ina745a_set_current_limits</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>over_limit_A,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>under_limit_A);</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"></highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1afc88e6310a72410d8640e266bfec7ce1" kindref="member">ina745a_set_bus_voltage_limits</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>overvoltage_V,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>undervoltage_V);</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"></highlight></codeline>
+<codeline lineno="408"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1a30668f0d7355f6fe111de6e915c87a1f" kindref="member">ina745a_set_temperature_limit</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>overtemp_C);</highlight></codeline>
+<codeline lineno="409"><highlight class="normal"></highlight></codeline>
+<codeline lineno="419"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1addfdc10e7c095f23efb831aeeb4819e7" kindref="member">ina745a_set_power_limit</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>overpower_W);</highlight></codeline>
+<codeline lineno="420"><highlight class="normal"></highlight></codeline>
+<codeline lineno="431"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1a61859d51474ecf3cc3adc50e29165ed7" kindref="member">ina745a_configure_alert</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structina745a__alert__cfg__t" kindref="compound">ina745a_alert_cfg_t</ref><sp/>*cfg);</highlight></codeline>
+<codeline lineno="432"><highlight class="normal"></highlight></codeline>
+<codeline lineno="443"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1a54c8bd4d464df83afe53817bb8a68ae4" kindref="member">ina745a_get_diag_flags</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/><ref refid="structina745a__diag__flags__t" kindref="compound">ina745a_diag_flags_t</ref><sp/>*out);</highlight></codeline>
+<codeline lineno="445"><highlight class="normal"></highlight></codeline>
+<codeline lineno="455"><highlight class="normal"><ref refid="ina745a_8h_1a5f318ad0e909430932a3055e826b653f" kindref="member">ina745a_err_t</ref><sp/><ref refid="ina745a_8h_1a818a4ba7d6453c7bbac574518cbfb48b" kindref="member">ina745a_get_manufacturer_id</ref>(<ref refid="structina745a__t" kindref="compound">ina745a_t</ref><sp/>*pDev,<sp/>u16<sp/>*</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="456"><highlight class="normal"></highlight></codeline>
+<codeline lineno="457"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>SRC_INA745A_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="sw/devices/ina745a/ina745a.h"/>
+  </compounddef>
+</doxygen>

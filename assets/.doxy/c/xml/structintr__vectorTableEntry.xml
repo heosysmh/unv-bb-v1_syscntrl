@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structintr__vectorTableEntry" kind="struct" language="C++" prot="public">
+    <compoundname>intr_vectorTableEntry</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structintr__vectorTableEntry_1abe3c660acf947bdbda5c81e8542908fa" prot="public" static="no" mutable="no">
+        <type><ref refid="interrupt_8h_1ab733ba3247a183811ce4068ee14c5c37" kindref="member">intrHandler_t</ref></type>
+        <definition>intrHandler_t intr_vectorTableEntry::handler</definition>
+        <argsstring></argsstring>
+        <name>handler</name>
+        <qualifiedname>intr_vectorTableEntry::handler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Interrupt Handler </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.c" line="26" column="22" bodyfile="sw/app/src/interrupt.c" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structintr__vectorTableEntry_1a1e9b8789ebb37f60b7da99a1b30b14b8" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* intr_vectorTableEntry::callBackRef</definition>
+        <argsstring></argsstring>
+        <name>callBackRef</name>
+        <qualifiedname>intr_vectorTableEntry::callBackRef</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>CallBackRef is the callback reference passed in by the upper layer when setting the Interrupt handler for specific interrupt ID, and it will passed back to Interrupt handler when it is invoked. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.c" line="27" column="13" bodyfile="sw/app/src/interrupt.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/app/src/interrupt.c" line="24" column="1" bodyfile="sw/app/src/interrupt.c" bodystart="25" bodyend="32"/>
+    <listofallmembers>
+      <member refid="structintr__vectorTableEntry_1a1e9b8789ebb37f60b7da99a1b30b14b8" prot="public" virt="non-virtual"><scope>intr_vectorTableEntry</scope><name>callBackRef</name></member>
+      <member refid="structintr__vectorTableEntry_1abe3c660acf947bdbda5c81e8542908fa" prot="public" virt="non-virtual"><scope>intr_vectorTableEntry</scope><name>handler</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

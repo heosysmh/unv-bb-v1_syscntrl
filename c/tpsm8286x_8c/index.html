@@ -1,0 +1,1472 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hardware (FPGA/VHDL) and Firmware (C) documentation for unv-bb-v1-syscntrl">
+      
+      
+      
+      
+        <link rel="prev" href="../structtpsm8286__voltage__map__t/">
+      
+      
+        <link rel="next" href="../tpsm8286x_8c_source/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>File tpsm8286x.c - unv-bb-v1-syscntrl Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#file-tpsm8286xc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-header__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            unv-bb-v1-syscntrl Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              File tpsm8286x.c
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  System Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../setup/ftdi-jtag/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Setup & Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sw-notes/BUILD_SYSTEM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Firmware (SW)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vhdl/debounce/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  FPGA (VHDL)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-nav__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    unv-bb-v1-syscntrl Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup & Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/ftdi-jtag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FTDI & JTAG Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/firmware-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware Build Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware (SW)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Firmware (SW)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sw-notes/BUILD_SYSTEM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C-Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Structures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FPGA (VHDL)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    FPGA (VHDL)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vhdl
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Vhdl
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/debounce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: debounce
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/fmcPowerCntrl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: fmcPowerCntrl
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/inputSync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: inputSync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/synchronizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: synchronizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/sysCtnrl_top/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: sysCntrl_Top
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/vccioSelect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: vccioSelect
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-static-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Static Attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-static-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Static Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-attributes-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Attributes Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Attributes Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variable-tpsm8286_voltagemap_10mv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable TPSM8286_VOLTAGEMAP_10MV
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-static-attributes-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Static Attributes Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Static Attributes Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variable-ginstances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable gInstances
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-tpsm8286_check_voltagereg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function tpsm8286_check_voltageReg
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-tpsm8286_initialize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function tpsm8286_initialize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-tpsm8286_set_cntrl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function tpsm8286_set_cntrl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-tpsm8286_set_enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function tpsm8286_set_enable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-tpsm8286_set_voltage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function tpsm8286_set_voltage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-tpsm8286_voltage_to_reg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function tpsm8286_voltage_to_reg
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-static-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Static Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Static Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-clampf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function clampf
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="file-tpsm8286xc">File tpsm8286x.c</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_b1d9dda0f5d22dbe57e7280d3502a0d9/"><strong>devices</strong></a> <strong>&gt;</strong> <a href="../dir_d611db536405966ae215d07169916749/"><strong>tpsm8286x</strong></a> <strong>&gt;</strong> <a href="./"><strong>tpsm8286x.c</strong></a></p>
+<p><a href="../tpsm8286x_8c_source/">Go to the source code of this file</a></p>
+<p><em>Driver implementation for the TI TPSM8286x step-down power module.</em> </p>
+<ul>
+<li><code>#include "tpsm8286x.h"</code></li>
+<li><code>#include "userDef.h"</code></li>
+</ul>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structtpsm8286__t/"><strong>tpsm8286_t</strong></a> <br><em>Opaque device handle (definition), see</em> <a href="../structtpsm8286__t/"><em><strong>tpsm8286_t</strong></em></a> <em>in</em><a href="../tpsm8286x_8h/"><em><strong>tpsm8286x.h</strong></em></a> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structtpsm8286__voltage__map__t/"><strong>tpsm8286_voltage_map_t</strong></a> <br><em>Linear voltage-to-register mapping descriptor.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">const <a href="../structtpsm8286__voltage__map__t/"><strong>tpsm8286_voltage_map_t</strong></a></td>
+<td style="text-align: left;"><a href="#variable-tpsm8286_voltagemap_10mv"><strong>TPSM8286_VOLTAGEMAP_10MV</strong></a>   = <code>/* multi line expression */</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-attributes">Public Static Attributes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../structtpsm8286__t/"><strong>tpsm8286_t</strong></a></td>
+<td style="text-align: left;"><a href="#variable-ginstances"><strong>gInstances</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../tpsm8286x_8h/#enum-tpsm8286_err_t"><strong>tpsm8286_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-tpsm8286_check_voltagereg"><strong>tpsm8286_check_voltageReg</strong></a> (<a href="../structtpsm8286__t/"><strong>tpsm8286_t</strong></a> * pDev, int * regOk) <br><em>Checks whether the VOUT1 register reads back the programmed value.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../structtpsm8286__t/"><strong>tpsm8286_t</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-tpsm8286_initialize"><strong>tpsm8286_initialize</strong></a> (u32 devId, u8 i2c_addr, <a href="../tpsm8286x_8h/#typedef-tpsm8286_i2c_write_f"><strong>tpsm8286_i2c_write_f</strong></a> w, <a href="../tpsm8286x_8h/#typedef-tpsm8286_i2c_read_f"><strong>tpsm8286_i2c_read_f</strong></a> r, void * ctx) <br><em>Creates the device handle for instance</em> <code>devId</code> <em>(no I2C access).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../tpsm8286x_8h/#enum-tpsm8286_err_t"><strong>tpsm8286_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-tpsm8286_set_cntrl"><strong>tpsm8286_set_cntrl</strong></a> (<a href="../structtpsm8286__t/"><strong>tpsm8286_t</strong></a> * pDev, u8 regVal) <br><em>Writes the complete CNTRL register.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../tpsm8286x_8h/#enum-tpsm8286_err_t"><strong>tpsm8286_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-tpsm8286_set_enable"><strong>tpsm8286_set_enable</strong></a> (<a href="../structtpsm8286__t/"><strong>tpsm8286_t</strong></a> * pDev, int enable) <br><em>Enables/disables the output (CNTRL.DEVICE_ENABLE, read-modify-write).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../tpsm8286x_8h/#enum-tpsm8286_err_t"><strong>tpsm8286_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-tpsm8286_set_voltage"><strong>tpsm8286_set_voltage</strong></a> (<a href="../structtpsm8286__t/"><strong>tpsm8286_t</strong></a> * pDev, float voltage) <br><em>Sets the output voltage setpoint (VOUT1 register).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../tpsm8286x_8h/#enum-tpsm8286_err_t"><strong>tpsm8286_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-tpsm8286_voltage_to_reg"><strong>tpsm8286_voltage_to_reg</strong></a> (float voltage, u8 * reg_out) <br><em>Converts a voltage to the VOUT1 register value.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-static-functions">Public Static Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">float</td>
+<td style="text-align: left;"><a href="#function-clampf"><strong>clampf</strong></a> (float x, float a, float b) <br><em>Clamps a float value between two bounds.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-tpsm8286_voltagemap_10mv">variable TPSM8286_VOLTAGEMAP_10MV</h3>
+<pre><code class="language-C++">const tpsm8286_voltage_map_t TPSM8286_VOLTAGEMAP_10MV;
+</code></pre>
+<p>Voltage mapping of the 10 mV/LSB device variant: 0.8 V .. 3.35 V. </p>
+<hr>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation</h2>
+<h3 id="variable-ginstances">variable gInstances</h3>
+<pre><code class="language-C++">tpsm8286_t gInstances[TPSM8286_NUM_OF_INSTANCES];
+</code></pre>
+<p>Static pool of device instances (size from <a href="../userDef_8h/"><strong>userDef.h</strong></a>). </p>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-tpsm8286_check_voltagereg">function tpsm8286_check_voltageReg</h3>
+<p><em>Checks whether the VOUT1 register reads back the programmed value.</em> </p>
+<pre><code class="language-C++">tpsm8286_err_t tpsm8286_check_voltageReg (
+    tpsm8286_t * pDev,
+    int * regOk
+) 
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>pDev</code> Device handle. </li>
+<li><code>regOk</code> Receives 1 if the register matches the last setpoint, 0 otherwise. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>TPSM8286_OK on success, TPSM8286_E_PARAM if <code>pDev</code> is NULL, TPSM8286_E_I2C on a HAL/bus error. </p>
+<hr>
+
+<h3 id="function-tpsm8286_initialize">function tpsm8286_initialize</h3>
+<p><em>Creates the device handle for instance</em> <code>devId</code> <em>(no I2C access).</em></p>
+<pre><code class="language-C++">tpsm8286_t * tpsm8286_initialize (
+    u32 devId,
+    u8 i2c_addr,
+    tpsm8286_i2c_write_f w,
+    tpsm8286_i2c_read_f r,
+    void * ctx
+) 
+</code></pre>
+<p><code>devId</code> directly indexes the static instance pool (size <a href="../userDef_8h/#define-tpsm8286_num_of_instances"><strong>TPSM8286_NUM_OF_INSTANCES</strong></a>, defined in <a href="../userDef_8h/"><strong>userDef.h</strong></a>).</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>devId</code> Instance index. </li>
+<li><code>i2c_addr</code> 7-bit I2C address of the device. </li>
+<li><code>w</code> HAL register write callback. </li>
+<li><code>r</code> HAL register read callback. </li>
+<li><code>ctx</code> Opaque context pointer passed through to <code>w</code> and <code>r</code>. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>Pointer to the device handle. </p>
+<hr>
+
+<h3 id="function-tpsm8286_set_cntrl">function tpsm8286_set_cntrl</h3>
+<p><em>Writes the complete CNTRL register.</em> </p>
+<pre><code class="language-C++">tpsm8286_err_t tpsm8286_set_cntrl (
+    tpsm8286_t * pDev,
+    u8 regVal
+) 
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>pDev</code> Device handle. </li>
+<li><code>regVal</code> Raw control register value (OR of TPSM8286_*_MASK bits). </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>TPSM8286_OK on success, TPSM8286_E_PARAM if <code>pDev</code> is NULL, otherwise the HAL error code. </p>
+<hr>
+
+<h3 id="function-tpsm8286_set_enable">function tpsm8286_set_enable</h3>
+<p><em>Enables/disables the output (CNTRL.DEVICE_ENABLE, read-modify-write).</em> </p>
+<pre><code class="language-C++">tpsm8286_err_t tpsm8286_set_enable (
+    tpsm8286_t * pDev,
+    int enable
+) 
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>pDev</code> Device handle. </li>
+<li><code>enable</code> Non-zero to enable, zero to disable. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>TPSM8286_OK on success, TPSM8286_E_PARAM if <code>pDev</code> is NULL, TPSM8286_E_I2C on a HAL/bus error. </p>
+<hr>
+
+<h3 id="function-tpsm8286_set_voltage">function tpsm8286_set_voltage</h3>
+<p><em>Sets the output voltage setpoint (VOUT1 register).</em> </p>
+<pre><code class="language-C++">tpsm8286_err_t tpsm8286_set_voltage (
+    tpsm8286_t * pDev,
+    float voltage
+) 
+</code></pre>
+<p>The voltage is mapped to the 10 mV/LSB register scale and clamped to the supported range (0.8 V .. 3.35 V). Takes effect according to the configured ramp speed; the output enable state is not changed.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>pDev</code> Device handle. </li>
+<li><code>voltage</code> Desired output voltage [V]. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>TPSM8286_OK on success, TPSM8286_E_PARAM if <code>pDev</code> is NULL, TPSM8286_E_I2C on a HAL/bus error. </p>
+<hr>
+
+<h3 id="function-tpsm8286_voltage_to_reg">function tpsm8286_voltage_to_reg</h3>
+<p><em>Converts a voltage to the VOUT1 register value.</em> </p>
+<pre><code class="language-C++">tpsm8286_err_t tpsm8286_voltage_to_reg (
+    float voltage,
+    u8 * reg_out
+) 
+</code></pre>
+<p>The voltage is clamped to the range of <a href="./#variable-tpsm8286_voltagemap_10mv"><strong>TPSM8286_VOLTAGEMAP_10MV</strong></a> and mapped linearly onto the register range with rounding.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>voltage</code> Desired output voltage [V]. </li>
+<li><code>reg_out</code> Receives the register value. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>TPSM8286_OK on success, TPSM8286_E_PARAM if <code>reg_out</code> is NULL. </p>
+<hr>
+<h2 id="public-static-functions-documentation">Public Static Functions Documentation</h2>
+<h3 id="function-clampf">function clampf</h3>
+<p><em>Clamps a float value between two bounds.</em> </p>
+<pre><code class="language-C++">static inline float clampf (
+    float x,
+    float a,
+    float b
+) 
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>x</code> Value to clamp. </li>
+<li><code>a</code> Lower bound. </li>
+<li><code>b</code> Upper bound. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p><code>x</code> limited to [a, b]. </p>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>sw/devices/tpsm8286x/tpsm8286x.c</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Matthias Haefner - Heosys – Licensed under Apache-2.0
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

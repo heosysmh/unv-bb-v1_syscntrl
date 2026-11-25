@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="pi4msd5v945x_8c" kind="file" language="C++">
+    <compoundname>pi4msd5v945x.c</compoundname>
+    <includes refid="pi4msd5v945x_8h" local="yes">pi4msd5v945x.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>sw/devices/pi4msd5v945x/pi4msd5v945x.c</label>
+        <link refid="pi4msd5v945x_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>pi4msd5v945x.h</label>
+        <link refid="pi4msd5v945x_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>type.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structpi4msd5v945x__t" prot="public">pi4msd5v945x_t</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="pi4msd5v945x_8c_1a5fd575caa4f44ecf3d9f644da9474396" prot="public" static="yes" mutable="no">
+        <type><ref refid="structpi4msd5v945x__t" kindref="compound">pi4msd5v945x_t</ref></type>
+        <definition>pi4msd5v945x_t gDevice</definition>
+        <argsstring></argsstring>
+        <name>gDevice</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Single static device instance backing <ref refid="pi4msd5v945x_8c_1a9586cf25f42ae3b43970c9d5cb373a4c" kindref="member">pi4msd5v945x_initialize()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/pi4msd5v945x/pi4msd5v945x.c" line="27" column="23" bodyfile="sw/devices/pi4msd5v945x/pi4msd5v945x.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="pi4msd5v945x_8c_1a9586cf25f42ae3b43970c9d5cb373a4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structpi4msd5v945x__t" kindref="compound">pi4msd5v945x_t</ref> *</type>
+        <definition>pi4msd5v945x_t * pi4msd5v945x_initialize</definition>
+        <argsstring>(u8 i2c_addr, pi4msd5v945x_i2c_write_f w, pi4msd5v945x_i2c_read_f r, void *ctx)</argsstring>
+        <name>pi4msd5v945x_initialize</name>
+        <param>
+          <type>u8</type>
+          <declname>i2c_addr</declname>
+        </param>
+        <param>
+          <type><ref refid="pi4msd5v945x_8h_1a91922ecbd8e724a2269b8b80d990a2ac" kindref="member">pi4msd5v945x_i2c_write_f</ref></type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type><ref refid="pi4msd5v945x_8h_1a117ada97a7735139223be43b7aec1db4" kindref="member">pi4msd5v945x_i2c_read_f</ref></type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>Creates the device handle (no I2C access). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The driver manages a single static instance.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i2c_addr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>7-bit I2C address of the bus switch. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>w</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HAL write callback. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HAL read callback. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Opaque context pointer passed through to <computeroutput>w</computeroutput> and <computeroutput>r</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to the device handle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/pi4msd5v945x/pi4msd5v945x.c" line="30" column="16" bodyfile="sw/devices/pi4msd5v945x/pi4msd5v945x.c" bodystart="30" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="pi4msd5v945x_8c_1ae8ba24cf96444c37454c896848e4284f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="pi4msd5v945x_8h_1a1569d225c4cc11b622e330d55af9d007" kindref="member">pi4msd5v945x_err_t</ref></type>
+        <definition>pi4msd5v945x_err_t pi4msd5v945x_setChannels</definition>
+        <argsstring>(pi4msd5v945x_t *pDev, u8 channels)</argsstring>
+        <name>pi4msd5v945x_setChannels</name>
+        <param>
+          <type><ref refid="structpi4msd5v945x__t" kindref="compound">pi4msd5v945x_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>channels</declname>
+        </param>
+        <briefdescription>
+<para>Selects the active downstream channels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Writes the channel mask as the single control byte; previously selected channels are replaced, not added.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle from <ref refid="pi4msd5v945x_8h_1a9586cf25f42ae3b43970c9d5cb373a4c" kindref="member">pi4msd5v945x_initialize()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>channels</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bitmask of PI4MSD5V945X_CHx bits (0 = all channels off). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="pi4msd5v945x_8h_1a1569d225c4cc11b622e330d55af9d007a03ddf9501ee5593749794fa67ff4d24b" kindref="member">PI4MSD5V945X_OK</ref> on success, <ref refid="pi4msd5v945x_8h_1a1569d225c4cc11b622e330d55af9d007a5ca100a1d101774dfc67474ef526789e" kindref="member">PI4MSD5V945X_E_PARAM</ref> if <computeroutput>pDev</computeroutput> is NULL. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/pi4msd5v945x/pi4msd5v945x.c" line="44" column="20" bodyfile="sw/devices/pi4msd5v945x/pi4msd5v945x.c" bodystart="44" bodyend="51"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Driver implementation for the Diodes PI4MSD5V945x I2C bus switch. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>2026<sp/>Matthias<sp/>Haefner<sp/>-<sp/>Heosys</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pi4msd5v945x_8h" kindref="compound">pi4msd5v945x.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="structpi4msd5v945x__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpi4msd5v945x__t" kindref="compound">pi4msd5v945x_t</ref><sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpi4msd5v945x__t_1aa4a79c5251a73980e7d9140b1ba76e94" kindref="member">isReady</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structpi4msd5v945x__t_1add74854b0f06eb66a0ce4e7542ebfb37" kindref="member">i2cAddr</ref>;<sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="structpi4msd5v945x__t_1ae452b04f6bdf660510456dc3461e2e9c" kindref="member">hal_ctx</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pi4msd5v945x_8h_1a91922ecbd8e724a2269b8b80d990a2ac" kindref="member">pi4msd5v945x_i2c_write_f</ref><sp/><ref refid="structpi4msd5v945x__t_1a86e0cfc59160ab41d66657a4dca4fc3c" kindref="member">i2c_write</ref>;<sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pi4msd5v945x_8h_1a117ada97a7735139223be43b7aec1db4" kindref="member">pi4msd5v945x_i2c_read_f</ref><sp/><ref refid="structpi4msd5v945x__t_1a060efbdb560fd38611156214877885d1" kindref="member">i2c_read</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structpi4msd5v945x__t" kindref="compound">pi4msd5v945x_t</ref><sp/><ref refid="pi4msd5v945x_8c_1a5fd575caa4f44ecf3d9f644da9474396" kindref="member">gDevice</ref>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Public<sp/>API:<sp/>documented<sp/>in<sp/>pi4msd5v945x.h<sp/>only.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><ref refid="structpi4msd5v945x__t" kindref="compound">pi4msd5v945x_t</ref>*<sp/><ref refid="pi4msd5v945x_8c_1a9586cf25f42ae3b43970c9d5cb373a4c" kindref="member">pi4msd5v945x_initialize</ref>(u8<sp/>i2c_addr,<sp/><ref refid="pi4msd5v945x_8h_1a91922ecbd8e724a2269b8b80d990a2ac" kindref="member">pi4msd5v945x_i2c_write_f</ref><sp/>w,<sp/><ref refid="pi4msd5v945x_8h_1a117ada97a7735139223be43b7aec1db4" kindref="member">pi4msd5v945x_i2c_read_f</ref><sp/>r,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ctx<sp/>)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structpi4msd5v945x__t" kindref="compound">pi4msd5v945x_t</ref>*<sp/>pDev<sp/>=<sp/>&amp;<ref refid="pi4msd5v945x_8c_1a5fd575caa4f44ecf3d9f644da9474396" kindref="member">gDevice</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>pDev-&gt;<ref refid="structpi4msd5v945x__t_1add74854b0f06eb66a0ce4e7542ebfb37" kindref="member">i2cAddr</ref><sp/>=<sp/>i2c_addr;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>pDev-&gt;<ref refid="structpi4msd5v945x__t_1a86e0cfc59160ab41d66657a4dca4fc3c" kindref="member">i2c_write</ref><sp/>=<sp/>w;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>pDev-&gt;<ref refid="structpi4msd5v945x__t_1a060efbdb560fd38611156214877885d1" kindref="member">i2c_read</ref><sp/>=<sp/>r;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>pDev-&gt;<ref refid="structpi4msd5v945x__t_1ae452b04f6bdf660510456dc3461e2e9c" kindref="member">hal_ctx</ref><sp/>=<sp/>ctx;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>pDev-&gt;<ref refid="structpi4msd5v945x__t_1aa4a79c5251a73980e7d9140b1ba76e94" kindref="member">isReady</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pDev;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><ref refid="pi4msd5v945x_8h_1a1569d225c4cc11b622e330d55af9d007" kindref="member">pi4msd5v945x_err_t</ref><sp/><ref refid="pi4msd5v945x_8c_1ae8ba24cf96444c37454c896848e4284f" kindref="member">pi4msd5v945x_setChannels</ref>(<ref refid="structpi4msd5v945x__t" kindref="compound">pi4msd5v945x_t</ref><sp/>*pDev,<sp/>u8<sp/>channels)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!pDev)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="pi4msd5v945x_8h_1a1569d225c4cc11b622e330d55af9d007a5ca100a1d101774dfc67474ef526789e" kindref="member">PI4MSD5V945X_E_PARAM</ref>;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>pDev-&gt;<ref refid="structpi4msd5v945x__t_1a86e0cfc59160ab41d66657a4dca4fc3c" kindref="member">i2c_write</ref>(pDev-&gt;<ref refid="structpi4msd5v945x__t_1ae452b04f6bdf660510456dc3461e2e9c" kindref="member">hal_ctx</ref>,<sp/>pDev-&gt;<ref refid="structpi4msd5v945x__t_1add74854b0f06eb66a0ce4e7542ebfb37" kindref="member">i2cAddr</ref>,&amp;channels,1);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="pi4msd5v945x_8h_1a1569d225c4cc11b622e330d55af9d007a03ddf9501ee5593749794fa67ff4d24b" kindref="member">PI4MSD5V945X_OK</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="sw/devices/pi4msd5v945x/pi4msd5v945x.c"/>
+  </compounddef>
+</doxygen>

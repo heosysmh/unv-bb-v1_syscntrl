@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structch__desc__t" kind="struct" language="C++" prot="public">
+    <compoundname>ch_desc_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structch__desc__t_1abeca293ac5ab43bc73b975959d8d8888" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ch_desc_t::reg_mode</definition>
+        <argsstring></argsstring>
+        <name>reg_mode</name>
+        <qualifiedname>ch_desc_t::reg_mode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Address of the OUTx_MODE register. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="120" column="4" bodyfile="sw/devices/si5332/si5332.c" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__desc__t_1addd751f42f9afc7fe147bef7f228e5bb" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ch_desc_t::reg_div</definition>
+        <argsstring></argsstring>
+        <name>reg_div</name>
+        <qualifiedname>ch_desc_t::reg_div</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Address of the OUTx_DIV (R divider) register. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="121" column="4" bodyfile="sw/devices/si5332/si5332.c" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__desc__t_1ac4ed3d592a04674c93267cc726b19fdd" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ch_desc_t::reg_omux</definition>
+        <argsstring></argsstring>
+        <name>reg_omux</name>
+        <qualifiedname>ch_desc_t::reg_omux</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Address of the OMUXx_SEL0/SEL1 register. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="122" column="4" bodyfile="sw/devices/si5332/si5332.c" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__desc__t_1aef748486021bf2b6baa42eccbba1a3d2" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ch_desc_t::oe_reg</definition>
+        <argsstring></argsstring>
+        <name>oe_reg</name>
+        <qualifiedname>ch_desc_t::oe_reg</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Address of the output-enable register (<ref refid="si5332_8c_1a28e30af460a74ab25a7352dba76b1acb" kindref="member">REG_OE_0_5</ref> or <ref refid="si5332_8c_1a6d33654ea09778aeb26336509ad13b99" kindref="member">REG_OE_6_7</ref>). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="123" column="4" bodyfile="sw/devices/si5332/si5332.c" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__desc__t_1a587d361fa4c7a85368c64b5583d7828d" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ch_desc_t::oe_bit</definition>
+        <argsstring></argsstring>
+        <name>oe_bit</name>
+        <qualifiedname>ch_desc_t::oe_bit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Bit position of this output&apos;s OE bit within <ref refid="structch__desc__t_1aef748486021bf2b6baa42eccbba1a3d2" kindref="member">oe_reg</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="124" column="4" bodyfile="sw/devices/si5332/si5332.c" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__desc__t_1a1341ffd55cad72d2ee1f57d1e1ccc0f4" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ch_desc_t::omux_dis_bit</definition>
+        <argsstring></argsstring>
+        <name>omux_dis_bit</name>
+        <qualifiedname>ch_desc_t::omux_dis_bit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Bit position of the OMUXx_DIS bit in <ref refid="si5332_8c_1a666b2621c180b7781271d250d46c523c" kindref="member">REG_PD_OMUX</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="125" column="4" bodyfile="sw/devices/si5332/si5332.c" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__desc__t_1a8b8cc685128ff9bf9955320aec5d2886" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ch_desc_t::out_dis_reg</definition>
+        <argsstring></argsstring>
+        <name>out_dis_reg</name>
+        <qualifiedname>ch_desc_t::out_dis_reg</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Address of the OUTx_DIS power-down register (0xBC or 0xBD). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="126" column="4" bodyfile="sw/devices/si5332/si5332.c" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__desc__t_1aea6a997af500fc33898cd262d0f3f18b" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 ch_desc_t::out_dis_bit</definition>
+        <argsstring></argsstring>
+        <name>out_dis_bit</name>
+        <qualifiedname>ch_desc_t::out_dis_bit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Bit position of the OUTx_DIS bit within <ref refid="structch__desc__t_1a8b8cc685128ff9bf9955320aec5d2886" kindref="member">out_dis_reg</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="127" column="4" bodyfile="sw/devices/si5332/si5332.c" bodystart="127" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Static register/bit layout descriptor for one output channel. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>One entry per entry in <ref refid="si5332_8c_1a787287546dd58d75cf42dc41a2db0e6c" kindref="member">gChDesc</ref>; holds all register addresses and bit positions needed to configure and enable/disable a given output. </para>
+    </detaileddescription>
+    <location file="sw/devices/si5332/si5332.c" line="119" column="1" bodyfile="sw/devices/si5332/si5332.c" bodystart="119" bodyend="128"/>
+    <listofallmembers>
+      <member refid="structch__desc__t_1a587d361fa4c7a85368c64b5583d7828d" prot="public" virt="non-virtual"><scope>ch_desc_t</scope><name>oe_bit</name></member>
+      <member refid="structch__desc__t_1aef748486021bf2b6baa42eccbba1a3d2" prot="public" virt="non-virtual"><scope>ch_desc_t</scope><name>oe_reg</name></member>
+      <member refid="structch__desc__t_1a1341ffd55cad72d2ee1f57d1e1ccc0f4" prot="public" virt="non-virtual"><scope>ch_desc_t</scope><name>omux_dis_bit</name></member>
+      <member refid="structch__desc__t_1aea6a997af500fc33898cd262d0f3f18b" prot="public" virt="non-virtual"><scope>ch_desc_t</scope><name>out_dis_bit</name></member>
+      <member refid="structch__desc__t_1a8b8cc685128ff9bf9955320aec5d2886" prot="public" virt="non-virtual"><scope>ch_desc_t</scope><name>out_dis_reg</name></member>
+      <member refid="structch__desc__t_1addd751f42f9afc7fe147bef7f228e5bb" prot="public" virt="non-virtual"><scope>ch_desc_t</scope><name>reg_div</name></member>
+      <member refid="structch__desc__t_1abeca293ac5ab43bc73b975959d8d8888" prot="public" virt="non-virtual"><scope>ch_desc_t</scope><name>reg_mode</name></member>
+      <member refid="structch__desc__t_1ac4ed3d592a04674c93267cc726b19fdd" prot="public" virt="non-virtual"><scope>ch_desc_t</scope><name>reg_omux</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

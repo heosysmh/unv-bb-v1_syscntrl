@@ -1,0 +1,565 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="tpsm8286x_8c" kind="file" language="C++">
+    <compoundname>tpsm8286x.c</compoundname>
+    <includes refid="tpsm8286x_8h" local="yes">tpsm8286x.h</includes>
+    <includes refid="userDef_8h" local="yes">userDef.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>userDef.h</label>
+        <link refid="userDef_8h"/>
+      </node>
+      <node id="1">
+        <label>sw/devices/tpsm8286x/tpsm8286x.c</label>
+        <link refid="tpsm8286x_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tpsm8286x.h</label>
+        <link refid="tpsm8286x_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>type.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structtpsm8286__voltage__map__t" prot="public">tpsm8286_voltage_map_t</innerclass>
+    <innerclass refid="structtpsm8286__t" prot="public">tpsm8286_t</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="tpsm8286x_8c_1a6c44f72b2e16e56adeebb408176f421d" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtpsm8286__voltage__map__t" kindref="compound">tpsm8286_voltage_map_t</ref></type>
+        <definition>const tpsm8286_voltage_map_t TPSM8286_VOLTAGEMAP_10MV</definition>
+        <argsstring></argsstring>
+        <name>TPSM8286_VOLTAGEMAP_10MV</name>
+        <initializer>= {
+    .min_volt = 0.800f, .max_volt = 3.350f, .step_volt = 0.01f,
+    .reg_min = 0x00, .reg_max = 0xFF
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Voltage mapping of the 10 mV/LSB device variant: 0.8 V .. 3.35 V. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="43" column="30" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="43" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="variable" id="tpsm8286x_8c_1a9684cda4ba9ad7a2573b2b63d2dfc5cf" prot="public" static="yes" mutable="no">
+        <type><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref></type>
+        <definition>tpsm8286_t gInstances[TPSM8286_NUM_OF_INSTANCES]</definition>
+        <argsstring>[TPSM8286_NUM_OF_INSTANCES]</argsstring>
+        <name>gInstances</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Static pool of device instances (size from <ref refid="userDef_8h" kindref="compound">userDef.h</ref>). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="49" column="19" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="49" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="tpsm8286x_8c_1adbb10fd8ec38e61be291f6ddb629a20b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>static float clampf</definition>
+        <argsstring>(float x, float a, float b)</argsstring>
+        <name>clampf</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>Clamps a float value between two bounds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to clamp. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower bound. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper bound. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>x</computeroutput> limited to [a, b]. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="58" column="21" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="tpsm8286x_8c_1a275328fffd1fae5d932dfcbe6cf6d541" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref> *</type>
+        <definition>tpsm8286_t * tpsm8286_initialize</definition>
+        <argsstring>(u32 devId, u8 i2c_addr, tpsm8286_i2c_write_f w, tpsm8286_i2c_read_f r, void *ctx)</argsstring>
+        <name>tpsm8286_initialize</name>
+        <param>
+          <type>u32</type>
+          <declname>devId</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>i2c_addr</declname>
+        </param>
+        <param>
+          <type><ref refid="tpsm8286x_8h_1a42ab45a189add9f0a7df545e0aeacdc1" kindref="member">tpsm8286_i2c_write_f</ref></type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type><ref refid="tpsm8286x_8h_1abad7796fa9cc625c12cf89fc1fc95a84" kindref="member">tpsm8286_i2c_read_f</ref></type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>Creates the device handle for instance <computeroutput>devId</computeroutput> (no I2C access). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>devId</computeroutput> directly indexes the static instance pool (size <ref refid="userDef_8h_1a6d2ebc133d3d6b30e585478b8488101b" kindref="member">TPSM8286_NUM_OF_INSTANCES</ref>, defined in <ref refid="userDef_8h" kindref="compound">userDef.h</ref>).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>devId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Instance index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i2c_addr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>7-bit I2C address of the device. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>w</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HAL register write callback. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HAL register read callback. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Opaque context pointer passed through to <computeroutput>w</computeroutput> and <computeroutput>r</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to the device handle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="63" column="12" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="63" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="tpsm8286x_8c_1a13bc6f1997d3fc83fc7de0cc8db341d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref></type>
+        <definition>tpsm8286_err_t tpsm8286_voltage_to_reg</definition>
+        <argsstring>(float voltage, u8 *reg_out)</argsstring>
+        <name>tpsm8286_voltage_to_reg</name>
+        <param>
+          <type>float</type>
+          <declname>voltage</declname>
+        </param>
+        <param>
+          <type>u8 *</type>
+          <declname>reg_out</declname>
+        </param>
+        <briefdescription>
+<para>Converts a voltage to the VOUT1 register value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The voltage is clamped to the range of <ref refid="tpsm8286x_8c_1a6c44f72b2e16e56adeebb408176f421d" kindref="member">TPSM8286_VOLTAGEMAP_10MV</ref> and mapped linearly onto the register range with rounding.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>voltage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Desired output voltage [V]. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">reg_out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the register value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a9f6be1194371571e55c9ef22340856c0" kindref="member">TPSM8286_OK</ref> on success, <ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" kindref="member">TPSM8286_E_PARAM</ref> if <computeroutput>reg_out</computeroutput> is NULL. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="92" column="16" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="92" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="tpsm8286x_8c_1a536e027aae0217ae36c16d09e7bebccf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref></type>
+        <definition>tpsm8286_err_t tpsm8286_set_voltage</definition>
+        <argsstring>(tpsm8286_t *pDev, float voltage)</argsstring>
+        <name>tpsm8286_set_voltage</name>
+        <param>
+          <type><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>voltage</declname>
+        </param>
+        <briefdescription>
+<para>Sets the output voltage setpoint (VOUT1 register). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The voltage is mapped to the 10 mV/LSB register scale and clamped to the supported range (0.8 V .. 3.35 V). Takes effect according to the configured ramp speed; the output enable state is not changed.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>voltage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Desired output voltage [V]. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a9f6be1194371571e55c9ef22340856c0" kindref="member">TPSM8286_OK</ref> on success, <ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" kindref="member">TPSM8286_E_PARAM</ref> if <computeroutput>pDev</computeroutput> is NULL, <ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a76908597608b0efb9fbc26017b6d6910" kindref="member">TPSM8286_E_I2C</ref> on a HAL/bus error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Output voltage setpoint register 1.</para>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="108" column="16" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="108" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="tpsm8286x_8c_1afcc80a00611ccb0bee4032f74669217d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref></type>
+        <definition>tpsm8286_err_t tpsm8286_check_voltageReg</definition>
+        <argsstring>(tpsm8286_t *pDev, int *regOk)</argsstring>
+        <name>tpsm8286_check_voltageReg</name>
+        <param>
+          <type><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>regOk</declname>
+        </param>
+        <briefdescription>
+<para>Checks whether the VOUT1 register reads back the programmed value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">regOk</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives 1 if the register matches the last setpoint, 0 otherwise. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a9f6be1194371571e55c9ef22340856c0" kindref="member">TPSM8286_OK</ref> on success, <ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" kindref="member">TPSM8286_E_PARAM</ref> if <computeroutput>pDev</computeroutput> is NULL, <ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a76908597608b0efb9fbc26017b6d6910" kindref="member">TPSM8286_E_I2C</ref> on a HAL/bus error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Output voltage setpoint register 1.</para>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="123" column="16" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="123" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="tpsm8286x_8c_1a963aa291ba1757f5a36c5bf889631caa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref></type>
+        <definition>tpsm8286_err_t tpsm8286_set_cntrl</definition>
+        <argsstring>(tpsm8286_t *pDev, u8 regVal)</argsstring>
+        <name>tpsm8286_set_cntrl</name>
+        <param>
+          <type><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>regVal</declname>
+        </param>
+        <briefdescription>
+<para>Writes the complete CNTRL register. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>regVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Raw control register value (OR of TPSM8286_*_MASK bits). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a9f6be1194371571e55c9ef22340856c0" kindref="member">TPSM8286_OK</ref> on success, <ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" kindref="member">TPSM8286_E_PARAM</ref> if <computeroutput>pDev</computeroutput> is NULL, otherwise the HAL error code. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Control register.</para>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="138" column="16" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="138" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="tpsm8286x_8c_1a82adc05935c4deae9f1fab781e68862b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref></type>
+        <definition>tpsm8286_err_t tpsm8286_set_enable</definition>
+        <argsstring>(tpsm8286_t *pDev, int enable)</argsstring>
+        <name>tpsm8286_set_enable</name>
+        <param>
+          <type><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>enable</declname>
+        </param>
+        <briefdescription>
+<para>Enables/disables the output (CNTRL.DEVICE_ENABLE, read-modify-write). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>enable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Non-zero to enable, zero to disable. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a9f6be1194371571e55c9ef22340856c0" kindref="member">TPSM8286_OK</ref> on success, <ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" kindref="member">TPSM8286_E_PARAM</ref> if <computeroutput>pDev</computeroutput> is NULL, <ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a76908597608b0efb9fbc26017b6d6910" kindref="member">TPSM8286_E_I2C</ref> on a HAL/bus error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Device/output enable.</para>
+<para>&lt; Control register.</para>
+<para>&lt; Device/output enable.</para>
+<para>&lt; Control register.</para>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="148" column="16" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="148" bodyend="164"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Driver implementation for the TI TPSM8286x step-down power module. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>2026<sp/>Matthias<sp/>Haefner<sp/>-<sp/>Heosys</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="tpsm8286x_8h" kindref="compound">tpsm8286x.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="userDef_8h" kindref="compound">userDef.h</ref>&quot;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>provides<sp/>TPSM8286_NUM_OF_INSTANCES<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="structtpsm8286__voltage__map__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structtpsm8286__voltage__map__t_1a5bce3d88fc81776a7ce6e90790de959d" kindref="member">min_volt</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structtpsm8286__voltage__map__t_1ac4d922d45eab312d59f07bb25b997d15" kindref="member">max_volt</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structtpsm8286__voltage__map__t_1a37a305d9a19c80df28e55fa20504e800" kindref="member">step_volt</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structtpsm8286__voltage__map__t_1a66646db49e80f09627cdaf84f43f50e1" kindref="member">reg_min</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structtpsm8286__voltage__map__t_1a5e9893c6b3f50ecc8bff6761127ad7d2" kindref="member">reg_max</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">}<sp/><ref refid="structtpsm8286__voltage__map__t" kindref="compound">tpsm8286_voltage_map_t</ref>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="structtpsm8286__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structtpsm8286__t_1acf08733ee6b47eb3c76b83dc8a8885a7" kindref="member">isReady</ref>;<sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structtpsm8286__t_1aec4bdc75fba0cc4f1ffcd2d935ee54ec" kindref="member">control</ref>;<sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structtpsm8286__t_1aadb77034e4fb7b4a83132a66fd2bc554" kindref="member">status</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structtpsm8286__t_1af6792d5bf16a954b4c58483b730e84fe" kindref="member">isEnabled</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structtpsm8286__t_1a2d0c090c032afa0fac1853fc2bd06d92" kindref="member">voltage</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structtpsm8286__t_1a4236c753b2e215b60e5d83e78153740b" kindref="member">voltage_raw</ref>;<sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><ref refid="structtpsm8286__t_1ab4aedfe746afd9fcd7b348b1c50b835f" kindref="member">i2cAddr</ref>;<sp/></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="structtpsm8286__t_1a08866efb8d487bd131d121e88f8d2e5c" kindref="member">hal_ctx</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tpsm8286x_8h_1a42ab45a189add9f0a7df545e0aeacdc1" kindref="member">tpsm8286_i2c_write_f</ref><sp/><ref refid="structtpsm8286__t_1a433725af1fe7cc441835b60cba81edf7" kindref="member">i2c_write</ref>;<sp/></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tpsm8286x_8h_1abad7796fa9cc625c12cf89fc1fc95a84" kindref="member">tpsm8286_i2c_read_f</ref><sp/><ref refid="structtpsm8286__t_1ac6d929ba2ff9f0c8e0ca5d1a1ff0b76b" kindref="member">i2c_read</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structtpsm8286__voltage__map__t" kindref="compound">tpsm8286_voltage_map_t</ref><sp/><ref refid="tpsm8286x_8c_1a6c44f72b2e16e56adeebb408176f421d" kindref="member">TPSM8286_VOLTAGEMAP_10MV</ref><sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>.min_volt<sp/>=<sp/>0.800f,<sp/>.max_volt<sp/>=<sp/>3.350f,<sp/>.step_volt<sp/>=<sp/>0.01f,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>.reg_min<sp/>=<sp/>0x00,<sp/>.reg_max<sp/>=<sp/>0xFF</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref><sp/><ref refid="ina745a_8c_1a490e45ad8220b1456f748e9c4590e32b" kindref="member">gInstances</ref>[<ref refid="userDef_8h_1a6d2ebc133d3d6b30e585478b8488101b" kindref="member">TPSM8286_NUM_OF_INSTANCES</ref>];</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="tpsm8286x_8c_1adbb10fd8ec38e61be291f6ddb629a20b" kindref="member">clampf</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>b)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(x<sp/>&lt;<sp/>a)<sp/>?<sp/>a<sp/>:<sp/>(x<sp/>&gt;<sp/>b)<sp/>?<sp/>b<sp/>:<sp/>x;<sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Public<sp/>API:<sp/>documented<sp/>in<sp/>tpsm8286x.h<sp/>only.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref>*<sp/><ref refid="tpsm8286x_8c_1a275328fffd1fae5d932dfcbe6cf6d541" kindref="member">tpsm8286_initialize</ref>(u32<sp/>devId,<sp/>u8<sp/>i2c_addr,<sp/><ref refid="tpsm8286x_8h_1a42ab45a189add9f0a7df545e0aeacdc1" kindref="member">tpsm8286_i2c_write_f</ref><sp/>w,<sp/><ref refid="tpsm8286x_8h_1abad7796fa9cc625c12cf89fc1fc95a84" kindref="member">tpsm8286_i2c_read_f</ref><sp/>r,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ctx<sp/>)</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref>*<sp/>pInst<sp/>=<sp/>&amp;<ref refid="ina745a_8c_1a490e45ad8220b1456f748e9c4590e32b" kindref="member">gInstances</ref>[devId];</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>pInst-&gt;<ref refid="structtpsm8286__t_1ab4aedfe746afd9fcd7b348b1c50b835f" kindref="member">i2cAddr</ref><sp/>=<sp/>i2c_addr;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>pInst-&gt;<ref refid="structtpsm8286__t_1a433725af1fe7cc441835b60cba81edf7" kindref="member">i2c_write</ref><sp/>=<sp/>w;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>pInst-&gt;<ref refid="structtpsm8286__t_1ac6d929ba2ff9f0c8e0ca5d1a1ff0b76b" kindref="member">i2c_read</ref><sp/>=<sp/>r;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>pInst-&gt;<ref refid="structtpsm8286__t_1a08866efb8d487bd131d121e88f8d2e5c" kindref="member">hal_ctx</ref><sp/>=<sp/>ctx;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>pInst-&gt;<ref refid="structtpsm8286__t_1aec4bdc75fba0cc4f1ffcd2d935ee54ec" kindref="member">control</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>pInst-&gt;<ref refid="structtpsm8286__t_1aadb77034e4fb7b4a83132a66fd2bc554" kindref="member">status</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>pInst-&gt;<ref refid="structtpsm8286__t_1a2d0c090c032afa0fac1853fc2bd06d92" kindref="member">voltage</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>pInst-&gt;<ref refid="structtpsm8286__t_1a4236c753b2e215b60e5d83e78153740b" kindref="member">voltage_raw</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>pInst-&gt;<ref refid="structtpsm8286__t_1af6792d5bf16a954b4c58483b730e84fe" kindref="member">isEnabled</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>pInst-&gt;<ref refid="structtpsm8286__t_1acf08733ee6b47eb3c76b83dc8a8885a7" kindref="member">isReady</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pInst;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref><sp/><ref refid="tpsm8286x_8c_1a13bc6f1997d3fc83fc7de0cc8db341d5" kindref="member">tpsm8286_voltage_to_reg</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>voltage,<sp/>u8<sp/>*reg_out)<sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!reg_out)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" kindref="member">TPSM8286_E_PARAM</ref>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtpsm8286__voltage__map__t" kindref="compound">tpsm8286_voltage_map_t</ref><sp/>m<sp/>=<sp/><ref refid="tpsm8286x_8c_1a6c44f72b2e16e56adeebb408176f421d" kindref="member">TPSM8286_VOLTAGEMAP_10MV</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>volt_c<sp/>=<sp/><ref refid="tpsm8286x_8c_1adbb10fd8ec38e61be291f6ddb629a20b" kindref="member">clampf</ref>(voltage,<sp/>m.<ref refid="structtpsm8286__voltage__map__t_1a5bce3d88fc81776a7ce6e90790de959d" kindref="member">min_volt</ref>,<sp/>m.<ref refid="structtpsm8286__voltage__map__t_1ac4d922d45eab312d59f07bb25b997d15" kindref="member">max_volt</ref>);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>steps<sp/>=<sp/>(volt_c<sp/>-<sp/>m.<ref refid="structtpsm8286__voltage__map__t_1a5bce3d88fc81776a7ce6e90790de959d" kindref="member">min_volt</ref>)<sp/>/<sp/>m.<ref refid="structtpsm8286__voltage__map__t_1a37a305d9a19c80df28e55fa20504e800" kindref="member">step_volt</ref>;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(steps<sp/>&lt;<sp/>0)<sp/>steps<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>steps_max<sp/>=<sp/>(m.max_volt<sp/>-<sp/>m.min_volt)<sp/>/<sp/>m.step_volt;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(steps<sp/>&gt;<sp/>steps_max)<sp/>steps<sp/>=<sp/>steps_max;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Map<sp/>steps<sp/>to<sp/>register<sp/>range<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>span<sp/>=<sp/>(float)((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)m.reg_max<sp/>-<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)m.reg_min);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/>reg<sp/>=<sp/>(u8)((m.reg_min)<sp/>+<sp/>(steps<sp/>/<sp/>steps_max)<sp/>*<sp/>span<sp/>+<sp/>0.5f);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>*reg_out<sp/>=<sp/>reg;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a9f6be1194371571e55c9ef22340856c0" kindref="member">TPSM8286_OK</ref>;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref><sp/><ref refid="tpsm8286x_8c_1a536e027aae0217ae36c16d09e7bebccf" kindref="member">tpsm8286_set_voltage</ref>(<ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>voltage)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!pDev)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" kindref="member">TPSM8286_E_PARAM</ref>;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref><sp/>status;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>=<sp/><ref refid="tpsm8286x_8c_1a13bc6f1997d3fc83fc7de0cc8db341d5" kindref="member">tpsm8286_voltage_to_reg</ref>(voltage,&amp;pDev-&gt;<ref refid="structtpsm8286__t_1a4236c753b2e215b60e5d83e78153740b" kindref="member">voltage_raw</ref>);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(status<sp/>!=<sp/>0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a76908597608b0efb9fbc26017b6d6910" kindref="member">TPSM8286_E_I2C</ref>;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>pDev-&gt;<ref refid="structtpsm8286__t_1a2d0c090c032afa0fac1853fc2bd06d92" kindref="member">voltage</ref><sp/>=<sp/>voltage;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>=<sp/>pDev-&gt;<ref refid="structtpsm8286__t_1a433725af1fe7cc441835b60cba81edf7" kindref="member">i2c_write</ref>(pDev-&gt;<ref refid="structtpsm8286__t_1a08866efb8d487bd131d121e88f8d2e5c" kindref="member">hal_ctx</ref>,<sp/>pDev-&gt;<ref refid="structtpsm8286__t_1ab4aedfe746afd9fcd7b348b1c50b835f" kindref="member">i2cAddr</ref>,<sp/><ref refid="tpsm8286x_8h_1a1fe5a01c406565801356bb07bf356d4d" kindref="member">TPSM8286_VOUT1_REG_ADDR</ref>,<sp/>&amp;pDev-&gt;<ref refid="structtpsm8286__t_1a4236c753b2e215b60e5d83e78153740b" kindref="member">voltage_raw</ref>);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>status;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref><sp/><ref refid="tpsm8286x_8c_1afcc80a00611ccb0bee4032f74669217d" kindref="member">tpsm8286_check_voltageReg</ref>(<ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*regOk)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!pDev)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" kindref="member">TPSM8286_E_PARAM</ref>;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref><sp/>status;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/>regVal;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>=<sp/>pDev-&gt;<ref refid="structtpsm8286__t_1ac6d929ba2ff9f0c8e0ca5d1a1ff0b76b" kindref="member">i2c_read</ref>(pDev-&gt;<ref refid="structtpsm8286__t_1a08866efb8d487bd131d121e88f8d2e5c" kindref="member">hal_ctx</ref>,<sp/>pDev-&gt;<ref refid="structtpsm8286__t_1ab4aedfe746afd9fcd7b348b1c50b835f" kindref="member">i2cAddr</ref>,<sp/><ref refid="tpsm8286x_8h_1a1fe5a01c406565801356bb07bf356d4d" kindref="member">TPSM8286_VOUT1_REG_ADDR</ref>,<sp/>&amp;regVal);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(status<sp/>!=<sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a9f6be1194371571e55c9ef22340856c0" kindref="member">TPSM8286_OK</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a76908597608b0efb9fbc26017b6d6910" kindref="member">TPSM8286_E_I2C</ref>;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>*regOk<sp/>=<sp/>(regVal<sp/>==<sp/>pDev-&gt;<ref refid="structtpsm8286__t_1a4236c753b2e215b60e5d83e78153740b" kindref="member">voltage_raw</ref>)<sp/>?<sp/>1<sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>status;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref><sp/><ref refid="tpsm8286x_8c_1a963aa291ba1757f5a36c5bf889631caa" kindref="member">tpsm8286_set_cntrl</ref>(<ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref><sp/>*pDev,<sp/>u8<sp/>regVal)</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!pDev)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" kindref="member">TPSM8286_E_PARAM</ref>;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref><sp/>status;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>=<sp/>pDev-&gt;<ref refid="structtpsm8286__t_1a433725af1fe7cc441835b60cba81edf7" kindref="member">i2c_write</ref>(pDev-&gt;<ref refid="structtpsm8286__t_1a08866efb8d487bd131d121e88f8d2e5c" kindref="member">hal_ctx</ref>,<sp/>pDev-&gt;<ref refid="structtpsm8286__t_1ab4aedfe746afd9fcd7b348b1c50b835f" kindref="member">i2cAddr</ref>,<sp/><ref refid="tpsm8286x_8h_1a6555d210c365b1086cc036121f671333" kindref="member">TPSM8286_CNTRL_REG_ADDR</ref>,<sp/>&amp;regVal);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>status;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref><sp/><ref refid="tpsm8286x_8c_1a82adc05935c4deae9f1fab781e68862b" kindref="member">tpsm8286_set_enable</ref>(<ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>enable)</highlight></codeline>
+<codeline lineno="149"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!pDev)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" kindref="member">TPSM8286_E_PARAM</ref>;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref><sp/>status;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/>regVal;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>enable<sp/>=<sp/>enable<sp/>!=<sp/>0<sp/>?<sp/><ref refid="tpsm8286x_8h_1ac3fa2c5b62cc3e167ffa3b04abb5447e" kindref="member">TPSM8286_DEVICE_ENABLE_MASK</ref><sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>=<sp/>pDev-&gt;<ref refid="structtpsm8286__t_1ac6d929ba2ff9f0c8e0ca5d1a1ff0b76b" kindref="member">i2c_read</ref>(pDev-&gt;<ref refid="structtpsm8286__t_1a08866efb8d487bd131d121e88f8d2e5c" kindref="member">hal_ctx</ref>,<sp/>pDev-&gt;<ref refid="structtpsm8286__t_1ab4aedfe746afd9fcd7b348b1c50b835f" kindref="member">i2cAddr</ref>,<sp/><ref refid="tpsm8286x_8h_1a6555d210c365b1086cc036121f671333" kindref="member">TPSM8286_CNTRL_REG_ADDR</ref>,<sp/>&amp;regVal);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(status<sp/>!=<sp/>0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a76908597608b0efb9fbc26017b6d6910" kindref="member">TPSM8286_E_I2C</ref>;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>regVal<sp/>=<sp/>(regVal<sp/>&amp;<sp/><ref refid="tpsm8286x_8h_1ac3fa2c5b62cc3e167ffa3b04abb5447e" kindref="member">~TPSM8286_DEVICE_ENABLE_MASK</ref>)<sp/>|<sp/>enable;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>=<sp/>pDev-&gt;<ref refid="structtpsm8286__t_1a433725af1fe7cc441835b60cba81edf7" kindref="member">i2c_write</ref>(pDev-&gt;<ref refid="structtpsm8286__t_1a08866efb8d487bd131d121e88f8d2e5c" kindref="member">hal_ctx</ref>,<sp/>pDev-&gt;<ref refid="structtpsm8286__t_1ab4aedfe746afd9fcd7b348b1c50b835f" kindref="member">i2cAddr</ref>,<sp/><ref refid="tpsm8286x_8h_1a6555d210c365b1086cc036121f671333" kindref="member">TPSM8286_CNTRL_REG_ADDR</ref>,<sp/>&amp;regVal);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>status;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="sw/devices/tpsm8286x/tpsm8286x.c"/>
+  </compounddef>
+</doxygen>

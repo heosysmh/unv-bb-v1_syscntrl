@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_d611db536405966ae215d07169916749" kind="dir">
+    <compoundname>sw/devices/tpsm8286x</compoundname>
+    <innerfile refid="tpsm8286x_8c">tpsm8286x.c</innerfile>
+    <innerfile refid="tpsm8286x_8h">tpsm8286x.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/devices/tpsm8286x/"/>
+  </compounddef>
+</doxygen>

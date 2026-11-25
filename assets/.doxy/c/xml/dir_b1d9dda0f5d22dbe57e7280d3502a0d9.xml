@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_b1d9dda0f5d22dbe57e7280d3502a0d9" kind="dir">
+    <compoundname>sw/devices</compoundname>
+    <innerdir refid="dir_dfd4869667a9d947f6105bade284a2f8">sw/devices/ina745a</innerdir>
+    <innerdir refid="dir_519e93f1bdf9c64a9ee465d9f69baf9a">sw/devices/pi4msd5v945x</innerdir>
+    <innerdir refid="dir_f47f1daa29e3b569dba4f7284fbb0336">sw/devices/si5332</innerdir>
+    <innerdir refid="dir_d611db536405966ae215d07169916749">sw/devices/tpsm8286x</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/devices/"/>
+  </compounddef>
+</doxygen>

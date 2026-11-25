@@ -1,0 +1,690 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="tpsm8286x_8h" kind="file" language="C++">
+    <compoundname>tpsm8286x.h</compoundname>
+    <includes local="no">type.h</includes>
+    <includedby refid="power_8c" local="yes">sw/app/src/power.c</includedby>
+    <includedby refid="tpsm8286x_8c" local="yes">sw/devices/tpsm8286x/tpsm8286x.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>sw/devices/tpsm8286x/tpsm8286x.h</label>
+        <link refid="tpsm8286x_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>type.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>sw/app/src/power.c</label>
+        <link refid="power_8c"/>
+      </node>
+      <node id="3">
+        <label>sw/devices/tpsm8286x/tpsm8286x.c</label>
+        <link refid="tpsm8286x_8c"/>
+      </node>
+      <node id="1">
+        <label>sw/devices/tpsm8286x/tpsm8286x.h</label>
+        <link refid="tpsm8286x_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="user-defined">
+      <header>Register addresses</header>
+      <memberdef kind="define" id="tpsm8286x_8h_1a1fe5a01c406565801356bb07bf356d4d" prot="public" static="no">
+        <name>TPSM8286_VOUT1_REG_ADDR</name>
+        <initializer>0x01</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Output voltage setpoint register 1. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="30" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tpsm8286x_8h_1a42482d3889a0b1ecb5fa2e06d3fabd45" prot="public" static="no">
+        <name>TPSM8286_VOUT2_REG_ADDR</name>
+        <initializer>0x02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Output voltage setpoint register 2. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="31" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tpsm8286x_8h_1a6555d210c365b1086cc036121f671333" prot="public" static="no">
+        <name>TPSM8286_CNTRL_REG_ADDR</name>
+        <initializer>0x03</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Control register. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="32" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tpsm8286x_8h_1aba6d4e623cdb786bcf9fb8824e901440" prot="public" static="no">
+        <name>TPSM8286_STATUS_REG_ADDR</name>
+        <initializer>0x05</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Status register. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="33" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>CNTRL register: voltage ramp speed field</header>
+      <memberdef kind="define" id="tpsm8286x_8h_1a5911efeb98d7fb672676bf47756f2034" prot="public" static="no">
+        <name>TPSM8286_VOLTAGE_RAMP_SPEED_MASK</name>
+        <initializer>0x03</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Mask of the ramp-speed field. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="40" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tpsm8286x_8h_1ab9ac29448241191b8646bb4cb47771af" prot="public" static="no">
+        <name>TPSM8286_VOLTAGE_RAMP_SPEED_20MV</name>
+        <initializer>0x00</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>20 mV/step ramp speed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="41" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tpsm8286x_8h_1a4d876923dbcea8aa5716769bebaae8fa" prot="public" static="no">
+        <name>TPSM8286_VOLTAGE_RAMP_SPEED_10MV</name>
+        <initializer>0x01</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>10 mV/step ramp speed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="42" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tpsm8286x_8h_1a9db008395dfa067b8f9d6c713b110977" prot="public" static="no">
+        <name>TPSM8286_VOLTAGE_RAMP_SPEED_5MV</name>
+        <initializer>0x10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>5 mV/step ramp speed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="43" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tpsm8286x_8h_1ae47655070fd176d6e12368ce01ac8d94" prot="public" static="no">
+        <name>TPSM8286_VOLTAGE_RAMP_SPEED_1MV</name>
+        <initializer>0x11</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>1 mV/step ramp speed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="44" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>CNTRL register: control bits</header>
+      <memberdef kind="define" id="tpsm8286x_8h_1a19e2243affb2aa4540c4ef456a1c2c7e" prot="public" static="no">
+        <name>TPSM8286_HICCUP_EN_MASK</name>
+        <initializer>0x04</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable hiccup mode on over-current. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="51" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tpsm8286x_8h_1adc5aa6245a46e573ea4dfa914610ff9c" prot="public" static="no">
+        <name>TPSM8286_OUTPUT_DISCHARGE_MASK</name>
+        <initializer>0x08</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enable output discharge when disabled. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="52" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tpsm8286x_8h_1ac34ac0f4da9978b9bd667c228474a188" prot="public" static="no">
+        <name>TPSM8286_FPWM_MASK</name>
+        <initializer>0x10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Force PWM mode (no pulse skipping). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="53" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tpsm8286x_8h_1ac3fa2c5b62cc3e167ffa3b04abb5447e" prot="public" static="no">
+        <name>TPSM8286_DEVICE_ENABLE_MASK</name>
+        <initializer>0x20</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Device/output enable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="54" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tpsm8286x_8h_1a3bf2bc73de4e89c6d17af93557e6ad55" prot="public" static="no">
+        <name>TPSM8286_FPWM_AT_VC_MASK</name>
+        <initializer>0x40</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Force PWM at voltage change. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="55" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tpsm8286x_8h_1aa5ca3212d0b8e645a792743b0f1bf85c" prot="public" static="no">
+        <name>TPSM8286_RESET_REGS_MASK</name>
+        <initializer>0x80</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reset registers to defaults. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="56" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>STATUS register bits</header>
+      <memberdef kind="define" id="tpsm8286x_8h_1a72a01d63fc8ac862e0a1f9ddf738a8ad" prot="public" static="no">
+        <name>TPSM8286_STAT_UVLO_MASK</name>
+        <initializer>0x01</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Under-voltage lockout active. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="63" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tpsm8286x_8h_1ad3fa43e0b4061accc421a815db5f5054" prot="public" static="no">
+        <name>TPSM8286_STAT_HICCUP_MASK</name>
+        <initializer>0x04</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Hiccup mode active. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="64" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tpsm8286x_8h_1a97d4d9dd57c815d4266c5baedd47f6e5" prot="public" static="no">
+        <name>TPSM8286_STAT_TEMPWARM_MASK</name>
+        <initializer>0x10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Temperature warning. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="65" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>Low-level HAL (to be provided by the BSP)</header>
+      <description><para>Write/read one byte at register <computeroutput>reg_addr</computeroutput> of the 7-bit I2C target <computeroutput>i2c_addr</computeroutput>. <computeroutput>ctx</computeroutput> is passed through unchanged (e.g. an i2cHandle_t*). </para>
+</description>
+      <memberdef kind="typedef" id="tpsm8286x_8h_1a42ab45a189add9f0a7df545e0aeacdc1" prot="public" static="no">
+        <type><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref>(*</type>
+        <definition>typedef tpsm8286_err_t(* tpsm8286_i2c_write_f) (void *ctx, u8 i2c_addr, u8 reg_addr, const u8 *data)</definition>
+        <argsstring>)(void *ctx, u8 i2c_addr, u8 reg_addr, const u8 *data)</argsstring>
+        <name>tpsm8286_i2c_write_f</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="85" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="tpsm8286x_8h_1abad7796fa9cc625c12cf89fc1fc95a84" prot="public" static="no">
+        <type><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref>(*</type>
+        <definition>typedef tpsm8286_err_t(* tpsm8286_i2c_read_f) (void *ctx, u8 i2c_addr, u8 reg_addr, u8 *data)</definition>
+        <argsstring>)(void *ctx, u8 i2c_addr, u8 reg_addr, u8 *data)</argsstring>
+        <name>tpsm8286_i2c_read_f</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="86" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="tpsm8286x_8h_1a21b90c4a8427e046f1dff553d1870a7b" prot="public" static="no">
+        <name>TPSM8286_XXX3_V_TO_REG</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="68" column="9" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" prot="public" static="no" strong="no">
+        <type></type>
+        <name>tpsm8286_err_t</name>
+        <enumvalue id="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a9f6be1194371571e55c9ef22340856c0" prot="public">
+          <name>TPSM8286_OK</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Success. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" prot="public">
+          <name>TPSM8286_E_PARAM</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Invalid argument (e.g. NULL handle). </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a76908597608b0efb9fbc26017b6d6910" prot="public">
+          <name>TPSM8286_E_I2C</name>
+          <initializer>= -2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>HAL/bus error. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Status codes of the regulator driver. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="72" column="1" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="72" bodyend="76"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="tpsm8286x_8h_1a93008d1330aa714b462af6b237122f5e" prot="public" static="no">
+        <type>struct tpsm8286_t</type>
+        <definition>typedef struct tpsm8286_t tpsm8286_t</definition>
+        <argsstring></argsstring>
+        <name>tpsm8286_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Opaque device handle (defined in <ref refid="tpsm8286x_8c" kindref="compound">tpsm8286x.c</ref>). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="90" column="25" bodyfile="sw/devices/tpsm8286x/tpsm8286x.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="tpsm8286x_8h_1a275328fffd1fae5d932dfcbe6cf6d541" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref> *</type>
+        <definition>tpsm8286_t * tpsm8286_initialize</definition>
+        <argsstring>(u32 devId, u8 i2c_addr, tpsm8286_i2c_write_f w, tpsm8286_i2c_read_f r, void *ctx)</argsstring>
+        <name>tpsm8286_initialize</name>
+        <param>
+          <type>u32</type>
+          <declname>devId</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>i2c_addr</declname>
+        </param>
+        <param>
+          <type><ref refid="tpsm8286x_8h_1a42ab45a189add9f0a7df545e0aeacdc1" kindref="member">tpsm8286_i2c_write_f</ref></type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type><ref refid="tpsm8286x_8h_1abad7796fa9cc625c12cf89fc1fc95a84" kindref="member">tpsm8286_i2c_read_f</ref></type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>Creates the device handle for instance <computeroutput>devId</computeroutput> (no I2C access). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>devId</computeroutput> directly indexes the static instance pool (size <ref refid="userDef_8h_1a6d2ebc133d3d6b30e585478b8488101b" kindref="member">TPSM8286_NUM_OF_INSTANCES</ref>, defined in <ref refid="userDef_8h" kindref="compound">userDef.h</ref>).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>devId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Instance index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i2c_addr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>7-bit I2C address of the device. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>w</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HAL register write callback. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HAL register read callback. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Opaque context pointer passed through to <computeroutput>w</computeroutput> and <computeroutput>r</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to the device handle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="105" column="12" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="63" bodyend="79" declfile="sw/devices/tpsm8286x/tpsm8286x.h" declline="105" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="tpsm8286x_8h_1a536e027aae0217ae36c16d09e7bebccf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref></type>
+        <definition>tpsm8286_err_t tpsm8286_set_voltage</definition>
+        <argsstring>(tpsm8286_t *pDev, float voltage)</argsstring>
+        <name>tpsm8286_set_voltage</name>
+        <param>
+          <type><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>voltage</declname>
+        </param>
+        <briefdescription>
+<para>Sets the output voltage setpoint (VOUT1 register). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The voltage is mapped to the 10 mV/LSB register scale and clamped to the supported range (0.8 V .. 3.35 V). Takes effect according to the configured ramp speed; the output enable state is not changed.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>voltage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Desired output voltage [V]. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a9f6be1194371571e55c9ef22340856c0" kindref="member">TPSM8286_OK</ref> on success, <ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" kindref="member">TPSM8286_E_PARAM</ref> if <computeroutput>pDev</computeroutput> is NULL, <ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a76908597608b0efb9fbc26017b6d6910" kindref="member">TPSM8286_E_I2C</ref> on a HAL/bus error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Output voltage setpoint register 1.</para>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="119" column="16" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="108" bodyend="121" declfile="sw/devices/tpsm8286x/tpsm8286x.h" declline="119" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="tpsm8286x_8h_1a963aa291ba1757f5a36c5bf889631caa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref></type>
+        <definition>tpsm8286_err_t tpsm8286_set_cntrl</definition>
+        <argsstring>(tpsm8286_t *pDev, u8 regVal)</argsstring>
+        <name>tpsm8286_set_cntrl</name>
+        <param>
+          <type><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>regVal</declname>
+        </param>
+        <briefdescription>
+<para>Writes the complete CNTRL register. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>regVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Raw control register value (OR of TPSM8286_*_MASK bits). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a9f6be1194371571e55c9ef22340856c0" kindref="member">TPSM8286_OK</ref> on success, <ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" kindref="member">TPSM8286_E_PARAM</ref> if <computeroutput>pDev</computeroutput> is NULL, otherwise the HAL error code. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Control register.</para>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="128" column="16" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="138" bodyend="146" declfile="sw/devices/tpsm8286x/tpsm8286x.h" declline="128" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="tpsm8286x_8h_1a82adc05935c4deae9f1fab781e68862b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref></type>
+        <definition>tpsm8286_err_t tpsm8286_set_enable</definition>
+        <argsstring>(tpsm8286_t *pDev, int enable)</argsstring>
+        <name>tpsm8286_set_enable</name>
+        <param>
+          <type><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>enable</declname>
+        </param>
+        <briefdescription>
+<para>Enables/disables the output (CNTRL.DEVICE_ENABLE, read-modify-write). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>enable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Non-zero to enable, zero to disable. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a9f6be1194371571e55c9ef22340856c0" kindref="member">TPSM8286_OK</ref> on success, <ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" kindref="member">TPSM8286_E_PARAM</ref> if <computeroutput>pDev</computeroutput> is NULL, <ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a76908597608b0efb9fbc26017b6d6910" kindref="member">TPSM8286_E_I2C</ref> on a HAL/bus error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Device/output enable.</para>
+<para>&lt; Control register.</para>
+<para>&lt; Device/output enable.</para>
+<para>&lt; Control register.</para>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="137" column="16" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="148" bodyend="164" declfile="sw/devices/tpsm8286x/tpsm8286x.h" declline="137" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="tpsm8286x_8h_1afcc80a00611ccb0bee4032f74669217d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref></type>
+        <definition>tpsm8286_err_t tpsm8286_check_voltageReg</definition>
+        <argsstring>(tpsm8286_t *pDev, int *regOk)</argsstring>
+        <name>tpsm8286_check_voltageReg</name>
+        <param>
+          <type><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref> *</type>
+          <declname>pDev</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>regOk</declname>
+        </param>
+        <briefdescription>
+<para>Checks whether the VOUT1 register reads back the programmed value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pDev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Device handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">regOk</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives 1 if the register matches the last setpoint, 0 otherwise. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a9f6be1194371571e55c9ef22340856c0" kindref="member">TPSM8286_OK</ref> on success, <ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" kindref="member">TPSM8286_E_PARAM</ref> if <computeroutput>pDev</computeroutput> is NULL, <ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a76908597608b0efb9fbc26017b6d6910" kindref="member">TPSM8286_E_I2C</ref> on a HAL/bus error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Output voltage setpoint register 1.</para>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.h" line="147" column="16" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="123" bodyend="135" declfile="sw/devices/tpsm8286x/tpsm8286x.h" declline="147" declcolumn="16"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Driver for the TI TPSM8286x step-down power module with I2C (PMBus-style) output voltage control. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Bus-agnostic core driver: it only uses injected HAL callbacks (<ref refid="tpsm8286x_8h_1a42ab45a189add9f0a7df545e0aeacdc1" kindref="member">tpsm8286_i2c_write_f</ref> / <ref refid="tpsm8286x_8h_1abad7796fa9cc625c12cf89fc1fc95a84" kindref="member">tpsm8286_i2c_read_f</ref>), never a concrete I2C driver directly. The callback signatures match <ref refid="i2cWrapper_8c_1afa738982ab2a9c744b4c07f67db541af" kindref="member">i2c_writeReg()</ref>/i2c_readReg() in <ref refid="i2cWrapper_8h" kindref="compound">drivers/i2c/i2cWrapper.h</ref>, so they can be passed directly via a function-pointer cast.</para>
+<para>Multiple simultaneous instances are supported: <ref refid="tpsm8286x_8h_1a275328fffd1fae5d932dfcbe6cf6d541" kindref="member">tpsm8286_initialize()</ref> takes an explicit <computeroutput>devId</computeroutput> that indexes the static instance pool (size <ref refid="userDef_8h_1a6d2ebc133d3d6b30e585478b8488101b" kindref="member">TPSM8286_NUM_OF_INSTANCES</ref>, defined in <ref refid="userDef_8h" kindref="compound">userDef.h</ref>). </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>2026<sp/>Matthias<sp/>Haefner<sp/>-<sp/>Heosys</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;type.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SRC_TPSM8286_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SRC_TPSM8286_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="tpsm8286x_8h_1a1fe5a01c406565801356bb07bf356d4d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_VOUT1_REG_ADDR<sp/><sp/><sp/><sp/><sp/>0x01<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="tpsm8286x_8h_1a42482d3889a0b1ecb5fa2e06d3fabd45" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_VOUT2_REG_ADDR<sp/><sp/><sp/><sp/><sp/>0x02<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="tpsm8286x_8h_1a6555d210c365b1086cc036121f671333" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_CNTRL_REG_ADDR<sp/><sp/><sp/><sp/><sp/>0x03<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="tpsm8286x_8h_1aba6d4e623cdb786bcf9fb8824e901440" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_STATUS_REG_ADDR<sp/><sp/><sp/><sp/>0x05<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="tpsm8286x_8h_1a5911efeb98d7fb672676bf47756f2034" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_VOLTAGE_RAMP_SPEED_MASK<sp/><sp/><sp/><sp/>0x03<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="tpsm8286x_8h_1ab9ac29448241191b8646bb4cb47771af" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_VOLTAGE_RAMP_SPEED_20MV<sp/><sp/><sp/><sp/>0x00<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="tpsm8286x_8h_1a4d876923dbcea8aa5716769bebaae8fa" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_VOLTAGE_RAMP_SPEED_10MV<sp/><sp/><sp/><sp/>0x01<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="tpsm8286x_8h_1a9db008395dfa067b8f9d6c713b110977" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_VOLTAGE_RAMP_SPEED_5MV<sp/><sp/><sp/><sp/><sp/>0x10<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="tpsm8286x_8h_1ae47655070fd176d6e12368ce01ac8d94" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_VOLTAGE_RAMP_SPEED_1MV<sp/><sp/><sp/><sp/><sp/>0x11<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="tpsm8286x_8h_1a19e2243affb2aa4540c4ef456a1c2c7e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_HICCUP_EN_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x04<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="tpsm8286x_8h_1adc5aa6245a46e573ea4dfa914610ff9c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_OUTPUT_DISCHARGE_MASK<sp/><sp/>0x08<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="tpsm8286x_8h_1ac34ac0f4da9978b9bd667c228474a188" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_FPWM_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x10<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="tpsm8286x_8h_1ac3fa2c5b62cc3e167ffa3b04abb5447e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_DEVICE_ENABLE_MASK<sp/><sp/><sp/><sp/><sp/>0x20<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="tpsm8286x_8h_1a3bf2bc73de4e89c6d17af93557e6ad55" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_FPWM_AT_VC_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x40<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="tpsm8286x_8h_1aa5ca3212d0b8e645a792743b0f1bf85c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_RESET_REGS_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x80<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="tpsm8286x_8h_1a72a01d63fc8ac862e0a1f9ddf738a8ad" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_STAT_UVLO_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x01<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="tpsm8286x_8h_1ad3fa43e0b4061accc421a815db5f5054" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_STAT_HICCUP_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x04<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="tpsm8286x_8h_1a97d4d9dd57c815d4266c5baedd47f6e5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_STAT_TEMPWARM_MASK<sp/><sp/><sp/><sp/><sp/>0x10<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="tpsm8286x_8h_1a21b90c4a8427e046f1dff553d1870a7b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TPSM8286_XXX3_V_TO_REG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="73" refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a9f6be1194371571e55c9ef22340856c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a9f6be1194371571e55c9ef22340856c0" kindref="member">TPSM8286_OK</ref><sp/>=<sp/>0,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74" refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a045df1803434e371d04467dfd62ba190" kindref="member">TPSM8286_E_PARAM</ref><sp/>=<sp/>-1,<sp/><sp/></highlight></codeline>
+<codeline lineno="75" refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a76908597608b0efb9fbc26017b6d6910" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763a76908597608b0efb9fbc26017b6d6910" kindref="member">TPSM8286_E_I2C</ref><sp/>=<sp/>-2<sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal">}<sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref>;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="tpsm8286x_8h_1a42ab45a189add9f0a7df545e0aeacdc1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref><sp/>(*<ref refid="tpsm8286x_8h_1a42ab45a189add9f0a7df545e0aeacdc1" kindref="member">tpsm8286_i2c_write_f</ref>)(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ctx,<sp/>u8<sp/>i2c_addr,<sp/>u8<sp/>reg_addr,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>u8<sp/>*data);</highlight></codeline>
+<codeline lineno="86" refid="tpsm8286x_8h_1abad7796fa9cc625c12cf89fc1fc95a84" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref><sp/>(*<ref refid="tpsm8286x_8h_1abad7796fa9cc625c12cf89fc1fc95a84" kindref="member">tpsm8286_i2c_read_f</ref>)<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ctx,<sp/>u8<sp/>i2c_addr,<sp/>u8<sp/>reg_addr,<sp/><sp/><sp/><sp/><sp/><sp/><sp/>u8<sp/>*data);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="tpsm8286x_8h_1a93008d1330aa714b462af6b237122f5e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref><sp/><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref>;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref>*<sp/><ref refid="tpsm8286x_8h_1a275328fffd1fae5d932dfcbe6cf6d541" kindref="member">tpsm8286_initialize</ref>(u32<sp/>devId,<sp/>u8<sp/>i2c_addr,<sp/><ref refid="tpsm8286x_8h_1a42ab45a189add9f0a7df545e0aeacdc1" kindref="member">tpsm8286_i2c_write_f</ref><sp/>w,<sp/><ref refid="tpsm8286x_8h_1abad7796fa9cc625c12cf89fc1fc95a84" kindref="member">tpsm8286_i2c_read_f</ref><sp/>r,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ctx);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref><sp/><ref refid="tpsm8286x_8h_1a536e027aae0217ae36c16d09e7bebccf" kindref="member">tpsm8286_set_voltage</ref>(<ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structtpsm8286__t_1a2d0c090c032afa0fac1853fc2bd06d92" kindref="member">voltage</ref>);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref><sp/><ref refid="tpsm8286x_8h_1a963aa291ba1757f5a36c5bf889631caa" kindref="member">tpsm8286_set_cntrl</ref>(<ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref><sp/>*pDev,<sp/>u8<sp/>regVal);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref><sp/><ref refid="tpsm8286x_8h_1a82adc05935c4deae9f1fab781e68862b" kindref="member">tpsm8286_set_enable</ref>(<ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>enable);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><ref refid="tpsm8286x_8h_1a27c12d02938b4beb1425e1fb906a8763" kindref="member">tpsm8286_err_t</ref><sp/><ref refid="tpsm8286x_8h_1afcc80a00611ccb0bee4032f74669217d" kindref="member">tpsm8286_check_voltageReg</ref>(<ref refid="structtpsm8286__t" kindref="compound">tpsm8286_t</ref><sp/>*pDev,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*regOk);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>SR_TPSM8286_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="sw/devices/tpsm8286x/tpsm8286x.h"/>
+  </compounddef>
+</doxygen>

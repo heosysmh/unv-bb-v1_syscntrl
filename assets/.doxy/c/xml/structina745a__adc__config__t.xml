@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structina745a__adc__config__t" kind="struct" language="C++" prot="public">
+    <compoundname>ina745a_adc_config_t</compoundname>
+    <includes refid="ina745a_8h" local="no">sw/devices/ina745a/ina745a.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structina745a__adc__config__t_1aae65e78fcf1fa75929d9252daf963781" prot="public" static="no" mutable="no">
+        <type><ref refid="ina745a_8h_1a4f222ecaf7f95ae3e195c7785cf87604" kindref="member">ina745a_mode_t</ref></type>
+        <definition>ina745a_mode_t ina745a_adc_config_t::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <qualifiedname>ina745a_adc_config_t::mode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Conversion mode (MODE field). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="153" column="20" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__adc__config__t_1ae3942927eae6d0c897ce54445a3db84a" prot="public" static="no" mutable="no">
+        <type><ref refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95" kindref="member">ina745a_convtime_t</ref></type>
+        <definition>ina745a_convtime_t ina745a_adc_config_t::vbusct</definition>
+        <argsstring></argsstring>
+        <name>vbusct</name>
+        <qualifiedname>ina745a_adc_config_t::vbusct</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Bus voltage conversion time (VBUSCT field). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="154" column="20" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__adc__config__t_1acd820206d70b6e25605bdf2604234f76" prot="public" static="no" mutable="no">
+        <type><ref refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95" kindref="member">ina745a_convtime_t</ref></type>
+        <definition>ina745a_convtime_t ina745a_adc_config_t::vsenct</definition>
+        <argsstring></argsstring>
+        <name>vsenct</name>
+        <qualifiedname>ina745a_adc_config_t::vsenct</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Shunt current conversion time (VSENCT field). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="155" column="20" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__adc__config__t_1a53f9914fd4bef82247e96772edad87c6" prot="public" static="no" mutable="no">
+        <type><ref refid="ina745a_8h_1ae07998cefd515cf9a4b2b611563c6f95" kindref="member">ina745a_convtime_t</ref></type>
+        <definition>ina745a_convtime_t ina745a_adc_config_t::tct</definition>
+        <argsstring></argsstring>
+        <name>tct</name>
+        <qualifiedname>ina745a_adc_config_t::tct</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Temperature conversion time (TCT field). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="156" column="20" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structina745a__adc__config__t_1ae20bfca87831d0840a0daca877b9db39" prot="public" static="no" mutable="no">
+        <type><ref refid="ina745a_8h_1a55d032c1f75cd30fa0f41b2a682a8b81" kindref="member">ina745a_avg_t</ref></type>
+        <definition>ina745a_avg_t ina745a_adc_config_t::avg</definition>
+        <argsstring></argsstring>
+        <name>avg</name>
+        <qualifiedname>ina745a_adc_config_t::avg</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Averaging setting (AVG field). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/ina745a/ina745a.h" line="157" column="20" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="157" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Complete ADC_CONFIG register content. </para>
+    </detaileddescription>
+    <location file="sw/devices/ina745a/ina745a.h" line="152" column="1" bodyfile="sw/devices/ina745a/ina745a.h" bodystart="152" bodyend="158"/>
+    <listofallmembers>
+      <member refid="structina745a__adc__config__t_1ae20bfca87831d0840a0daca877b9db39" prot="public" virt="non-virtual"><scope>ina745a_adc_config_t</scope><name>avg</name></member>
+      <member refid="structina745a__adc__config__t_1aae65e78fcf1fa75929d9252daf963781" prot="public" virt="non-virtual"><scope>ina745a_adc_config_t</scope><name>mode</name></member>
+      <member refid="structina745a__adc__config__t_1a53f9914fd4bef82247e96772edad87c6" prot="public" virt="non-virtual"><scope>ina745a_adc_config_t</scope><name>tct</name></member>
+      <member refid="structina745a__adc__config__t_1ae3942927eae6d0c897ce54445a3db84a" prot="public" virt="non-virtual"><scope>ina745a_adc_config_t</scope><name>vbusct</name></member>
+      <member refid="structina745a__adc__config__t_1acd820206d70b6e25605bdf2604234f76" prot="public" virt="non-virtual"><scope>ina745a_adc_config_t</scope><name>vsenct</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

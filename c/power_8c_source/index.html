@@ -1,0 +1,1423 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hardware (FPGA/VHDL) and Firmware (C) documentation for unv-bb-v1-syscntrl">
+      
+      
+      
+      
+        <link rel="prev" href="../power_8c/">
+      
+      
+        <link rel="next" href="../power_8h/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>File power.c - unv-bb-v1-syscntrl Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#file-powerc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-header__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            unv-bb-v1-syscntrl Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              File power.c
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  System Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../setup/ftdi-jtag/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Setup & Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sw-notes/BUILD_SYSTEM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Firmware (SW)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vhdl/debounce/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  FPGA (VHDL)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-nav__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    unv-bb-v1-syscntrl Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup & Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/ftdi-jtag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FTDI & JTAG Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/firmware-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware Build Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware (SW)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Firmware (SW)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sw-notes/BUILD_SYSTEM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C-Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Structures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FPGA (VHDL)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    FPGA (VHDL)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vhdl
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Vhdl
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/debounce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: debounce
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/fmcPowerCntrl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: fmcPowerCntrl
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/inputSync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: inputSync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/synchronizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: synchronizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/sysCtnrl_top/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: sysCntrl_Top
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/vccioSelect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: vccioSelect
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="file-powerc">File power.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_fd9e68481a64957b5aa550f8031e1091/"><strong>app</strong></a> <strong>&gt;</strong> <a href="../dir_4d8bb3f988c5738b11212c0e5c5a2a68/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../power_8c/"><strong>power.c</strong></a></p>
+<p><a href="../power_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+
+#include &quot;ina745a.h&quot;
+#include &quot;tpsm8286x.h&quot;
+
+#include &quot;power.h&quot;
+#include &quot;bsp.h&quot;
+#include &quot;userDef.h&quot;
+#include &quot;boardGpio.h&quot;
+#include &quot;i2cBus.h&quot;
+
+
+/* =========================================================================== */
+/* Power monitors: ADC and alert behaviour (ina745a)                        */
+/* =========================================================================== */
+#define PWR_MON_MODE    INA745A_MODE_CONT_TEMP_CURRENT_BUSV
+#define PWR_MON_VBUSCT  INA745A_CT_150US
+#define PWR_MON_VSENCT  INA745A_CT_150US
+#define PWR_MON_TCT     INA745A_CT_150US
+#define PWR_MON_AVG     INA745A_AVG_128
+
+/*
+ * Alert configuration. Both values are dictated by the wiring (ALERT on the
+ * power-good nets, see boardGpio.h):
+ *   - ALATCH = 1: a fault is latched until the DIAG_ALRT register is read,
+ *     so short events cannot be missed between two polls.
+ *   - CNVR = 0: a conversion-ready alert would pull the power-good net low
+ *     after every conversion and must stay disabled.
+ *   - APOL = active low: the open-drain output pulls the net low on fault.
+ */
+#define PWR_MON_ALERT_LATCH 1
+#define PWR_MON_ALERT_CNVR  0
+#define PWR_MON_ALERT_SLOW  0   /* compare against the measured value */
+#define PWR_MON_ALERT_POL   INA745A_ALERT_ACTIVE_LOW
+
+/*
+ * Under-voltage and under-current protection are not used on this board.
+ * The driver API always writes both thresholds, so non-trippable values are
+ * programmed: BUVL = 0 V (VBUS is unsigned, never below 0) and
+ * CURRENTUL = the most negative value the 16-bit register can hold.
+ */
+#define PWR_MON_UV_DISABLED_V   0.0f
+#define PWR_MON_UI_DISABLED_A   (-39.0f)
+
+#define PWR_FMC_VADJ_CNTRL      (TPSM8286_FPWM_AT_VC_MASK | \
+                                 TPSM8286_FPWM_MASK | \
+                                 TPSM8286_OUTPUT_DISCHARGE_MASK | \
+                                 TPSM8286_HICCUP_EN_MASK | \
+                                 TPSM8286_VOLTAGE_RAMP_SPEED_1MV)
+
+/* The rail table and the driver instance pool must describe the same number
+ * of devices. */
+typedef char pwr_assert_railCount[(PWR_RAIL_COUNT == INA745A_NUM_INSTANCES) ? 1 : -1];
+typedef char pwr_assert_fmcCount[(PWR_FMC_COUNT == TPSM8286_NUM_OF_INSTANCES) ? 1 : -1];
+
+/* --------------------------------------------------------------------------- */
+/* Static configuration                                                        */
+/* --------------------------------------------------------------------------- */
+
+typedef struct {
+    const char *name;
+    u8          i2cAddr;
+    pwrPgLine_t pgLine;
+    float       overVoltage_V;
+    float       overCurrent_A;
+    float       overTemp_C;
+} pwrMonCfg_t;
+
+#define X(name, addr, pg, vov, iov, tov)    { #name, addr, pg, vov, iov, tov },
+static const pwrMonCfg_t gMonCfg[PWR_RAIL_COUNT] = {
+    PWR_MON_TABLE
+};
+#undef X
+
+typedef struct {
+    const char *name;
+    u8          i2cAddr;
+    float       setpoint_V;
+} pwrFmcCfg_t;
+
+static const pwrFmcCfg_t gFmcCfg[PWR_FMC_COUNT] = {
+    { &quot;FMC1_VADJ&quot;, I2CBUS_FMC1_VADJ_ADDR, BOARD_FMC1_VADJ_V },
+    { &quot;FMC2_VADJ&quot;, I2CBUS_FMC2_VADJ_ADDR, BOARD_FMC2_VADJ_V }
+};
+
+static const u32 gPgMask[PWR_PG_COUNT] = {GPIO_PG_SYS_MASK,
+                                    GPIO_PG_FMC1_SUP_MASK,
+                                    GPIO_PG_FMC2_SUP_MASK
+};
+
+static const char * const gPgName[PWR_PG_COUNT] = {
+    &quot;SYS_PG&quot;, &quot;FMC1_SUP_PG&quot;, &quot;FMC2_SUP_PG&quot;
+};
+
+/* --------------------------------------------------------------------------- */
+/* Module state                                                                 */
+/* --------------------------------------------------------------------------- */
+
+static tpsm8286_t *gFmcVadj[PWR_FMC_COUNT];
+static ina745a_t  *gMon[PWR_RAIL_COUNT];
+
+static pwrMon_fault_t gFaultLatch[PWR_RAIL_COUNT];
+
+static u8 gMonConfigured;
+
+/* --------------------------------------------------------------------------- */
+/* Helpers                                                                      */
+/* --------------------------------------------------------------------------- */
+
+static int pwr_mergeFaults(pwrRail_t rail, const ina745a_diag_flags_t *flags)
+{
+    pwrMon_fault_t *f = &amp;gFaultLatch[rail];
+    int any = 0;
+
+    if (flags-&gt;bus_over_limit)     { f-&gt;over_voltage = 1; any = 1; }
+    if (flags-&gt;current_over_limit) { f-&gt;over_current = 1; any = 1; }
+    if (flags-&gt;temp_over_limit)    { f-&gt;over_temp    = 1; any = 1; }
+    if (flags-&gt;power_over_limit)   { f-&gt;over_power   = 1; any = 1; }
+    if (!flags-&gt;memory_ok)         { f-&gt;memory_fail  = 1; any = 1; }
+
+    return any;
+}
+
+static int pwr_queryGroup(pwrPgLine_t line)
+{
+    ina745a_diag_flags_t flags;
+    int faults = 0;
+
+    for (u32 i = 0; i &lt; PWR_RAIL_COUNT; i++) {
+        if (gMonCfg[i].pgLine != line)
+            continue;
+
+        if (ina745a_get_diag_flags(gMon[i], &amp;flags) != INA745A_OK)
+            return -1;
+
+        if (pwr_mergeFaults((pwrRail_t)i, &amp;flags))
+            faults++;
+    }
+
+    return faults;
+}
+
+/* --------------------------------------------------------------------------- */
+/* Initialization                                                               */
+/* --------------------------------------------------------------------------- */
+
+pwr_err_t pwr_init(void)
+{
+    i2cHandle_t *pmbus = i2cBus_pmbus();
+
+    if (!pmbus)
+        return PWR_E_INIT;
+
+    /* FMC Vadj regulators */
+    for (u32 i = 0; i &lt; PWR_FMC_COUNT; i++) {
+        gFmcVadj[i] = tpsm8286_initialize(i, gFmcCfg[i].i2cAddr,
+                                          (tpsm8286_i2c_write_f)i2c_writeReg,
+                                          (tpsm8286_i2c_read_f)i2c_readReg,
+                                          (void*)pmbus);
+        if (!gFmcVadj[i])
+            return PWR_E_INIT;
+    }
+
+    /* Power monitors; they share the PMBus with the regulators */
+    for (u32 i = 0; i &lt; PWR_RAIL_COUNT; i++) {
+        gMon[i] = ina745a_initialize(i, gMonCfg[i].i2cAddr,
+                                     (ina745a_i2c_write_f)i2c_writeRegMultipleBytes,
+                                     (ina745a_i2c_read_f)i2c_readRegMultipleBytes,
+                                     (void*)pmbus);
+        if (!gMon[i])
+            return PWR_E_INIT;
+    }
+
+    for (u32 i = 0; i &lt; PWR_RAIL_COUNT; i++)
+        pwr_mon_clearFaults((pwrRail_t)i);
+
+    gMonConfigured = 0;
+
+    return PWR_OK;
+}
+
+/* --------------------------------------------------------------------------- */
+/* FMC Vadj                                                                     */
+/* --------------------------------------------------------------------------- */
+
+pwr_err_t pwr_fmcVadj_configure(void)
+{
+    for (u32 i = 0; i &lt; PWR_FMC_COUNT; i++) {
+        if (!gFmcVadj[i])
+            return PWR_E_INIT;
+
+        if (gFmcCfg[i].setpoint_V &gt; BOARD_FMC_VADJ_MAX_V) {
+            bsp_printf(&quot;ERROR: %s setpoint out of range\r\n&quot;, gFmcCfg[i].name);
+            return PWR_E_RANGE;
+        }
+
+        if (tpsm8286_set_cntrl(gFmcVadj[i], PWR_FMC_VADJ_CNTRL) != TPSM8286_OK)
+            return PWR_E_DEVICE;
+
+        if (tpsm8286_set_voltage(gFmcVadj[i], gFmcCfg[i].setpoint_V) != TPSM8286_OK)
+            return PWR_E_DEVICE;
+    }
+
+    return PWR_OK;
+}
+
+pwr_err_t pwr_fmcVadj_isRegulating(pwrFmc_t fmc)
+{
+    if (fmc &gt;= PWR_FMC_COUNT)
+        return PWR_E_PARAM;
+    if (!gFmcVadj[fmc])
+        return PWR_E_INIT;
+
+    int ok = 0;
+    if (tpsm8286_check_voltageReg(gFmcVadj[fmc], &amp;ok) != TPSM8286_OK)
+        return PWR_E_DEVICE;
+
+    return (ok == 1) ? PWR_OK : PWR_E_REGULATION;
+}
+
+pwr_err_t pwr_fmcVadj_enable(int enable)
+{
+    for (u32 i = 0; i &lt; PWR_FMC_COUNT; i++) {
+        if (!gFmcVadj[i])
+            return PWR_E_INIT;
+
+        if (tpsm8286_set_enable(gFmcVadj[i], enable) != TPSM8286_OK)
+            return PWR_E_DEVICE;
+    }
+
+    return PWR_OK;
+}
+
+/* --------------------------------------------------------------------------- */
+/* Power monitors                                                               */
+/* --------------------------------------------------------------------------- */
+
+pwr_err_t pwr_mon_configure(void)
+{
+    const ina745a_adc_config_t adcCfg = {
+        .mode   = PWR_MON_MODE,
+        .vbusct = PWR_MON_VBUSCT,
+        .vsenct = PWR_MON_VSENCT,
+        .tct    = PWR_MON_TCT,
+        .avg    = PWR_MON_AVG
+    };
+    ina745a_alert_cfg_t alertCfg = {
+        .alatch        = PWR_MON_ALERT_LATCH,
+        .conv_ready_en = PWR_MON_ALERT_CNVR,
+        .slow_alert    = PWR_MON_ALERT_SLOW,
+        .polarity      = PWR_MON_ALERT_POL
+    };
+    pwr_err_t status = PWR_OK;
+
+    for (u32 i = 0; i &lt; PWR_RAIL_COUNT; i++) {
+        ina745a_diag_flags_t flags;
+
+        if (!gMon[i])
+            return PWR_E_INIT;
+
+        if (ina745a_init(gMon[i], &amp;adcCfg) != INA745A_OK) {
+            bsp_printf(&quot;ERROR: Power-Monitor %s initialization failed\r\n&quot;,
+                       gMonCfg[i].name);
+            status = PWR_E_DEVICE;
+            continue;
+        }
+
+        /* Protection limits; the under limits are programmed to values that
+         * can never trip (see PWR_MON_UV_DISABLED_V / PWR_MON_UI_DISABLED_A). */
+        if (ina745a_set_bus_voltage_limits(gMon[i], gMonCfg[i].overVoltage_V,
+                                           PWR_MON_UV_DISABLED_V) != INA745A_OK ||
+            ina745a_set_current_limits(gMon[i], gMonCfg[i].overCurrent_A,
+                                       PWR_MON_UI_DISABLED_A) != INA745A_OK ||
+            ina745a_set_temperature_limit(gMon[i], gMonCfg[i].overTemp_C) != INA745A_OK) {
+            bsp_printf(&quot;ERROR: Power-Monitor %s limit setup failed\r\n&quot;,
+                       gMonCfg[i].name);
+            status = PWR_E_DEVICE;
+            continue;
+        }
+
+        /* Arm the latched alert. Writing DIAG_ALRT also clears pending
+         * flags; the additional read drops anything latched in between so
+         * the power-good nets start from a clean state. */
+        if (ina745a_configure_alert(gMon[i], &amp;alertCfg) != INA745A_OK) {
+            bsp_printf(&quot;ERROR: Power-Monitor %s alert setup failed\r\n&quot;,
+                       gMonCfg[i].name);
+            status = PWR_E_DEVICE;
+            continue;
+        }
+
+        (void)ina745a_get_diag_flags(gMon[i], &amp;flags);
+        pwr_mon_clearFaults((pwrRail_t)i);
+    }
+
+    gMonConfigured = 1;
+
+    return status;
+}
+
+pwr_err_t pwr_mon_read(pwrRail_t rail, pwrMon_values_t *values)
+{
+    ina745a_measurements_t m;
+
+    if (!values || rail &gt;= PWR_RAIL_COUNT)
+        return PWR_E_PARAM;
+    if (!gMon[rail] || !gMonConfigured)
+        return PWR_E_INIT;
+
+    if (ina745a_get_measurements(gMon[rail], &amp;m) != INA745A_OK)
+        return PWR_E_DEVICE;
+
+    values-&gt;bus_voltage_V = m.bus_voltage_V;
+    values-&gt;current_A     = m.current_A;
+    values-&gt;die_temp_C    = m.die_temp_C;
+
+    return PWR_OK;
+}
+
+pwr_err_t pwr_mon_poll(void)
+{
+    pwr_err_t status = PWR_OK;
+
+    for (u32 i = 0; i &lt; PWR_RAIL_COUNT; i++) {
+        pwrMon_values_t v;
+        pwr_err_t res = pwr_mon_read((pwrRail_t)i, &amp;v);
+
+        if (res != PWR_OK) {
+            bsp_printf(&quot;ERROR: Power-Monitor %s read failed\r\n&quot;, gMonCfg[i].name);
+            status = res;
+            continue;
+        }
+
+        bsp_printf(&quot;Pmon %7s: U=%.dmV, I=%dmA, T=%.d.%d°C\r\n&quot;,
+                   gMonCfg[i].name,
+                   (int)(v.bus_voltage_V * 1000.0f),
+                   (int)(v.current_A * 1000.0f),
+                   (int)(v.die_temp_C),(int)((v.die_temp_C - (int)(v.die_temp_C)) * 100.f));
+    }
+    bsp_printf(&quot;\r\n&quot;);
+
+    return status;
+}
+
+pwr_err_t pwr_checkAlerts(void)
+{
+    u32 pg = boardGpio_getPgStatus();
+    pwr_err_t status = PWR_OK;
+
+    if (!gMonConfigured)
+        return PWR_E_INIT;
+
+    for (u32 line = 0; line &lt; PWR_PG_COUNT; line++) {
+        int faults;
+
+        if (pg &amp; gPgMask[line])
+            continue;   /* line high: supply good, no alert pending */
+
+        faults = pwr_queryGroup((pwrPgLine_t)line);
+
+        if (faults &lt; 0) {
+            bsp_printf(&quot;ERROR: %s low, monitor query failed\r\n&quot;, gPgName[line]);
+            status = PWR_E_DEVICE;
+        } else {
+            bsp_printf(&quot;ERROR: %s low\r\n&quot;,gPgName[line]);
+            if (status == PWR_OK)
+                status = PWR_E_REGULATION;      
+        }
+    }
+
+    return status;
+}
+
+pwr_err_t pwr_mon_getFaults(pwrRail_t rail, pwrMon_fault_t *faults)
+{
+    if (!faults || rail &gt;= PWR_RAIL_COUNT)
+        return PWR_E_PARAM;
+
+    *faults = gFaultLatch[rail];
+
+    return PWR_OK;
+}
+
+void pwr_mon_clearFaults(pwrRail_t rail)
+{
+    if (rail &gt;= PWR_RAIL_COUNT)
+        return;
+
+    gFaultLatch[rail].over_voltage = 0;
+    gFaultLatch[rail].over_current = 0;
+    gFaultLatch[rail].over_temp    = 0;
+    gFaultLatch[rail].over_power   = 0;
+    gFaultLatch[rail].memory_fail  = 0;
+}
+
+void pwr_mon_reportFaults(void)
+{
+    for (u32 i = 0; i &lt; PWR_RAIL_COUNT; i++) {
+        const pwrMon_fault_t *f = &amp;gFaultLatch[i];
+
+        if (!f-&gt;over_voltage &amp;&amp; !f-&gt;over_current &amp;&amp; !f-&gt;over_temp &amp;&amp;
+            !f-&gt;over_power &amp;&amp; !f-&gt;memory_fail)
+            continue;
+
+        bsp_printf(&quot;FAULT %s:%s%s%s%s%s\r\n&quot;, gMonCfg[i].name,
+                   f-&gt;over_voltage ? &quot; over-voltage&quot; : &quot;&quot;,
+                   f-&gt;over_current ? &quot; over-current&quot; : &quot;&quot;,
+                   f-&gt;over_temp    ? &quot; over-temperature&quot; : &quot;&quot;,
+                   f-&gt;over_power   ? &quot; over-power&quot; : &quot;&quot;,
+                   f-&gt;memory_fail  ? &quot; memory-error&quot; : &quot;&quot;);
+    }
+}
+
+const char* pwr_railName(pwrRail_t rail)
+{
+    if (rail &gt;= PWR_RAIL_COUNT)
+        return &quot;?&quot;;
+
+    return gMonCfg[rail].name;
+}
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Matthias Haefner - Heosys – Licensed under Apache-2.0
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

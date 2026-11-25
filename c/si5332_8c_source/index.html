@@ -1,0 +1,1677 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hardware (FPGA/VHDL) and Firmware (C) documentation for unv-bb-v1-syscntrl">
+      
+      
+      
+      
+        <link rel="prev" href="../si5332_8c/">
+      
+      
+        <link rel="next" href="../si5332_8h/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>File si5332.c - unv-bb-v1-syscntrl Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#file-si5332c" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-header__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            unv-bb-v1-syscntrl Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              File si5332.c
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  System Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../setup/ftdi-jtag/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Setup & Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sw-notes/BUILD_SYSTEM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Firmware (SW)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vhdl/debounce/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  FPGA (VHDL)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-nav__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    unv-bb-v1-syscntrl Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup & Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/ftdi-jtag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FTDI & JTAG Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/firmware-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware Build Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware (SW)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Firmware (SW)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sw-notes/BUILD_SYSTEM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C-Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Structures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FPGA (VHDL)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    FPGA (VHDL)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vhdl
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Vhdl
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/debounce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: debounce
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/fmcPowerCntrl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: fmcPowerCntrl
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/inputSync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: inputSync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/synchronizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: synchronizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/sysCtnrl_top/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: sysCntrl_Top
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/vccioSelect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: vccioSelect
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="file-si5332c">File si5332.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_b1d9dda0f5d22dbe57e7280d3502a0d9/"><strong>devices</strong></a> <strong>&gt;</strong> <a href="../dir_f47f1daa29e3b569dba4f7284fbb0336/"><strong>si5332</strong></a> <strong>&gt;</strong> <a href="../si5332_8c/"><strong>si5332.c</strong></a></p>
+<p><a href="../si5332_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+
+#include &lt;string.h&gt;
+
+#include &quot;si5332.h&quot;
+#include &quot;si5332_cfg.h&quot;
+#include &quot;bsp.h&quot;        
+
+/* ------------------------------------------------------------------------- */
+/* Registers / constants                                                    */
+/* ------------------------------------------------------------------------- */
+
+#define REG_STATUS          0x05    
+#define REG_USYS_CTRL           0x06    
+#define REG_USYS_STAT           0x07    
+#define REG_OE_0_5          0xB6    
+#define REG_OE_6_7          0xB7    
+#define REG_PD_ID           0xBA    
+#define REG_PD_OMUX         0xBB    
+
+#define USYS_READY          0x01    
+#define USYS_ACTIVE         0x02    
+#define USYS_NO_INPUT           0x89    
+
+#define OE6_BIT             (1u &lt;&lt; 1)   
+
+#define TIMEOUT_READY_MS        20u 
+#define TIMEOUT_ACTIVE_MS       500u    
+
+#define VCO_HZ              2500000000ULL   
+#define HSDIV0_HZ           100000000UL 
+#define HSDIV1_HZ           125000000UL 
+#define R_MAX               63u     
+#define ID_N_MIN            10u     
+#define ID_N_MAX            255u        
+#define ID_FREQ_MAX_HZ          250000000UL 
+#define ID_DEN_MAX          32767u      
+
+#define NUM_CH              4   
+#define NUM_ID              2   
+
+#define CHK(x)  do { si5332_err_t _e = (x); if (_e != SI5332_OK) return _e; } while (0)
+
+/* ------------------------------------------------------------------------- */
+/* Data types                                                                */
+/* ------------------------------------------------------------------------- */
+
+typedef struct {
+    u32 num;    
+    u32 den;    
+    u8  refcnt; 
+} id_state_t;
+
+typedef struct {
+    u8  enabled;    
+    u8  configured; 
+    u8  fmt;    
+    u8  src;    
+    u8  rdiv;   
+    u32 freq_hz;    
+} ch_state_t;
+
+typedef struct {
+    u8 reg_mode;        
+    u8 reg_div;     
+    u8 reg_omux;        
+    u8 oe_reg;      
+    u8 oe_bit;      
+    u8 omux_dis_bit;    
+    u8 out_dis_reg;     
+    u8 out_dis_bit;     
+} ch_desc_t;
+
+struct si5332_t {
+    u8 isReady;     
+    u8 isConfigured;    
+    u8 i2cAddr;     
+    void *hal_ctx;      
+    si5332_i2c_write_f i2c_write;   
+    si5332_i2c_read_f  i2c_read;    
+
+    si5332_clk_src_t clk_src;   
+    si5332_clk_src_t clk_src_req;   
+
+    ch_state_t ch[NUM_CH];  
+    id_state_t id[NUM_ID];  
+
+    u8 dirty_ch;    
+    u8 dirty_id;    
+};
+
+static struct si5332_t gDevice;
+
+static const ch_desc_t gChDesc[NUM_CH] = {
+    /* mode  div   omux  oe_reg      oe_bit omux_dis out_dis_reg out_dis_bit */
+    { 0x7A, 0x7B, 0x25, REG_OE_0_5, 0,     0,        0xBC,       0 },   /* OUT0 / OMUX0 */
+    { 0x89, 0x8A, 0x27, REG_OE_0_5, 3,     2,        0xBC,       3 },   /* OUT2 / OMUX2 */
+    { 0x98, 0x99, 0x28, REG_OE_0_5, 6,     3,        0xBC,       6 },   /* OUT4 / OMUX3 */
+    { 0xAC, 0xAD, 0x2A, REG_OE_6_7, 2,     5,        0xBD,       2 },   /* OUT7 / OMUX5 */
+};
+
+static const u8 gIdBase[NUM_ID] = { 0x36, 0x4E };
+
+/* ------------------------------------------------------------------------- */
+/* Low-level                                                                 */
+/* ------------------------------------------------------------------------- */
+
+static si5332_err_t reg_write(si5332_t *d, u8 addr, u8 val)
+{
+    u8 v = val;
+
+    if (d-&gt;i2c_write(d-&gt;hal_ctx, d-&gt;i2cAddr, addr, &amp;v) != SI5332_OK)
+        return SI5332_E_I2C;
+    return SI5332_OK;
+}
+
+static si5332_err_t reg_read(si5332_t *d, u8 addr, u8 *val)
+{
+    if (d-&gt;i2c_read(d-&gt;hal_ctx, d-&gt;i2cAddr, addr, val) != SI5332_OK)
+        return SI5332_E_I2C;
+    return SI5332_OK;
+}
+
+static si5332_err_t reg_rmw(si5332_t *d, u8 addr, u8 mask, u8 val)
+{
+    u8 v;
+
+    CHK(reg_read(d, addr, &amp;v));
+    v = (u8)((v &amp; ~mask) | (val &amp; mask));
+    return reg_write(d, addr, v);
+}
+
+static si5332_err_t reg_write16(si5332_t *d, u8 addr, u16 val)
+{
+    CHK(reg_write(d, addr,     (u8)((val &gt;&gt; 8) &amp; 0x7F)));
+    return reg_write(d, (u8)(addr + 1), (u8)(val &amp; 0xFF));
+}
+
+static si5332_err_t write_table(si5332_t *d, const si5332_reg_t *t, u32 n)
+{
+    for (u32 i = 0; i &lt; n; i++)
+        CHK(reg_write(d, t[i].addr, t[i].val));
+    return SI5332_OK;
+}
+
+static si5332_err_t goto_state(si5332_t *d, u8 state, u32 timeout_ms)
+{
+    u8 stat = 0;
+
+    CHK(reg_write(d, REG_USYS_CTRL, state));
+
+    for (u32 t = 0; ; t++) {
+        CHK(reg_read(d, REG_USYS_STAT, &amp;stat));
+        if (stat == state)
+            return SI5332_OK;
+        if (t &gt;= timeout_ms)
+            break;
+        bsp_uDelay(1000);
+    }
+    return (stat == USYS_NO_INPUT) ? SI5332_E_NO_INPUT : SI5332_E_TIMEOUT;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Math helper functions                                                     */
+/* ------------------------------------------------------------------------- */
+
+static void rational_approx(u64 n, u64 d, u32 max_den, u32 *out_n, u32 *out_d)
+{
+    u64 h2 = 0, h1 = 1; /* numerators  h(-2), h(-1) */
+    u64 k2 = 1, k1 = 0; /* denominators k(-2), k(-1) */
+
+    while (d != 0) {
+        u64 a = n / d;
+        u64 r = n % d;
+        u64 h = a * h1 + h2;
+        u64 k = a * k1 + k2;
+
+        if (k &gt; max_den) {
+            /* k1 &gt;= 1, since k(0) = 1 &lt;= max_den */
+            u64 as = ((u64)max_den - k2) / k1;
+
+            if (2 * as &gt; a) {   /* semiconvergent is better than the last convergent */
+                h1 = as * h1 + h2;
+                k1 = as * k1 + k2;
+            }
+            break;
+        }
+        h2 = h1;  h1 = h;
+        k2 = k1;  k1 = k;
+        n = d;    d = r;
+    }
+
+    *out_n = (u32)h1;
+    *out_d = (u32)k1;
+}
+
+static void id_encode(u32 num, u32 den, u16 *intg, u16 *res, u16 *den_reg)
+{
+    u64 x = 128ULL * num;
+
+    *intg    = (u16)(x / den);
+    *res     = (u16)(x % den);
+    *den_reg = (u16)den;
+}
+
+static int try_hsdiv(u32 f, u32 base, u8 *r)
+{
+    if (base % f != 0)
+        return 0;
+    u32 q = base / f;
+    if (q &lt; 1 || q &gt; R_MAX)
+        return 0;
+    *r = (u8)q;
+    return 1;
+}
+
+static int try_share_id(const id_state_t *id, u32 f, u8 *r)
+{
+    u64 a = VCO_HZ * id-&gt;den;
+    u64 b = (u64)f * id-&gt;num;
+
+    if (b == 0 || (a % b) != 0)
+        return 0;
+    u64 q = a / b;
+    if (q &lt; 1 || q &gt; R_MAX)
+        return 0;
+    *r = (u8)q;
+    return 1;
+}
+
+static si5332_err_t plan_id(u32 f, u32 *num, u32 *den, u8 *r)
+{
+    u64 denom = 255ULL * f;
+    u64 rr = (VCO_HZ + denom - 1) / denom;  /* smallest R with N &lt;= 255 */
+    u32 n, dd;
+
+    if (rr &lt; 1)
+        rr = 1;
+    if (rr &gt; R_MAX || (u64)f * rr &gt; ID_FREQ_MAX_HZ)
+        return SI5332_E_FREQ_UNSUPPORTED;
+
+    rational_approx(VCO_HZ, (u64)f * rr, ID_DEN_MAX, &amp;n, &amp;dd);
+    if (dd == 0 || (u64)n &lt; (u64)ID_N_MIN * dd || (u64)n &gt;= 256ULL * dd)
+        return SI5332_E_FREQ_UNSUPPORTED;
+
+    *num = n;
+    *den = dd;
+    *r   = (u8)rr;
+    return SI5332_OK;
+}
+
+static int ch_index(si5332_out_ch_t ch)
+{
+    switch (ch) {
+    case SI5332_OUT_0: return 0;
+    case SI5332_OUT_2: return 1;
+    case SI5332_OUT_4: return 2;
+    case SI5332_OUT_7: return 3;
+    default:           return -1;
+    }
+}
+
+static int fmt_valid(si5332_out_format_t fmt)
+{
+    switch (fmt) {
+    case SI5332_FMT_LVDS:
+    case SI5332_FMT_LVDS_FAST:
+    case SI5332_FMT_HCSL_50_EXT:
+    case SI5332_FMT_HCSL_50_INT:
+    case SI5332_FMT_HCSL_42_5_EXT:
+    case SI5332_FMT_HCSL_42_5_INT:
+    case SI5332_FMT_LVPECL:
+        return 1;
+    default:
+        return 0;
+    }
+}
+
+static u8 omux_sel1(u8 src)
+{
+    switch (src) {
+    case SI5332_DIV_SRC_HSDIV0: return 0;
+    case SI5332_DIV_SRC_HSDIV1: return 1;
+    case SI5332_DIV_SRC_ID0:    return 5;
+    case SI5332_DIV_SRC_ID1:    return 6;
+    default:                    return 0;
+    }
+}
+
+static int has_pending(const si5332_t *d)
+{
+    return d-&gt;dirty_ch || d-&gt;dirty_id || (d-&gt;clk_src_req != d-&gt;clk_src);
+}
+
+static void shadow_reset(si5332_t *d, si5332_clk_src_t src)
+{
+    memset(d-&gt;ch, 0, sizeof(d-&gt;ch));
+    memset(d-&gt;id, 0, sizeof(d-&gt;id));
+
+    for (int i = 0; i &lt; NUM_CH; i++) {
+        d-&gt;ch[i].fmt  = SI5332_FMT_LVDS_FAST;
+        d-&gt;ch[i].rdiv = 1;
+        d-&gt;ch[i].src  = SI5332_DIV_SRC_NONE;
+    }
+    /* OUT0: 100 MHz (HSDIV0), OUT2: 125 MHz (HSDIV1), OUT4/OUT7 switched off */
+    d-&gt;ch[0].configured = 1;
+    d-&gt;ch[0].src        = SI5332_DIV_SRC_HSDIV0;
+    d-&gt;ch[0].freq_hz    = HSDIV0_HZ;
+    d-&gt;ch[1].configured = 1;
+    d-&gt;ch[1].src        = SI5332_DIV_SRC_HSDIV1;
+    d-&gt;ch[1].freq_hz    = HSDIV1_HZ;
+
+    d-&gt;clk_src     = src;
+    d-&gt;clk_src_req = src;
+    d-&gt;dirty_ch    = 0;
+    d-&gt;dirty_id    = 0;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Commit helpers (only call in READY mode)                                 */
+/* ------------------------------------------------------------------------- */
+
+static si5332_err_t write_id(si5332_t *d, int i)
+{
+    const u8 base = gIdBase[i];
+    const u8 bit  = (u8)(1u &lt;&lt; (5 + i));    /* ID0_DIS = 0xBA[5], ID1_DIS = 0xBA[6] */
+
+    if (d-&gt;id[i].refcnt &gt; 0) {
+        u16 intg, res, den;
+
+        id_encode(d-&gt;id[i].num, d-&gt;id[i].den, &amp;intg, &amp;res, &amp;den);
+        CHK(reg_write16(d, base,                 intg));
+        CHK(reg_write16(d, (u8)(base + 2), res));
+        CHK(reg_write16(d, (u8)(base + 4), den));
+        return reg_rmw(d, REG_PD_ID, bit, 0);       /* switch ID on */
+    }
+    return reg_rmw(d, REG_PD_ID, bit, bit);         /* switch ID off */
+}
+
+static si5332_err_t write_channel(si5332_t *d, int i)
+{
+    const ch_desc_t  *c = &amp;gChDesc[i];
+    const ch_state_t *s = &amp;d-&gt;ch[i];
+    const u8 omux_bit = (u8)(1u &lt;&lt; c-&gt;omux_dis_bit);
+    const u8 out_bit  = (u8)(1u &lt;&lt; c-&gt;out_dis_bit);
+
+    CHK(reg_write(d, c-&gt;reg_mode, s-&gt;fmt));
+
+    if (!s-&gt;configured) {
+        /* switch block off */
+        CHK(reg_rmw(d, REG_PD_OMUX,    omux_bit, omux_bit));
+        return reg_rmw(d, c-&gt;out_dis_reg, out_bit, out_bit);
+    }
+
+    /* Complete register set (the CBPro export omits unused blocks) */
+    CHK(reg_write(d, c-&gt;reg_div,  s-&gt;rdiv));
+    CHK(reg_write(d, c-&gt;reg_omux, (u8)(omux_sel1(s-&gt;src) &lt;&lt; 4)));   /* SEL0 = 0 */
+    CHK(reg_rmw(d, REG_PD_OMUX,    omux_bit, 0));
+    return reg_rmw(d, c-&gt;out_dis_reg, out_bit, 0);
+}
+
+static si5332_err_t oe_apply(si5332_t *d)
+{
+    u8 b0_5 = 0;
+    u8 b6_7 = OE6_BIT;
+
+    for (int i = 0; i &lt; NUM_CH; i++) {
+        if (!(d-&gt;ch[i].enabled &amp;&amp; d-&gt;ch[i].configured))
+            continue;
+        if (gChDesc[i].oe_reg == REG_OE_0_5)
+            b0_5 |= (u8)(1u &lt;&lt; gChDesc[i].oe_bit);
+        else
+            b6_7 |= (u8)(1u &lt;&lt; gChDesc[i].oe_bit);
+    }
+    CHK(reg_write(d, REG_OE_0_5, b0_5));
+    return reg_write(d, REG_OE_6_7, b6_7);
+}
+
+/* ------------------------------------------------------------------------- */
+/* API                                                                       */
+/* ------------------------------------------------------------------------- */
+
+/* Public API: documented in si5332.h only. */
+si5332_t* si5332_initialize(u8 i2c_addr, si5332_i2c_write_f w, si5332_i2c_read_f r, void *ctx)
+{
+    si5332_t *pDev = &amp;gDevice;
+
+    if (!w || !r)
+        return 0;
+
+    memset(pDev, 0, sizeof(*pDev));
+    pDev-&gt;i2cAddr   = i2c_addr;
+    pDev-&gt;i2c_write = w;
+    pDev-&gt;i2c_read  = r;
+    pDev-&gt;hal_ctx   = ctx;
+    pDev-&gt;isReady   = 1;
+
+    return pDev;
+}
+
+si5332_err_t si5332_init(si5332_t *pDev, si5332_clk_src_t initial_src)
+{
+    const si5332_reg_t *delta;
+    u32 delta_len;
+
+    if (!pDev)
+        return SI5332_E_PARAM;
+    if (!pDev-&gt;isReady)
+        return SI5332_E_NOT_INIT;
+
+    switch (initial_src) {
+    case SI5332_CLK_SRC_XTAL_27M:
+        delta = si5332_src_xtal_27m_regs;
+        delta_len = si5332_src_xtal_27m_regs_len;
+        break;
+    case SI5332_CLK_SRC_CLKIN2_100M:
+        delta = si5332_src_clkin2_100m_regs;
+        delta_len = si5332_src_clkin2_100m_regs_len;
+        break;
+    default:
+        return SI5332_E_PARAM;
+    }
+
+    pDev-&gt;isConfigured = 0;
+
+    CHK(goto_state(pDev, USYS_READY, TIMEOUT_READY_MS));
+    CHK(write_table(pDev, si5332_base_regs, si5332_base_regs_len));
+    CHK(write_table(pDev, delta, delta_len));
+    CHK(goto_state(pDev, USYS_ACTIVE, TIMEOUT_ACTIVE_MS));
+
+    shadow_reset(pDev, initial_src);
+    pDev-&gt;isConfigured = 1;
+
+    return SI5332_OK;
+}
+
+/*
+ * Commit sequence (implementation detail, API contract in si5332.h):
+ *  1. Disable all outputs (REG_OE_0_5 / REG_OE_6_7 = 0).
+ *  2. Switch the device to READY.
+ *  3. If the clock source changed, write the new source's delta table.
+ *  4. Write dirty MultiSynths (write_id()), then dirty channels (write_channel()).
+ *  5. Switch the device to ACTIVE (PLL calibration/lock).
+ *  6. Restore the output-enable state from the shadow (oe_apply()).
+ */
+si5332_err_t si5332_commit(si5332_t *pDev)
+{
+    if (!pDev)
+        return SI5332_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return SI5332_E_NOT_INIT;
+    if (!has_pending(pDev))
+        return SI5332_OK;
+
+    /* 1. outputs off (clean stop before reprogramming) */
+    CHK(reg_write(pDev, REG_OE_0_5, 0x00));
+    CHK(reg_write(pDev, REG_OE_6_7, 0x00));
+
+    /* 2. READY: input, divider and driver registers are only writable here */
+    CHK(goto_state(pDev, USYS_READY, TIMEOUT_READY_MS));
+
+    /* 3. clock source */
+    if (pDev-&gt;clk_src_req != pDev-&gt;clk_src) {
+        if (pDev-&gt;clk_src_req == SI5332_CLK_SRC_XTAL_27M)
+            CHK(write_table(pDev, si5332_src_xtal_27m_regs, si5332_src_xtal_27m_regs_len));
+        else
+            CHK(write_table(pDev, si5332_src_clkin2_100m_regs, si5332_src_clkin2_100m_regs_len));
+        pDev-&gt;clk_src = pDev-&gt;clk_src_req;  /* device now carries the new configuration */
+    }
+
+    /* 4. MultiSynths, then channels */
+    for (int i = 0; i &lt; NUM_ID; i++)
+        if (pDev-&gt;dirty_id &amp; (1u &lt;&lt; i))
+            CHK(write_id(pDev, i));
+    for (int i = 0; i &lt; NUM_CH; i++)
+        if (pDev-&gt;dirty_ch &amp; (1u &lt;&lt; i))
+            CHK(write_channel(pDev, i));
+
+    /* 5. ACTIVE: PLL calibration / lock */
+    CHK(goto_state(pDev, USYS_ACTIVE, TIMEOUT_ACTIVE_MS));
+
+    /* 6. restore output enable according to shadow */
+    CHK(oe_apply(pDev));
+
+    pDev-&gt;dirty_ch = 0;
+    pDev-&gt;dirty_id = 0;
+
+    return SI5332_OK;
+}
+
+si5332_err_t si5332_set_clock_source(si5332_t *pDev, si5332_clk_src_t src)
+{
+    si5332_clk_src_t old;
+    si5332_err_t err;
+
+    if (!pDev)
+        return SI5332_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return SI5332_E_NOT_INIT;
+    if (src != SI5332_CLK_SRC_XTAL_27M &amp;&amp; src != SI5332_CLK_SRC_CLKIN2_100M)
+        return SI5332_E_PARAM;
+
+    old = pDev-&gt;clk_src;
+    pDev-&gt;clk_src_req = src;
+
+    err = si5332_commit(pDev);
+    if (err == SI5332_E_NO_INPUT || err == SI5332_E_TIMEOUT) {
+        /* new source does not provide a clock: revert to the old source (best effort) */
+        pDev-&gt;clk_src_req = old;
+        (void)si5332_commit(pDev);
+    }
+    return err;
+}
+
+si5332_err_t si5332_set_output_enable(si5332_t *pDev, si5332_out_ch_t ch, u8 enable)
+{
+    int i;
+
+    if (!pDev)
+        return SI5332_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return SI5332_E_NOT_INIT;
+    i = ch_index(ch);
+    if (i &lt; 0)
+        return SI5332_E_PARAM;
+
+    pDev-&gt;ch[i].enabled = enable ? 1 : 0;
+
+    /* Takes effect immediately only if nothing is pending and the block is configured */
+    if (!has_pending(pDev) &amp;&amp; pDev-&gt;ch[i].configured) {
+        const u8 bit = (u8)(1u &lt;&lt; gChDesc[i].oe_bit);
+        return reg_rmw(pDev, gChDesc[i].oe_reg, bit, enable ? bit : 0);
+    }
+    return SI5332_OK;
+}
+
+si5332_err_t si5332_set_output_format(si5332_t *pDev, si5332_out_ch_t ch, si5332_out_format_t fmt)
+{
+    int i;
+
+    if (!pDev)
+        return SI5332_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return SI5332_E_NOT_INIT;
+    i = ch_index(ch);
+    if (i &lt; 0 || !fmt_valid(fmt))
+        return SI5332_E_PARAM;
+
+    pDev-&gt;ch[i].fmt = (u8)fmt;
+    pDev-&gt;dirty_ch |= (u8)(1u &lt;&lt; i);
+    return SI5332_OK;
+}
+
+/*
+ * Implementation detail (API contract and routing order in si5332.h):
+ * operates on a local working copy of the MultiSynth shadow state (tid) so
+ * that the device shadow state remains unchanged if routing fails. Only on
+ * success are the working copy and the new channel state written back and
+ * the affected MultiSynths/channel marked dirty.
+ */
+si5332_err_t si5332_set_output_freq(si5332_t *pDev, si5332_out_ch_t ch, u32 freq_hz)
+{
+    id_state_t tid[NUM_ID];
+    ch_state_t *cur;
+    u8 src, r = 0;
+    int i;
+
+    if (!pDev)
+        return SI5332_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return SI5332_E_NOT_INIT;
+    i = ch_index(ch);
+    if (i &lt; 0)
+        return SI5332_E_PARAM;
+    if (freq_hz &lt; SI5332_FREQ_MIN_HZ || freq_hz &gt; SI5332_FREQ_MAX_HZ)
+        return SI5332_E_FREQ_UNSUPPORTED;
+
+    cur = &amp;pDev-&gt;ch[i];
+    memcpy(tid, pDev-&gt;id, sizeof(tid));
+
+    /* Release the previously used MultiSynth (only in the working copy) */
+    if (cur-&gt;configured &amp;&amp; (cur-&gt;src == SI5332_DIV_SRC_ID0 || cur-&gt;src == SI5332_DIV_SRC_ID1)) {
+        id_state_t *old = &amp;tid[cur-&gt;src == SI5332_DIV_SRC_ID0 ? 0 : 1];
+
+        if (old-&gt;refcnt &gt; 0 &amp;&amp; --old-&gt;refcnt == 0) {
+            old-&gt;num = 0;
+            old-&gt;den = 0;
+        }
+    }
+
+    if (try_hsdiv(freq_hz, HSDIV0_HZ, &amp;r)) {
+        src = SI5332_DIV_SRC_HSDIV0;
+    } else if (try_hsdiv(freq_hz, HSDIV1_HZ, &amp;r)) {
+        src = SI5332_DIV_SRC_HSDIV1;
+    } else {
+        int sel = -1;
+
+        /* 1. reuse an already used MultiSynth */
+        for (int k = 0; k &lt; NUM_ID; k++) {
+            if (tid[k].refcnt &gt; 0 &amp;&amp; try_share_id(&amp;tid[k], freq_hz, &amp;r)) {
+                sel = k;
+                tid[k].refcnt++;
+                break;
+            }
+        }
+        /* 2. use a free MultiSynth */
+        if (sel &lt; 0) {
+            u32 num, den;
+
+            for (int k = 0; k &lt; NUM_ID; k++) {
+                if (tid[k].refcnt == 0) {
+                    sel = k;
+                    break;
+                }
+            }
+            if (sel &lt; 0)
+                return SI5332_E_NO_FREE_MS;
+            {
+                si5332_err_t e = plan_id(freq_hz, &amp;num, &amp;den, &amp;r);
+                if (e != SI5332_OK)
+                    return e;
+            }
+            tid[sel].num    = num;
+            tid[sel].den    = den;
+            tid[sel].refcnt = 1;
+        }
+        src = (sel == 0) ? SI5332_DIV_SRC_ID0 : SI5332_DIV_SRC_ID1;
+    }
+
+    /* Success: adopt the working copy and mark changed IDs */
+    for (int k = 0; k &lt; NUM_ID; k++) {
+        const id_state_t *o = &amp;pDev-&gt;id[k];
+        const id_state_t *n = &amp;tid[k];
+
+        if ((o-&gt;refcnt &gt; 0) != (n-&gt;refcnt &gt; 0) || o-&gt;num != n-&gt;num || o-&gt;den != n-&gt;den)
+            pDev-&gt;dirty_id |= (u8)(1u &lt;&lt; k);
+    }
+    memcpy(pDev-&gt;id, tid, sizeof(tid));
+
+    cur-&gt;src        = src;
+    cur-&gt;rdiv       = r;
+    cur-&gt;freq_hz    = freq_hz;
+    cur-&gt;configured = 1;
+    pDev-&gt;dirty_ch |= (u8)(1u &lt;&lt; i);
+
+    return SI5332_OK;
+}
+
+si5332_err_t si5332_get_status(si5332_t *pDev, si5332_status_flags_t *flags)
+{
+    u8 stat, sts;
+
+    if (!pDev || !flags)
+        return SI5332_E_PARAM;
+    if (!pDev-&gt;isReady)
+        return SI5332_E_NOT_INIT;
+
+    CHK(reg_read(pDev, REG_USYS_STAT, &amp;stat));
+    CHK(reg_read(pDev, REG_STATUS, &amp;sts));
+
+    flags-&gt;usys_stat    = stat;
+    flags-&gt;is_active    = (stat == USYS_ACTIVE);
+    flags-&gt;no_input     = (stat == USYS_NO_INPUT);
+    flags-&gt;vdd_xtal_ok  = (sts &gt;&gt; 7) &amp; 0x01;
+    flags-&gt;vddo_ok_mask = sts &amp; 0x3F;
+
+    return SI5332_OK;
+}
+
+si5332_err_t si5332_apply_config(si5332_t *pDev)
+{
+    return si5332_init(pDev, SI5332_CLK_SRC_XTAL_27M);
+}
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Matthias Haefner - Heosys – Licensed under Apache-2.0
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structsi5332__t" kind="struct" language="C++" prot="public">
+    <compoundname>si5332_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsi5332__t_1a4d51d0684e8b45c0e3f04d35e2b04d32" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 si5332_t::isReady</definition>
+        <argsstring></argsstring>
+        <name>isReady</name>
+        <qualifiedname>si5332_t::isReady</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Non-zero once HAL function pointers have been set by <ref refid="si5332_8c_1a9a05d733ba2455228fe087a1f384e986" kindref="member">si5332_initialize()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="139" column="4" bodyfile="sw/devices/si5332/si5332.c" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi5332__t_1a46bd33e172ad043bb8fa34da4f826442" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 si5332_t::isConfigured</definition>
+        <argsstring></argsstring>
+        <name>isConfigured</name>
+        <qualifiedname>si5332_t::isConfigured</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Non-zero once <ref refid="si5332_8c_1a229212f30f2c71fd65704559f05be08a" kindref="member">si5332_init()</ref> has completed successfully. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="140" column="4" bodyfile="sw/devices/si5332/si5332.c" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi5332__t_1a5433856209615381e0bba1fa3bc11f7f" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 si5332_t::i2cAddr</definition>
+        <argsstring></argsstring>
+        <name>i2cAddr</name>
+        <qualifiedname>si5332_t::i2cAddr</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>7-bit I2C address of the device. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="141" column="4" bodyfile="sw/devices/si5332/si5332.c" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi5332__t_1aa35b684989b10304fe66e4dd778e4c7e" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* si5332_t::hal_ctx</definition>
+        <argsstring></argsstring>
+        <name>hal_ctx</name>
+        <qualifiedname>si5332_t::hal_ctx</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Opaque context pointer passed through to the HAL callbacks. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="142" column="6" bodyfile="sw/devices/si5332/si5332.c" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi5332__t_1a66b109d25b0f2a69fafe137eeb5c155f" prot="public" static="no" mutable="no">
+        <type><ref refid="si5332_8h_1a7d98566c2a81c470ea74ef12ac394bd3" kindref="member">si5332_i2c_write_f</ref></type>
+        <definition>si5332_i2c_write_f si5332_t::i2c_write</definition>
+        <argsstring></argsstring>
+        <name>i2c_write</name>
+        <qualifiedname>si5332_t::i2c_write</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>HAL register write callback. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="143" column="20" bodyfile="sw/devices/si5332/si5332.c" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi5332__t_1aa40345fbfb27c2c63a4fca94c82caab2" prot="public" static="no" mutable="no">
+        <type><ref refid="si5332_8h_1a52f61956d5bbdcaad0b02d626ec296c9" kindref="member">si5332_i2c_read_f</ref></type>
+        <definition>si5332_i2c_read_f si5332_t::i2c_read</definition>
+        <argsstring></argsstring>
+        <name>i2c_read</name>
+        <qualifiedname>si5332_t::i2c_read</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>HAL register read callback. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="144" column="20" bodyfile="sw/devices/si5332/si5332.c" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi5332__t_1aadaf0575b77edc90714edd0f43ac56c6" prot="public" static="no" mutable="no">
+        <type><ref refid="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188b" kindref="member">si5332_clk_src_t</ref></type>
+        <definition>si5332_clk_src_t si5332_t::clk_src</definition>
+        <argsstring></argsstring>
+        <name>clk_src</name>
+        <qualifiedname>si5332_t::clk_src</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clock source currently active on the device. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="146" column="18" bodyfile="sw/devices/si5332/si5332.c" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi5332__t_1a3845efca108b5b3d79538c5fb41f5712" prot="public" static="no" mutable="no">
+        <type><ref refid="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188b" kindref="member">si5332_clk_src_t</ref></type>
+        <definition>si5332_clk_src_t si5332_t::clk_src_req</definition>
+        <argsstring></argsstring>
+        <name>clk_src_req</name>
+        <qualifiedname>si5332_t::clk_src_req</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clock source requested by the application. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="147" column="18" bodyfile="sw/devices/si5332/si5332.c" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi5332__t_1afb56b20c20600ff15ecbc8ba6824a127" prot="public" static="no" mutable="no">
+        <type><ref refid="structch__state__t" kindref="compound">ch_state_t</ref></type>
+        <definition>ch_state_t si5332_t::ch[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>ch</name>
+        <qualifiedname>si5332_t::ch</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Shadow state of the configurable output channels. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="149" column="12" bodyfile="sw/devices/si5332/si5332.c" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi5332__t_1af9f6566be094f94dd755252c54f45e2c" prot="public" static="no" mutable="no">
+        <type><ref refid="structid__state__t" kindref="compound">id_state_t</ref></type>
+        <definition>id_state_t si5332_t::id[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>id</name>
+        <qualifiedname>si5332_t::id</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Shadow state of the MultiSynth dividers. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="150" column="12" bodyfile="sw/devices/si5332/si5332.c" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi5332__t_1aa062096a240e5f3184952735920eed2a" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 si5332_t::dirty_ch</definition>
+        <argsstring></argsstring>
+        <name>dirty_ch</name>
+        <qualifiedname>si5332_t::dirty_ch</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Bitmask over channel indices with pending (uncommitted) changes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="152" column="4" bodyfile="sw/devices/si5332/si5332.c" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi5332__t_1ac80cae8d54c489ff2bfe9414619953da" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 si5332_t::dirty_id</definition>
+        <argsstring></argsstring>
+        <name>dirty_id</name>
+        <qualifiedname>si5332_t::dirty_id</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Bitmask over MultiSynth indices with pending (uncommitted) changes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="153" column="4" bodyfile="sw/devices/si5332/si5332.c" bodystart="153" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Opaque device handle (definition), see <ref refid="structsi5332__t" kindref="compound">si5332_t</ref> in <ref refid="si5332_8h" kindref="compound">si5332.h</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Holds the HAL callbacks, the currently/requested clock source and the complete shadow state (channels + MultiSynths) together with dirty bitmasks that track which parts still need to be written to the device by <ref refid="si5332_8c_1a62c9756fc10566540267035a11c64c59" kindref="member">si5332_commit()</ref>. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>ch_state_t</label>
+        <link refid="structch__state__t"/>
+      </node>
+      <node id="3">
+        <label>id_state_t</label>
+        <link refid="structid__state__t"/>
+      </node>
+      <node id="1">
+        <label>si5332_t</label>
+        <link refid="structsi5332__t"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ch</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="sw/devices/si5332/si5332.c" line="138" column="1" bodyfile="sw/devices/si5332/si5332.c" bodystart="138" bodyend="154"/>
+    <listofallmembers>
+      <member refid="structsi5332__t_1afb56b20c20600ff15ecbc8ba6824a127" prot="public" virt="non-virtual"><scope>si5332_t</scope><name>ch</name></member>
+      <member refid="structsi5332__t_1aadaf0575b77edc90714edd0f43ac56c6" prot="public" virt="non-virtual"><scope>si5332_t</scope><name>clk_src</name></member>
+      <member refid="structsi5332__t_1a3845efca108b5b3d79538c5fb41f5712" prot="public" virt="non-virtual"><scope>si5332_t</scope><name>clk_src_req</name></member>
+      <member refid="structsi5332__t_1aa062096a240e5f3184952735920eed2a" prot="public" virt="non-virtual"><scope>si5332_t</scope><name>dirty_ch</name></member>
+      <member refid="structsi5332__t_1ac80cae8d54c489ff2bfe9414619953da" prot="public" virt="non-virtual"><scope>si5332_t</scope><name>dirty_id</name></member>
+      <member refid="structsi5332__t_1aa35b684989b10304fe66e4dd778e4c7e" prot="public" virt="non-virtual"><scope>si5332_t</scope><name>hal_ctx</name></member>
+      <member refid="structsi5332__t_1aa40345fbfb27c2c63a4fca94c82caab2" prot="public" virt="non-virtual"><scope>si5332_t</scope><name>i2c_read</name></member>
+      <member refid="structsi5332__t_1a66b109d25b0f2a69fafe137eeb5c155f" prot="public" virt="non-virtual"><scope>si5332_t</scope><name>i2c_write</name></member>
+      <member refid="structsi5332__t_1a5433856209615381e0bba1fa3bc11f7f" prot="public" virt="non-virtual"><scope>si5332_t</scope><name>i2cAddr</name></member>
+      <member refid="structsi5332__t_1af9f6566be094f94dd755252c54f45e2c" prot="public" virt="non-virtual"><scope>si5332_t</scope><name>id</name></member>
+      <member refid="structsi5332__t_1a46bd33e172ad043bb8fa34da4f826442" prot="public" virt="non-virtual"><scope>si5332_t</scope><name>isConfigured</name></member>
+      <member refid="structsi5332__t_1a4d51d0684e8b45c0e3f04d35e2b04d32" prot="public" virt="non-virtual"><scope>si5332_t</scope><name>isReady</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structsi5332__status__flags__t" kind="struct" language="C++" prot="public">
+    <compoundname>si5332_status_flags_t</compoundname>
+    <includes refid="si5332_8h" local="no">sw/devices/si5332/si5332.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsi5332__status__flags__t_1aaa0defa8a2f34d7af8012776348a35b6" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 si5332_status_flags_t::usys_stat</definition>
+        <argsstring></argsstring>
+        <name>usys_stat</name>
+        <qualifiedname>si5332_status_flags_t::usys_stat</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Raw value of register 0x07 (0x01 READY, 0x02 ACTIVE, 0x89 no input clock). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="104" column="4" bodyfile="sw/devices/si5332/si5332.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi5332__status__flags__t_1a025cc1e2e4e3f4c018beb1820a66a518" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 si5332_status_flags_t::is_active</definition>
+        <argsstring></argsstring>
+        <name>is_active</name>
+        <qualifiedname>si5332_status_flags_t::is_active</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>usys_stat == 0x02. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="105" column="4" bodyfile="sw/devices/si5332/si5332.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi5332__status__flags__t_1a7d6c47f4e48eb904356d0f0948da9cd5" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 si5332_status_flags_t::no_input</definition>
+        <argsstring></argsstring>
+        <name>no_input</name>
+        <qualifiedname>si5332_status_flags_t::no_input</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>usys_stat == 0x89. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="106" column="4" bodyfile="sw/devices/si5332/si5332.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi5332__status__flags__t_1ad792f4f68449fc4a2daa7ed1d3b9e75b" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 si5332_status_flags_t::vdd_xtal_ok</definition>
+        <argsstring></argsstring>
+        <name>vdd_xtal_ok</name>
+        <qualifiedname>si5332_status_flags_t::vdd_xtal_ok</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>0x05[7]: crystal supply OK. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="107" column="4" bodyfile="sw/devices/si5332/si5332.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsi5332__status__flags__t_1ac68cba807272610bb9a9bca5cafc8e07" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 si5332_status_flags_t::vddo_ok_mask</definition>
+        <argsstring></argsstring>
+        <name>vddo_ok_mask</name>
+        <qualifiedname>si5332_status_flags_t::vddo_ok_mask</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>0x05[5:0], bit n = VDDOn &gt; 1.2 V. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.h" line="108" column="4" bodyfile="sw/devices/si5332/si5332.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Decoded device status flags (see <ref refid="si5332_8c_1a2163cd28a22fe5c9321bb3a899f9cf3e" kindref="member">si5332_get_status()</ref>). </para>
+    </detaileddescription>
+    <location file="sw/devices/si5332/si5332.h" line="103" column="1" bodyfile="sw/devices/si5332/si5332.h" bodystart="103" bodyend="109"/>
+    <listofallmembers>
+      <member refid="structsi5332__status__flags__t_1a025cc1e2e4e3f4c018beb1820a66a518" prot="public" virt="non-virtual"><scope>si5332_status_flags_t</scope><name>is_active</name></member>
+      <member refid="structsi5332__status__flags__t_1a7d6c47f4e48eb904356d0f0948da9cd5" prot="public" virt="non-virtual"><scope>si5332_status_flags_t</scope><name>no_input</name></member>
+      <member refid="structsi5332__status__flags__t_1aaa0defa8a2f34d7af8012776348a35b6" prot="public" virt="non-virtual"><scope>si5332_status_flags_t</scope><name>usys_stat</name></member>
+      <member refid="structsi5332__status__flags__t_1ad792f4f68449fc4a2daa7ed1d3b9e75b" prot="public" virt="non-virtual"><scope>si5332_status_flags_t</scope><name>vdd_xtal_ok</name></member>
+      <member refid="structsi5332__status__flags__t_1ac68cba807272610bb9a9bca5cafc8e07" prot="public" virt="non-virtual"><scope>si5332_status_flags_t</scope><name>vddo_ok_mask</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

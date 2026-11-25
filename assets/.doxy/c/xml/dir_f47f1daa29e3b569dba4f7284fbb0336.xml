@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_f47f1daa29e3b569dba4f7284fbb0336" kind="dir">
+    <compoundname>sw/devices/si5332</compoundname>
+    <innerfile refid="si5332_8c">si5332.c</innerfile>
+    <innerfile refid="si5332_8h">si5332.h</innerfile>
+    <innerfile refid="si5332__cfg_8c">si5332_cfg.c</innerfile>
+    <innerfile refid="si5332__cfg_8h">si5332_cfg.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/devices/si5332/"/>
+  </compounddef>
+</doxygen>

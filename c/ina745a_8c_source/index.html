@@ -1,0 +1,1543 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hardware (FPGA/VHDL) and Firmware (C) documentation for unv-bb-v1-syscntrl">
+      
+      
+      
+      
+        <link rel="prev" href="../ina745a_8c/">
+      
+      
+        <link rel="next" href="../ina745a_8h/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>File ina745a.c - unv-bb-v1-syscntrl Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#file-ina745ac" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-header__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            unv-bb-v1-syscntrl Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              File ina745a.c
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  System Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../setup/ftdi-jtag/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Setup & Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sw-notes/BUILD_SYSTEM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Firmware (SW)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vhdl/debounce/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  FPGA (VHDL)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-nav__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    unv-bb-v1-syscntrl Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup & Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/ftdi-jtag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FTDI & JTAG Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/firmware-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware Build Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware (SW)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Firmware (SW)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sw-notes/BUILD_SYSTEM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C-Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Structures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FPGA (VHDL)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    FPGA (VHDL)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vhdl
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Vhdl
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/debounce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: debounce
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/fmcPowerCntrl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: fmcPowerCntrl
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/inputSync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: inputSync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/synchronizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: synchronizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/sysCtnrl_top/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: sysCntrl_Top
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/vccioSelect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: vccioSelect
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="file-ina745ac">File ina745a.c</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_b1d9dda0f5d22dbe57e7280d3502a0d9/"><strong>devices</strong></a> <strong>&gt;</strong> <a href="../dir_dfd4869667a9d947f6105bade284a2f8/"><strong>ina745a</strong></a> <strong>&gt;</strong> <a href="../ina745a_8c/"><strong>ina745a.c</strong></a></p>
+<p><a href="../ina745a_8c/">Go to the documentation of this file</a></p>
+<pre><code class="language-C++">
+// SPDX-License-Identifier: Apache-2.0
+// Copyright (c) 2026 Matthias Haefner - Heosys
+
+
+#include &lt;string.h&gt;
+
+#include &quot;ina745a.h&quot;
+#include &quot;userDef.h&quot;    /* provides INA745A_NUM_INSTANCES */
+
+/* ------------------------------------------------------------------------- */
+/* Register addresses (Table 7-1)                                            */
+/* ------------------------------------------------------------------------- */
+#define REG_CONFIG      0x00u   
+#define REG_ADC_CONFIG      0x01u   
+#define REG_VBUS        0x05u   
+#define REG_DIETEMP     0x06u   
+#define REG_CURRENT     0x07u   
+#define REG_POWER       0x08u   
+#define REG_ENERGY      0x09u   
+#define REG_CHARGE      0x0Au   
+#define REG_DIAG_ALRT       0x0Bu   
+#define REG_COL         0x0Cu   
+#define REG_CUL         0x0Du   
+#define REG_BOVL        0x0Eu   
+#define REG_BUVL        0x0Fu   
+#define REG_TEMP_LIMIT      0x10u   
+#define REG_PWR_LIMIT       0x11u   
+#define REG_MANUFACTURER_ID 0x3Eu   
+
+/* ------------------------------------------------------------------------- */
+/* CONFIG register bit positions (Table 7-3)                                 */
+/* ------------------------------------------------------------------------- */
+#define CONFIG_RST_BIT      15u 
+#define CONFIG_RSTACC_BIT   14u 
+#define CONFIG_CONVDLY_SHIFT    6u  
+#define CONFIG_CONVDLY_MASK (0xFFu &lt;&lt; CONFIG_CONVDLY_SHIFT)
+
+/* ------------------------------------------------------------------------- */
+/* DIAG_ALRT register bit positions (Table 7-11)                             */
+/* ------------------------------------------------------------------------- */
+#define DIAG_ALATCH_BIT     15u
+#define DIAG_CNVR_BIT       14u
+#define DIAG_SLOWALERT_BIT  13u
+#define DIAG_APOL_BIT       12u
+#define DIAG_ENERGYOF_BIT   11u
+#define DIAG_CHARGEOF_BIT   10u
+#define DIAG_MATHOF_BIT     9u
+#define DIAG_TMPOL_BIT      7u
+#define DIAG_CURRENTOL_BIT  6u
+#define DIAG_CURRENTUL_BIT  5u
+#define DIAG_BUSOL_BIT      4u
+#define DIAG_BUSUL_BIT      3u
+#define DIAG_POL_BIT        2u
+#define DIAG_CNVRF_BIT      1u
+#define DIAG_MEMSTAT_BIT    0u
+
+/*
+ * Number of INA745A instances that can be managed simultaneously
+ * (#INA745A_NUM_INSTANCES) is defined centrally in userDef.h, analogous
+ * to TPSM8286_NUM_OF_INSTANCES for tpsm8286x.
+ */
+
+#define CHK(x)  do { ina745a_err_t _e = (x); if (_e != INA745A_OK) return _e; } while (0)
+
+/* ------------------------------------------------------------------------- */
+/* Data types                                                                 */
+/* ------------------------------------------------------------------------- */
+
+struct ina745a_t {
+    u8 isReady;     
+    u8 isConfigured;    
+    u8 i2cAddr;     
+    void *hal_ctx;      
+    ina745a_i2c_write_f i2c_write;  
+    ina745a_i2c_read_f  i2c_read;   
+};
+
+static struct ina745a_t gInstances[INA745A_NUM_INSTANCES];
+
+/* ------------------------------------------------------------------------- */
+/* Low-level register access                                                 */
+/* ------------------------------------------------------------------------- */
+
+static ina745a_err_t reg_write16(ina745a_t *d, u8 addr, u16 val)
+{
+    u8 buf[2] = { (u8)(val &gt;&gt; 8), (u8)(val &amp; 0xFFu) };
+
+    return d-&gt;i2c_write(d-&gt;hal_ctx, d-&gt;i2cAddr, addr, buf, sizeof(buf));
+}
+
+static ina745a_err_t reg_read16(ina745a_t *d, u8 addr, u16 *val)
+{
+    u8 buf[2];
+
+    CHK(d-&gt;i2c_read(d-&gt;hal_ctx, d-&gt;i2cAddr, addr, buf, sizeof(buf)));
+    *val = (u16)(((u16)buf[0] &lt;&lt; 8) | buf[1]);
+    return INA745A_OK;
+}
+
+static ina745a_err_t reg_read24(ina745a_t *d, u8 addr, u32 *val)
+{
+    u8 buf[3];
+
+    CHK(d-&gt;i2c_read(d-&gt;hal_ctx, d-&gt;i2cAddr, addr, buf, sizeof(buf)));
+    *val = ((u32)buf[0] &lt;&lt; 16) | ((u32)buf[1] &lt;&lt; 8) | buf[2];
+    return INA745A_OK;
+}
+
+static ina745a_err_t reg_read40(ina745a_t *d, u8 addr, u64 *val)
+{
+    u8 buf[5];
+
+    CHK(d-&gt;i2c_read(d-&gt;hal_ctx, d-&gt;i2cAddr, addr, buf, sizeof(buf)));
+    *val = ((u64)buf[0] &lt;&lt; 32) | ((u64)buf[1] &lt;&lt; 24) | ((u64)buf[2] &lt;&lt; 16)
+         | ((u64)buf[3] &lt;&lt; 8)  |  (u64)buf[4];
+    return INA745A_OK;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Math helpers                                                              */
+/* ------------------------------------------------------------------------- */
+
+static s32 sign_extend32(u32 value, u8 bits)
+{
+    u32 m = 1u &lt;&lt; (bits - 1);
+
+    return (s32)((value ^ m) - m);
+}
+
+static s64 sign_extend64(u64 value, u8 bits)
+{
+    u64 m = 1ULL &lt;&lt; (bits - 1);
+
+    return (s64)((value ^ m) - m);
+}
+
+static s32 clampi(s32 x, s32 lo, s32 hi)
+{
+    return (x &lt; lo) ? lo : (x &gt; hi) ? hi : x;
+}
+
+static s32 round_f(float x)
+{
+    return (s32)((x &gt;= 0.0f) ? (x + 0.5f) : (x - 0.5f));
+}
+
+/* ------------------------------------------------------------------------- */
+/* ADC_CONFIG packing/unpacking (Table 7-4)                                  */
+/* ------------------------------------------------------------------------- */
+
+static ina745a_err_t adc_config_pack(const ina745a_adc_config_t *cfg, u16 *raw)
+{
+    if (((u32)cfg-&gt;mode   &amp; ~0xFu) || ((u32)cfg-&gt;vbusct &amp; ~0x7u) ||
+        ((u32)cfg-&gt;vsenct &amp; ~0x7u) || ((u32)cfg-&gt;tct    &amp; ~0x7u) ||
+        ((u32)cfg-&gt;avg    &amp; ~0x7u))
+        return INA745A_E_PARAM;
+
+    *raw = (u16)(((u16)cfg-&gt;mode   &amp; 0xFu) &lt;&lt; 12)
+         | (u16)(((u16)cfg-&gt;vbusct &amp; 0x7u) &lt;&lt; 9)
+         | (u16)(((u16)cfg-&gt;vsenct &amp; 0x7u) &lt;&lt; 6)
+         | (u16)(((u16)cfg-&gt;tct    &amp; 0x7u) &lt;&lt; 3)
+         |  (u16)((u16)cfg-&gt;avg    &amp; 0x7u);
+    return INA745A_OK;
+}
+
+static void adc_config_unpack(u16 raw, ina745a_adc_config_t *cfg)
+{
+    cfg-&gt;mode   = (ina745a_mode_t)((raw &gt;&gt; 12) &amp; 0xFu);
+    cfg-&gt;vbusct = (ina745a_convtime_t)((raw &gt;&gt; 9) &amp; 0x7u);
+    cfg-&gt;vsenct = (ina745a_convtime_t)((raw &gt;&gt; 6) &amp; 0x7u);
+    cfg-&gt;tct    = (ina745a_convtime_t)((raw &gt;&gt; 3) &amp; 0x7u);
+    cfg-&gt;avg    = (ina745a_avg_t)(raw &amp; 0x7u);
+}
+
+/* ------------------------------------------------------------------------- */
+/* API                                                                        */
+/* ------------------------------------------------------------------------- */
+
+/* Public API: documented in ina745a.h only. */
+ina745a_t* ina745a_initialize(u32 devId, u8 i2c_addr, ina745a_i2c_write_f w, ina745a_i2c_read_f r, void *ctx)
+{
+    ina745a_t *pDev;
+
+    if (!w || !r)
+        return 0;
+    if (i2c_addr &lt; INA745A_ADDR_MIN || i2c_addr &gt; INA745A_ADDR_MAX)
+        return 0;
+    if (devId &gt;= INA745A_NUM_INSTANCES)
+        return 0;
+
+    pDev = &amp;gInstances[devId];
+
+    memset(pDev, 0, sizeof(*pDev));
+    pDev-&gt;i2cAddr   = i2c_addr;
+    pDev-&gt;i2c_write = w;
+    pDev-&gt;i2c_read  = r;
+    pDev-&gt;hal_ctx   = ctx;
+    pDev-&gt;isReady   = 1;
+    return pDev;
+}
+
+ina745a_err_t ina745a_init(ina745a_t *pDev, const ina745a_adc_config_t *cfg)
+{
+    u16 manuf, raw;
+
+    if (!pDev || !cfg)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isReady)
+        return INA745A_E_NOT_INIT;
+
+    pDev-&gt;isConfigured = 0;
+
+    CHK(reg_read16(pDev, REG_MANUFACTURER_ID, &amp;manuf));
+    if (manuf != INA745A_MANUFACTURER_ID)
+        return INA745A_E_MANUF_ID;
+
+    CHK(adc_config_pack(cfg, &amp;raw));
+    CHK(reg_write16(pDev, REG_ADC_CONFIG, raw));
+
+    pDev-&gt;isConfigured = 1;
+    return INA745A_OK;
+}
+
+ina745a_err_t ina745a_reset(ina745a_t *pDev)
+{
+    if (!pDev)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isReady)
+        return INA745A_E_NOT_INIT;
+
+    pDev-&gt;isConfigured = 0;
+    return reg_write16(pDev, REG_CONFIG, (u16)(1u &lt;&lt; CONFIG_RST_BIT));
+}
+
+/* Read-modify-write so that the CONVDLY field is preserved. */
+ina745a_err_t ina745a_reset_accumulators(ina745a_t *pDev)
+{
+    u16 cfg;
+
+    if (!pDev)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    CHK(reg_read16(pDev, REG_CONFIG, &amp;cfg));
+    cfg = (u16)((cfg &amp; ~(1u &lt;&lt; CONFIG_RST_BIT)) | (1u &lt;&lt; CONFIG_RSTACC_BIT));
+    return reg_write16(pDev, REG_CONFIG, cfg);
+}
+
+/* Read-modify-write: RST/RSTACC and reserved bits are left untouched. */
+ina745a_err_t ina745a_set_conversion_delay(ina745a_t *pDev, u8 steps_2ms)
+{
+    u16 cfg;
+
+    if (!pDev)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    CHK(reg_read16(pDev, REG_CONFIG, &amp;cfg));
+    cfg = (u16)(cfg &amp; ~CONFIG_CONVDLY_MASK);
+    cfg = (u16)(cfg | ((u16)steps_2ms &lt;&lt; CONFIG_CONVDLY_SHIFT));
+    return reg_write16(pDev, REG_CONFIG, cfg);
+}
+
+ina745a_err_t ina745a_set_adc_config(ina745a_t *pDev, const ina745a_adc_config_t *cfg)
+{
+    u16 raw;
+
+    if (!pDev || !cfg)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    CHK(adc_config_pack(cfg, &amp;raw));
+    return reg_write16(pDev, REG_ADC_CONFIG, raw);
+}
+
+ina745a_err_t ina745a_get_adc_config(ina745a_t *pDev, ina745a_adc_config_t *cfg)
+{
+    u16 raw;
+
+    if (!pDev || !cfg)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    CHK(reg_read16(pDev, REG_ADC_CONFIG, &amp;raw));
+    adc_config_unpack(raw, cfg);
+    return INA745A_OK;
+}
+
+ina745a_err_t ina745a_set_mode(ina745a_t *pDev, ina745a_mode_t mode)
+{
+    u16 raw;
+
+    if (!pDev)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    CHK(reg_read16(pDev, REG_ADC_CONFIG, &amp;raw));
+    raw = (u16)((raw &amp; (u16)~(0xFu &lt;&lt; 12)) | (((u16)mode &amp; 0xFu) &lt;&lt; 12));
+    return reg_write16(pDev, REG_ADC_CONFIG, raw);
+}
+
+ina745a_err_t ina745a_get_bus_voltage(ina745a_t *pDev, float *volts)
+{
+    u16 raw;
+
+    if (!pDev || !volts)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    CHK(reg_read16(pDev, REG_VBUS, &amp;raw));
+    *volts = (float)raw * INA745A_BUS_VOLTAGE_LSB_V;
+    return INA745A_OK;
+}
+
+ina745a_err_t ina745a_get_die_temperature(ina745a_t *pDev, float *celsius)
+{
+    u16 raw;
+    s32 count;
+
+    if (!pDev || !celsius)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    CHK(reg_read16(pDev, REG_DIETEMP, &amp;raw));
+    count = sign_extend32((u32)((raw &gt;&gt; 4) &amp; 0xFFFu), 12);
+    *celsius = (float)count * INA745A_TEMP_LSB_C;
+    return INA745A_OK;
+}
+
+ina745a_err_t ina745a_get_current(ina745a_t *pDev, float *amps)
+{
+    u16 raw;
+
+    if (!pDev || !amps)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    CHK(reg_read16(pDev, REG_CURRENT, &amp;raw));
+    *amps = (float)(s16)raw * INA745A_CURRENT_LSB_A;
+    return INA745A_OK;
+}
+
+ina745a_err_t ina745a_get_power(ina745a_t *pDev, float *watts)
+{
+    u32 raw;
+
+    if (!pDev || !watts)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    CHK(reg_read24(pDev, REG_POWER, &amp;raw));
+    *watts = (float)raw * INA745A_POWER_LSB_W;
+    return INA745A_OK;
+}
+
+ina745a_err_t ina745a_get_energy(ina745a_t *pDev, double *joules)
+{
+    u64 raw;
+
+    if (!pDev || !joules)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    CHK(reg_read40(pDev, REG_ENERGY, &amp;raw));
+    *joules = (double)raw * INA745A_ENERGY_LSB_J;
+    return INA745A_OK;
+}
+
+ina745a_err_t ina745a_get_charge(ina745a_t *pDev, double *coulombs)
+{
+    u64 raw;
+    s64 count;
+
+    if (!pDev || !coulombs)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    CHK(reg_read40(pDev, REG_CHARGE, &amp;raw));
+    count = sign_extend64(raw, 40);
+    *coulombs = (double)count * INA745A_CHARGE_LSB_C;
+    return INA745A_OK;
+}
+
+ina745a_err_t ina745a_get_measurements(ina745a_t *pDev, ina745a_measurements_t *out)
+{
+    u16 vbus_raw, dietemp_reg, current_reg;
+    u32 power_reg;
+    u64 energy_reg, charge_reg;
+
+    if (!pDev || !out)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    CHK(reg_read16(pDev, REG_VBUS,    &amp;vbus_raw));
+    CHK(reg_read16(pDev, REG_DIETEMP, &amp;dietemp_reg));
+    CHK(reg_read16(pDev, REG_CURRENT, &amp;current_reg));
+    CHK(reg_read24(pDev, REG_POWER,   &amp;power_reg));
+    CHK(reg_read40(pDev, REG_ENERGY,  &amp;energy_reg));
+    CHK(reg_read40(pDev, REG_CHARGE,  &amp;charge_reg));
+
+    out-&gt;vbus_raw    = vbus_raw;
+    out-&gt;dietemp_raw = (s16)sign_extend32((u32)((dietemp_reg &gt;&gt; 4) &amp; 0xFFFu), 12);
+    out-&gt;current_raw = (s16)current_reg;
+    out-&gt;power_raw   = power_reg;
+    out-&gt;energy_raw  = energy_reg;
+    out-&gt;charge_raw  = sign_extend64(charge_reg, 40);
+
+    out-&gt;bus_voltage_V = (float)out-&gt;vbus_raw    * INA745A_BUS_VOLTAGE_LSB_V;
+    out-&gt;die_temp_C     = (float)out-&gt;dietemp_raw * INA745A_TEMP_LSB_C;
+    out-&gt;current_A      = (float)out-&gt;current_raw * INA745A_CURRENT_LSB_A;
+    out-&gt;power_W        = (float)out-&gt;power_raw   * INA745A_POWER_LSB_W;
+    out-&gt;energy_J        = (double)out-&gt;energy_raw * INA745A_ENERGY_LSB_J;
+    out-&gt;charge_C        = (double)out-&gt;charge_raw * INA745A_CHARGE_LSB_C;
+
+    return INA745A_OK;
+}
+
+ina745a_err_t ina745a_set_current_limits(ina745a_t *pDev, float over_limit_A, float under_limit_A)
+{
+    s32 over_c, under_c;
+
+    if (!pDev)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    over_c  = clampi(round_f(over_limit_A  / INA745A_CURRENT_LSB_A), -32768, 32767);
+    under_c = clampi(round_f(under_limit_A / INA745A_CURRENT_LSB_A), -32768, 32767);
+
+    CHK(reg_write16(pDev, REG_COL, (u16)(s16)over_c));
+    CHK(reg_write16(pDev, REG_CUL, (u16)(s16)under_c));
+    return INA745A_OK;
+}
+
+ina745a_err_t ina745a_set_bus_voltage_limits(ina745a_t *pDev, float overvoltage_V, float undervoltage_V)
+{
+    s32 over_c, under_c;
+
+    if (!pDev)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    over_c  = clampi(round_f(overvoltage_V  / INA745A_BUS_VOLTAGE_LSB_V), 0, 0x7FFF);
+    under_c = clampi(round_f(undervoltage_V / INA745A_BUS_VOLTAGE_LSB_V), 0, 0x7FFF);
+
+    CHK(reg_write16(pDev, REG_BOVL, (u16)over_c));
+    CHK(reg_write16(pDev, REG_BUVL, (u16)under_c));
+    return INA745A_OK;
+}
+
+ina745a_err_t ina745a_set_temperature_limit(ina745a_t *pDev, float overtemp_C)
+{
+    s32 count;
+
+    if (!pDev)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    count = clampi(round_f(overtemp_C / INA745A_TEMP_LSB_C), -2048, 2047);
+    return reg_write16(pDev, REG_TEMP_LIMIT, (u16)(((u16)((u32)count &amp; 0xFFFu)) &lt;&lt; 4));
+}
+
+ina745a_err_t ina745a_set_power_limit(ina745a_t *pDev, float overpower_W)
+{
+    s32 count;
+
+    if (!pDev)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    count = clampi(round_f(overpower_W / INA745A_PWR_LIMIT_LSB_W), 0, 0xFFFF);
+    return reg_write16(pDev, REG_PWR_LIMIT, (u16)count);
+}
+
+ina745a_err_t ina745a_configure_alert(ina745a_t *pDev, const ina745a_alert_cfg_t *cfg)
+{
+    u16 raw;
+
+    if (!pDev || !cfg)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    raw = (u16)((cfg-&gt;alatch        ? (1u &lt;&lt; DIAG_ALATCH_BIT)    : 0u)
+              | (cfg-&gt;conv_ready_en ? (1u &lt;&lt; DIAG_CNVR_BIT)      : 0u)
+              | (cfg-&gt;slow_alert    ? (1u &lt;&lt; DIAG_SLOWALERT_BIT) : 0u)
+              | ((cfg-&gt;polarity == INA745A_ALERT_ACTIVE_HIGH) ? (1u &lt;&lt; DIAG_APOL_BIT) : 0u));
+
+    return reg_write16(pDev, REG_DIAG_ALRT, raw);
+}
+
+ina745a_err_t ina745a_get_diag_flags(ina745a_t *pDev, ina745a_diag_flags_t *out)
+{
+    u16 raw;
+
+    if (!pDev || !out)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isConfigured)
+        return INA745A_E_NOT_INIT;
+
+    CHK(reg_read16(pDev, REG_DIAG_ALRT, &amp;raw));
+
+    out-&gt;energy_overflow     = (u8)((raw &gt;&gt; DIAG_ENERGYOF_BIT)  &amp; 1u);
+    out-&gt;charge_overflow     = (u8)((raw &gt;&gt; DIAG_CHARGEOF_BIT)  &amp; 1u);
+    out-&gt;math_overflow       = (u8)((raw &gt;&gt; DIAG_MATHOF_BIT)    &amp; 1u);
+    out-&gt;temp_over_limit     = (u8)((raw &gt;&gt; DIAG_TMPOL_BIT)     &amp; 1u);
+    out-&gt;current_over_limit  = (u8)((raw &gt;&gt; DIAG_CURRENTOL_BIT) &amp; 1u);
+    out-&gt;current_under_limit = (u8)((raw &gt;&gt; DIAG_CURRENTUL_BIT) &amp; 1u);
+    out-&gt;bus_over_limit      = (u8)((raw &gt;&gt; DIAG_BUSOL_BIT)     &amp; 1u);
+    out-&gt;bus_under_limit     = (u8)((raw &gt;&gt; DIAG_BUSUL_BIT)     &amp; 1u);
+    out-&gt;power_over_limit    = (u8)((raw &gt;&gt; DIAG_POL_BIT)       &amp; 1u);
+    out-&gt;conversion_ready    = (u8)((raw &gt;&gt; DIAG_CNVRF_BIT)     &amp; 1u);
+    out-&gt;memory_ok           = (u8)((raw &gt;&gt; DIAG_MEMSTAT_BIT)   &amp; 1u);
+
+    return INA745A_OK;
+}
+
+ina745a_err_t ina745a_get_manufacturer_id(ina745a_t *pDev, u16 *id)
+{
+    if (!pDev || !id)
+        return INA745A_E_PARAM;
+    if (!pDev-&gt;isReady)
+        return INA745A_E_NOT_INIT;
+
+    return reg_read16(pDev, REG_MANUFACTURER_ID, id);
+}
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Matthias Haefner - Heosys – Licensed under Apache-2.0
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

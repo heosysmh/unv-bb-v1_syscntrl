@@ -1,0 +1,2092 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hardware (FPGA/VHDL) and Firmware (C) documentation for unv-bb-v1-syscntrl">
+      
+      
+      
+      
+        <link rel="prev" href="../boardGpio_8c_source/">
+      
+      
+        <link rel="next" href="../boardGpio_8h_source/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>File boardGpio.h - unv-bb-v1-syscntrl Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#file-boardgpioh" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-header__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            unv-bb-v1-syscntrl Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              File boardGpio.h
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  System Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../setup/ftdi-jtag/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Setup & Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sw-notes/BUILD_SYSTEM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Firmware (SW)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vhdl/debounce/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  FPGA (VHDL)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-nav__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    unv-bb-v1-syscntrl Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup & Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/ftdi-jtag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FTDI & JTAG Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/firmware-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware Build Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware (SW)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Firmware (SW)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sw-notes/BUILD_SYSTEM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C-Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Structures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FPGA (VHDL)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    FPGA (VHDL)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vhdl
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Vhdl
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/debounce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: debounce
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/fmcPowerCntrl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: fmcPowerCntrl
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/inputSync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: inputSync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/synchronizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: synchronizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/sysCtnrl_top/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: sysCntrl_Top
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/vccioSelect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: vccioSelect
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macros
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-boardgpio_getinput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function boardGpio_getInput
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-boardgpio_getpgstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function boardGpio_getPgStatus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-boardgpio_init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function boardGpio_init
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-boardgpio_pulseethphyreset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function boardGpio_pulseEthPhyReset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-boardgpio_releaseethphyreset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function boardGpio_releaseEthPhyReset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-boardgpio_releasesompor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function boardGpio_releaseSomPor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-boardgpio_setfmcmoduleenable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function boardGpio_setFmcModuleEnable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-boardgpio_setfmcpgoodrelease" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function boardGpio_setFmcPgoodRelease
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-boardgpio_setfmcsupplyenable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function boardGpio_setFmcSupplyEnable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-boardgpio_sethdbvccio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function boardGpio_setHdbVccio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-boardgpio_sethpcvccio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function boardGpio_setHpcVccio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-boardgpio_setstatusled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function boardGpio_setStatusLed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-boardgpio_waitsomready" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function boardGpio_waitSomReady
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macro-definition-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macro Definition Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Macro Definition Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_in_2v5_pg_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_IN_2V5_PG_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_in_eth_pme_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_IN_ETH_PME_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_in_fmc1_mod_pg_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_IN_FMC1_MOD_PG_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_in_fmc1_sup_pg_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_IN_FMC1_SUP_PG_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_in_fmc2_mod_pg_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_IN_FMC2_MOD_PG_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_in_fmc2_sup_pg_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_IN_FMC2_SUP_PG_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_in_hda14n_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_IN_HDA14N_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_in_hda14p_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_IN_HDA14P_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_in_lmk_intr_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_IN_LMK_INTR_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_in_mio35_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_IN_MIO35_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_in_sdpwr_en_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_IN_SDPWR_EN_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_in_sys_pg_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_IN_SYS_PG_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_in_szg_pg_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_IN_SZG_PG_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_in_vcco_pl_en_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_IN_VCCO_PL_EN_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_in_vcco_ps_en_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_IN_VCCO_PS_EN_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_out_eth_rstn_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_OUT_ETH_RSTN_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_out_fmc1_mod_en_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_OUT_FMC1_MOD_EN_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_out_fmc1_pg_rls_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_OUT_FMC1_PG_RLS_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_out_fmc1_sup_en_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_OUT_FMC1_SUP_EN_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_out_fmc2_mod_en_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_OUT_FMC2_MOD_EN_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_out_fmc2_pg_rls_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_OUT_FMC2_PG_RLS_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_out_fmc2_sup_en_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_OUT_FMC2_SUP_EN_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_out_hdb_vccio_select_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_OUT_HDB_VCCIO_SELECT_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_out_hpc_vccio_select_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_OUT_HPC_VCCIO_SELECT_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_out_por_b_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_OUT_POR_B_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_out_status_led_bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_OUT_STATUS_LED_BIT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_pg_fmc1_sup_mask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_PG_FMC1_SUP_MASK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_pg_fmc2_sup_mask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_PG_FMC2_SUP_MASK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_pg_sys_mask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_PG_SYS_MASK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_som_ready_mask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_SOM_READY_MASK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-gpio_status_led_mask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define GPIO_STATUS_LED_MASK
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="file-boardgpioh">File boardGpio.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_fd9e68481a64957b5aa550f8031e1091/"><strong>app</strong></a> <strong>&gt;</strong> <a href="../dir_4d8bb3f988c5738b11212c0e5c5a2a68/"><strong>src</strong></a> <strong>&gt;</strong> <a href="./"><strong>boardGpio.h</strong></a></p>
+<p><a href="../boardGpio_8h_source/">Go to the source code of this file</a></p>
+<p><em>Implementation of GPIO access (interface to FPGA).</em> <a href="#detailed-description">More...</a></p>
+<ul>
+<li><code>#include &lt;type.h&gt;</code></li>
+</ul>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">u32</td>
+<td style="text-align: left;"><a href="#function-boardgpio_getinput"><strong>boardGpio_getInput</strong></a> (void) <br><em>Reads the raw input register of the board.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">u32</td>
+<td style="text-align: left;"><a href="#function-boardgpio_getpgstatus"><strong>boardGpio_getPgStatus</strong></a> (void) <br><em>Reads the power-good / ALERT nets.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-boardgpio_init"><strong>boardGpio_init</strong></a> (void) <br><em>Drives all outputs to their reset state.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-boardgpio_pulseethphyreset"><strong>boardGpio_pulseEthPhyReset</strong></a> (void) <br><em>Generates a reset pulse on the ETH PHY reset line.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-boardgpio_releaseethphyreset"><strong>boardGpio_releaseEthPhyReset</strong></a> (void) <br><em>Releases the ETH PHY reset (ETH_RSTN high).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-boardgpio_releasesompor"><strong>boardGpio_releaseSomPor</strong></a> (void) <br><em>Releases POR_B of the SoM.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-boardgpio_setfmcmoduleenable"><strong>boardGpio_setFmcModuleEnable</strong></a> (int enable) <br><em>Enables/disables the FMC modules (both FMC slots).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-boardgpio_setfmcpgoodrelease"><strong>boardGpio_setFmcPgoodRelease</strong></a> (int release) <br><em>Releases/locks the FMC power-good (both FMC slots).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-boardgpio_setfmcsupplyenable"><strong>boardGpio_setFmcSupplyEnable</strong></a> (int enable) <br><em>Enables/disables the FMC supply (both FMC slots).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-boardgpio_sethdbvccio"><strong>boardGpio_setHdbVccio</strong></a> (int source2V5) <br><em>Selects the VCCIO source of the HDB bank.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-boardgpio_sethpcvccio"><strong>boardGpio_setHpcVccio</strong></a> (int sourceFmc1) <br><em>Selects the VCCIO source of the HPC bank.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-boardgpio_setstatusled"><strong>boardGpio_setStatusLed</strong></a> (int state) <br><em>Sets the state of the status LED.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-boardgpio_waitsomready"><strong>boardGpio_waitSomReady</strong></a> (void) <br><em>Blocks until the SoM has switched on its PL/PS supplies.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_in_2v5_pg_bit"><strong>GPIO_IN_2V5_PG_BIT</strong></a>  <code>10</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_in_eth_pme_bit"><strong>GPIO_IN_ETH_PME_BIT</strong></a>  <code>14</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_in_fmc1_mod_pg_bit"><strong>GPIO_IN_FMC1_MOD_PG_BIT</strong></a>  <code>8</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_in_fmc1_sup_pg_bit"><strong>GPIO_IN_FMC1_SUP_PG_BIT</strong></a>  <code>6</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_in_fmc2_mod_pg_bit"><strong>GPIO_IN_FMC2_MOD_PG_BIT</strong></a>  <code>9</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_in_fmc2_sup_pg_bit"><strong>GPIO_IN_FMC2_SUP_PG_BIT</strong></a>  <code>7</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_in_hda14n_bit"><strong>GPIO_IN_HDA14N_BIT</strong></a>  <code>4</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_in_hda14p_bit"><strong>GPIO_IN_HDA14P_BIT</strong></a>  <code>3</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_in_lmk_intr_bit"><strong>GPIO_IN_LMK_INTR_BIT</strong></a>  <code>13</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_in_mio35_bit"><strong>GPIO_IN_MIO35_BIT</strong></a>  <code>5</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_in_sdpwr_en_bit"><strong>GPIO_IN_SDPWR_EN_BIT</strong></a>  <code>2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_in_sys_pg_bit"><strong>GPIO_IN_SYS_PG_BIT</strong></a>  <code>11</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_in_szg_pg_bit"><strong>GPIO_IN_SZG_PG_BIT</strong></a>  <code>12</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_in_vcco_pl_en_bit"><strong>GPIO_IN_VCCO_PL_EN_BIT</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_in_vcco_ps_en_bit"><strong>GPIO_IN_VCCO_PS_EN_BIT</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_out_eth_rstn_bit"><strong>GPIO_OUT_ETH_RSTN_BIT</strong></a>  <code>9</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_out_fmc1_mod_en_bit"><strong>GPIO_OUT_FMC1_MOD_EN_BIT</strong></a>  <code>6</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_out_fmc1_pg_rls_bit"><strong>GPIO_OUT_FMC1_PG_RLS_BIT</strong></a>  <code>4</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_out_fmc1_sup_en_bit"><strong>GPIO_OUT_FMC1_SUP_EN_BIT</strong></a>  <code>2</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_out_fmc2_mod_en_bit"><strong>GPIO_OUT_FMC2_MOD_EN_BIT</strong></a>  <code>7</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_out_fmc2_pg_rls_bit"><strong>GPIO_OUT_FMC2_PG_RLS_BIT</strong></a>  <code>5</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_out_fmc2_sup_en_bit"><strong>GPIO_OUT_FMC2_SUP_EN_BIT</strong></a>  <code>3</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_out_hdb_vccio_select_bit"><strong>GPIO_OUT_HDB_VCCIO_SELECT_BIT</strong></a>  <code>1</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_out_hpc_vccio_select_bit"><strong>GPIO_OUT_HPC_VCCIO_SELECT_BIT</strong></a>  <code>0</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_out_por_b_bit"><strong>GPIO_OUT_POR_B_BIT</strong></a>  <code>8</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_out_status_led_bit"><strong>GPIO_OUT_STATUS_LED_BIT</strong></a>  <code>31</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_pg_fmc1_sup_mask"><strong>GPIO_PG_FMC1_SUP_MASK</strong></a>  <code>(1u &amp;lt;&amp;lt; [**GPIO\_IN\_FMC1\_SUP\_PG\_BIT**](boardGpio_8h.md#define-gpio_in_fmc1_sup_pg_bit))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_pg_fmc2_sup_mask"><strong>GPIO_PG_FMC2_SUP_MASK</strong></a>  <code>(1u &amp;lt;&amp;lt; [**GPIO\_IN\_FMC2\_SUP\_PG\_BIT**](boardGpio_8h.md#define-gpio_in_fmc2_sup_pg_bit))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_pg_sys_mask"><strong>GPIO_PG_SYS_MASK</strong></a>  <code>(1u &amp;lt;&amp;lt; [**GPIO\_IN\_SYS\_PG\_BIT**](boardGpio_8h.md#define-gpio_in_sys_pg_bit))</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_som_ready_mask"><strong>GPIO_SOM_READY_MASK</strong></a>  <code>/* multi line expression */</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-gpio_status_led_mask"><strong>GPIO_STATUS_LED_MASK</strong></a>  <code>(1u &amp;lt;&amp;lt; [**GPIO\_OUT\_STATUS\_LED\_BIT**](boardGpio_8h.md#define-gpio_out_status_led_bit))</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="detailed-description">Detailed Description</h2>
+<p>This is the only place where GPIO bit positions are evaluated; the input/output bit positions are defined below. The output register is shadowed so that read-modify-write sequences cannot lose bits.</p>
+<p><strong>Note:</strong></p>
+<p>This file is deliberately not called gpio.h - that name is already used by the BSP driver (mcu/software/standalone/driver/gpio.h) and every src directory is on the include path. </p>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-boardgpio_getinput">function boardGpio_getInput</h3>
+<p><em>Reads the raw input register of the board.</em> </p>
+<pre><code class="language-C++">u32 boardGpio_getInput (
+    void
+) 
+</code></pre>
+<p><strong>Returns:</strong></p>
+<p>Input register value (bit positions: GPIO_IN_*_BIT). </p>
+<hr>
+
+<h3 id="function-boardgpio_getpgstatus">function boardGpio_getPgStatus</h3>
+<p><em>Reads the power-good / ALERT nets.</em> </p>
+<pre><code class="language-C++">u32 boardGpio_getPgStatus (
+    void
+) 
+</code></pre>
+<p>Masked to <a href="./#define-gpio_pg_sys_mask"><strong>GPIO_PG_SYS_MASK</strong></a>, <a href="./#define-gpio_pg_fmc1_sup_mask"><strong>GPIO_PG_FMC1_SUP_MASK</strong></a> and <a href="./#define-gpio_pg_fmc2_sup_mask"><strong>GPIO_PG_FMC2_SUP_MASK</strong></a>. A bit reads 0 either because the supply is not good or because an INA745A on that net has asserted its (active low, open-drain) ALERT output.</p>
+<p><strong>Returns:</strong></p>
+<p>Masked power-good status bits. </p>
+<hr>
+
+<h3 id="function-boardgpio_init">function boardGpio_init</h3>
+<p><em>Drives all outputs to their reset state.</em> </p>
+<pre><code class="language-C++">void boardGpio_init (
+    void
+) 
+</code></pre>
+<p>Everything off: FMC supplies and modules disabled, POR_B asserted, ETH PHY in reset. </p>
+<hr>
+
+<h3 id="function-boardgpio_pulseethphyreset">function boardGpio_pulseEthPhyReset</h3>
+<p><em>Generates a reset pulse on the ETH PHY reset line.</em> </p>
+<pre><code class="language-C++">void boardGpio_pulseEthPhyReset (
+    void
+) 
+</code></pre>
+<p>Pulse width is <a href="../boardConfig_8h/#define-board_eth_reset_pulse_us"><strong>BOARD_ETH_RESET_PULSE_US</strong></a>; the line is high afterwards. </p>
+<hr>
+
+<h3 id="function-boardgpio_releaseethphyreset">function boardGpio_releaseEthPhyReset</h3>
+<p><em>Releases the ETH PHY reset (ETH_RSTN high).</em> </p>
+<pre><code class="language-C++">void boardGpio_releaseEthPhyReset (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-boardgpio_releasesompor">function boardGpio_releaseSomPor</h3>
+<p><em>Releases POR_B of the SoM.</em> </p>
+<pre><code class="language-C++">void boardGpio_releaseSomPor (
+    void
+) 
+</code></pre>
+<p>Cannot be re-asserted by this API on purpose. </p>
+<hr>
+
+<h3 id="function-boardgpio_setfmcmoduleenable">function boardGpio_setFmcModuleEnable</h3>
+<p><em>Enables/disables the FMC modules (both FMC slots).</em> </p>
+<pre><code class="language-C++">void boardGpio_setFmcModuleEnable (
+    int enable
+) 
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>enable</code> Non-zero to enable, zero to disable. </li>
+</ul>
+<hr>
+
+<h3 id="function-boardgpio_setfmcpgoodrelease">function boardGpio_setFmcPgoodRelease</h3>
+<p><em>Releases/locks the FMC power-good (both FMC slots).</em> </p>
+<pre><code class="language-C++">void boardGpio_setFmcPgoodRelease (
+    int release
+) 
+</code></pre>
+<p>Power-good is forced low if locked.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>release</code> Non-zero to release, zero to force low. </li>
+</ul>
+<hr>
+
+<h3 id="function-boardgpio_setfmcsupplyenable">function boardGpio_setFmcSupplyEnable</h3>
+<p><em>Enables/disables the FMC supply (both FMC slots).</em> </p>
+<pre><code class="language-C++">void boardGpio_setFmcSupplyEnable (
+    int enable
+) 
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>enable</code> Non-zero to enable, zero to disable. </li>
+</ul>
+<hr>
+
+<h3 id="function-boardgpio_sethdbvccio">function boardGpio_setHdbVccio</h3>
+<p><em>Selects the VCCIO source of the HDB bank.</em> </p>
+<pre><code class="language-C++">void boardGpio_setHdbVccio (
+    int source2V5
+) 
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>source2V5</code> Non-zero: 2.5V, zero: FMC2-Vadj. </li>
+</ul>
+<hr>
+
+<h3 id="function-boardgpio_sethpcvccio">function boardGpio_setHpcVccio</h3>
+<p><em>Selects the VCCIO source of the HPC bank.</em> </p>
+<pre><code class="language-C++">void boardGpio_setHpcVccio (
+    int sourceFmc1
+) 
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>sourceFmc1</code> Non-zero: FMC1-Vadj, zero: FMC2-Vadj. </li>
+</ul>
+<hr>
+
+<h3 id="function-boardgpio_setstatusled">function boardGpio_setStatusLed</h3>
+<p><em>Sets the state of the status LED.</em> </p>
+<pre><code class="language-C++">void boardGpio_setStatusLed (
+    int state
+) 
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>state</code> Non-zero: LED on, zero: LED off. </li>
+</ul>
+<hr>
+
+<h3 id="function-boardgpio_waitsomready">function boardGpio_waitSomReady</h3>
+<p><em>Blocks until the SoM has switched on its PL/PS supplies.</em> </p>
+<pre><code class="language-C++">void boardGpio_waitSomReady (
+    void
+) 
+</code></pre>
+<p>Waits until VCCO_PL_EN, VCCO_PS_EN and SYS_PG are all asserted (see <a href="./#define-gpio_som_ready_mask"><strong>GPIO_SOM_READY_MASK</strong></a>). </p>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-gpio_in_2v5_pg_bit">define GPIO_IN_2V5_PG_BIT</h3>
+<pre><code class="language-C++">#define GPIO_IN_2V5_PG_BIT `10`
+</code></pre>
+<p>2.5V rail power-good. </p>
+<hr>
+
+<h3 id="define-gpio_in_eth_pme_bit">define GPIO_IN_ETH_PME_BIT</h3>
+<pre><code class="language-C++">#define GPIO_IN_ETH_PME_BIT `14`
+</code></pre>
+<p>ETH PHY power-management event. </p>
+<hr>
+
+<h3 id="define-gpio_in_fmc1_mod_pg_bit">define GPIO_IN_FMC1_MOD_PG_BIT</h3>
+<pre><code class="language-C++">#define GPIO_IN_FMC1_MOD_PG_BIT `8`
+</code></pre>
+<p>FMC1 module power-good. </p>
+<hr>
+
+<h3 id="define-gpio_in_fmc1_sup_pg_bit">define GPIO_IN_FMC1_SUP_PG_BIT</h3>
+<pre><code class="language-C++">#define GPIO_IN_FMC1_SUP_PG_BIT `6`
+</code></pre>
+<p>FMC1 supply power-good / ALERT net. </p>
+<hr>
+
+<h3 id="define-gpio_in_fmc2_mod_pg_bit">define GPIO_IN_FMC2_MOD_PG_BIT</h3>
+<pre><code class="language-C++">#define GPIO_IN_FMC2_MOD_PG_BIT `9`
+</code></pre>
+<p>FMC2 module power-good. </p>
+<hr>
+
+<h3 id="define-gpio_in_fmc2_sup_pg_bit">define GPIO_IN_FMC2_SUP_PG_BIT</h3>
+<pre><code class="language-C++">#define GPIO_IN_FMC2_SUP_PG_BIT `7`
+</code></pre>
+<p>FMC2 supply power-good / ALERT net. </p>
+<hr>
+
+<h3 id="define-gpio_in_hda14n_bit">define GPIO_IN_HDA14N_BIT</h3>
+<pre><code class="language-C++">#define GPIO_IN_HDA14N_BIT `4`
+</code></pre>
+<p>HDA14N input. </p>
+<hr>
+
+<h3 id="define-gpio_in_hda14p_bit">define GPIO_IN_HDA14P_BIT</h3>
+<pre><code class="language-C++">#define GPIO_IN_HDA14P_BIT `3`
+</code></pre>
+<p>HDA14P input. </p>
+<hr>
+
+<h3 id="define-gpio_in_lmk_intr_bit">define GPIO_IN_LMK_INTR_BIT</h3>
+<pre><code class="language-C++">#define GPIO_IN_LMK_INTR_BIT `13`
+</code></pre>
+<p>LMK interrupt input. </p>
+<hr>
+
+<h3 id="define-gpio_in_mio35_bit">define GPIO_IN_MIO35_BIT</h3>
+<pre><code class="language-C++">#define GPIO_IN_MIO35_BIT `5`
+</code></pre>
+<p>MIO35 input. </p>
+<hr>
+
+<h3 id="define-gpio_in_sdpwr_en_bit">define GPIO_IN_SDPWR_EN_BIT</h3>
+<pre><code class="language-C++">#define GPIO_IN_SDPWR_EN_BIT `2`
+</code></pre>
+<p>SD card power enable indication. </p>
+<hr>
+
+<h3 id="define-gpio_in_sys_pg_bit">define GPIO_IN_SYS_PG_BIT</h3>
+<pre><code class="language-C++">#define GPIO_IN_SYS_PG_BIT `11`
+</code></pre>
+<p>System power-good / ALERT net. </p>
+<hr>
+
+<h3 id="define-gpio_in_szg_pg_bit">define GPIO_IN_SZG_PG_BIT</h3>
+<pre><code class="language-C++">#define GPIO_IN_SZG_PG_BIT `12`
+</code></pre>
+<p>SYZYGY power-good. </p>
+<hr>
+
+<h3 id="define-gpio_in_vcco_pl_en_bit">define GPIO_IN_VCCO_PL_EN_BIT</h3>
+<pre><code class="language-C++">#define GPIO_IN_VCCO_PL_EN_BIT `1`
+</code></pre>
+<p>SoM PL supply enable indication. </p>
+<hr>
+
+<h3 id="define-gpio_in_vcco_ps_en_bit">define GPIO_IN_VCCO_PS_EN_BIT</h3>
+<pre><code class="language-C++">#define GPIO_IN_VCCO_PS_EN_BIT `0`
+</code></pre>
+<p>SoM PS supply enable indication. </p>
+<hr>
+
+<h3 id="define-gpio_out_eth_rstn_bit">define GPIO_OUT_ETH_RSTN_BIT</h3>
+<pre><code class="language-C++">#define GPIO_OUT_ETH_RSTN_BIT `9`
+</code></pre>
+<p>ETH PHY reset (active low, 0 = in reset). </p>
+<hr>
+
+<h3 id="define-gpio_out_fmc1_mod_en_bit">define GPIO_OUT_FMC1_MOD_EN_BIT</h3>
+<pre><code class="language-C++">#define GPIO_OUT_FMC1_MOD_EN_BIT `6`
+</code></pre>
+<p>FMC1 module enable. </p>
+<hr>
+
+<h3 id="define-gpio_out_fmc1_pg_rls_bit">define GPIO_OUT_FMC1_PG_RLS_BIT</h3>
+<pre><code class="language-C++">#define GPIO_OUT_FMC1_PG_RLS_BIT `4`
+</code></pre>
+<p>FMC1 power-good release. </p>
+<hr>
+
+<h3 id="define-gpio_out_fmc1_sup_en_bit">define GPIO_OUT_FMC1_SUP_EN_BIT</h3>
+<pre><code class="language-C++">#define GPIO_OUT_FMC1_SUP_EN_BIT `2`
+</code></pre>
+<p>FMC1 supply enable. </p>
+<hr>
+
+<h3 id="define-gpio_out_fmc2_mod_en_bit">define GPIO_OUT_FMC2_MOD_EN_BIT</h3>
+<pre><code class="language-C++">#define GPIO_OUT_FMC2_MOD_EN_BIT `7`
+</code></pre>
+<p>FMC2 module enable. </p>
+<hr>
+
+<h3 id="define-gpio_out_fmc2_pg_rls_bit">define GPIO_OUT_FMC2_PG_RLS_BIT</h3>
+<pre><code class="language-C++">#define GPIO_OUT_FMC2_PG_RLS_BIT `5`
+</code></pre>
+<p>FMC2 power-good release. </p>
+<hr>
+
+<h3 id="define-gpio_out_fmc2_sup_en_bit">define GPIO_OUT_FMC2_SUP_EN_BIT</h3>
+<pre><code class="language-C++">#define GPIO_OUT_FMC2_SUP_EN_BIT `3`
+</code></pre>
+<p>FMC2 supply enable. </p>
+<hr>
+
+<h3 id="define-gpio_out_hdb_vccio_select_bit">define GPIO_OUT_HDB_VCCIO_SELECT_BIT</h3>
+<pre><code class="language-C++">#define GPIO_OUT_HDB_VCCIO_SELECT_BIT `1`
+</code></pre>
+<p>HDB VCCIO source select (0 = FMC2-Vadj, 1 = 2.5V). </p>
+<hr>
+
+<h3 id="define-gpio_out_hpc_vccio_select_bit">define GPIO_OUT_HPC_VCCIO_SELECT_BIT</h3>
+<pre><code class="language-C++">#define GPIO_OUT_HPC_VCCIO_SELECT_BIT `0`
+</code></pre>
+<p>HPC VCCIO source select (0 = FMC2, 1 = FMC1). </p>
+<hr>
+
+<h3 id="define-gpio_out_por_b_bit">define GPIO_OUT_POR_B_BIT</h3>
+<pre><code class="language-C++">#define GPIO_OUT_POR_B_BIT `8`
+</code></pre>
+<p>SoM POR_B (active low, 0 = reset asserted). </p>
+<hr>
+
+<h3 id="define-gpio_out_status_led_bit">define GPIO_OUT_STATUS_LED_BIT</h3>
+<pre><code class="language-C++">#define GPIO_OUT_STATUS_LED_BIT `31`
+</code></pre>
+<p>Status LED. </p>
+<hr>
+
+<h3 id="define-gpio_pg_fmc1_sup_mask">define GPIO_PG_FMC1_SUP_MASK</h3>
+<pre><code class="language-C++">#define GPIO_PG_FMC1_SUP_MASK `(1u &lt;&lt; GPIO_IN_FMC1_SUP_PG_BIT )`
+</code></pre>
+<p>FMC1_SUP_PG net mask. </p>
+<hr>
+
+<h3 id="define-gpio_pg_fmc2_sup_mask">define GPIO_PG_FMC2_SUP_MASK</h3>
+<pre><code class="language-C++">#define GPIO_PG_FMC2_SUP_MASK `(1u &lt;&lt; GPIO_IN_FMC2_SUP_PG_BIT )`
+</code></pre>
+<p>FMC2_SUP_PG net mask. </p>
+<hr>
+
+<h3 id="define-gpio_pg_sys_mask">define GPIO_PG_SYS_MASK</h3>
+<pre><code class="language-C++">#define GPIO_PG_SYS_MASK `(1u &lt;&lt; GPIO_IN_SYS_PG_BIT )`
+</code></pre>
+<p>SYS_PG net mask. </p>
+<hr>
+
+<h3 id="define-gpio_som_ready_mask">define GPIO_SOM_READY_MASK</h3>
+<pre><code class="language-C++">#define GPIO_SOM_READY_MASK `/* multi line expression */`
+</code></pre>
+<p>Signals that indicate that the SoM has switched on its PL/PS supplies. </p>
+<hr>
+
+<h3 id="define-gpio_status_led_mask">define GPIO_STATUS_LED_MASK</h3>
+<pre><code class="language-C++">#define GPIO_STATUS_LED_MASK `(1u &lt;&lt; GPIO_OUT_STATUS_LED_BIT )`
+</code></pre>
+<p>Status LED output mask. </p>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>sw/app/src/boardGpio.h</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Matthias Haefner - Heosys – Licensed under Apache-2.0
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,387 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="clkGen_8c" kind="file" language="C++">
+    <compoundname>clkGen.c</compoundname>
+    <includes refid="clkGen_8h" local="yes">clkGen.h</includes>
+    <includes local="yes">bsp.h</includes>
+    <includes refid="boardConfig_8h" local="yes">boardConfig.h</includes>
+    <includes refid="i2cBus_8h" local="yes">i2cBus.h</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>boardConfig.h</label>
+        <link refid="boardConfig_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>sw/app/src/clkGen.c</label>
+        <link refid="clkGen_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>clkGen.h</label>
+        <link refid="clkGen_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>i2cBus.h</label>
+        <link refid="i2cBus_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>interrupt.h</label>
+        <link refid="interrupt_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>pi4msd5v945x.h</label>
+        <link refid="pi4msd5v945x_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>si5332.h</label>
+        <link refid="si5332_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>i2cWrapper.h</label>
+        <link refid="i2cWrapper_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>bsp.h</label>
+      </node>
+      <node id="10">
+        <label>i2c.h</label>
+      </node>
+      <node id="12">
+        <label>plic.h</label>
+      </node>
+      <node id="3">
+        <label>type.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structclkGenOutCfg__t" prot="public">clkGenOutCfg_t</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="clkGen_8c_1a0c00c23f7af80611164ec08a058fe19a" prot="public" static="no">
+        <name>CLKGEN_NUM_OUT</name>
+        <initializer>(sizeof(<ref refid="clkGen_8c_1a5af1fc39ed08131096ec69d68872306b" kindref="member">gOutCfg</ref>) / sizeof(<ref refid="clkGen_8c_1a5af1fc39ed08131096ec69d68872306b" kindref="member">gOutCfg</ref>[0]))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Number of configurable outputs in <ref refid="clkGen_8c_1a5af1fc39ed08131096ec69d68872306b" kindref="member">gOutCfg</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/clkGen.c" line="33" column="9" bodyfile="sw/app/src/clkGen.c" bodystart="33" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="clkGen_8c_1a5af1fc39ed08131096ec69d68872306b" prot="public" static="yes" mutable="no">
+        <type>const <ref refid="structclkGenOutCfg__t" kindref="compound">clkGenOutCfg_t</ref></type>
+        <definition>const clkGenOutCfg_t gOutCfg[]</definition>
+        <argsstring>[]</argsstring>
+        <name>gOutCfg</name>
+        <initializer>= {
+    { <ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a5df49b8d4f234394f1bf0c6c4777b255" kindref="member">SI5332_OUT_0</ref>, 0  , 100000000UL  , <ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500aaca6311fcc1f51b35fcc8bf9e9f7251c8" kindref="member">SI5332_FMT_LVDS_FAST</ref>  },
+    { <ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a66955d4b94409dacb93d65038b73810e" kindref="member">SI5332_OUT_2</ref>, 0  , 125000000UL  , <ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500aaca6311fcc1f51b35fcc8bf9e9f7251c8" kindref="member">SI5332_FMT_LVDS_FAST</ref>  },
+    { <ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a69c9ebdfac049625c7ebeca4f2282016" kindref="member">SI5332_OUT_4</ref>, 0  , 100000000UL  , <ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500aaca6311fcc1f51b35fcc8bf9e9f7251c8" kindref="member">SI5332_FMT_LVDS_FAST</ref>  },
+    { <ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a70a634c0378ffb03fe8b9fda17084533" kindref="member">SI5332_OUT_7</ref>, 0  , 125000000UL  , <ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500aaca6311fcc1f51b35fcc8bf9e9f7251c8" kindref="member">SI5332_FMT_LVDS_FAST</ref>  }
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/clkGen.c" line="25" column="29" bodyfile="sw/app/src/clkGen.c" bodystart="25" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="variable" id="clkGen_8c_1ac1b5f943921661e0bdc2cafb5e31bbc1" prot="public" static="yes" mutable="no">
+        <type><ref refid="structsi5332__t" kindref="compound">si5332_t</ref> *</type>
+        <definition>si5332_t* gClkGen</definition>
+        <argsstring></argsstring>
+        <name>gClkGen</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clock generator device handle, created by <ref refid="clkGen_8c_1ade3320dab9317c90b001b9e928d69ee4" kindref="member">clkGen_init()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/clkGen.c" line="36" column="17" bodyfile="sw/app/src/clkGen.c" bodystart="36" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="clkGen_8c_1ade3320dab9317c90b001b9e928d69ee4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814" kindref="member">clkGen_err_t</ref></type>
+        <definition>clkGen_err_t clkGen_init</definition>
+        <argsstring>(void)</argsstring>
+        <name>clkGen_init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Creates the device handle (no bus traffic). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Requires <ref refid="i2cBus_8c_1a64b4069becb1cf60d3d7c0e5eb477bd8" kindref="member">i2cBus_init()</ref> to have succeeded.</para>
+<para><simplesect kind="return"><para><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a44a909ad43fd05f0de8fbc4fec204604" kindref="member">CLKGEN_OK</ref> on success, <ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a340f0730d045e6587548f9f415bc6c84" kindref="member">CLKGEN_E_INIT</ref> if the handle could not be created. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Si5332 clock generator (behind channel <ref refid="i2cBus_8h_1ae8ec8a2bfd41472a42d3a5b8e4f5366c" kindref="member">I2CBUS_CH_MBRD</ref>).</para>
+        </inbodydescription>
+        <location file="sw/app/src/clkGen.c" line="38" column="14" bodyfile="sw/app/src/clkGen.c" bodystart="38" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="clkGen_8c_1a1218217270c14f8831d6df99586538f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814" kindref="member">clkGen_err_t</ref></type>
+        <definition>clkGen_err_t clkGen_configure</definition>
+        <argsstring>(void)</argsstring>
+        <name>clkGen_configure</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Applies the board configuration to the clock generator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Selects the bus segment, loads the base configuration with <ref refid="boardConfig_8h_1a111b8a713c2d0f06282fcae94c19f9b2" kindref="member">BOARD_CLKGEN_SRC</ref> and applies frequency, format and enable state of OUT0/OUT2/OUT4/OUT7 in a single commit.</para>
+<para><simplesect kind="return"><para><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a44a909ad43fd05f0de8fbc4fec204604" kindref="member">CLKGEN_OK</ref> on success, <ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a340f0730d045e6587548f9f415bc6c84" kindref="member">CLKGEN_E_INIT</ref> if not initialized, <ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a255e126dd4705d8bb6cfc9c1bcd42749" kindref="member">CLKGEN_E_BUS</ref> on a bus-switch error, <ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814aa2c97a9768a1ba0633678f8981f7d96f" kindref="member">CLKGEN_E_DEVICE</ref> on a device error (e.g. unsupported frequency). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Downstream channel 3.</para>
+<para>&lt; Motherboard segment (clock generator).</para>
+<para>&lt; PLL input clock source.</para>
+        </inbodydescription>
+        <location file="sw/app/src/clkGen.c" line="55" column="14" bodyfile="sw/app/src/clkGen.c" bodystart="55" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="clkGen_8c_1a3d6b9b9da99b9f67cdaa6d3e27a08338" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814" kindref="member">clkGen_err_t</ref></type>
+        <definition>clkGen_err_t clkGen_setOutputEnable</definition>
+        <argsstring>(si5332_out_ch_t ch, int enable)</argsstring>
+        <name>clkGen_setOutputEnable</name>
+        <param>
+          <type><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0" kindref="member">si5332_out_ch_t</ref></type>
+          <declname>ch</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>enable</declname>
+        </param>
+        <briefdescription>
+<para>Enables/disables a single output at runtime. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ch</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output channel. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>enable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Non-zero to enable, zero to disable. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a44a909ad43fd05f0de8fbc4fec204604" kindref="member">CLKGEN_OK</ref> on success, <ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a340f0730d045e6587548f9f415bc6c84" kindref="member">CLKGEN_E_INIT</ref> if not initialized, <ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a255e126dd4705d8bb6cfc9c1bcd42749" kindref="member">CLKGEN_E_BUS</ref> on a bus-switch error, <ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814aa2c97a9768a1ba0633678f8981f7d96f" kindref="member">CLKGEN_E_DEVICE</ref> on a device error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Downstream channel 3.</para>
+<para>&lt; Motherboard segment (clock generator).</para>
+        </inbodydescription>
+        <location file="sw/app/src/clkGen.c" line="97" column="14" bodyfile="sw/app/src/clkGen.c" bodystart="97" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="clkGen_8c_1ad17728c92873ebd0e96f169bcf8c8a9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814" kindref="member">clkGen_err_t</ref></type>
+        <definition>clkGen_err_t clkGen_getStatus</definition>
+        <argsstring>(si5332_status_flags_t *flags)</argsstring>
+        <name>clkGen_getStatus</name>
+        <param>
+          <type><ref refid="structsi5332__status__flags__t" kindref="compound">si5332_status_flags_t</ref> *</type>
+          <declname>flags</declname>
+        </param>
+        <briefdescription>
+<para>Reads the device status flags (PLL state, input detection, VDDO). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Receives the decoded status flags on success. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a44a909ad43fd05f0de8fbc4fec204604" kindref="member">CLKGEN_OK</ref> on success, <ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a857b4ec746c7199d4dcaf76a80b07f5d" kindref="member">CLKGEN_E_PARAM</ref> if <computeroutput>flags</computeroutput> is NULL, <ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a340f0730d045e6587548f9f415bc6c84" kindref="member">CLKGEN_E_INIT</ref> if not initialized, <ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a255e126dd4705d8bb6cfc9c1bcd42749" kindref="member">CLKGEN_E_BUS</ref> on a bus-switch error, <ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814aa2c97a9768a1ba0633678f8981f7d96f" kindref="member">CLKGEN_E_DEVICE</ref> on a device error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Downstream channel 3.</para>
+<para>&lt; Motherboard segment (clock generator).</para>
+        </inbodydescription>
+        <location file="sw/app/src/clkGen.c" line="111" column="14" bodyfile="sw/app/src/clkGen.c" bodystart="111" bodyend="125"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Implementation of the clock generator function group (SI5332). </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>2026<sp/>Matthias<sp/>Haefner<sp/>-<sp/>Heosys</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="clkGen_8h" kindref="compound">clkGen.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;bsp.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="boardConfig_8h" kindref="compound">boardConfig.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="i2cBus_8h" kindref="compound">i2cBus.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="structclkGenOutCfg__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0" kindref="member">si5332_out_ch_t</ref><sp/><sp/><sp/><sp/><sp/><ref refid="structclkGenOutCfg__t_1ab1d841081afae283c637c249232c3b81" kindref="member">ch</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>u8<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structclkGenOutCfg__t_1ac7e67fa5882da711aefff83da2183c25" kindref="member">enable</ref>;<sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>u32<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structclkGenOutCfg__t_1a9165d92d8179eb71fec0190d77f2f542" kindref="member">freq_hz</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500a" kindref="member">si5332_out_format_t</ref><sp/><ref refid="structclkGenOutCfg__t_1a35d4a54dab7aacef7b7ee3b73c49f518" kindref="member">format</ref>;<sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}<sp/><ref refid="structclkGenOutCfg__t" kindref="compound">clkGenOutCfg_t</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structclkGenOutCfg__t" kindref="compound">clkGenOutCfg_t</ref><sp/><ref refid="clkGen_8c_1a5af1fc39ed08131096ec69d68872306b" kindref="member">gOutCfg</ref>[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a5df49b8d4f234394f1bf0c6c4777b255" kindref="member">SI5332_OUT_0</ref>,<sp/><ref refid="boardConfig_8h_1abc7b9dd7b12e0005808cc6bbbba927fb" kindref="member">BOARD_CLKGEN_OUT0_EN</ref>,<sp/><ref refid="boardConfig_8h_1a5fb39a98e748d37dae8b7ab898c80e20" kindref="member">BOARD_CLKGEN_OUT0_FREQ_HZ</ref>,<sp/><ref refid="boardConfig_8h_1a8d920c80f1b6773fc8f5f02ffeae7194" kindref="member">BOARD_CLKGEN_OUT0_FORMAT</ref><sp/>},</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a66955d4b94409dacb93d65038b73810e" kindref="member">SI5332_OUT_2</ref>,<sp/><ref refid="boardConfig_8h_1ab5a14a6b5177c372c58ff0a1411f34df" kindref="member">BOARD_CLKGEN_OUT2_EN</ref>,<sp/><ref refid="boardConfig_8h_1ab925f82e29c9a34031b7f9977fd9b270" kindref="member">BOARD_CLKGEN_OUT2_FREQ_HZ</ref>,<sp/><ref refid="boardConfig_8h_1ab73af365a999fadc4b2715f8ec102b76" kindref="member">BOARD_CLKGEN_OUT2_FORMAT</ref><sp/>},</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a69c9ebdfac049625c7ebeca4f2282016" kindref="member">SI5332_OUT_4</ref>,<sp/><ref refid="boardConfig_8h_1a107643f100a4e791eb5594641ea5f49b" kindref="member">BOARD_CLKGEN_OUT4_EN</ref>,<sp/><ref refid="boardConfig_8h_1ab608216c800885edb421a91a7a84a2d7" kindref="member">BOARD_CLKGEN_OUT4_FREQ_HZ</ref>,<sp/><ref refid="boardConfig_8h_1a5bcbc5b1151dbc52dee3977bfd21efcd" kindref="member">BOARD_CLKGEN_OUT4_FORMAT</ref><sp/>},</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0a70a634c0378ffb03fe8b9fda17084533" kindref="member">SI5332_OUT_7</ref>,<sp/><ref refid="boardConfig_8h_1add29fde0ac0a355746d093d7da375b46" kindref="member">BOARD_CLKGEN_OUT7_EN</ref>,<sp/><ref refid="boardConfig_8h_1a268b2ea990652da7884549b1d344be7d" kindref="member">BOARD_CLKGEN_OUT7_FREQ_HZ</ref>,<sp/><ref refid="boardConfig_8h_1a737842a57b14d991ddd1717a38fc0c44" kindref="member">BOARD_CLKGEN_OUT7_FORMAT</ref><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CLKGEN_NUM_OUT<sp/><sp/>(sizeof(gOutCfg)<sp/>/<sp/>sizeof(gOutCfg[0]))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structsi5332__t" kindref="compound">si5332_t</ref><sp/>*<ref refid="clkGen_8c_1ac1b5f943921661e0bdc2cafb5e31bbc1" kindref="member">gClkGen</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814" kindref="member">clkGen_err_t</ref><sp/><ref refid="clkGen_8c_1ade3320dab9317c90b001b9e928d69ee4" kindref="member">clkGen_init</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref><sp/>*sysCfg<sp/>=<sp/><ref refid="i2cBus_8c_1a010dda9f803415f4485b265dd02420e0" kindref="member">i2cBus_sysCfg</ref>();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!sysCfg)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a340f0730d045e6587548f9f415bc6c84" kindref="member">CLKGEN_E_INIT</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="clkGen_8c_1ac1b5f943921661e0bdc2cafb5e31bbc1" kindref="member">gClkGen</ref><sp/>=<sp/><ref refid="si5332_8c_1a9a05d733ba2455228fe087a1f384e986" kindref="member">si5332_initialize</ref>(<ref refid="i2cBus_8h_1a040dcdfe7e6532ecd61a65dcc8391c11" kindref="member">I2CBUS_CLKGEN_ADDR</ref>,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="si5332_8h_1a7d98566c2a81c470ea74ef12ac394bd3" kindref="member">si5332_i2c_write_f</ref>)<ref refid="i2cWrapper_8c_1afa738982ab2a9c744b4c07f67db541af" kindref="member">i2c_writeReg</ref>,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="si5332_8h_1a52f61956d5bbdcaad0b02d626ec296c9" kindref="member">si5332_i2c_read_f</ref>)<ref refid="i2cWrapper_8c_1a71f97cf63f3ddb4362765f919860cf97" kindref="member">i2c_readReg</ref>,</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)sysCfg);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="clkGen_8c_1ac1b5f943921661e0bdc2cafb5e31bbc1" kindref="member">gClkGen</ref>)</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a340f0730d045e6587548f9f415bc6c84" kindref="member">CLKGEN_E_INIT</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a44a909ad43fd05f0de8fbc4fec204604" kindref="member">CLKGEN_OK</ref>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814" kindref="member">clkGen_err_t</ref><sp/><ref refid="clkGen_8c_1a1218217270c14f8831d6df99586538f0" kindref="member">clkGen_configure</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="clkGen_8c_1ac1b5f943921661e0bdc2cafb5e31bbc1" kindref="member">gClkGen</ref>)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a340f0730d045e6587548f9f415bc6c84" kindref="member">CLKGEN_E_INIT</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>The<sp/>clock<sp/>generator<sp/>sits<sp/>behind<sp/>the<sp/>bus<sp/>switch<sp/>on<sp/>the<sp/>SysCfg<sp/>bus.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="i2cBus_8c_1a6f34ee7a7d76206ea21474fe32bcf32e" kindref="member">i2cBus_select</ref>(<ref refid="i2cBus_8h_1ae8ec8a2bfd41472a42d3a5b8e4f5366c" kindref="member">I2CBUS_CH_MBRD</ref>)<sp/>!=<sp/><ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0af38ce5867e425909e1e7ace508a4b6fc" kindref="member">I2CBUS_OK</ref>)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a255e126dd4705d8bb6cfc9c1bcd42749" kindref="member">CLKGEN_E_BUS</ref>;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Loads<sp/>the<sp/>base<sp/>configuration<sp/>and<sp/>the<sp/>selected<sp/>input<sp/>source.<sp/>Afterwards</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>only<sp/>OUT6<sp/>(25<sp/>MHz)<sp/>is<sp/>running;<sp/>OUT0/OUT2<sp/>are<sp/>preconfigured<sp/>but<sp/>off.</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="si5332_8c_1a229212f30f2c71fd65704559f05be08a" kindref="member">si5332_init</ref>(<ref refid="clkGen_8c_1ac1b5f943921661e0bdc2cafb5e31bbc1" kindref="member">gClkGen</ref>,<sp/><ref refid="boardConfig_8h_1a111b8a713c2d0f06282fcae94c19f9b2" kindref="member">BOARD_CLKGEN_SRC</ref>)<sp/>!=<sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" kindref="member">SI5332_OK</ref>)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814aa2c97a9768a1ba0633678f8981f7d96f" kindref="member">CLKGEN_E_DEVICE</ref>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Schedule<sp/>format<sp/>and<sp/>frequency<sp/>of<sp/>all<sp/>configurable<sp/>outputs,<sp/>including</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>the<sp/>ones<sp/>that<sp/>stay<sp/>off,<sp/>so<sp/>that<sp/>clkGen_setOutputEnable()<sp/>can<sp/>switch</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>them<sp/>on<sp/>later<sp/>without<sp/>another<sp/>commit<sp/>cycle.</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(u32<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="clkGen_8c_1a0c00c23f7af80611164ec08a058fe19a" kindref="member">CLKGEN_NUM_OUT</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="si5332_8c_1a490877359537bd5178f479e10184740c" kindref="member">si5332_set_output_format</ref>(<ref refid="clkGen_8c_1ac1b5f943921661e0bdc2cafb5e31bbc1" kindref="member">gClkGen</ref>,<sp/><ref refid="clkGen_8c_1a5af1fc39ed08131096ec69d68872306b" kindref="member">gOutCfg</ref>[i].ch,<sp/><ref refid="clkGen_8c_1a5af1fc39ed08131096ec69d68872306b" kindref="member">gOutCfg</ref>[i].format)<sp/>!=<sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" kindref="member">SI5332_OK</ref>)</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814aa2c97a9768a1ba0633678f8981f7d96f" kindref="member">CLKGEN_E_DEVICE</ref>;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="si5332_8c_1a1bf82246db9017f3812bf26e968ddb71" kindref="member">si5332_set_output_freq</ref>(<ref refid="clkGen_8c_1ac1b5f943921661e0bdc2cafb5e31bbc1" kindref="member">gClkGen</ref>,<sp/><ref refid="clkGen_8c_1a5af1fc39ed08131096ec69d68872306b" kindref="member">gOutCfg</ref>[i].ch,<sp/><ref refid="clkGen_8c_1a5af1fc39ed08131096ec69d68872306b" kindref="member">gOutCfg</ref>[i].freq_hz)<sp/>!=<sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" kindref="member">SI5332_OK</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bsp_printf(</highlight><highlight class="stringliteral">&quot;ERROR:<sp/>Clock-Generator<sp/>OUT%d<sp/>frequency<sp/>unsupported\r\n&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)<ref refid="clkGen_8c_1a5af1fc39ed08131096ec69d68872306b" kindref="member">gOutCfg</ref>[i].ch);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814aa2c97a9768a1ba0633678f8981f7d96f" kindref="member">CLKGEN_E_DEVICE</ref>;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="si5332_8c_1a87d7022ef98f9e328e398d4935a9be68" kindref="member">si5332_set_output_enable</ref>(<ref refid="clkGen_8c_1ac1b5f943921661e0bdc2cafb5e31bbc1" kindref="member">gClkGen</ref>,<sp/><ref refid="clkGen_8c_1a5af1fc39ed08131096ec69d68872306b" kindref="member">gOutCfg</ref>[i].ch,<sp/><ref refid="clkGen_8c_1a5af1fc39ed08131096ec69d68872306b" kindref="member">gOutCfg</ref>[i].enable)<sp/>!=<sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" kindref="member">SI5332_OK</ref>)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814aa2c97a9768a1ba0633678f8981f7d96f" kindref="member">CLKGEN_E_DEVICE</ref>;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Apply<sp/>everything<sp/>in<sp/>one<sp/>READY<sp/>-&gt;<sp/>ACTIVE<sp/>cycle.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="si5332_8c_1a62c9756fc10566540267035a11c64c59" kindref="member">si5332_commit</ref>(<ref refid="clkGen_8c_1ac1b5f943921661e0bdc2cafb5e31bbc1" kindref="member">gClkGen</ref>)<sp/>!=<sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" kindref="member">SI5332_OK</ref>)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814aa2c97a9768a1ba0633678f8981f7d96f" kindref="member">CLKGEN_E_DEVICE</ref>;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a44a909ad43fd05f0de8fbc4fec204604" kindref="member">CLKGEN_OK</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814" kindref="member">clkGen_err_t</ref><sp/><ref refid="clkGen_8c_1a3d6b9b9da99b9f67cdaa6d3e27a08338" kindref="member">clkGen_setOutputEnable</ref>(<ref refid="si5332_8h_1ab078083540adc556331c4dcd56ba2be0" kindref="member">si5332_out_ch_t</ref><sp/>ch,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>enable)</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="clkGen_8c_1ac1b5f943921661e0bdc2cafb5e31bbc1" kindref="member">gClkGen</ref>)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a340f0730d045e6587548f9f415bc6c84" kindref="member">CLKGEN_E_INIT</ref>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="i2cBus_8c_1a6f34ee7a7d76206ea21474fe32bcf32e" kindref="member">i2cBus_select</ref>(<ref refid="i2cBus_8h_1ae8ec8a2bfd41472a42d3a5b8e4f5366c" kindref="member">I2CBUS_CH_MBRD</ref>)<sp/>!=<sp/><ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0af38ce5867e425909e1e7ace508a4b6fc" kindref="member">I2CBUS_OK</ref>)</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a255e126dd4705d8bb6cfc9c1bcd42749" kindref="member">CLKGEN_E_BUS</ref>;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="si5332_8c_1a87d7022ef98f9e328e398d4935a9be68" kindref="member">si5332_set_output_enable</ref>(<ref refid="clkGen_8c_1ac1b5f943921661e0bdc2cafb5e31bbc1" kindref="member">gClkGen</ref>,<sp/>ch,<sp/>(u8)(enable<sp/>?<sp/>1<sp/>:<sp/>0))<sp/>!=<sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" kindref="member">SI5332_OK</ref>)</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814aa2c97a9768a1ba0633678f8981f7d96f" kindref="member">CLKGEN_E_DEVICE</ref>;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a44a909ad43fd05f0de8fbc4fec204604" kindref="member">CLKGEN_OK</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814" kindref="member">clkGen_err_t</ref><sp/><ref refid="clkGen_8c_1ad17728c92873ebd0e96f169bcf8c8a9b" kindref="member">clkGen_getStatus</ref>(<ref refid="structsi5332__status__flags__t" kindref="compound">si5332_status_flags_t</ref><sp/>*flags)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!flags)</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a857b4ec746c7199d4dcaf76a80b07f5d" kindref="member">CLKGEN_E_PARAM</ref>;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="clkGen_8c_1ac1b5f943921661e0bdc2cafb5e31bbc1" kindref="member">gClkGen</ref>)</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a340f0730d045e6587548f9f415bc6c84" kindref="member">CLKGEN_E_INIT</ref>;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="i2cBus_8c_1a6f34ee7a7d76206ea21474fe32bcf32e" kindref="member">i2cBus_select</ref>(<ref refid="i2cBus_8h_1ae8ec8a2bfd41472a42d3a5b8e4f5366c" kindref="member">I2CBUS_CH_MBRD</ref>)<sp/>!=<sp/><ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0af38ce5867e425909e1e7ace508a4b6fc" kindref="member">I2CBUS_OK</ref>)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a255e126dd4705d8bb6cfc9c1bcd42749" kindref="member">CLKGEN_E_BUS</ref>;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="si5332_8c_1a2163cd28a22fe5c9321bb3a899f9cf3e" kindref="member">si5332_get_status</ref>(<ref refid="clkGen_8c_1ac1b5f943921661e0bdc2cafb5e31bbc1" kindref="member">gClkGen</ref>,<sp/>flags)<sp/>!=<sp/><ref refid="si5332_8h_1a39308d6992d6d54630b86c8ca6b71525a8fa1552e4be79ba8b1955b7e4642247c" kindref="member">SI5332_OK</ref>)</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814aa2c97a9768a1ba0633678f8981f7d96f" kindref="member">CLKGEN_E_DEVICE</ref>;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="clkGen_8h_1a741a7ac92ad0427448cf8e1c10365814a44a909ad43fd05f0de8fbc4fec204604" kindref="member">CLKGEN_OK</ref>;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="sw/app/src/clkGen.c"/>
+  </compounddef>
+</doxygen>

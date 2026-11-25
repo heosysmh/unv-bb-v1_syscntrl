@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structtpsm8286__voltage__map__t" kind="struct" language="C++" prot="public">
+    <compoundname>tpsm8286_voltage_map_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtpsm8286__voltage__map__t_1a5bce3d88fc81776a7ce6e90790de959d" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tpsm8286_voltage_map_t::min_volt</definition>
+        <argsstring></argsstring>
+        <name>min_volt</name>
+        <qualifiedname>tpsm8286_voltage_map_t::min_volt</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Smallest supported voltage [V]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="19" column="13" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtpsm8286__voltage__map__t_1ac4d922d45eab312d59f07bb25b997d15" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tpsm8286_voltage_map_t::max_volt</definition>
+        <argsstring></argsstring>
+        <name>max_volt</name>
+        <qualifiedname>tpsm8286_voltage_map_t::max_volt</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Largest supported voltage [V]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="20" column="13" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtpsm8286__voltage__map__t_1a37a305d9a19c80df28e55fa20504e800" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tpsm8286_voltage_map_t::step_volt</definition>
+        <argsstring></argsstring>
+        <name>step_volt</name>
+        <qualifiedname>tpsm8286_voltage_map_t::step_volt</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Volts per LSB (e.g. 0.01). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="21" column="13" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtpsm8286__voltage__map__t_1a66646db49e80f09627cdaf84f43f50e1" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 tpsm8286_voltage_map_t::reg_min</definition>
+        <argsstring></argsstring>
+        <name>reg_min</name>
+        <qualifiedname>tpsm8286_voltage_map_t::reg_min</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Register value at <ref refid="structtpsm8286__voltage__map__t_1a5bce3d88fc81776a7ce6e90790de959d" kindref="member">min_volt</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="22" column="8" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtpsm8286__voltage__map__t_1a5e9893c6b3f50ecc8bff6761127ad7d2" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 tpsm8286_voltage_map_t::reg_max</definition>
+        <argsstring></argsstring>
+        <name>reg_max</name>
+        <qualifiedname>tpsm8286_voltage_map_t::reg_max</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Register value at <ref refid="structtpsm8286__voltage__map__t_1ac4d922d45eab312d59f07bb25b997d15" kindref="member">max_volt</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="23" column="8" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Linear voltage-to-register mapping descriptor. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/devices/tpsm8286x/tpsm8286x.c" line="18" column="1" bodyfile="sw/devices/tpsm8286x/tpsm8286x.c" bodystart="18" bodyend="24"/>
+    <listofallmembers>
+      <member refid="structtpsm8286__voltage__map__t_1ac4d922d45eab312d59f07bb25b997d15" prot="public" virt="non-virtual"><scope>tpsm8286_voltage_map_t</scope><name>max_volt</name></member>
+      <member refid="structtpsm8286__voltage__map__t_1a5bce3d88fc81776a7ce6e90790de959d" prot="public" virt="non-virtual"><scope>tpsm8286_voltage_map_t</scope><name>min_volt</name></member>
+      <member refid="structtpsm8286__voltage__map__t_1a5e9893c6b3f50ecc8bff6761127ad7d2" prot="public" virt="non-virtual"><scope>tpsm8286_voltage_map_t</scope><name>reg_max</name></member>
+      <member refid="structtpsm8286__voltage__map__t_1a66646db49e80f09627cdaf84f43f50e1" prot="public" virt="non-virtual"><scope>tpsm8286_voltage_map_t</scope><name>reg_min</name></member>
+      <member refid="structtpsm8286__voltage__map__t_1a37a305d9a19c80df28e55fa20504e800" prot="public" virt="non-virtual"><scope>tpsm8286_voltage_map_t</scope><name>step_volt</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structid__state__t" kind="struct" language="C++" prot="public">
+    <compoundname>id_state_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structid__state__t_1ae7a9abd5a4eb4f74d463d99f24c30e67" prot="public" static="no" mutable="no">
+        <type>u32</type>
+        <definition>u32 id_state_t::num</definition>
+        <argsstring></argsstring>
+        <name>num</name>
+        <qualifiedname>id_state_t::num</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Divider numerator; N = num / den (VCO / N = ID output frequency). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="96" column="5" bodyfile="sw/devices/si5332/si5332.c" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structid__state__t_1abe28d69576bdf54ea3c7a9c896e7af97" prot="public" static="no" mutable="no">
+        <type>u32</type>
+        <definition>u32 id_state_t::den</definition>
+        <argsstring></argsstring>
+        <name>den</name>
+        <qualifiedname>id_state_t::den</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Divider denominator. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="97" column="5" bodyfile="sw/devices/si5332/si5332.c" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structid__state__t_1a4fcf74a860bf7fdfd96aa3f1a67a1c81" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 id_state_t::refcnt</definition>
+        <argsstring></argsstring>
+        <name>refcnt</name>
+        <qualifiedname>id_state_t::refcnt</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Number of output channels currently using this ID. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/si5332/si5332.c" line="98" column="5" bodyfile="sw/devices/si5332/si5332.c" bodystart="98" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Shadow state of one fractional MultiSynth divider (ID0 or ID1). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The ID output frequency is <computeroutput>f_id = <ref refid="si5332_8c_1adf52d3bfd1140e6e532c4b312f2accca" kindref="member">VCO_HZ</ref> / (num/den)</computeroutput>. Several output channels may share one ID as long as the resulting R divider stays within 1..63 (see <ref refid="si5332_8c_1abdbbedf6d4a400470ed201eb0285c17e" kindref="member">try_share_id()</ref>). </para>
+    </detaileddescription>
+    <location file="sw/devices/si5332/si5332.c" line="95" column="1" bodyfile="sw/devices/si5332/si5332.c" bodystart="95" bodyend="99"/>
+    <listofallmembers>
+      <member refid="structid__state__t_1abe28d69576bdf54ea3c7a9c896e7af97" prot="public" virt="non-virtual"><scope>id_state_t</scope><name>den</name></member>
+      <member refid="structid__state__t_1ae7a9abd5a4eb4f74d463d99f24c30e67" prot="public" virt="non-virtual"><scope>id_state_t</scope><name>num</name></member>
+      <member refid="structid__state__t_1a4fcf74a860bf7fdfd96aa3f1a67a1c81" prot="public" virt="non-virtual"><scope>id_state_t</scope><name>refcnt</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

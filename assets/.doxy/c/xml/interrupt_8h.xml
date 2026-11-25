@@ -1,0 +1,421 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="interrupt_8h" kind="file" language="C++">
+    <compoundname>interrupt.h</compoundname>
+    <includes local="yes">plic.h</includes>
+    <includedby refid="i2cBus_8h" local="yes">sw/app/src/i2cBus.h</includedby>
+    <includedby refid="interrupt_8c" local="yes">sw/app/src/interrupt.c</includedby>
+    <includedby refid="i2cWrapper_8h" local="yes">sw/drivers/i2c/i2cWrapper.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>sw/app/src/interrupt.h</label>
+        <link refid="interrupt_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>plic.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>sw/app/src/clkGen.c</label>
+        <link refid="clkGen_8c"/>
+      </node>
+      <node id="4">
+        <label>sw/app/src/i2cBus.c</label>
+        <link refid="i2cBus_8c"/>
+      </node>
+      <node id="2">
+        <label>sw/app/src/i2cBus.h</label>
+        <link refid="i2cBus_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>sw/app/src/interrupt.c</label>
+        <link refid="interrupt_8c"/>
+      </node>
+      <node id="1">
+        <label>sw/app/src/interrupt.h</label>
+        <link refid="interrupt_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>sw/app/src/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+      <node id="6">
+        <label>sw/app/src/power.c</label>
+        <link refid="power_8c"/>
+      </node>
+      <node id="9">
+        <label>sw/drivers/i2c/i2cWrapper.c</label>
+        <link refid="i2cWrapper_8c"/>
+      </node>
+      <node id="8">
+        <label>sw/drivers/i2c/i2cWrapper.h</label>
+        <link refid="i2cWrapper_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="interrupt_8h_1ade315fe91c628847c267819a553b6101" prot="public" static="no">
+        <name>PLIC_MAX_NUM_INTERRUPTS</name>
+        <initializer>36</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Maximum number of PLIC interrupt sources supported by the vector table. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.h" line="22" column="9" bodyfile="sw/app/src/interrupt.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="interrupt_8h_1ab733ba3247a183811ce4068ee14c5c37" prot="public" static="no">
+        <type>void(*</type>
+        <definition>typedef void(* intrHandler_t) (void *data)</definition>
+        <argsstring>)(void *data)</argsstring>
+        <name>intrHandler_t</name>
+        <briefdescription>
+<para>Interrupt handler callback type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Callback reference registered with <ref refid="interrupt_8h_1a3bd14b5aefa908e4d4a36f872a4ecf4a" kindref="member">intr_connect()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.h" line="28" column="9" bodyfile="sw/app/src/interrupt.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="interrupt_8h_1aaf81c9b0015f9466e5b51e58903d4a6d" prot="public" static="no">
+        <type>struct intrHandle_t</type>
+        <definition>typedef struct intrHandle_t intrHandle_t</definition>
+        <argsstring></argsstring>
+        <name>intrHandle_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Opaque interrupt controller handle (defined in <ref refid="interrupt_8c" kindref="compound">interrupt.c</ref>). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.h" line="31" column="27" bodyfile="sw/app/src/interrupt.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="interrupt_8h_1a9f41d3682f84ce4bc7d9ff2dfe47a2ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref> *</type>
+        <definition>intrHandle_t * intr_initialize</definition>
+        <argsstring>(u32 baseAddress)</argsstring>
+        <name>intr_initialize</name>
+        <param>
+          <type>u32</type>
+          <declname>baseAddress</declname>
+        </param>
+        <briefdescription>
+<para>Initializes the interrupt controller and the RISC-V trap handling. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears the handler vector table, installs the machine trap vector (trap_entry) and enables machine external interrupts.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>baseAddress</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Base address of the PLIC controller. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to the static interrupt controller instance. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.h" line="42" column="14" bodyfile="sw/app/src/interrupt.c" bodystart="57" bodyend="77" declfile="sw/app/src/interrupt.h" declline="42" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="interrupt_8h_1afdca10c5fed9a444815c069012975216" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void intr_setThreshold</definition>
+        <argsstring>(intrHandle_t *pInst, u8 hartId, u8 thrshld)</argsstring>
+        <name>intr_setThreshold</name>
+        <param>
+          <type><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref> *</type>
+          <declname>pInst</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>hartId</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>thrshld</declname>
+        </param>
+        <briefdescription>
+<para>Sets the priority threshold of a hart. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Only interrupts with a priority above the threshold are delivered.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pInst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Interrupt controller handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hartId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Hart (CPU) index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>thrshld</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Priority threshold (0 = all priorities enabled). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.h" line="53" column="6" bodyfile="sw/app/src/interrupt.c" bodystart="79" bodyend="83" declfile="sw/app/src/interrupt.h" declline="53" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="interrupt_8h_1a7d40091d204a677cd5c3f6cc348d101a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void intr_setEnable</definition>
+        <argsstring>(intrHandle_t *pInst, u32 hartNo, u32 intrId)</argsstring>
+        <name>intr_setEnable</name>
+        <param>
+          <type><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref> *</type>
+          <declname>pInst</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>hartNo</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>intrId</declname>
+        </param>
+        <briefdescription>
+<para>Enables an interrupt source for a hart. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pInst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Interrupt controller handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hartNo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Hart (CPU) index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intrId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Interrupt source ID. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.h" line="61" column="6" bodyfile="sw/app/src/interrupt.c" bodystart="85" bodyend="88" declfile="sw/app/src/interrupt.h" declline="61" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="interrupt_8h_1ae5cbd698cbef6f8d0cb3f4da89c38753" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void intr_setPriority</definition>
+        <argsstring>(intrHandle_t *pInst, u32 intrId, u32 prio)</argsstring>
+        <name>intr_setPriority</name>
+        <param>
+          <type><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref> *</type>
+          <declname>pInst</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>intrId</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>prio</declname>
+        </param>
+        <briefdescription>
+<para>Sets the priority of an interrupt source. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pInst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Interrupt controller handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intrId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Interrupt source ID. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Priority (higher value = higher priority). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.h" line="69" column="6" bodyfile="sw/app/src/interrupt.c" bodystart="90" bodyend="93" declfile="sw/app/src/interrupt.h" declline="69" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="interrupt_8h_1a3bd14b5aefa908e4d4a36f872a4ecf4a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void intr_connect</definition>
+        <argsstring>(intrHandle_t *pInst, u8 intrId, intrHandler_t handler, void *pCallback)</argsstring>
+        <name>intr_connect</name>
+        <param>
+          <type><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref> *</type>
+          <declname>pInst</declname>
+        </param>
+        <param>
+          <type>u8</type>
+          <declname>intrId</declname>
+        </param>
+        <param>
+          <type><ref refid="interrupt_8h_1ab733ba3247a183811ce4068ee14c5c37" kindref="member">intrHandler_t</ref></type>
+          <declname>handler</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>pCallback</declname>
+        </param>
+        <briefdescription>
+<para>Registers a handler for an interrupt source. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pInst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Interrupt controller handle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intrId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Interrupt source ID (&lt; <ref refid="interrupt_8h_1ade315fe91c628847c267819a553b6101" kindref="member">PLIC_MAX_NUM_INTERRUPTS</ref>). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>handler</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Handler function to invoke. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pCallback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Callback reference passed back to <computeroutput>handler</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/interrupt.h" line="78" column="6" bodyfile="sw/app/src/interrupt.c" bodystart="95" bodyend="99" declfile="sw/app/src/interrupt.h" declline="78" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>PLIC-based interrupt controller abstraction for the application. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Wraps the BSP PLIC driver (mcu/software/standalone/driver/plic.h) and the RISC-V trap handling. A single static instance manages the handler vector table; handlers are registered per interrupt ID with <ref refid="interrupt_8h_1a3bd14b5aefa908e4d4a36f872a4ecf4a" kindref="member">intr_connect()</ref> and dispatched by the machine-external trap path. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>2026<sp/>Matthias<sp/>Haefner<sp/>-<sp/>Heosys</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SRC_INTERRUPT_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SRC_INTERRUPT_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;plic.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="interrupt_8h_1ade315fe91c628847c267819a553b6101" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PLIC_MAX_NUM_INTERRUPTS<sp/>36</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="interrupt_8h_1ab733ba3247a183811ce4068ee14c5c37" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>void<sp/>(*<ref refid="interrupt_8h_1ab733ba3247a183811ce4068ee14c5c37" kindref="member">intrHandler_t</ref>)(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*data);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="interrupt_8h_1aaf81c9b0015f9466e5b51e58903d4a6d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref><sp/><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref>*<sp/><ref refid="interrupt_8h_1a9f41d3682f84ce4bc7d9ff2dfe47a2ed" kindref="member">intr_initialize</ref>(u32<sp/><ref refid="structintrHandle__t_1adaa5c8b16f594cdf348befe078ba8094" kindref="member">baseAddress</ref>);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interrupt_8h_1afdca10c5fed9a444815c069012975216" kindref="member">intr_setThreshold</ref>(<ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref><sp/>*pInst,<sp/>u8<sp/>hartId,<sp/>u8<sp/>thrshld);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interrupt_8h_1a7d40091d204a677cd5c3f6cc348d101a" kindref="member">intr_setEnable</ref>(<ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref><sp/>*pInst,<sp/>u32<sp/>hartNo,<sp/>u32<sp/>intrId);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interrupt_8h_1ae5cbd698cbef6f8d0cb3f4da89c38753" kindref="member">intr_setPriority</ref>(<ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref><sp/>*pInst,<sp/>u32<sp/>intrId,<sp/>u32<sp/>prio);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interrupt_8h_1a3bd14b5aefa908e4d4a36f872a4ecf4a" kindref="member">intr_connect</ref>(<ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref><sp/>*pInst,<sp/>u8<sp/>intrId,<sp/><ref refid="interrupt_8h_1ab733ba3247a183811ce4068ee14c5c37" kindref="member">intrHandler_t</ref><sp/>handler,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>pCallback);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>SRC_INTERRUPT_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="sw/app/src/interrupt.h"/>
+  </compounddef>
+</doxygen>

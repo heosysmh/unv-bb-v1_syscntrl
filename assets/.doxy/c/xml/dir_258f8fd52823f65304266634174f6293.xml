@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_258f8fd52823f65304266634174f6293" kind="dir">
+    <compoundname>sw/drivers</compoundname>
+    <innerdir refid="dir_6bfd9f8c6bb0ff18ae4323cf33a90ad8">sw/drivers/i2c</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/drivers/"/>
+  </compounddef>
+</doxygen>

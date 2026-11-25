@@ -1,0 +1,1677 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hardware (FPGA/VHDL) and Firmware (C) documentation for unv-bb-v1-syscntrl">
+      
+      
+      
+      
+        <link rel="prev" href="../power_8c_source/">
+      
+      
+        <link rel="next" href="../power_8h_source/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>File power.h - unv-bb-v1-syscntrl Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#file-powerh" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-header__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            unv-bb-v1-syscntrl Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              File power.h
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  System Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../setup/ftdi-jtag/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Setup & Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sw-notes/BUILD_SYSTEM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Firmware (SW)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vhdl/debounce/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  FPGA (VHDL)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-nav__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    unv-bb-v1-syscntrl Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup & Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/ftdi-jtag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FTDI & JTAG Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/firmware-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware Build Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware (SW)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Firmware (SW)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sw-notes/BUILD_SYSTEM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C-Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Structures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FPGA (VHDL)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    FPGA (VHDL)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vhdl
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Vhdl
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/debounce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: debounce
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/fmcPowerCntrl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: fmcPowerCntrl
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/inputSync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: inputSync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/synchronizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: synchronizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/sysCtnrl_top/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: sysCntrl_Top
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/vccioSelect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: vccioSelect
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macros
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-types-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Types Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Types Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enum-pwrfmc_t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        enum pwrFmc_t
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum-pwrpgline_t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        enum pwrPgLine_t
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum-pwrrail_t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        enum pwrRail_t
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum-pwr_err_t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        enum pwr_err_t
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-pwr_checkalerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function pwr_checkAlerts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-pwr_fmcvadj_configure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function pwr_fmcVadj_configure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-pwr_fmcvadj_enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function pwr_fmcVadj_enable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-pwr_fmcvadj_isregulating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function pwr_fmcVadj_isRegulating
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-pwr_init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function pwr_init
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-pwr_mon_clearfaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function pwr_mon_clearFaults
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-pwr_mon_configure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function pwr_mon_configure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-pwr_mon_getfaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function pwr_mon_getFaults
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-pwr_mon_poll" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function pwr_mon_poll
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-pwr_mon_read" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function pwr_mon_read
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-pwr_mon_reportfaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function pwr_mon_reportFaults
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-pwr_railname" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function pwr_railName
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macro-definition-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macro Definition Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Macro Definition Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-pwr_mon_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define PWR_MON_TABLE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define X
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="file-powerh">File power.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_fd9e68481a64957b5aa550f8031e1091/"><strong>app</strong></a> <strong>&gt;</strong> <a href="../dir_4d8bb3f988c5738b11212c0e5c5a2a68/"><strong>src</strong></a> <strong>&gt;</strong> <a href="./"><strong>power.h</strong></a></p>
+<p><a href="../power_8h_source/">Go to the source code of this file</a></p>
+<p><em>Power functions of the board: FMC Vadj regulators (tpsm8286x) and the power monitors (ina745a).</em> <a href="#detailed-description">More...</a></p>
+<ul>
+<li><code>#include &lt;type.h&gt;</code></li>
+<li><code>#include "boardConfig.h"</code></li>
+</ul>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structpwrMon__fault__t/"><strong>pwrMon_fault_t</strong></a> <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structpwrMon__values__t/"><strong>pwrMon_values_t</strong></a> <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-pwrfmc_t"><strong>pwrFmc_t</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-pwrpgline_t"><strong>pwrPgLine_t</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-pwrrail_t"><strong>pwrRail_t</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-pwr_err_t"><strong>pwr_err_t</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="./#enum-pwr_err_t"><strong>pwr_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-pwr_checkalerts"><strong>pwr_checkAlerts</strong></a> (void) <br><em>Checks the power-good / ALERT lines.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#enum-pwr_err_t"><strong>pwr_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-pwr_fmcvadj_configure"><strong>pwr_fmcVadj_configure</strong></a> (void) <br><em>Writes control register and voltage setpoint of both FMC Vadj regulators.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#enum-pwr_err_t"><strong>pwr_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-pwr_fmcvadj_enable"><strong>pwr_fmcVadj_enable</strong></a> (int enable) <br><em>Enables/disables both FMC Vadj regulator outputs.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#enum-pwr_err_t"><strong>pwr_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-pwr_fmcvadj_isregulating"><strong>pwr_fmcVadj_isRegulating</strong></a> (<a href="./#enum-pwrfmc_t"><strong>pwrFmc_t</strong></a> fmc) <br><em>Checks whether the regulator reports a valid output voltage setting.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#enum-pwr_err_t"><strong>pwr_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-pwr_init"><strong>pwr_init</strong></a> (void) <br><em>Creates all device handles (regulators and monitors).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-pwr_mon_clearfaults"><strong>pwr_mon_clearFaults</strong></a> (<a href="./#enum-pwrrail_t"><strong>pwrRail_t</strong></a> rail) <br><em>Clears the sticky fault shadow of a rail.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#enum-pwr_err_t"><strong>pwr_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-pwr_mon_configure"><strong>pwr_mon_configure</strong></a> (void) <br><em>Configures and arms all monitors.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#enum-pwr_err_t"><strong>pwr_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-pwr_mon_getfaults"><strong>pwr_mon_getFaults</strong></a> (<a href="./#enum-pwrrail_t"><strong>pwrRail_t</strong></a> rail, <a href="../structpwrMon__fault__t/"><strong>pwrMon_fault_t</strong></a> * faults) <br><em>Reads the sticky fault shadow of a rail.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#enum-pwr_err_t"><strong>pwr_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-pwr_mon_poll"><strong>pwr_mon_poll</strong></a> (void) <br><em>Polls all rails and prints the measured values.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#enum-pwr_err_t"><strong>pwr_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-pwr_mon_read"><strong>pwr_mon_read</strong></a> (<a href="./#enum-pwrrail_t"><strong>pwrRail_t</strong></a> rail, <a href="../structpwrMon__values__t/"><strong>pwrMon_values_t</strong></a> * values) <br><em>Polls bus voltage, current and die temperature of a single rail.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-pwr_mon_reportfaults"><strong>pwr_mon_reportFaults</strong></a> (void) <br><em>Prints all accumulated faults of all rails.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">const char *</td>
+<td style="text-align: left;"><a href="#function-pwr_railname"><strong>pwr_railName</strong></a> (<a href="./#enum-pwrrail_t"><strong>pwrRail_t</strong></a> rail) <br><em>Returns the display name of a rail, e.g. "VCCADJ_FMC1".</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-pwr_mon_table"><strong>PWR_MON_TABLE</strong></a>  <code>/* multi line expression */</code><br><em>Rail configuration table (X-macro).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-x"><strong>X</strong></a> (name, addr, pg, vov, iov, tov) <code>PWR\_RAIL\_##name,</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="detailed-description">Detailed Description</h2>
+<p>Rails, I2C addresses, power-good groups and protection limits are defined by <a href="./#define-pwr_mon_table"><strong>PWR_MON_TABLE</strong></a> below; the rail enum is generated from it.</p>
+<p>Protection concept:
+* Over-voltage, over-current and over-temperature limits are armed with a latched alert (ALATCH = 1). Under-voltage/under-current protection is not used on this board.
+* The ALERT pins are wired-OR onto the power-good inputs, so a fault appears as a power-good line going low. <a href="./#function-pwr_checkalerts"><strong>pwr_checkAlerts()</strong></a> reads those lines first (no bus traffic) and only queries the devices of an affected group over I2C.
+* Reading DIAG_ALRT clears the latch in the device, therefore the module keeps a sticky fault shadow (see <a href="./#function-pwr_mon_getfaults"><strong>pwr_mon_getFaults()</strong></a>). </p>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="enum-pwrfmc_t">enum pwrFmc_t</h3>
+<pre><code class="language-C++">enum pwrFmc_t {
+    PWR_FMC1 = 0,
+    PWR_FMC2,
+    PWR_FMC_COUNT
+};
+</code></pre>
+<p>FMC Vadj regulator identifiers. </p>
+<hr>
+
+<h3 id="enum-pwrpgline_t">enum pwrPgLine_t</h3>
+<pre><code class="language-C++">enum pwrPgLine_t {
+    PWR_PG_SYS = 0,
+    PWR_PG_FMC1_SUP,
+    PWR_PG_FMC2_SUP,
+    PWR_PG_COUNT
+};
+</code></pre>
+<p>Power-good / ALERT nets the monitors are wired-OR onto. </p>
+<hr>
+
+<h3 id="enum-pwrrail_t">enum pwrRail_t</h3>
+<pre><code class="language-C++">enum pwrRail_t {
+    PWR_RAIL_12V,
+    PWR_RAIL_3V3,
+    PWR_RAIL_5V0_SOM,
+    PWR_RAIL_1V8,
+    PWR_RAIL_VCCADJ_FMC1,
+    PWR_RAIL_VCCADJ_FMC2,
+    PWR_RAIL_COUNT
+};
+</code></pre>
+<hr>
+
+<h3 id="enum-pwr_err_t">enum pwr_err_t</h3>
+<pre><code class="language-C++">enum pwr_err_t {
+    PWR_OK =  0,
+    PWR_E_PARAM = -1,
+    PWR_E_INIT = -2,
+    PWR_E_DEVICE = -3,
+    PWR_E_RANGE = -4,
+    PWR_E_REGULATION = -5
+};
+</code></pre>
+<p>Status codes of the power function group. </p>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-pwr_checkalerts">function pwr_checkAlerts</h3>
+<p><em>Checks the power-good / ALERT lines.</em> </p>
+<pre><code class="language-C++">pwr_err_t pwr_checkAlerts (
+    void
+) 
+</code></pre>
+<p>Only if a line is low, the devices of that group are queried over I2C; faults found are merged into the sticky fault shadow. If a line is low but no device reports a fault, the supply itself failed and PWR_E_REGULATION is returned.</p>
+<p><strong>Returns:</strong></p>
+<p>PWR_OK if all lines are high, PWR_E_INIT if the monitors are not configured, PWR_E_REGULATION if a line is low, PWR_E_DEVICE if a monitor query failed. </p>
+<hr>
+
+<h3 id="function-pwr_fmcvadj_configure">function pwr_fmcVadj_configure</h3>
+<p><em>Writes control register and voltage setpoint of both FMC Vadj regulators.</em> </p>
+<pre><code class="language-C++">pwr_err_t pwr_fmcVadj_configure (
+    void
+) 
+</code></pre>
+<p>Outputs stay disabled. The setpoints are taken from <a href="../boardConfig_8h/#define-board_fmc1_vadj_v"><strong>BOARD_FMC1_VADJ_V</strong></a> / <a href="../boardConfig_8h/#define-board_fmc2_vadj_v"><strong>BOARD_FMC2_VADJ_V</strong></a>.</p>
+<p><strong>Returns:</strong></p>
+<p>PWR_OK on success, PWR_E_INIT if not initialized, PWR_E_RANGE if a configured setpoint exceeds <a href="../boardConfig_8h/#define-board_fmc_vadj_max_v"><strong>BOARD_FMC_VADJ_MAX_V</strong></a>, PWR_E_DEVICE on a device error. </p>
+<hr>
+
+<h3 id="function-pwr_fmcvadj_enable">function pwr_fmcVadj_enable</h3>
+<p><em>Enables/disables both FMC Vadj regulator outputs.</em> </p>
+<pre><code class="language-C++">pwr_err_t pwr_fmcVadj_enable (
+    int enable
+) 
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>enable</code> Non-zero to enable, zero to disable. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>PWR_OK on success, PWR_E_INIT if not initialized, PWR_E_DEVICE on a device error. </p>
+<hr>
+
+<h3 id="function-pwr_fmcvadj_isregulating">function pwr_fmcVadj_isRegulating</h3>
+<p><em>Checks whether the regulator reports a valid output voltage setting.</em> </p>
+<pre><code class="language-C++">pwr_err_t pwr_fmcVadj_isRegulating (
+    pwrFmc_t fmc
+) 
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>fmc</code> Regulator to check. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>PWR_OK if the voltage register reads back the programmed value, PWR_E_PARAM if <code>fmc</code> is invalid, PWR_E_INIT if not initialized, PWR_E_DEVICE on a device error, PWR_E_REGULATION on a mismatch. </p>
+<hr>
+
+<h3 id="function-pwr_init">function pwr_init</h3>
+<p><em>Creates all device handles (regulators and monitors).</em> </p>
+<pre><code class="language-C++">pwr_err_t pwr_init (
+    void
+) 
+</code></pre>
+<p>No bus traffic, no device configuration. Requires <a href="../i2cBus_8c/#function-i2cbus_init"><strong>i2cBus_init()</strong></a> to have succeeded.</p>
+<p><strong>Returns:</strong></p>
+<p>PWR_OK on success, PWR_E_INIT if a handle could not be created. </p>
+<hr>
+
+<h3 id="function-pwr_mon_clearfaults">function pwr_mon_clearFaults</h3>
+<p><em>Clears the sticky fault shadow of a rail.</em> </p>
+<pre><code class="language-C++">void pwr_mon_clearFaults (
+    pwrRail_t rail
+) 
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>rail</code> Rail to clear (invalid values are ignored). </li>
+</ul>
+<hr>
+
+<h3 id="function-pwr_mon_configure">function pwr_mon_configure</h3>
+<p><em>Configures and arms all monitors.</em> </p>
+<pre><code class="language-C++">pwr_err_t pwr_mon_configure (
+    void
+) 
+</code></pre>
+<p>ADC configuration, over-voltage, over-current and over-temperature limits, latched alert, and a clearing read of DIAG_ALRT.</p>
+<p><strong>Note:</strong></p>
+<p>Call order matters: the ALERT outputs sit on the power-good nets, so this must run after <a href="../boardGpio_8c/#function-boardgpio_waitsomready"><strong>boardGpio_waitSomReady()</strong></a> (a latched alert would otherwise keep SYS_PG low) and before the FMC supply is switched on.</p>
+<p><strong>Returns:</strong></p>
+<p>PWR_OK if all monitors were configured, PWR_E_INIT if not initialized, PWR_E_DEVICE if at least one monitor failed (the remaining monitors are still configured). </p>
+<hr>
+
+<h3 id="function-pwr_mon_getfaults">function pwr_mon_getFaults</h3>
+<p><em>Reads the sticky fault shadow of a rail.</em> </p>
+<pre><code class="language-C++">pwr_err_t pwr_mon_getFaults (
+    pwrRail_t rail,
+    pwrMon_fault_t * faults
+) 
+</code></pre>
+<p>Accumulated over all queries since the last clear.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>rail</code> Rail to query. </li>
+<li><code>faults</code> Receives the accumulated fault flags. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>PWR_OK on success, PWR_E_PARAM if <code>faults</code> is NULL or <code>rail</code> is invalid. </p>
+<hr>
+
+<h3 id="function-pwr_mon_poll">function pwr_mon_poll</h3>
+<p><em>Polls all rails and prints the measured values.</em> </p>
+<pre><code class="language-C++">pwr_err_t pwr_mon_poll (
+    void
+) 
+</code></pre>
+<p><strong>Returns:</strong></p>
+<p>PWR_OK if all rails were read, otherwise the last error code. </p>
+<hr>
+
+<h3 id="function-pwr_mon_read">function pwr_mon_read</h3>
+<p><em>Polls bus voltage, current and die temperature of a single rail.</em> </p>
+<pre><code class="language-C++">pwr_err_t pwr_mon_read (
+    pwrRail_t rail,
+    pwrMon_values_t * values
+) 
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>rail</code> Rail to read. </li>
+<li><code>values</code> Receives the measurement snapshot on success. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>PWR_OK on success, PWR_E_PARAM if <code>values</code> is NULL or <code>rail</code> is invalid, PWR_E_INIT if not initialized/configured, PWR_E_DEVICE on a device error. </p>
+<hr>
+
+<h3 id="function-pwr_mon_reportfaults">function pwr_mon_reportFaults</h3>
+<p><em>Prints all accumulated faults of all rails.</em> </p>
+<pre><code class="language-C++">void pwr_mon_reportFaults (
+    void
+) 
+</code></pre>
+<hr>
+
+<h3 id="function-pwr_railname">function pwr_railName</h3>
+<p><em>Returns the display name of a rail, e.g. "VCCADJ_FMC1".</em> </p>
+<pre><code class="language-C++">const char * pwr_railName (
+    pwrRail_t rail
+) 
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>rail</code> Rail to name. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>Name string, or "?" if <code>rail</code> is invalid. </p>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-pwr_mon_table">define PWR_MON_TABLE</h3>
+<p><em>Rail configuration table (X-macro).</em> </p>
+<pre><code class="language-C++">#define PWR_MON_TABLE `X (12V, I2CBUS_PWRMON_12V_ADDR , PWR_PG_SYS ,                            13.20f,  5.0f, 95.0f) \ X (3V3, I2CBUS_PWRMON_3V3_ADDR , PWR_PG_SYS ,                             3.60f, 12.0f, 95.0f) \ X (5V0_SOM, I2CBUS_PWRMON_5V0_ADDR , PWR_PG_SYS ,                             5.50f,  5.0f, 95.0f) \ X (1V8, I2CBUS_PWRMON_1V8_ADDR , PWR_PG_SYS ,                             1.98f,  5.0f, 95.0f) \ X (VCCADJ_FMC1, I2CBUS_PWRMON_FMC1_ADDR , PWR_PG_FMC1_SUP ,  ( BOARD_FMC_VADJ_MAX_V +0.2f),  4.5f, 95.0f) \ X (VCCADJ_FMC2, I2CBUS_PWRMON_FMC2_ADDR , PWR_PG_FMC2_SUP ,  ( BOARD_FMC_VADJ_MAX_V +0.2f),  4.5f, 95.0f)`
+</code></pre>
+<p>One row per monitored rail. This table is the only place where rails are defined; <a href="./"><strong>power.h</strong></a>/power.c derive the rail enum, the name strings, the I2C addresses, the power-good group and the protection limits from it.</p>
+<p>Columns:
+* name: identifier suffix, also used as display name
+* addr: 7-bit I2C address on the PMBus (A0/A1 strapping)
+* pg: power-good / ALERT net the device is wired to (<a href="./#enum-pwrpgline_t"><strong>pwrPgLine_t</strong></a>)
+* vov: bus over-voltage limit [V]
+* iov: over-current limit [A]
+* tov: over-temperature limit [degC]</p>
+<p><strong>Note:</strong></p>
+<p>The number of rows must match <a href="../userDef_8h/#define-ina745a_num_instances"><strong>INA745A_NUM_INSTANCES</strong></a> in <a href="../userDef_8h/"><strong>userDef.h</strong></a>. </p>
+<hr>
+
+<h3 id="define-x">define X</h3>
+<pre><code class="language-C++">#define X (
+    name,
+    addr,
+    pg,
+    vov,
+    iov,
+    tov
+) `PWR_RAIL_##name,`
+</code></pre>
+<p>Monitored rails, generated from <a href="./#define-pwr_mon_table"><strong>PWR_MON_TABLE</strong></a> (one PWR_RAIL_&lt;name&gt; per row). </p>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>sw/app/src/power.h</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Matthias Haefner - Heosys – Licensed under Apache-2.0
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

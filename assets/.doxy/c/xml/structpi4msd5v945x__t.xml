@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structpi4msd5v945x__t" kind="struct" language="C++" prot="public">
+    <compoundname>pi4msd5v945x_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpi4msd5v945x__t_1aa4a79c5251a73980e7d9140b1ba76e94" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int pi4msd5v945x_t::isReady</definition>
+        <argsstring></argsstring>
+        <name>isReady</name>
+        <qualifiedname>pi4msd5v945x_t::isReady</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Non-zero once <ref refid="pi4msd5v945x_8c_1a9586cf25f42ae3b43970c9d5cb373a4c" kindref="member">pi4msd5v945x_initialize()</ref> has set up the HAL callbacks. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/pi4msd5v945x/pi4msd5v945x.c" line="17" column="5" bodyfile="sw/devices/pi4msd5v945x/pi4msd5v945x.c" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpi4msd5v945x__t_1add74854b0f06eb66a0ce4e7542ebfb37" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 pi4msd5v945x_t::i2cAddr</definition>
+        <argsstring></argsstring>
+        <name>i2cAddr</name>
+        <qualifiedname>pi4msd5v945x_t::i2cAddr</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>7-bit I2C address of the device. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/pi4msd5v945x/pi4msd5v945x.c" line="18" column="4" bodyfile="sw/devices/pi4msd5v945x/pi4msd5v945x.c" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpi4msd5v945x__t_1ae452b04f6bdf660510456dc3461e2e9c" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* pi4msd5v945x_t::hal_ctx</definition>
+        <argsstring></argsstring>
+        <name>hal_ctx</name>
+        <qualifiedname>pi4msd5v945x_t::hal_ctx</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Opaque context pointer passed through to the HAL callbacks. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/pi4msd5v945x/pi4msd5v945x.c" line="19" column="6" bodyfile="sw/devices/pi4msd5v945x/pi4msd5v945x.c" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpi4msd5v945x__t_1a86e0cfc59160ab41d66657a4dca4fc3c" prot="public" static="no" mutable="no">
+        <type><ref refid="pi4msd5v945x_8h_1a91922ecbd8e724a2269b8b80d990a2ac" kindref="member">pi4msd5v945x_i2c_write_f</ref></type>
+        <definition>pi4msd5v945x_i2c_write_f pi4msd5v945x_t::i2c_write</definition>
+        <argsstring></argsstring>
+        <name>i2c_write</name>
+        <qualifiedname>pi4msd5v945x_t::i2c_write</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>HAL write callback. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/pi4msd5v945x/pi4msd5v945x.c" line="20" column="26" bodyfile="sw/devices/pi4msd5v945x/pi4msd5v945x.c" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpi4msd5v945x__t_1a060efbdb560fd38611156214877885d1" prot="public" static="no" mutable="no">
+        <type><ref refid="pi4msd5v945x_8h_1a117ada97a7735139223be43b7aec1db4" kindref="member">pi4msd5v945x_i2c_read_f</ref></type>
+        <definition>pi4msd5v945x_i2c_read_f pi4msd5v945x_t::i2c_read</definition>
+        <argsstring></argsstring>
+        <name>i2c_read</name>
+        <qualifiedname>pi4msd5v945x_t::i2c_read</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>HAL read callback. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/devices/pi4msd5v945x/pi4msd5v945x.c" line="21" column="25" bodyfile="sw/devices/pi4msd5v945x/pi4msd5v945x.c" bodystart="21" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Opaque device handle (definition), see <ref refid="structpi4msd5v945x__t" kindref="compound">pi4msd5v945x_t</ref> in <ref refid="pi4msd5v945x_8h" kindref="compound">pi4msd5v945x.h</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/devices/pi4msd5v945x/pi4msd5v945x.c" line="16" column="1" bodyfile="sw/devices/pi4msd5v945x/pi4msd5v945x.c" bodystart="16" bodyend="22"/>
+    <listofallmembers>
+      <member refid="structpi4msd5v945x__t_1ae452b04f6bdf660510456dc3461e2e9c" prot="public" virt="non-virtual"><scope>pi4msd5v945x_t</scope><name>hal_ctx</name></member>
+      <member refid="structpi4msd5v945x__t_1a060efbdb560fd38611156214877885d1" prot="public" virt="non-virtual"><scope>pi4msd5v945x_t</scope><name>i2c_read</name></member>
+      <member refid="structpi4msd5v945x__t_1a86e0cfc59160ab41d66657a4dca4fc3c" prot="public" virt="non-virtual"><scope>pi4msd5v945x_t</scope><name>i2c_write</name></member>
+      <member refid="structpi4msd5v945x__t_1add74854b0f06eb66a0ce4e7542ebfb37" prot="public" virt="non-virtual"><scope>pi4msd5v945x_t</scope><name>i2cAddr</name></member>
+      <member refid="structpi4msd5v945x__t_1aa4a79c5251a73980e7d9140b1ba76e94" prot="public" virt="non-virtual"><scope>pi4msd5v945x_t</scope><name>isReady</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structpwrFmcCfg__t" kind="struct" language="C++" prot="public">
+    <compoundname>pwrFmcCfg_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpwrFmcCfg__t_1a127c41d77bb0ef50dcc095b1adfbfb9d" prot="public" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char* pwrFmcCfg_t::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>pwrFmcCfg_t::name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.c" line="83" column="12" bodyfile="sw/app/src/power.c" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpwrFmcCfg__t_1a5d4d0264740e93fc3b7d48e41bc5272d" prot="public" static="no" mutable="no">
+        <type>u8</type>
+        <definition>u8 pwrFmcCfg_t::i2cAddr</definition>
+        <argsstring></argsstring>
+        <name>i2cAddr</name>
+        <qualifiedname>pwrFmcCfg_t::i2cAddr</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.c" line="84" column="13" bodyfile="sw/app/src/power.c" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpwrFmcCfg__t_1ab7b689efe6fcbef39f63564a175f983c" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float pwrFmcCfg_t::setpoint_V</definition>
+        <argsstring></argsstring>
+        <name>setpoint_V</name>
+        <qualifiedname>pwrFmcCfg_t::setpoint_V</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/power.c" line="85" column="13" bodyfile="sw/app/src/power.c" bodystart="85" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/app/src/power.c" line="82" column="1" bodyfile="sw/app/src/power.c" bodystart="82" bodyend="86"/>
+    <listofallmembers>
+      <member refid="structpwrFmcCfg__t_1a5d4d0264740e93fc3b7d48e41bc5272d" prot="public" virt="non-virtual"><scope>pwrFmcCfg_t</scope><name>i2cAddr</name></member>
+      <member refid="structpwrFmcCfg__t_1a127c41d77bb0ef50dcc095b1adfbfb9d" prot="public" virt="non-virtual"><scope>pwrFmcCfg_t</scope><name>name</name></member>
+      <member refid="structpwrFmcCfg__t_1ab7b689efe6fcbef39f63564a175f983c" prot="public" virt="non-virtual"><scope>pwrFmcCfg_t</scope><name>setpoint_V</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

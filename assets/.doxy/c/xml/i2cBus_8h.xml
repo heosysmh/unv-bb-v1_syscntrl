@@ -1,0 +1,476 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="i2cBus_8h" kind="file" language="C++">
+    <compoundname>i2cBus.h</compoundname>
+    <includes refid="pi4msd5v945x_8h" local="yes">pi4msd5v945x.h</includes>
+    <includes refid="i2cWrapper_8h" local="yes">i2cWrapper.h</includes>
+    <includes refid="interrupt_8h" local="yes">interrupt.h</includes>
+    <includedby refid="clkGen_8c" local="yes">sw/app/src/clkGen.c</includedby>
+    <includedby refid="i2cBus_8c" local="yes">sw/app/src/i2cBus.c</includedby>
+    <includedby refid="main_8c" local="yes">sw/app/src/main.c</includedby>
+    <includedby refid="power_8c" local="yes">sw/app/src/power.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>sw/app/src/i2cBus.h</label>
+        <link refid="i2cBus_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>interrupt.h</label>
+        <link refid="interrupt_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>pi4msd5v945x.h</label>
+        <link refid="pi4msd5v945x_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>i2cWrapper.h</label>
+        <link refid="i2cWrapper_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>i2c.h</label>
+      </node>
+      <node id="7">
+        <label>plic.h</label>
+      </node>
+      <node id="3">
+        <label>type.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>sw/app/src/clkGen.c</label>
+        <link refid="clkGen_8c"/>
+      </node>
+      <node id="3">
+        <label>sw/app/src/i2cBus.c</label>
+        <link refid="i2cBus_8c"/>
+      </node>
+      <node id="1">
+        <label>sw/app/src/i2cBus.h</label>
+        <link refid="i2cBus_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>sw/app/src/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+      <node id="5">
+        <label>sw/app/src/power.c</label>
+        <link refid="power_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="user-defined">
+      <header>Device I2C addresses (SysCfg bus)</header>
+      <memberdef kind="define" id="i2cBus_8h_1a040dcdfe7e6532ecd61a65dcc8391c11" prot="public" static="no">
+        <name>I2CBUS_CLKGEN_ADDR</name>
+        <initializer>0x6A</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Si5332 clock generator (behind channel <ref refid="i2cBus_8h_1ae8ec8a2bfd41472a42d3a5b8e4f5366c" kindref="member">I2CBUS_CH_MBRD</ref>). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="30" column="9" bodyfile="sw/app/src/i2cBus.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="i2cBus_8h_1a52a4087009b8c6789bd6acda0814978c" prot="public" static="no">
+        <name>I2CBUS_BUS_SWITCH_ADDR</name>
+        <initializer>0x77</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>PI4MSD5V945X bus switch. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="31" column="9" bodyfile="sw/app/src/i2cBus.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>PMBus addresses (DC/DC converters and power monitors)</header>
+      <memberdef kind="define" id="i2cBus_8h_1a23defef64507c65264b45a69aa43dac6" prot="public" static="no">
+        <name>I2CBUS_PWRMON_12V_ADDR</name>
+        <initializer>0x40</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>INA745A on the 12V rail. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="38" column="9" bodyfile="sw/app/src/i2cBus.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="i2cBus_8h_1a739306303ed611643225f28a84bb830e" prot="public" static="no">
+        <name>I2CBUS_PWRMON_3V3_ADDR</name>
+        <initializer>0x41</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>INA745A on the 3.3V rail. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="39" column="9" bodyfile="sw/app/src/i2cBus.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="i2cBus_8h_1ac48b4f48c0f257d398dfe75869aa12f2" prot="public" static="no">
+        <name>I2CBUS_PWRMON_5V0_ADDR</name>
+        <initializer>0x43</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>INA745A on the 5.0V SoM rail. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="40" column="9" bodyfile="sw/app/src/i2cBus.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="i2cBus_8h_1ad65572c0ff7e604d0d3ea72722478b75" prot="public" static="no">
+        <name>I2CBUS_PWRMON_1V8_ADDR</name>
+        <initializer>0x44</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>INA745A on the 1.8V rail. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="41" column="9" bodyfile="sw/app/src/i2cBus.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="i2cBus_8h_1a054edce8a44407ab65df0de556e98742" prot="public" static="no">
+        <name>I2CBUS_PWRMON_FMC1_ADDR</name>
+        <initializer>0x4C</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>INA745A on FMC1 Vadj. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="42" column="9" bodyfile="sw/app/src/i2cBus.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="i2cBus_8h_1a3000f0da06b073cf0cc0033649d30fde" prot="public" static="no">
+        <name>I2CBUS_PWRMON_FMC2_ADDR</name>
+        <initializer>0x4D</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>INA745A on FMC2 Vadj. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="43" column="9" bodyfile="sw/app/src/i2cBus.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="i2cBus_8h_1a6f5537216e4f3e2d05879a764e1a5690" prot="public" static="no">
+        <name>I2CBUS_FMC1_VADJ_ADDR</name>
+        <initializer>0x4E</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>TPSM8286x FMC1 Vadj regulator. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="44" column="9" bodyfile="sw/app/src/i2cBus.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="i2cBus_8h_1a4cb89f24e476672a03d3db20df6ffd42" prot="public" static="no">
+        <name>I2CBUS_FMC2_VADJ_ADDR</name>
+        <initializer>0x4F</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>TPSM8286x FMC2 Vadj regulator. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="45" column="9" bodyfile="sw/app/src/i2cBus.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>I2C bus switch channels (SysCfg bus)</header>
+      <memberdef kind="define" id="i2cBus_8h_1abab0936413f4e595ffa5b2ac81bf9887" prot="public" static="no">
+        <name>I2CBUS_CH_SYZYGY</name>
+        <initializer><ref refid="pi4msd5v945x_8h_1af44b27eec0940f3baed40c9c051b5d79" kindref="member">PI4MSD5V945X_CH0</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>SYZYGY segment. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="52" column="9" bodyfile="sw/app/src/i2cBus.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="i2cBus_8h_1afa41850c9222cc72ed9f174ac1d6cd71" prot="public" static="no">
+        <name>I2CBUS_CH_FMC2</name>
+        <initializer><ref refid="pi4msd5v945x_8h_1abaec98304f33d70c95681d0fb2c7e9cf" kindref="member">PI4MSD5V945X_CH1</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>FMC2 segment. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="53" column="9" bodyfile="sw/app/src/i2cBus.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="i2cBus_8h_1a4a2ffda1fd8543823175cc50491f6856" prot="public" static="no">
+        <name>I2CBUS_CH_FMC1</name>
+        <initializer><ref refid="pi4msd5v945x_8h_1ad8358b20fbaab818a3451c07a2a3346e" kindref="member">PI4MSD5V945X_CH2</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>FMC1 segment. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="54" column="9" bodyfile="sw/app/src/i2cBus.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="i2cBus_8h_1ae8ec8a2bfd41472a42d3a5b8e4f5366c" prot="public" static="no">
+        <name>I2CBUS_CH_MBRD</name>
+        <initializer><ref refid="pi4msd5v945x_8h_1a66c34d7c0be7ca1b584eb0b04997edcc" kindref="member">PI4MSD5V945X_CH3</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Motherboard segment (clock generator). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="55" column="9" bodyfile="sw/app/src/i2cBus.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0" prot="public" static="no" strong="no">
+        <type></type>
+        <name>i2cBus_err_t</name>
+        <enumvalue id="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0af38ce5867e425909e1e7ace508a4b6fc" prot="public">
+          <name>I2CBUS_OK</name>
+          <initializer>=  0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Success. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0aabbcb62a04e5273c34ab3caa617af842" prot="public">
+          <name>I2CBUS_E_INIT</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>A handle could not be created. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0ad52d3ac5be7a37265130d9a0cb9b92d1" prot="public">
+          <name>I2CBUS_E_SELECT</name>
+          <initializer>= -2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Bus switch did not accept the channel selection. </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Status codes of the I2C infrastructure module. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="59" column="1" bodyfile="sw/app/src/i2cBus.h" bodystart="59" bodyend="63"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="i2cBus_8h_1a64b4069becb1cf60d3d7c0e5eb477bd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0" kindref="member">i2cBus_err_t</ref></type>
+        <definition>i2cBus_err_t i2cBus_init</definition>
+        <argsstring>(void)</argsstring>
+        <name>i2cBus_init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Creates the I2C infrastructure handles. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates the interrupt controller, both I2C controllers and the bus switch handle. Must be called before any device module is initialized.</para>
+<para><simplesect kind="return"><para><ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0af38ce5867e425909e1e7ace508a4b6fc" kindref="member">I2CBUS_OK</ref> on success, <ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0aabbcb62a04e5273c34ab3caa617af842" kindref="member">I2CBUS_E_INIT</ref> if a handle could not be created. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; PI4MSD5V945X bus switch.</para>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="74" column="14" bodyfile="sw/app/src/i2cBus.c" bodystart="79" bodyend="120" declfile="sw/app/src/i2cBus.h" declline="74" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="i2cBus_8h_1a6f34ee7a7d76206ea21474fe32bcf32e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0" kindref="member">i2cBus_err_t</ref></type>
+        <definition>i2cBus_err_t i2cBus_select</definition>
+        <argsstring>(u8 channelMask)</argsstring>
+        <name>i2cBus_select</name>
+        <param>
+          <type>u8</type>
+          <declname>channelMask</declname>
+        </param>
+        <briefdescription>
+<para>Selects one or more channels of the SysCfg bus switch. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The channel mask is passed through unchanged, so several channels may be combined (e.g. <ref refid="i2cBus_8h_1ae8ec8a2bfd41472a42d3a5b8e4f5366c" kindref="member">I2CBUS_CH_MBRD</ref>).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>channelMask</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bitmask of PI4MSD5V945X_CHx channels. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0af38ce5867e425909e1e7ace508a4b6fc" kindref="member">I2CBUS_OK</ref> on success, <ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0aabbcb62a04e5273c34ab3caa617af842" kindref="member">I2CBUS_E_INIT</ref> if not initialized, <ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0ad52d3ac5be7a37265130d9a0cb9b92d1" kindref="member">I2CBUS_E_SELECT</ref> if the bus switch rejected the selection. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="86" column="14" bodyfile="sw/app/src/i2cBus.c" bodystart="122" bodyend="131" declfile="sw/app/src/i2cBus.h" declline="86" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="i2cBus_8h_1a5075037ad6d7ca79487ee9941af11ae2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref> *</type>
+        <definition>i2cHandle_t * i2cBus_pmbus</definition>
+        <argsstring>(void)</argsstring>
+        <name>i2cBus_pmbus</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Returns the PMBus controller handle (power devices). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Handle, or NULL before <ref refid="i2cBus_8h_1a64b4069becb1cf60d3d7c0e5eb477bd8" kindref="member">i2cBus_init()</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="92" column="13" bodyfile="sw/app/src/i2cBus.c" bodystart="133" bodyend="136" declfile="sw/app/src/i2cBus.h" declline="92" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="i2cBus_8h_1a010dda9f803415f4485b265dd02420e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref> *</type>
+        <definition>i2cHandle_t * i2cBus_sysCfg</definition>
+        <argsstring>(void)</argsstring>
+        <name>i2cBus_sysCfg</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Returns the SysCfg controller handle (clock generator, add-on modules). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Handle, or NULL before <ref refid="i2cBus_8h_1a64b4069becb1cf60d3d7c0e5eb477bd8" kindref="member">i2cBus_init()</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="98" column="13" bodyfile="sw/app/src/i2cBus.c" bodystart="138" bodyend="141" declfile="sw/app/src/i2cBus.h" declline="98" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="i2cBus_8h_1ac62e19627ba09d4af05a4645ef2d8fc4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref> *</type>
+        <definition>intrHandle_t * i2cBus_intr</definition>
+        <argsstring>(void)</argsstring>
+        <name>i2cBus_intr</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Returns the interrupt controller handle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For future users besides the I2C controllers.</para>
+<para><simplesect kind="return"><para>Handle, or NULL before <ref refid="i2cBus_8h_1a64b4069becb1cf60d3d7c0e5eb477bd8" kindref="member">i2cBus_init()</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/i2cBus.h" line="107" column="14" bodyfile="sw/app/src/i2cBus.c" bodystart="143" bodyend="146" declfile="sw/app/src/i2cBus.h" declline="107" declcolumn="14"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Ownership of the I2C infrastructure of the board. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Owns the interrupt controller handle, both I2C controller instances (PMBus and SysCfg) and the PI4MSD5V945X bus switch that segments the SysCfg bus. Addresses and channels are assigned here.</para>
+<para><simplesect kind="note"><para>This file is deliberately not called i2c.h - that name is already used by the BSP driver (mcu/software/standalone/driver/i2c.h) and every src directory is on the include path. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>2026<sp/>Matthias<sp/>Haefner<sp/>-<sp/>Heosys</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SRC_I2CBUS_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SRC_I2CBUS_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pi4msd5v945x_8h" kindref="compound">pi4msd5v945x.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="i2cWrapper_8h" kindref="compound">i2cWrapper.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="interrupt_8h" kindref="compound">interrupt.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="i2cBus_8h_1a040dcdfe7e6532ecd61a65dcc8391c11" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2CBUS_CLKGEN_ADDR<sp/><sp/><sp/><sp/><sp/><sp/>0x6A<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="i2cBus_8h_1a52a4087009b8c6789bd6acda0814978c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2CBUS_BUS_SWITCH_ADDR<sp/><sp/>0x77<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="i2cBus_8h_1a23defef64507c65264b45a69aa43dac6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2CBUS_PWRMON_12V_ADDR<sp/><sp/>0x40<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="i2cBus_8h_1a739306303ed611643225f28a84bb830e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2CBUS_PWRMON_3V3_ADDR<sp/><sp/>0x41<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="i2cBus_8h_1ac48b4f48c0f257d398dfe75869aa12f2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2CBUS_PWRMON_5V0_ADDR<sp/><sp/>0x43<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="i2cBus_8h_1ad65572c0ff7e604d0d3ea72722478b75" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2CBUS_PWRMON_1V8_ADDR<sp/><sp/>0x44<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="i2cBus_8h_1a054edce8a44407ab65df0de556e98742" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2CBUS_PWRMON_FMC1_ADDR<sp/>0x4C<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="i2cBus_8h_1a3000f0da06b073cf0cc0033649d30fde" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2CBUS_PWRMON_FMC2_ADDR<sp/>0x4D<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="i2cBus_8h_1a6f5537216e4f3e2d05879a764e1a5690" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2CBUS_FMC1_VADJ_ADDR<sp/><sp/><sp/>0x4E<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="i2cBus_8h_1a4cb89f24e476672a03d3db20df6ffd42" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2CBUS_FMC2_VADJ_ADDR<sp/><sp/><sp/>0x4F<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="i2cBus_8h_1abab0936413f4e595ffa5b2ac81bf9887" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2CBUS_CH_SYZYGY<sp/><sp/><sp/><sp/>PI4MSD5V945X_CH0<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="i2cBus_8h_1afa41850c9222cc72ed9f174ac1d6cd71" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2CBUS_CH_FMC2<sp/><sp/><sp/><sp/><sp/><sp/>PI4MSD5V945X_CH1<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="i2cBus_8h_1a4a2ffda1fd8543823175cc50491f6856" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2CBUS_CH_FMC1<sp/><sp/><sp/><sp/><sp/><sp/>PI4MSD5V945X_CH2<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="i2cBus_8h_1ae8ec8a2bfd41472a42d3a5b8e4f5366c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2CBUS_CH_MBRD<sp/><sp/><sp/><sp/><sp/><sp/>PI4MSD5V945X_CH3<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="60" refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0af38ce5867e425909e1e7ace508a4b6fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0af38ce5867e425909e1e7ace508a4b6fc" kindref="member">I2CBUS_OK</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><sp/>0,<sp/><sp/></highlight></codeline>
+<codeline lineno="61" refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0aabbcb62a04e5273c34ab3caa617af842" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0aabbcb62a04e5273c34ab3caa617af842" kindref="member">I2CBUS_E_INIT</ref><sp/><sp/><sp/><sp/>=<sp/>-1,<sp/><sp/></highlight></codeline>
+<codeline lineno="62" refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0ad52d3ac5be7a37265130d9a0cb9b92d1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0ad52d3ac5be7a37265130d9a0cb9b92d1" kindref="member">I2CBUS_E_SELECT</ref><sp/><sp/>=<sp/>-2<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal">}<sp/><ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0" kindref="member">i2cBus_err_t</ref>;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0" kindref="member">i2cBus_err_t</ref><sp/><ref refid="i2cBus_8h_1a64b4069becb1cf60d3d7c0e5eb477bd8" kindref="member">i2cBus_init</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><ref refid="i2cBus_8h_1adc220a0655f1887ee7a435d395bc97e0" kindref="member">i2cBus_err_t</ref><sp/><ref refid="i2cBus_8h_1a6f34ee7a7d76206ea21474fe32bcf32e" kindref="member">i2cBus_select</ref>(u8<sp/>channelMask);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref>*<sp/><ref refid="i2cBus_8h_1a5075037ad6d7ca79487ee9941af11ae2" kindref="member">i2cBus_pmbus</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><ref refid="structi2cHandle__t" kindref="compound">i2cHandle_t</ref>*<sp/><ref refid="i2cBus_8h_1a010dda9f803415f4485b265dd02420e0" kindref="member">i2cBus_sysCfg</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><ref refid="structintrHandle__t" kindref="compound">intrHandle_t</ref>*<sp/><ref refid="i2cBus_8h_1ac62e19627ba09d4af05a4645ef2d8fc4" kindref="member">i2cBus_intr</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>SRC_I2CBUS_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="sw/app/src/i2cBus.h"/>
+  </compounddef>
+</doxygen>

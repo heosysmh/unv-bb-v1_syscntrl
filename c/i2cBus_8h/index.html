@@ -1,0 +1,1600 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hardware (FPGA/VHDL) and Firmware (C) documentation for unv-bb-v1-syscntrl">
+      
+      
+      
+      
+        <link rel="prev" href="../i2cBus_8c_source/">
+      
+      
+        <link rel="next" href="../i2cBus_8h_source/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>File i2cBus.h - unv-bb-v1-syscntrl Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#file-i2cbush" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-header__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            unv-bb-v1-syscntrl Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              File i2cBus.h
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  System Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../setup/ftdi-jtag/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Setup & Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sw-notes/BUILD_SYSTEM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Firmware (SW)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vhdl/debounce/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  FPGA (VHDL)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="unv-bb-v1-syscntrl Documentation" class="md-nav__button md-logo" aria-label="unv-bb-v1-syscntrl Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    unv-bb-v1-syscntrl Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup & Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/ftdi-jtag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FTDI & JTAG Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/firmware-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware Build Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware (SW)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Firmware (SW)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sw-notes/BUILD_SYSTEM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C-Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Structures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FPGA (VHDL)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    FPGA (VHDL)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vhdl
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Vhdl
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/debounce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: debounce
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/fmcPowerCntrl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: fmcPowerCntrl
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/inputSync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: inputSync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/synchronizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: synchronizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/sysCtnrl_top/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: sysCntrl_Top
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vhdl/vccioSelect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity: vccioSelect
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#public-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macros
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-types-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Types Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Types Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enum-i2cbus_err_t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        enum i2cBus_err_t
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-i2cbus_init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function i2cBus_init
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-i2cbus_intr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function i2cBus_intr
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-i2cbus_pmbus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function i2cBus_pmbus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-i2cbus_select" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function i2cBus_select
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-i2cbus_syscfg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function i2cBus_sysCfg
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macro-definition-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macro Definition Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Macro Definition Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-i2cbus_bus_switch_addr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define I2CBUS_BUS_SWITCH_ADDR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-i2cbus_ch_fmc1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define I2CBUS_CH_FMC1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-i2cbus_ch_fmc2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define I2CBUS_CH_FMC2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-i2cbus_ch_mbrd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define I2CBUS_CH_MBRD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-i2cbus_ch_syzygy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define I2CBUS_CH_SYZYGY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-i2cbus_clkgen_addr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define I2CBUS_CLKGEN_ADDR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-i2cbus_fmc1_vadj_addr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define I2CBUS_FMC1_VADJ_ADDR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-i2cbus_fmc2_vadj_addr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define I2CBUS_FMC2_VADJ_ADDR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-i2cbus_pwrmon_12v_addr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define I2CBUS_PWRMON_12V_ADDR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-i2cbus_pwrmon_1v8_addr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define I2CBUS_PWRMON_1V8_ADDR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-i2cbus_pwrmon_3v3_addr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define I2CBUS_PWRMON_3V3_ADDR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-i2cbus_pwrmon_5v0_addr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define I2CBUS_PWRMON_5V0_ADDR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-i2cbus_pwrmon_fmc1_addr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define I2CBUS_PWRMON_FMC1_ADDR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-i2cbus_pwrmon_fmc2_addr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        define I2CBUS_PWRMON_FMC2_ADDR
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="file-i2cbush">File i2cBus.h</h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_fd9e68481a64957b5aa550f8031e1091/"><strong>app</strong></a> <strong>&gt;</strong> <a href="../dir_4d8bb3f988c5738b11212c0e5c5a2a68/"><strong>src</strong></a> <strong>&gt;</strong> <a href="./"><strong>i2cBus.h</strong></a></p>
+<p><a href="../i2cBus_8h_source/">Go to the source code of this file</a></p>
+<p><em>Ownership of the I2C infrastructure of the board.</em> <a href="#detailed-description">More...</a></p>
+<ul>
+<li><code>#include "pi4msd5v945x.h"</code></li>
+<li><code>#include "i2cWrapper.h"</code></li>
+<li><code>#include "interrupt.h"</code></li>
+</ul>
+<h2 id="public-types">Public Types</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-i2cbus_err_t"><strong>i2cBus_err_t</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="./#enum-i2cbus_err_t"><strong>i2cBus_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-i2cbus_init"><strong>i2cBus_init</strong></a> (void) <br><em>Creates the I2C infrastructure handles.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../structintrHandle__t/"><strong>intrHandle_t</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-i2cbus_intr"><strong>i2cBus_intr</strong></a> (void) <br><em>Returns the interrupt controller handle.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../structi2cHandle__t/"><strong>i2cHandle_t</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-i2cbus_pmbus"><strong>i2cBus_pmbus</strong></a> (void) <br><em>Returns the PMBus controller handle (power devices).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#enum-i2cbus_err_t"><strong>i2cBus_err_t</strong></a></td>
+<td style="text-align: left;"><a href="#function-i2cbus_select"><strong>i2cBus_select</strong></a> (u8 channelMask) <br><em>Selects one or more channels of the SysCfg bus switch.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../structi2cHandle__t/"><strong>i2cHandle_t</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-i2cbus_syscfg"><strong>i2cBus_sysCfg</strong></a> (void) <br><em>Returns the SysCfg controller handle (clock generator, add-on modules).</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="macros">Macros</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-i2cbus_bus_switch_addr"><strong>I2CBUS_BUS_SWITCH_ADDR</strong></a>  <code>0x77</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-i2cbus_ch_fmc1"><strong>I2CBUS_CH_FMC1</strong></a>  <code>[**PI4MSD5V945X\_CH2**](pi4msd5v945x_8h.md#define-pi4msd5v945x_ch2)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-i2cbus_ch_fmc2"><strong>I2CBUS_CH_FMC2</strong></a>  <code>[**PI4MSD5V945X\_CH1**](pi4msd5v945x_8h.md#define-pi4msd5v945x_ch1)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-i2cbus_ch_mbrd"><strong>I2CBUS_CH_MBRD</strong></a>  <code>[**PI4MSD5V945X\_CH3**](pi4msd5v945x_8h.md#define-pi4msd5v945x_ch3)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-i2cbus_ch_syzygy"><strong>I2CBUS_CH_SYZYGY</strong></a>  <code>[**PI4MSD5V945X\_CH0**](pi4msd5v945x_8h.md#define-pi4msd5v945x_ch0)</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-i2cbus_clkgen_addr"><strong>I2CBUS_CLKGEN_ADDR</strong></a>  <code>0x6A</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-i2cbus_fmc1_vadj_addr"><strong>I2CBUS_FMC1_VADJ_ADDR</strong></a>  <code>0x4E</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-i2cbus_fmc2_vadj_addr"><strong>I2CBUS_FMC2_VADJ_ADDR</strong></a>  <code>0x4F</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-i2cbus_pwrmon_12v_addr"><strong>I2CBUS_PWRMON_12V_ADDR</strong></a>  <code>0x40</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-i2cbus_pwrmon_1v8_addr"><strong>I2CBUS_PWRMON_1V8_ADDR</strong></a>  <code>0x44</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-i2cbus_pwrmon_3v3_addr"><strong>I2CBUS_PWRMON_3V3_ADDR</strong></a>  <code>0x41</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-i2cbus_pwrmon_5v0_addr"><strong>I2CBUS_PWRMON_5V0_ADDR</strong></a>  <code>0x43</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-i2cbus_pwrmon_fmc1_addr"><strong>I2CBUS_PWRMON_FMC1_ADDR</strong></a>  <code>0x4C</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">define</td>
+<td style="text-align: left;"><a href="./#define-i2cbus_pwrmon_fmc2_addr"><strong>I2CBUS_PWRMON_FMC2_ADDR</strong></a>  <code>0x4D</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="detailed-description">Detailed Description</h2>
+<p>Owns the interrupt controller handle, both I2C controller instances (PMBus and SysCfg) and the PI4MSD5V945X bus switch that segments the SysCfg bus. Addresses and channels are assigned here.</p>
+<p><strong>Note:</strong></p>
+<p>This file is deliberately not called i2c.h - that name is already used by the BSP driver (mcu/software/standalone/driver/i2c.h) and every src directory is on the include path. </p>
+<h2 id="public-types-documentation">Public Types Documentation</h2>
+<h3 id="enum-i2cbus_err_t">enum i2cBus_err_t</h3>
+<pre><code class="language-C++">enum i2cBus_err_t {
+    I2CBUS_OK =  0,
+    I2CBUS_E_INIT = -1,
+    I2CBUS_E_SELECT = -2
+};
+</code></pre>
+<p>Status codes of the I2C infrastructure module. </p>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-i2cbus_init">function i2cBus_init</h3>
+<p><em>Creates the I2C infrastructure handles.</em> </p>
+<pre><code class="language-C++">i2cBus_err_t i2cBus_init (
+    void
+) 
+</code></pre>
+<p>Creates the interrupt controller, both I2C controllers and the bus switch handle. Must be called before any device module is initialized.</p>
+<p><strong>Returns:</strong></p>
+<p>I2CBUS_OK on success, I2CBUS_E_INIT if a handle could not be created. </p>
+<hr>
+
+<h3 id="function-i2cbus_intr">function i2cBus_intr</h3>
+<p><em>Returns the interrupt controller handle.</em> </p>
+<pre><code class="language-C++">intrHandle_t * i2cBus_intr (
+    void
+) 
+</code></pre>
+<p>For future users besides the I2C controllers.</p>
+<p><strong>Returns:</strong></p>
+<p>Handle, or NULL before <a href="./#function-i2cbus_init"><strong>i2cBus_init()</strong></a>. </p>
+<hr>
+
+<h3 id="function-i2cbus_pmbus">function i2cBus_pmbus</h3>
+<p><em>Returns the PMBus controller handle (power devices).</em> </p>
+<pre><code class="language-C++">i2cHandle_t * i2cBus_pmbus (
+    void
+) 
+</code></pre>
+<p><strong>Returns:</strong></p>
+<p>Handle, or NULL before <a href="./#function-i2cbus_init"><strong>i2cBus_init()</strong></a>. </p>
+<hr>
+
+<h3 id="function-i2cbus_select">function i2cBus_select</h3>
+<p><em>Selects one or more channels of the SysCfg bus switch.</em> </p>
+<pre><code class="language-C++">i2cBus_err_t i2cBus_select (
+    u8 channelMask
+) 
+</code></pre>
+<p>The channel mask is passed through unchanged, so several channels may be combined (e.g. <a href="./#define-i2cbus_ch_mbrd"><strong>I2CBUS_CH_MBRD</strong></a>).</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>channelMask</code> Bitmask of PI4MSD5V945X_CHx channels. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>I2CBUS_OK on success, I2CBUS_E_INIT if not initialized, I2CBUS_E_SELECT if the bus switch rejected the selection. </p>
+<hr>
+
+<h3 id="function-i2cbus_syscfg">function i2cBus_sysCfg</h3>
+<p><em>Returns the SysCfg controller handle (clock generator, add-on modules).</em> </p>
+<pre><code class="language-C++">i2cHandle_t * i2cBus_sysCfg (
+    void
+) 
+</code></pre>
+<p><strong>Returns:</strong></p>
+<p>Handle, or NULL before <a href="./#function-i2cbus_init"><strong>i2cBus_init()</strong></a>. </p>
+<hr>
+<h2 id="macro-definition-documentation">Macro Definition Documentation</h2>
+<h3 id="define-i2cbus_bus_switch_addr">define I2CBUS_BUS_SWITCH_ADDR</h3>
+<pre><code class="language-C++">#define I2CBUS_BUS_SWITCH_ADDR `0x77`
+</code></pre>
+<p>PI4MSD5V945X bus switch. </p>
+<hr>
+
+<h3 id="define-i2cbus_ch_fmc1">define I2CBUS_CH_FMC1</h3>
+<pre><code class="language-C++">#define I2CBUS_CH_FMC1 `PI4MSD5V945X_CH2`
+</code></pre>
+<p>FMC1 segment. </p>
+<hr>
+
+<h3 id="define-i2cbus_ch_fmc2">define I2CBUS_CH_FMC2</h3>
+<pre><code class="language-C++">#define I2CBUS_CH_FMC2 `PI4MSD5V945X_CH1`
+</code></pre>
+<p>FMC2 segment. </p>
+<hr>
+
+<h3 id="define-i2cbus_ch_mbrd">define I2CBUS_CH_MBRD</h3>
+<pre><code class="language-C++">#define I2CBUS_CH_MBRD `PI4MSD5V945X_CH3`
+</code></pre>
+<p>Motherboard segment (clock generator). </p>
+<hr>
+
+<h3 id="define-i2cbus_ch_syzygy">define I2CBUS_CH_SYZYGY</h3>
+<pre><code class="language-C++">#define I2CBUS_CH_SYZYGY `PI4MSD5V945X_CH0`
+</code></pre>
+<p>SYZYGY segment. </p>
+<hr>
+
+<h3 id="define-i2cbus_clkgen_addr">define I2CBUS_CLKGEN_ADDR</h3>
+<pre><code class="language-C++">#define I2CBUS_CLKGEN_ADDR `0x6A`
+</code></pre>
+<p>Si5332 clock generator (behind channel <a href="./#define-i2cbus_ch_mbrd"><strong>I2CBUS_CH_MBRD</strong></a>). </p>
+<hr>
+
+<h3 id="define-i2cbus_fmc1_vadj_addr">define I2CBUS_FMC1_VADJ_ADDR</h3>
+<pre><code class="language-C++">#define I2CBUS_FMC1_VADJ_ADDR `0x4E`
+</code></pre>
+<p>TPSM8286x FMC1 Vadj regulator. </p>
+<hr>
+
+<h3 id="define-i2cbus_fmc2_vadj_addr">define I2CBUS_FMC2_VADJ_ADDR</h3>
+<pre><code class="language-C++">#define I2CBUS_FMC2_VADJ_ADDR `0x4F`
+</code></pre>
+<p>TPSM8286x FMC2 Vadj regulator. </p>
+<hr>
+
+<h3 id="define-i2cbus_pwrmon_12v_addr">define I2CBUS_PWRMON_12V_ADDR</h3>
+<pre><code class="language-C++">#define I2CBUS_PWRMON_12V_ADDR `0x40`
+</code></pre>
+<p>INA745A on the 12V rail. </p>
+<hr>
+
+<h3 id="define-i2cbus_pwrmon_1v8_addr">define I2CBUS_PWRMON_1V8_ADDR</h3>
+<pre><code class="language-C++">#define I2CBUS_PWRMON_1V8_ADDR `0x44`
+</code></pre>
+<p>INA745A on the 1.8V rail. </p>
+<hr>
+
+<h3 id="define-i2cbus_pwrmon_3v3_addr">define I2CBUS_PWRMON_3V3_ADDR</h3>
+<pre><code class="language-C++">#define I2CBUS_PWRMON_3V3_ADDR `0x41`
+</code></pre>
+<p>INA745A on the 3.3V rail. </p>
+<hr>
+
+<h3 id="define-i2cbus_pwrmon_5v0_addr">define I2CBUS_PWRMON_5V0_ADDR</h3>
+<pre><code class="language-C++">#define I2CBUS_PWRMON_5V0_ADDR `0x43`
+</code></pre>
+<p>INA745A on the 5.0V SoM rail. </p>
+<hr>
+
+<h3 id="define-i2cbus_pwrmon_fmc1_addr">define I2CBUS_PWRMON_FMC1_ADDR</h3>
+<pre><code class="language-C++">#define I2CBUS_PWRMON_FMC1_ADDR `0x4C`
+</code></pre>
+<p>INA745A on FMC1 Vadj. </p>
+<hr>
+
+<h3 id="define-i2cbus_pwrmon_fmc2_addr">define I2CBUS_PWRMON_FMC2_ADDR</h3>
+<pre><code class="language-C++">#define I2CBUS_PWRMON_FMC2_ADDR `0x4D`
+</code></pre>
+<p>INA745A on FMC2 Vadj. </p>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>sw/app/src/i2cBus.h</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Matthias Haefner - Heosys – Licensed under Apache-2.0
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

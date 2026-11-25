@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_4d8bb3f988c5738b11212c0e5c5a2a68" kind="dir">
+    <compoundname>sw/app/src</compoundname>
+    <innerfile refid="boardConfig_8h">boardConfig.h</innerfile>
+    <innerfile refid="boardGpio_8c">boardGpio.c</innerfile>
+    <innerfile refid="boardGpio_8h">boardGpio.h</innerfile>
+    <innerfile refid="clkGen_8c">clkGen.c</innerfile>
+    <innerfile refid="clkGen_8h">clkGen.h</innerfile>
+    <innerfile refid="i2cBus_8c">i2cBus.c</innerfile>
+    <innerfile refid="i2cBus_8h">i2cBus.h</innerfile>
+    <innerfile refid="interrupt_8c">interrupt.c</innerfile>
+    <innerfile refid="interrupt_8h">interrupt.h</innerfile>
+    <innerfile refid="main_8c">main.c</innerfile>
+    <innerfile refid="power_8c">power.c</innerfile>
+    <innerfile refid="power_8h">power.h</innerfile>
+    <innerfile refid="userDef_8h">userDef.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="sw/app/src/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,426 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="boardConfig_8h" kind="file" language="C++">
+    <compoundname>boardConfig.h</compoundname>
+    <includes refid="si5332_8h" local="yes">si5332.h</includes>
+    <includedby refid="boardGpio_8c" local="yes">sw/app/src/boardGpio.c</includedby>
+    <includedby refid="clkGen_8c" local="yes">sw/app/src/clkGen.c</includedby>
+    <includedby refid="i2cBus_8c" local="yes">sw/app/src/i2cBus.c</includedby>
+    <includedby refid="main_8c" local="yes">sw/app/src/main.c</includedby>
+    <includedby refid="power_8h" local="yes">sw/app/src/power.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>sw/app/src/boardConfig.h</label>
+        <link refid="boardConfig_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>si5332.h</label>
+        <link refid="si5332_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>type.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>sw/app/src/boardConfig.h</label>
+        <link refid="boardConfig_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sw/app/src/boardGpio.c</label>
+        <link refid="boardGpio_8c"/>
+      </node>
+      <node id="3">
+        <label>sw/app/src/clkGen.c</label>
+        <link refid="clkGen_8c"/>
+      </node>
+      <node id="4">
+        <label>sw/app/src/i2cBus.c</label>
+        <link refid="i2cBus_8c"/>
+      </node>
+      <node id="5">
+        <label>sw/app/src/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+      <node id="7">
+        <label>sw/app/src/power.c</label>
+        <link refid="power_8c"/>
+      </node>
+      <node id="6">
+        <label>sw/app/src/power.h</label>
+        <link refid="power_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="user-defined">
+      <header>VCCIO source selection</header>
+      <description><para>Kria HPC bank can be connected to either FMC2-LA00..19 (SW1002.2 Off) or FMC1-HA00..19 (SW1002.2 On) via DIP-Switch on the carrier board. Kria HDB bank is always connected to FMC2-LA20..31. It can be sourced with either FMC2-Vadj or 2.5V. With 2.5V LVDS-inputs are supported. Be carefull to make the correct settings for your FMC module. </para>
+</description>
+      <memberdef kind="define" id="boardConfig_8h_1ae6d3acd08aba858570110f9b2c6ab0e1" prot="public" static="no">
+        <name>BOARD_VCCIO_SELECT_HPC</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>HPC VCCIO source: 0 = FMC2-Vadj, 1 = FMC1-Vadj. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="43" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1a65a598bfe815b5f0228568b8e13fd659" prot="public" static="no">
+        <name>BOARD_VCCIO_SELECT_HDB</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>HDB VCCIO source: 0 = FMC2-Vadj, 1 = 2.5V. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="44" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>Clock generator configuration</header>
+      <description><para>Primarily used to provide reference clocks for the GTR transceivers and the ethernet PHY.</para>
+<para>OUT6 (25 MHz CMOS PHY clock) is fixed and always enabled.</para>
+<para>Use <ref refid="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188ba9713633ae89a66c75c9d1533de513873" kindref="member">SI5332_CLK_SRC_XTAL_27M</ref> when no synchronization to the Sync-Board is needed, <ref refid="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188ba4917b8a2f523ee00969d93e61ab71dc8" kindref="member">SI5332_CLK_SRC_CLKIN2_100M</ref> otherwise.</para>
+<para><simplesect kind="note"><para>Frequencies that are integer divisors of 125 MHz or 100 MHz are derived directly from these; other frequencies are synthesized with the two MultiSynths, of which only two different frequencies can be active at a time. </para>
+</simplesect>
+</para>
+</description>
+      <memberdef kind="define" id="boardConfig_8h_1a111b8a713c2d0f06282fcae94c19f9b2" prot="public" static="no">
+        <name>BOARD_CLKGEN_SRC</name>
+        <initializer><ref refid="si5332_8h_1ae01f6fbfccb35d0dc46fb4ba3d43188ba9713633ae89a66c75c9d1533de513873" kindref="member">SI5332_CLK_SRC_XTAL_27M</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>PLL input clock source. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="82" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1abc7b9dd7b12e0005808cc6bbbba927fb" prot="public" static="no">
+        <name>BOARD_CLKGEN_OUT0_EN</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>OUT0 enable at startup. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="84" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1a5fb39a98e748d37dae8b7ab898c80e20" prot="public" static="no">
+        <name>BOARD_CLKGEN_OUT0_FREQ_HZ</name>
+        <initializer><ref refid="si5332_8h_1ae3b0b5e578e3347a1f572ef0cd188053" kindref="member">SI5332_100MHZ</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>OUT0 frequency [Hz]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="85" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1a8d920c80f1b6773fc8f5f02ffeae7194" prot="public" static="no">
+        <name>BOARD_CLKGEN_OUT0_FORMAT</name>
+        <initializer><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500aaca6311fcc1f51b35fcc8bf9e9f7251c8" kindref="member">SI5332_FMT_LVDS_FAST</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>OUT0 signal format. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="86" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1ab5a14a6b5177c372c58ff0a1411f34df" prot="public" static="no">
+        <name>BOARD_CLKGEN_OUT2_EN</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>OUT2 enable at startup. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="88" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1ab925f82e29c9a34031b7f9977fd9b270" prot="public" static="no">
+        <name>BOARD_CLKGEN_OUT2_FREQ_HZ</name>
+        <initializer><ref refid="si5332_8h_1a89e204335bd01de1847e98ef1c79f549" kindref="member">SI5332_125MHZ</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>OUT2 frequency [Hz]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="89" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1ab73af365a999fadc4b2715f8ec102b76" prot="public" static="no">
+        <name>BOARD_CLKGEN_OUT2_FORMAT</name>
+        <initializer><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500aaca6311fcc1f51b35fcc8bf9e9f7251c8" kindref="member">SI5332_FMT_LVDS_FAST</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>OUT2 signal format. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="90" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1a107643f100a4e791eb5594641ea5f49b" prot="public" static="no">
+        <name>BOARD_CLKGEN_OUT4_EN</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>OUT4 enable at startup. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="92" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1ab608216c800885edb421a91a7a84a2d7" prot="public" static="no">
+        <name>BOARD_CLKGEN_OUT4_FREQ_HZ</name>
+        <initializer><ref refid="si5332_8h_1ae3b0b5e578e3347a1f572ef0cd188053" kindref="member">SI5332_100MHZ</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>OUT4 frequency [Hz]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="93" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1a5bcbc5b1151dbc52dee3977bfd21efcd" prot="public" static="no">
+        <name>BOARD_CLKGEN_OUT4_FORMAT</name>
+        <initializer><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500aaca6311fcc1f51b35fcc8bf9e9f7251c8" kindref="member">SI5332_FMT_LVDS_FAST</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>OUT4 signal format. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="94" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1add29fde0ac0a355746d093d7da375b46" prot="public" static="no">
+        <name>BOARD_CLKGEN_OUT7_EN</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>OUT7 enable at startup. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="96" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1a268b2ea990652da7884549b1d344be7d" prot="public" static="no">
+        <name>BOARD_CLKGEN_OUT7_FREQ_HZ</name>
+        <initializer><ref refid="si5332_8h_1a89e204335bd01de1847e98ef1c79f549" kindref="member">SI5332_125MHZ</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>OUT7 frequency [Hz]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="97" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1a737842a57b14d991ddd1717a38fc0c44" prot="public" static="no">
+        <name>BOARD_CLKGEN_OUT7_FORMAT</name>
+        <initializer><ref refid="si5332_8h_1a8030b779324856ece5822c50eba5500aaca6311fcc1f51b35fcc8bf9e9f7251c8" kindref="member">SI5332_FMT_LVDS_FAST</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>OUT7 signal format. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="98" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="boardConfig_8h_1ad068aa640c0a6691fc924c8a7a9e2fb2" prot="public" static="no">
+        <name>BOARD_POWER_SETTLE_US</name>
+        <initializer>1000u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Wait for supplies to stabilize [us]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="25" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1a8666d7de4adc29565446bbcf38c23fde" prot="public" static="no">
+        <name>BOARD_CLK_SETTLE_US</name>
+        <initializer>1000u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Wait for clock outputs [us]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="26" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1abce29f57e327eb2c83213e7fb8926f1a" prot="public" static="no">
+        <name>BOARD_ETH_RESET_PULSE_US</name>
+        <initializer>10u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>ETH PHY reset pulse width [us]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="27" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1a657d3c38a4474f1c0ed6fbe1e162b03d" prot="public" static="no">
+        <name>BOARD_MONITOR_PERIOD_US</name>
+        <initializer>1000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Period of the monitoring loop [us]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="28" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1adf40f2d99815a545049bb07790050ea9" prot="public" static="no">
+        <name>BOARD_FMC1_VADJ_V</name>
+        <initializer>1.80f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>FMC1 Vadj setpoint [V]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="50" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1a87d55c1e6ee9944f81d2c733e0816166" prot="public" static="no">
+        <name>BOARD_FMC2_VADJ_V</name>
+        <initializer>1.80f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>FMC2 Vadj setpoint [V]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="51" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="boardConfig_8h_1a43963d3621146632c3b22e1aa1f4f260" prot="public" static="no">
+        <name>BOARD_FMC_VADJ_MAX_V</name>
+        <initializer>1.80f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set according to the FPGAs VCCIO limits, checked at startup and used to define power monitor limits. Hard upper bound for both FMC Vadj rails [V]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="sw/app/src/boardConfig.h" line="60" column="9" bodyfile="sw/app/src/boardConfig.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Single configuration point of the system controller application. Set your FMC voltages and clock config here. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Sections:<orderedlist>
+<listitem><para>Startup Timing</para>
+</listitem><listitem><para>VCCIO selection (HPC/HDB)</para>
+</listitem><listitem><para>FMC Vadj (tpsm8286x)</para>
+</listitem><listitem><para>Clock generator (si5332) </para>
+</listitem></orderedlist>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>Apache-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>2026<sp/>Matthias<sp/>Haefner<sp/>-<sp/>Heosys</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SRC_BOARDCONFIG_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SRC_BOARDCONFIG_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="si5332_8h" kindref="compound">si5332.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>===========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>1.<sp/>Startup<sp/>Timing<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>===========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="boardConfig_8h_1ad068aa640c0a6691fc924c8a7a9e2fb2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_POWER_SETTLE_US<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1000u<sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="boardConfig_8h_1a8666d7de4adc29565446bbcf38c23fde" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_CLK_SETTLE_US<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1000u<sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="boardConfig_8h_1abce29f57e327eb2c83213e7fb8926f1a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_ETH_RESET_PULSE_US<sp/><sp/><sp/><sp/>10u<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="boardConfig_8h_1a657d3c38a4474f1c0ed6fbe1e162b03d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_MONITOR_PERIOD_US<sp/><sp/><sp/><sp/><sp/>1000000u</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>===========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>2.<sp/>VCCIO<sp/>selection<sp/>(HPC/HDB)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>===========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="boardConfig_8h_1ae6d3acd08aba858570110f9b2c6ab0e1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_VCCIO_SELECT_HPC<sp/><sp/><sp/><sp/><sp/><sp/>0<sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="boardConfig_8h_1a65a598bfe815b5f0228568b8e13fd659" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_VCCIO_SELECT_HDB<sp/><sp/><sp/><sp/><sp/><sp/>0<sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>===========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>3.1<sp/>FMC<sp/>Vadj<sp/>(tpsm8286x)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>===========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="boardConfig_8h_1adf40f2d99815a545049bb07790050ea9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_FMC1_VADJ_V<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1.80f<sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="boardConfig_8h_1a87d55c1e6ee9944f81d2c733e0816166" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_FMC2_VADJ_V<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1.80f<sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>===========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>3.2<sp/>FMC<sp/>Vadj<sp/>hard<sp/>upper<sp/>bound<sp/>(IO<sp/>protection)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>===========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="boardConfig_8h_1a43963d3621146632c3b22e1aa1f4f260" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_FMC_VADJ_MAX_V<sp/><sp/><sp/><sp/>1.80f<sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>===========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>4.<sp/>Clock<sp/>generator<sp/>(si5332)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>===========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="boardConfig_8h_1a111b8a713c2d0f06282fcae94c19f9b2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_CLKGEN_SRC<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SI5332_CLK_SRC_XTAL_27M<sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="boardConfig_8h_1abc7b9dd7b12e0005808cc6bbbba927fb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_CLKGEN_OUT0_EN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="boardConfig_8h_1a5fb39a98e748d37dae8b7ab898c80e20" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_CLKGEN_OUT0_FREQ_HZ<sp/><sp/><sp/>SI5332_100MHZ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="boardConfig_8h_1a8d920c80f1b6773fc8f5f02ffeae7194" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_CLKGEN_OUT0_FORMAT<sp/><sp/><sp/><sp/>SI5332_FMT_LVDS_FAST<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="boardConfig_8h_1ab5a14a6b5177c372c58ff0a1411f34df" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_CLKGEN_OUT2_EN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="boardConfig_8h_1ab925f82e29c9a34031b7f9977fd9b270" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_CLKGEN_OUT2_FREQ_HZ<sp/><sp/><sp/>SI5332_125MHZ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="boardConfig_8h_1ab73af365a999fadc4b2715f8ec102b76" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_CLKGEN_OUT2_FORMAT<sp/><sp/><sp/><sp/>SI5332_FMT_LVDS_FAST<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="boardConfig_8h_1a107643f100a4e791eb5594641ea5f49b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_CLKGEN_OUT4_EN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="boardConfig_8h_1ab608216c800885edb421a91a7a84a2d7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_CLKGEN_OUT4_FREQ_HZ<sp/><sp/><sp/>SI5332_100MHZ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="boardConfig_8h_1a5bcbc5b1151dbc52dee3977bfd21efcd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_CLKGEN_OUT4_FORMAT<sp/><sp/><sp/><sp/>SI5332_FMT_LVDS_FAST<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="boardConfig_8h_1add29fde0ac0a355746d093d7da375b46" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_CLKGEN_OUT7_EN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="boardConfig_8h_1a268b2ea990652da7884549b1d344be7d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_CLKGEN_OUT7_FREQ_HZ<sp/><sp/><sp/>SI5332_125MHZ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="boardConfig_8h_1a737842a57b14d991ddd1717a38fc0c44" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BOARD_CLKGEN_OUT7_FORMAT<sp/><sp/><sp/><sp/>SI5332_FMT_LVDS_FAST<sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor"></highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>SRC_BOARDCONFIG_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="sw/app/src/boardConfig.h"/>
+  </compounddef>
+</doxygen>
